@@ -3,7 +3,8 @@ package FlightControls;
 import FlightControls.Interfaces.IDroopNose;
 
 public class DroopNose extends FlightControl implements IDroopNose{
-    private int MaxDegree = 45;
+    private int MaxDegree = 0;
+    private int MinDegree = -45;
 
     public DroopNose(String manufacturer, String type, String id) {
         super(manufacturer, type, id);
@@ -12,8 +13,8 @@ public class DroopNose extends FlightControl implements IDroopNose{
 
     public int down(int degree) {
         this.degree -= degree;
-        if (this.degree < -MaxDegree) {
-            this.degree = -MaxDegree;
+        if (this.degree < MinDegree) {
+            this.degree = MinDegree;
         }
         return this.degree;
     }
@@ -27,7 +28,7 @@ public class DroopNose extends FlightControl implements IDroopNose{
     }
 
     public int fullDown() {
-        degree = -MaxDegree;
+        degree = MinDegree;
         return degree;
     }
 }

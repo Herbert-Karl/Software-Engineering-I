@@ -3,7 +3,8 @@ package FlightControls;
 import FlightControls.Interfaces.ISlat;
 
 public class Slat extends FlightControl implements ISlat {
-    private int MaxDegree = 45;
+    private int MinDegree = -45;
+    private int MaxDegree = 0;
 
     public Slat(String manufacturer, String type, String id) {
         super(manufacturer, type, id);
@@ -12,8 +13,8 @@ public class Slat extends FlightControl implements ISlat {
 
     public int down(int degree) {
         this.degree -= degree;
-        if (this.degree < -MaxDegree) {
-            this.degree = -MaxDegree;
+        if (this.degree < MinDegree) {
+            this.degree = MinDegree;
         }
         return this.degree;
     }
@@ -27,7 +28,7 @@ public class Slat extends FlightControl implements ISlat {
     }
 
     public int fullDown() {
-        degree = -MaxDegree;
+        degree = MinDegree;
         return degree;
     }
 }

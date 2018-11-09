@@ -4,6 +4,7 @@ import FlightControls.Interfaces.ISpoiler;
 
 public class Spoiler extends FlightControl implements ISpoiler {
     private int MaxDegree = 45;
+    private int MinDegree = 0;
 
     public Spoiler(String manufacturer, String type, String id) {
         super(manufacturer, type, id);
@@ -12,8 +13,8 @@ public class Spoiler extends FlightControl implements ISpoiler {
 
     public int down(int degree) {
         this.degree -= degree;
-        if (this.degree < -MaxDegree) {
-            this.degree = -MaxDegree;
+        if (this.degree < MinDegree) {
+            this.degree = MinDegree;
         }
         return this.degree;
     }
@@ -27,7 +28,7 @@ public class Spoiler extends FlightControl implements ISpoiler {
     }
 
     public int fullUp() {
-        degree = +MaxDegree;
+        degree = MaxDegree;
         return degree;
     }
 }
