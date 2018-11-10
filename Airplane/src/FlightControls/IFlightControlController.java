@@ -1,6 +1,7 @@
 package FlightControls;
 
 public interface IFlightControlController {
+    void neutral();
     void startup();
     void taxi();
     void takeOff();
