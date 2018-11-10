@@ -1,14 +1,14 @@
-package FlightControls;
+package FlightControls.Implementations;
 
-import FlightControls.Interfaces.IFlap;
+import FlightControls.AbstractClasses.FlightControl;
 import FlightControls.Enums.FlapType;
+import FlightControls.Interfaces.IFlap;
 
 public class Flap extends FlightControl implements IFlap {
     private FlapType flapType;
 
     public Flap(String manufacturer, String type, String id, FlapType flapType) throws IllegalArgumentException {
         super(manufacturer, type, id);
-        this.degree = 0;
         this.flapType = flapType;
         if (flapType != FlapType.A350APP
                 && flapType != FlapType.A350TOInboard

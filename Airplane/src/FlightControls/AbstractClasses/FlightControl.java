@@ -1,14 +1,15 @@
-package FlightControls;
+package FlightControls.AbstractClasses;
 
 import FlightControls.Interfaces.IFlightControl;
 
 public abstract class FlightControl implements IFlightControl {
+    protected int degree;
     private String manufacturer;
     private String type;
     private String id;
-    protected int degree;
 
-    FlightControl(String manufacturer, String type, String id) {
+
+    public FlightControl(String manufacturer, String type, String id) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
