@@ -8,7 +8,7 @@ public abstract class HorizontalRotable extends SteplessRotable implements IHori
     }
 
     public int left(int degree) {
-        this.degree -= degree;
+        this.degree = -degree;
         if (this.degree < minDegree) {
             this.degree = minDegree;
         }
@@ -16,7 +16,7 @@ public abstract class HorizontalRotable extends SteplessRotable implements IHori
     }
 
     public int right(int degree) {
-        this.degree += degree;
+        this.degree = degree;
         if (this.degree > maxDegree) {
             this.degree = maxDegree;
         }

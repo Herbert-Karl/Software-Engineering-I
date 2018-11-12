@@ -8,7 +8,7 @@ public abstract class VerticalRotable extends SteplessRotable implements IVertic
     }
 
     public int down(int degree) {
-        this.degree -= degree;
+        this.degree = -degree;
         if (this.degree < minDegree) {
             this.degree = minDegree;
         }
@@ -16,7 +16,7 @@ public abstract class VerticalRotable extends SteplessRotable implements IVertic
     }
 
     public int up(int degree) {
-        this.degree += degree;
+        this.degree = degree;
         if (this.degree > maxDegree) {
             this.degree = maxDegree;
         }

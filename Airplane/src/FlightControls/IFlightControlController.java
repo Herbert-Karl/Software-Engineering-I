@@ -8,4 +8,5 @@ public interface IFlightControlController {
     void climbing();
     void leftTurn();
     void rightTurn();
+    void landing();
 }
