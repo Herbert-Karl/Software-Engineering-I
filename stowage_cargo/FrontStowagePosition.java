@@ -10,7 +10,7 @@ public class FrontStowagePosition {
     //
     FrontStowagePosition(FrontStowagePositionID id, Container container) {
         this.id = id;
-        if(container.type != ContainerType.AKE) { throw new Exception("falscher ContainerType"); }
+        if(container.type != ContainerType.AKE) { throw new RuntimeException("falscher ContainerType"); }
         this.container = container;
     }
 

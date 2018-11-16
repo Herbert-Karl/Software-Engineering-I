@@ -54,18 +54,18 @@ public class CargoSystem implements ICargoSystem {
 
     public void unlock() {
         if(this.isLocked) { this.isLocked = false; }
-        else { throw new Exception("CargoSystem bereits aufgeschlossen."); }
+        else { throw new RuntimeException("CargoSystem bereits aufgeschlossen."); }
     }
 
     public void secure() {
         if(!this.isSecured) { this.isSecured = true; }
-        else { throw new Exception("CargoSystem bereits gesichert."); }
+        else { throw new RuntimeException("CargoSystem bereits gesichert."); }
     }
 
     public void lock() {
-        if(!this.isSecured) { throw new Exception("CargoSystem noch nicht gesichert."); }
+        if(!this.isSecured) { throw new RuntimeException("CargoSystem noch nicht gesichert."); }
         if(!this.isLocked) { this.isLocked = true; }
-        else { throw new Exception("CargoSystem bereits abgeschlossen."); }
+        else { throw new RuntimeException("CargoSystem bereits abgeschlossen."); }
     }
 
     public ArrayList<Container> unloadContainer(Stowage stowage) {
