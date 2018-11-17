@@ -22,6 +22,6 @@ public abstract class FlightControl implements IFlightControl {
     }
 
     public String version() {
-        return id + "(" + type + " : " + manufacturer + ")";
+        return "<" + id + "> - <" + type + ">";
     }
 }
