@@ -4,13 +4,13 @@ public class RearStowagePosition {
 
     private RearStowagePositionID id;
 
-    private Container container;
+    private AirCargoPallet airCargoPallet;
 
     // Konstruktor
     //
-    RearStowagePosition(RearStowagePositionID id, Container container) {
+    RearStowagePosition(RearStowagePositionID id, AirCargoPallet airCargoPallet) {
         this.id = id;
-        this.container = container;
+        this.airCargoPallet = airCargoPallet;
     }
 
 }

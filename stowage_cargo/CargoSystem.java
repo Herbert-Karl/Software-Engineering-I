@@ -44,7 +44,7 @@ public class CargoSystem implements ICargoSystem {
 
     }
 
-    public double determineTotalAirCargoPallet(Stowage stowage) {
+    public double determineTotalWeightAirCargoPallet(Stowage stowage) {
 
     }
 

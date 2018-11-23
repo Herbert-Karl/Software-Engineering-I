@@ -10,7 +10,7 @@ public interface ICargoSystem {
 
     public void load(Stowage stowage, AirCargoPallet airCargoPallet, RearStowagePositionID position);
 
-    public double determineTotalAirCargoPallet(Stowage stowage);
+    public double determineTotalWeightAirCargoPallet(Stowage stowage);
 
     public double determineTotalWeightContainer(Stowage stowage);
 
