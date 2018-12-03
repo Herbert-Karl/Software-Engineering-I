@@ -1,28 +1,38 @@
 package BaggageSortingUnit;
 
-public class BaggageVehicle implements IBaggageVehicle {
+public class ContainerLifter implements IContainerLifter {
     @Override
-    public void store(Container container) {
+    public void connectToAirplane() {
 
     }
 
     @Override
-    public void connect(BaggageSortingUnit.IContainerLifter containerLifter) {
+    public void up() {
 
     }
 
     @Override
-    public void transferContainerToLifter() {
+    public void transferCargoSystem() {
 
     }
 
     @Override
-    public void disconnect(BaggageSortingUnit.IContainerLifter containerLifter) {
+    public void down() {
 
     }
 
     @Override
-    public void returnToBaggageSortingUnit() {
+    public void disconnectFromAirplane() {
+
+    }
+
+    @Override
+    public void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt) {
+
+    }
+
+    @Override
+    public void returnToAirportResourcePool() {
 
     }
 
