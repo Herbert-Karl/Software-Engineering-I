@@ -1,4 +1,4 @@
-package BaggageSortingUnit;
+package Baggage_Sorting_Unit;
 
 public interface IContainerLifter extends IVehicle{
 void connectToAirplane();

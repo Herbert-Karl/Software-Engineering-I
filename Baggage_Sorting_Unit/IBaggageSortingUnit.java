@@ -1,4 +1,4 @@
-package BaggageSortingUnit;
+package Baggage_Sorting_Unit;
 public interface IBaggageSortingUnit {
     void executeRequest(GateID gateID);
     void loginBaggageScanner(Employee employee, String password);

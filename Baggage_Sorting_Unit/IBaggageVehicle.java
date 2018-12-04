@@ -1,4 +1,4 @@
-package BaggageSortingUnit;
+package Baggage_Sorting_Unit;
 
 public interface IBaggageVehicle extends IVehicle{
     void store(Container container);

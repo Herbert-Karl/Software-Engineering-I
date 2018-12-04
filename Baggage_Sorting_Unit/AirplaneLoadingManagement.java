@@ -1,4 +1,4 @@
-package BaggageSortingUnit;
+package Baggage_Sorting_Unit;
 
 public class AirplaneLoadingManagement implements IAirplaneLoadingManagementt{
     private LoadingStrategy strategy;
