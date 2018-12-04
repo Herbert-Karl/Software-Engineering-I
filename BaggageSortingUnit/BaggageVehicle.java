@@ -1,6 +1,16 @@
 package BaggageSortingUnit;
 
 public class BaggageVehicle implements IBaggageVehicle {
+
+    private String uuid;
+    private String id;
+    private String type;
+    private int speedInMPH;
+    private boolean isFlashingLightOn;
+    private Container container;
+    private IContainerLifter containerLifter;
+    private Gate gate;
+
     @Override
     public void store(Container container) {
 
