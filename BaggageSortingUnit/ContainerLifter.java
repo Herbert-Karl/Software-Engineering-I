@@ -1,6 +1,21 @@
 package BaggageSortingUnit;
 
+import java.util.ArrayList;
+
 public class ContainerLifter implements IContainerLifter {
+    private String uuid;
+    private String id;
+    private String type;
+    private int speedInMPH;
+    private boolean isFlashingLightOn;
+    private boolean isDown;
+    private Container container;
+    private int numberOfContainerLoaded;
+    private ArrayList<String> containerIDList;
+    private Gate gate;
+    private Airplane connectedAirplane;
+
+
     @Override
     public void connectToAirplane() {
 
