@@ -6,13 +6,13 @@ public interface ICargoSystem {
 
     public String version();
 
-    public void load(Stowage stowage, Container container, FrontStowagePositionID position);
+    public void load(Container container, FrontStowagePositionID position);
 
-    public void load(Stowage stowage, AirCargoPallet airCargoPallet, RearStowagePositionID position);
+    public void load(AirCargoPallet airCargoPallet, RearStowagePositionID position);
 
-    public double determineTotalWeightAirCargoPallet(Stowage stowage);
+    public double determineTotalWeightAirCargoPallet();
 
-    public double determineTotalWeightContainer(Stowage stowage);
+    public double determineTotalWeightContainer();
 
     public void unlock();
 
@@ -20,8 +20,8 @@ public interface ICargoSystem {
 
     public void lock();
 
-    public ArrayList<Container> unloadContainer(Stowage stowage);
+    public ArrayList<Container> unloadContainer();
 
-    public ArrayList<AirCargoPallet> unloadAirCargoPallet(Stowage stowage);
+    public AirCargoPallet unloadAirCargoPallet();
 
 }
