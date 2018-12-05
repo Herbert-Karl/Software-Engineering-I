@@ -1,3 +1,7 @@
+package Airport.Service_Vehicle;
+
+import Airport.Airport.GateID;
+
 public class ServiceVehicleBaseReceipt {
     private String uuid;
     private String vehicleID;

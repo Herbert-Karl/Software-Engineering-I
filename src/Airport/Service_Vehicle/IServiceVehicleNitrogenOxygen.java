@@ -1,3 +1,9 @@
+package Airport.Service_Vehicle;
+
+import Airplane.Tanks.INitrogenBottle;
+import Airplane.Tanks.IOxygenBottle;
+import Airport.Airport.GateID;
+
 public interface IServiceVehicleNitrogenOxygen {
     void executeRequest(GateID gateID);
     void setFlashingLightOn();
