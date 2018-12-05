@@ -1,0 +1,38 @@
+package Airport.Airport;
+
+public class AirportRecourcePool{
+    private ArrayList<IDCard> idCardList;
+    private ArrayList<Employee> employeeList;
+    private Arraylist<IAirCargoPalletLifter> airCargoPalletLifterList;
+    private ArrayList<IAirCargoPalletVehicle> airCargoPalletVehicleList;
+    private ArrayList<IContainerLifter> containerLifterList;
+    private ArrayList<IBaggageVehicle> baggageVehicleList;
+    private ArrayList<IServiceVehicleBase> serviceVehicleBaseList;
+    private ArrayList<IServiceVehicleFreshWater> serviceVehicleFreshWaterList;
+    private ArrayList<IServiceVehicleNitrogenOxigen> serviceVehicleNitrogenOxigenList;
+    private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
+    private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
+
+    public AirportResourcePool(ArrayList<IDCard> idCardList, ArrayList<Employee> employeeList, ArrayList<IAirCargoPalletLifter> containerLifterList,
+                               ArrayList<IAirCargoPalletVehicle> airCargoPalletVehicleList, ArrayList<IContainerLifter> containerLifterList,
+                               ArrayList<IBaggageVehicle> baggageVehicleList, ArrayList<IServiceVehicleBase> serviceVehicleBaseList,
+                               ArrayList<IServiceVehicleFreshWater> serviceVehicleFreshWaterList,
+                               ArrayList<IServiceVehicleNitrogenOxigen> serviceVehicleNitrogenOxigenList,
+                               ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList, ArrayList<ISkyTankingVehicle> skyTankingVehicleList){
+        this.idCardList = idCardList;
+        this.employeeList = employeeList;
+        this.airCargoPalletLifterList = airCargoPalletLifterList;
+        this.airCargoPalletVehicleList = airCargoPalletVehicleList;
+        this.containerLifterList = containerLifterList;
+        this.baggageVehicleList = baggageVehicleList;
+        this.serviceVehicleBaseList = serviceVehicleBaseList;
+        this.serviceVehicleFreshWaterList = serviceVehicleFreshWaterList;
+        this.serviceVehicleNitrogenOxigenList = serviceVehicleNitrogenOxigenList;
+        this.serviceVehicleWasteWaterList = serviceVehicleWasteWaterList;
+        this.skyTankingVehicleList = skyTankingVehicleList;
+    }
+
+    public build(){
+        //TODO
+    }
+}
