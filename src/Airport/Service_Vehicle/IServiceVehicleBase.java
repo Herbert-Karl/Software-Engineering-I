@@ -1,3 +1,7 @@
+package Airport.Service_Vehicle;
+import Airplane.Tanks.*;
+import Airport.Airport.GateID;
+
 public interface IServiceVehicleBase {
     void executeRequest(GateID gateID);
     void setFlashingLightOn();

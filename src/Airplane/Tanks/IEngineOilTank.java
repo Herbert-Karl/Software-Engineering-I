@@ -1,4 +1,4 @@
-package Airplane.src.Tanks;
+package Airplane.Tanks;
 
 public interface IEngineOilTank {
     public String version();
