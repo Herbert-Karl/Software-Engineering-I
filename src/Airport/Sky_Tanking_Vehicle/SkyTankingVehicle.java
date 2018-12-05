@@ -148,7 +148,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isElectricallyGrounded() == false) {
             setElectricallyGrounded(true);
         } else {
-            System.out.println("SkyTankingVehicle Error: already electrically grounded");
+            System.out.println("SkyTankingVehicle Error: already electrically grounded!");
         }
     }
 
