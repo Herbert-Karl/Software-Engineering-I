@@ -106,7 +106,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void setFlashingLightOn() {
-
+        setFlashingLightOn(true);
     }
 
     @Override
