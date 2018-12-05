@@ -1,5 +1,13 @@
 package Airport.Airport;
 
+import Airport.Base.Employee;
+import Airport.Base.IDCard;
+import Airport.Service_Vehicle.IServiceVehicleBase;
+import Airport.Service_Vehicle.IServiceVehicleFreshWater;
+import Airport.Service_Vehicle.IServiceVehicleWasteWater;
+
+import java.util.ArrayList;
+
 public class AirportRecourcePool{
     private ArrayList<IDCard> idCardList;
     private ArrayList<Employee> employeeList;

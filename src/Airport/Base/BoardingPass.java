@@ -1,6 +1,6 @@
 package Airport.Base;
 
-public class BoardingPass(){
+public class BoardingPass{
 private String uuid;
 private Carrier carrier;
 private String flight;
