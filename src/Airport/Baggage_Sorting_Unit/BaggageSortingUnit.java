@@ -1,10 +1,11 @@
-package Baggage_Sorting_Unit;
-import java.util.ArrayList;
+package src.Airport.Baggage_Sorting_Unit;
 
+import java.util.ArrayList;
+import Airport.Base.Container;
 
 
 public class BaggageSortingUnit implements IBaggageSortingUnit {
-    private ArrayList<Employee> employeeList;
+    private ArrayList<Airport.Base.Employee> employeeList;
     private ArrayList<String> scanPatternList;
     private IBaggageScanner baggageScanner;
     private IBaggageSortingUnitRoboter roboter;
@@ -18,12 +19,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
 
     @java.lang.Override
-    public void executeRequest(GateID gateID) {
+    public void executeRequest(Airport.Airport.GateID gateID) {
 
     }
 
     @java.lang.Override
-    public void loginBaggageScanner(Employee employee, String password) {
+    public void loginBaggageScanner(Airport.Base.Employee employee, String password) {
 
     }
 
@@ -33,12 +34,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     }
 
     @java.lang.Override
-    public boolean scan(Baggage baggage, String pattern) {
+    public boolean scan(Airport.Base.Baggage baggage, String pattern) {
         return false;
     }
 
     @java.lang.Override
-    public void handOverToCustoms(Baggage baggage) {
+    public void handOverToCustoms(Airport.Base.Baggage baggage) {
 
     }
 
@@ -67,8 +68,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     }
 
-    @java.lang.Override
+    @Override
     public void loadBaggageVehicle(LoadingStrategy strategy) {
+
+    }
+
+    @java.lang.Override
+    public void loadBaggageVehicle(Baggage_Sorting_Unit.LoadingStrategy strategy) {
 
     }
 
@@ -77,8 +83,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     }
 
-    @java.lang.Override
+    @Override
     public void notifyGroundOperations(BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
+
+    }
+
+    @java.lang.Override
+    public void notifyGroundOperations(Baggage_Sorting_Unit.BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
 
     }
 

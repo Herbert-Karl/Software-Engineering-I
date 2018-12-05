@@ -1,4 +1,6 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
+
+import Airport.Base.Container;
 
 public class BaggageVehicle implements IBaggageVehicle {
 
@@ -9,7 +11,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     private boolean isFlashingLightOn;
     private Container container;
     private IContainerLifter containerLifter;
-    private Gate gate;
+    private Airport.Airport.Gate gate;
 
     @Override
     public void store(Container container) {
@@ -17,7 +19,12 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     @Override
-    public void connect(BaggageSortingUnit.IContainerLifter containerLifter) {
+    public void connect(IContainerLifter containerLifter) {
+
+    }
+
+    @Override
+    public void connect(IContainerLifter containerLifter) {
 
     }
 
@@ -27,7 +34,12 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     @Override
-    public void disconnect(BaggageSortingUnit.IContainerLifter containerLifter) {
+    public void disconnect(IContainerLifter containerLifter) {
+
+    }
+
+    @Override
+    public void disconnect(IContainerLifter containerLifter) {
 
     }
 
@@ -37,7 +49,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     @Override
-    public void executeRequest(GateID gateID) {
+    public void executeRequest(Airport.Airport.GateID gateID) {
 
     }
 
@@ -57,7 +69,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     @Override
-    public void setGate(GateID gate) {
+    public void setGate(Airport.Airport.GateID gate) {
 
     }
 

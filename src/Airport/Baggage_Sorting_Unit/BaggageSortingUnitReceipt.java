@@ -1,4 +1,4 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
 
 public class BaggageSortingUnitReceipt {
     private String uuid;

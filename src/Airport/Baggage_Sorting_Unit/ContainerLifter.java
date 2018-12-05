@@ -1,8 +1,8 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
 
 import java.util.ArrayList;
 
-public class ContainerLifter implements IContainerLifter {
+public class ContainerLifter implements Baggage_Sorting_Unit.IContainerLifter {
     private String uuid;
     private String id;
     private String type;
@@ -12,7 +12,7 @@ public class ContainerLifter implements IContainerLifter {
     private Container container;
     private int numberOfContainerLoaded;
     private ArrayList<String> containerIDList;
-    private Gate gate;
+    private Airport.Airport.Gate gate;
     private Airplane connectedAirplane;
 
 
@@ -52,7 +52,7 @@ public class ContainerLifter implements IContainerLifter {
     }
 
     @Override
-    public void executeRequest(GateID gateID) {
+    public void executeRequest(Airport.Airport.GateID gateID) {
 
     }
 
@@ -72,7 +72,7 @@ public class ContainerLifter implements IContainerLifter {
     }
 
     @Override
-    public void setGate(GateID gate) {
+    public void setGate(Airport.Airport.GateID gate) {
 
     }
 

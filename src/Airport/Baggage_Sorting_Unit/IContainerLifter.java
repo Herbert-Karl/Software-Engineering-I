@@ -1,6 +1,6 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
 
-public interface IContainerLifter extends IVehicle{
+public interface IContainerLifter extends IVehicle {
 void connectToAirplane();
 void up();
 void transferCargoSystem();

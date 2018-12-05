@@ -1,4 +1,6 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
+
+import java.util.ArrayList;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
@@ -6,10 +8,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     private String id;
     private String type;
     private IBaggageSortingUnit baggageSortingUnit;
-    private ArrayList<Baggage> selectedBaggageList;
+    private ArrayList<Airport.Base.Baggage> selectedBaggageList;
 
     @java.lang.Override
-    public void moveBaggageToDepot(ArrayList<Baggage> baggageList) {
+    public void moveBaggageToDepot(ArrayList<Airport.Base.Baggage> baggageList) {
 
     }
 

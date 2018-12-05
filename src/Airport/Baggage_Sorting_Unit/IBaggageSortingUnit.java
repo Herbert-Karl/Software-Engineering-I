@@ -1,10 +1,11 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
+
 public interface IBaggageSortingUnit {
-    void executeRequest(GateID gateID);
-    void loginBaggageScanner(Employee employee, String password);
+    void executeRequest(Airport.Airport.GateID gateID);
+    void loginBaggageScanner(Airport.Base.Employee employee, String password);
     void logoutBaggageScanner();
-    boolean scan(Baggage baggage, String pattern);
-    void handOverToCustoms(Baggage baggage);
+    boolean scan(Airport.Base.Baggage baggage, String pattern);
+    void handOverToCustoms(Airport.Base.Baggage baggage);
     void throwOff(LuggageTub luggageTub, DestinationBox destinationBox);
     void emptyDestinationBox();
     void sendContainerLifterToGate();

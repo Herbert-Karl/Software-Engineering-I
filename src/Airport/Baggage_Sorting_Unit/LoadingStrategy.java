@@ -1,8 +1,8 @@
-package Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit;
 
 import java.util.ArrayList;
 
 public class LoadingStrategy {
-    private Stowage stowage;
+    private Airplane.stowage_cargo.Stowage stowage;
     private ArrayList<String> airCargoPalletIDList;
 }
