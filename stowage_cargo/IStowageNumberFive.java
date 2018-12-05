@@ -3,5 +3,12 @@ package stowage_cargo;
 public interface IStowageNumberFive {
 
     //
-    public int load(Container container);
+    public boolean load(Container container);
+
+    //
+    public Container unload();
+
+    //
+    public double weightOfStowageNumberFive();
+
 }
