@@ -38,18 +38,26 @@ public class FuelPump {
     }
 
     public void on(){
-
+        if (isOn() == false) {
+            setOn(true);
+        } else {
+            System.out.println("FuelPump Error: already on");
+        }
     }
 
     public void connectAirportFuelTank(AirportFuelTank airportFuelTank) {
-
+        setConnectedAirportFuelTank(airportFuelTank);
     }
 
     public void connectFuelTank(FuelTank fuelTank) {
-
+        setConnectedFuelTank(fuelTank);
     }
 
     public void off() {
-
+        if (isOn() == true) {
+            setOn(false);
+        } else {
+            System.out.println("FuelPump Error: already off");
+        }
     }
 }
