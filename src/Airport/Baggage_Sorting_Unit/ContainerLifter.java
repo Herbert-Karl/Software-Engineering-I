@@ -1,20 +1,16 @@
 package src.Airport.Baggage_Sorting_Unit;
 
-import java.util.ArrayList;
+import Airport.Airport.GateID;
 
-public class ContainerLifter implements Baggage_Sorting_Unit.IContainerLifter {
+public class ContainerLifter implements IContainerLifter {
     private String uuid;
     private String id;
     private String type;
     private int speedInMPH;
     private boolean isFlashingLightOn;
     private boolean isDown;
-    private Container container;
+    private Airport.Base.Container container;
     private int numberOfContainerLoaded;
-    private ArrayList<String> containerIDList;
-    private Airport.Airport.Gate gate;
-    private Airplane connectedAirplane;
-
 
     @Override
     public void connectToAirplane() {
@@ -52,7 +48,7 @@ public class ContainerLifter implements Baggage_Sorting_Unit.IContainerLifter {
     }
 
     @Override
-    public void executeRequest(Airport.Airport.GateID gateID) {
+    public void executeRequest(GateID gateID) {
 
     }
 
@@ -72,7 +68,7 @@ public class ContainerLifter implements Baggage_Sorting_Unit.IContainerLifter {
     }
 
     @Override
-    public void setGate(Airport.Airport.GateID gate) {
+    public void setGate(GateID gate) {
 
     }
 
@@ -80,4 +76,8 @@ public class ContainerLifter implements Baggage_Sorting_Unit.IContainerLifter {
     public void setFlashingLightOff() {
 
     }
+
+
+
+
 }

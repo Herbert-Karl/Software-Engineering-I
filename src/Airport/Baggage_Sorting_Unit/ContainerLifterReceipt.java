@@ -6,6 +6,6 @@ public class ContainerLifterReceipt {
     private String uuid;
     private String id;
     private String type;
-    private Baggage_Sorting_Unit.IBaggageSortingUnit baggageSortingUnit;
+    private IBaggageSortingUnit baggageSortingUnit;
     private ArrayList<Airport.Base.Baggage> selectedBaggageList;
 }
