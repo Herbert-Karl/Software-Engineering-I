@@ -126,27 +126,35 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void setFlashingLightOn() {
-
+        if (isFlashingLightOn() == false) {
+            setFlashingLightOn(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+        }
     }
 
     @Override
     public void move(int speedInMPH) {
-
+        setSpeedInMPH(speedInMPH);
     }
 
     @Override
     public void stop() {
-
+        setSpeedInMPH(0);
     }
 
     @Override
     public void attachElectricalGrounding() {
-
+        if (isElectricallyGrounded() == false) {
+            setElectricallyGrounded(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: already electrically grounded");
+        }
     }
 
     @Override
     public void setGate(GateID gateID) {
-
+        setGate(gateID);
     }
 
     @Override
@@ -166,17 +174,25 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void disconnectFromAirplane() {
-
+        setConnectedAirplane(null);
     }
 
     @Override
     public void detachElectricalGrounding() {
-
+        if (isElectricallyGrounded() == true) {
+            setElectricallyGrounded(false);
+        } else {
+            System.out.println("SkyTankingVehicle Error: already electrically ungrounded");
+        }
     }
 
     @Override
     public void setFlashingLightOff() {
-
+        if (isFlashingLightOn() == true) {
+            setFlashingLightOn(false);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already off");
+        }
     }
 
     @Override

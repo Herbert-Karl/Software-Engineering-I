@@ -69,12 +69,17 @@ public class FuelTankDistributionManagement implements IFuelTankDistributionMana
 
     @Override
     public String version() {
-        return null;
+        return "Manufacturer: " + getManufacturer() + ", Type: " + getType() + ", ID: " + getId();
     }
 
     @Override
     public void calculateRequiredAmountOfKerosene() {
-
+        ArrayList<FuelTankDistributionRecord> temp = getFuelTankDistribution();
+        int amount = 0;
+        for (FuelTankDistributionRecord tank : temp) {
+            amount += tank.getRequiredAmount();
+        }
+        setRequiredAmountOfKerosine(amount);
     }
 
     @Override
