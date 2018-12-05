@@ -50,7 +50,7 @@ public class RouteManagement implements IRouteManagement{
 
     public void setCostIndex(int value) {
 
-        costIndex = (double)(Math.random() * value)+1;
+        costIndex = (Math.random() * value)+1;
     }
 
     public void off() {

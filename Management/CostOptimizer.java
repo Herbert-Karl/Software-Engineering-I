@@ -44,9 +44,7 @@ public class CostOptimizer implements ICostOptimizer {
     }
 
     public int optimize(ArrayList<CheckPoint> checkPointList) {
-
-        
-
+        //TODO
     }
 
     public boolean validate(int costIndex) {
