@@ -31,12 +31,12 @@ public class Airport{
         //TODO
     }
 
-    public int connectAirplane(Airplane airplane, Gate, gate){
-        //TODO
+    public int connectAirplane(Airplane airplane, Gate gate){
+        gate.connect(airplane);
     }
 
     public boolean disconnectAirplane(Airplane airplane, Gate gate){
-        //TODO
+        gate.disconnectAirplane();
     }
 
     public boolean executeServiceWasteWater(GateID gateID){
