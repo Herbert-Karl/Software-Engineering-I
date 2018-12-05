@@ -1,4 +1,4 @@
-package Airport.Management;
+package Airplane.Management;
 
 public enum SeatManagementSortCriteria {
     SortBySeat,

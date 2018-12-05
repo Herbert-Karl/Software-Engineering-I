@@ -1,18 +1,18 @@
-package Airport.Management;
+package Airplane.Management;
 
 import java.util.ArrayList;
 
-public class RouteManagement implements IRouteManagement{
+public class CostOptimizer implements ICostOptimizer {
 
     private String manufacturer;
     private String type;
     private String id;
     private boolean isOn;
     private ArrayList<CheckPoint> checkPointList;
-    private double costIndex;
+    private int costIndex;
 
-    public RouteManagement(String manufacturer, String type, String id, boolean isOn,
-                           ArrayList<CheckPoint> checkPointList, double costIndex) {
+    public CostOptimizer(String manufacturer, String type, String id, boolean isOn,
+                         ArrayList<CheckPoint> checkPointList, int costIndex) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
@@ -22,9 +22,10 @@ public class RouteManagement implements IRouteManagement{
     }
 
 
-    public String version() {
-        return "<"+id+"> - " + "<"+type+">" ;
+    public String version()  {
 
+
+        return "<"+id+"> - " + "<"+type+">" ;
     }
 
     public void on() {
@@ -34,29 +35,27 @@ public class RouteManagement implements IRouteManagement{
     public int add(CheckPoint checkPoint) {
 
         checkPointList.add(checkPoint);
-        return checkPointList.size();
 
+        return checkPointList.size();
     }
 
-    public int remove(CheckPoint checkPoint ) {
+    public int remove(int checkPoint) {
 
         checkPointList.remove(checkPoint);
         return checkPointList.size();
-
     }
 
-    public void printCheckPoints() {
-        System.out.print(checkPointList.toString());
-
+    public int optimize(ArrayList<CheckPoint> checkPointList) {
+        //TODO
     }
 
-    public void setCostIndex(int value) {
+    public boolean validate(int costIndex) {
+        return costIndex <= 4 || costIndex >= 1;
 
-        costIndex = (Math.random() * value)+1;
     }
 
     public void off() {
         isOn = false;
+
     }
 }
-
