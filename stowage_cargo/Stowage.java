@@ -12,4 +12,17 @@ public class Stowage {
         this.type = type;
         this.isComplete = false;
     }
+
+    public StowageType get_StowageType() {
+        return this.type;
+    }
+
+    public boolean get_isComplete() {
+        return this.isComplete;
+    }
+
+    protected void set_isComplete(boolean value) {
+        this.isComplete = value;
+    }
+
 }

@@ -13,4 +13,16 @@ public class RearStowagePosition {
         this.airCargoPallet = airCargoPallet;
     }
 
+    public RearStowagePositionID get_id() {
+        return this.id;
+    }
+
+    public AirCargoPallet get_airCargoPallet() {
+        return this.airCargoPallet;
+    }
+
+    protected void set_airCargoPallet( AirCargoPallet pallet ) {
+        this.airCargoPallet = pallet;
+    }
+
 }
