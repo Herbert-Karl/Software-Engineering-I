@@ -1,8 +1,8 @@
 package Airplane.Tanks;
 
 public interface IOxygenBottle {
-    public String version();
-    public void takeOut(int amount);
-    public void refill();
-    public void refill(int amount);
+    String version();
+    void takeOut(int amount);
+    void refill();
+    void refill(int amount);
 }

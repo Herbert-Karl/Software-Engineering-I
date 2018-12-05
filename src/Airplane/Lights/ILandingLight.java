@@ -1,7 +1,7 @@
 package Airplane.Lights;
 
 public interface ILandingLight{
-    public String version();
-    public void on();
-    public void off();
+    String version();
+    void on();
+    void off();
 }

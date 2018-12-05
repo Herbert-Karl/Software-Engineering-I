@@ -14,12 +14,7 @@ public class Gate{
     }
 
     public boolean open(){
-        if(airplane =! null) {
-            isOpen = true;
-        }
-        else{
-            isOpen = false;
-        }
+        isOpen = airplane = !null;
         return isOpen;
     }
 
