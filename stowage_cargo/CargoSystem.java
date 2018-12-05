@@ -10,7 +10,9 @@ public class CargoSystem implements ICargoSystem {
 
     private String id;
 
-    private ArrayList<Stowage> stowage;
+    private Stowage frontStowage;
+
+    private Stowage rearStowage;
 
     private boolean isLocked;
 
@@ -26,7 +28,8 @@ public class CargoSystem implements ICargoSystem {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
-        this.stowage = new ArrayList<Stowage>();
+        this.frontStowage = new FrontStowage();
+        this.rearStowage = new RearStowage();
         this.isLocked = false;
         this.totalWeightAirCargoPallet = 0.0;
         this.totalWeightContainer = 0.0;
@@ -36,20 +39,24 @@ public class CargoSystem implements ICargoSystem {
         return "<" + this.id + "> - <" + this.type + ">";
     }
 
-    public void load(Stowage stowage, Container container, FrontStowagePositionID position) {
-
+    public void load(Container container, FrontStowagePositionID position) {
+        FrontStowagePosition helpPosition = new FrontStowagePosition(position, container);
+        ((FrontStowage) this.frontStowage).add_to_positionList(helpPosition);
+        this.totalWeightContainer += container.get_weight();
     }
 
-    public void load(Stowage stowage, AirCargoPallet airCargoPallet, RearStowagePositionID position) {
-
+    public void load(AirCargoPallet airCargoPallet, RearStowagePositionID position) {
+        RearStowagePosition helpPosition = new RearStowagePosition(position, airCargoPallet);
+        ((RearStowage) this.rearStowage).add_to_positionList(helpPosition);
+        this.totalWeightAirCargoPallet += airCargoPallet.get_weight();
     }
 
-    public double determineTotalWeightAirCargoPallet(Stowage stowage) {
-
+    public double determineTotalWeightAirCargoPallet() {
+        return this.totalWeightAirCargoPallet;
     }
 
-    public double determineTotalWeightContainer(Stowage stowage) {
-
+    public double determineTotalWeightContainer() {
+        return this.totalWeightContainer;
     }
 
     public void unlock() {
@@ -68,12 +75,25 @@ public class CargoSystem implements ICargoSystem {
         else { throw new RuntimeException("CargoSystem bereits abgeschlossen."); }
     }
 
-    public ArrayList<Container> unloadContainer(Stowage stowage) {
-
+    public ArrayList<Container> unloadContainer() {
+        ArrayList<Container> helpList = new ArrayList<Container>();
+        FrontStowagePosition helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
+        do {
+            helpList.add(helpObject.get_container());
+            helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
+        } while(helpObject != null);
+        this.totalWeightContainer = 0.0;
+        return helpList;
     }
 
-    public ArrayList<AirCargoPallet> unloadAirCargoPallet(Stowage stowage) {
-
+    public AirCargoPallet unloadAirCargoPallet() {
+        RearStowagePosition helpObject = ((RearStowage) this.rearStowage).remove_from_positionList();
+        if(helpObject == null) { return null; }
+        AirCargoPallet pallet = helpObject.get_airCargoPallet();
+        this.totalWeightAirCargoPallet -= pallet.get_weight();
+        return pallet;
     }
+
+    public String get_manufacturer() { return this.manufacturer; }
 
 }
