@@ -1,3 +1,0 @@
-public enum Source{
-    MUC
-}
