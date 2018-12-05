@@ -121,7 +121,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void executeRequest(GateID gateID) {
-        
+
     }
 
     @Override
