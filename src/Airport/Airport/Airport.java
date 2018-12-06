@@ -1,6 +1,7 @@
 package Airport.Airport;
 
 import java.util.ArrayList;
+import Airport.*;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;

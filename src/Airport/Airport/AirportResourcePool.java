@@ -5,6 +5,7 @@ import Airport.Base.IDCard;
 import Airport.Service_Vehicle.IServiceVehicleBase;
 import Airport.Service_Vehicle.IServiceVehicleFreshWater;
 import Airport.Service_Vehicle.IServiceVehicleWasteWater;
+import Airport.Base.Employee;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,15 @@ public class AirportRecourcePool{
         this.skyTankingVehicleList = skyTankingVehicleList;
     }
 
-    public build(){
+    private void generateEmployees(){
+        for(int i = 0; i<50; i++){
+           //Generate Employee
+            // Put Employee on ArrayList
+        }
+    }
+
+    public void build(){
+
         //TODO
     }
 }
