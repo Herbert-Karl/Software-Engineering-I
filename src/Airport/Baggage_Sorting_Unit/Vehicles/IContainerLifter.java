@@ -1,4 +1,6 @@
-package src.Airport.Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit.Vehicles;
+
+import src.Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 
 public interface IContainerLifter extends IVehicle {
 void connectToAirplane();

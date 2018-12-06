@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit.Vehicles;
 
 public interface IVehicle {
     void executeRequest(Airport.Airport.GateID gateID);

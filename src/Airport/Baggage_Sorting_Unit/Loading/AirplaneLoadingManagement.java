@@ -1,5 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit;
-
+package src.Airport.Baggage_Sorting_Unit.Loading;
 
 public class AirplaneLoadingManagement implements IAirplaneLoadingManagementt {
 

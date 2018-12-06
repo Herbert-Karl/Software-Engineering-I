@@ -1,7 +1,8 @@
-package src.Airport.Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airport.Airport.GateID;
 import Airport.Base.Container;
+import src.Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 
 import java.util.ArrayList;
 

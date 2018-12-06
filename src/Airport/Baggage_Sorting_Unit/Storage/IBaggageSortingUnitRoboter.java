@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit.Storage;
 
 import java.util.ArrayList;
 

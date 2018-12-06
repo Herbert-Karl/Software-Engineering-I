@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit;
+package src.Airport.Baggage_Sorting_Unit.Loading;
 
 import Airplane.stowage_cargo.Stowage;
 
