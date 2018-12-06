@@ -5,6 +5,7 @@ import Airport.Base.Baggage;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageDepot {
 
   private String uuid;
@@ -15,7 +16,7 @@ public class BaggageDepot {
     baggageList.add(baggage);
   }
 
-  void storeAll(Collection<Baggage> baggage) {
+  void storeAll(Iterable<Baggage> baggage) {
     for (Baggage b : baggage) {
       store(b);
     }

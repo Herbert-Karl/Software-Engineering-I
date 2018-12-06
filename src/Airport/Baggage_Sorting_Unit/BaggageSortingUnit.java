@@ -14,6 +14,7 @@ import src.Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
 import src.Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
 import src.Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 
+@SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private ArrayList<Airport.Base.Employee> employeeList;
