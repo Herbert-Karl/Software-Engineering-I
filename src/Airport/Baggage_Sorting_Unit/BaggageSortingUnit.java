@@ -183,7 +183,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void sendBaggageVehicleToGate() {
     baggageVehicle.setFlashingLightOn();
     baggageVehicle.move(15);
-    baggageVehicle.setGate(42);//TODO: wo bekomme ich das gate her
+    baggageVehicle.setGate();//TODO: wo bekomme ich das gate her
     baggageVehicle.stop();
     baggageVehicle.setFlashingLightOff();
   }

@@ -1,6 +1,8 @@
 package src.Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Base.Baggage;
+import Airport.Base.NormalBaggage;
+import Airport.Base.BulkyBaggage;
 
 import java.util.ArrayList;
 
@@ -22,20 +24,32 @@ public class BaggageDepot {
   }
 
   /**
-   * TODO: Definition normal vs Bulky
+   * TODO: check
    *
    * @param ticketClassString What does this do?
    */
   ArrayList<Baggage> selectNormalBaggage(String ticketClassString) {
 
-    return null;
+    ArrayList<Baggage> normal = new ArrayList<>();
+    for (Baggage b : baggageList) {
+      if (b instanceof NormalBaggage) {
+        normal.add(b);
+      }
+    }
+    return normal;
   }
 
   /**
-   * TODO: IDK
+   * TODO: check
    */
   ArrayList<Baggage> selectBulkyBaggage() {
 
-    return null;
+    ArrayList<Baggage> bulky = new ArrayList<>();
+    for (Baggage b : baggageList) {
+      if (b instanceof BulkyBaggage) {
+        bulky.add(b);
+      }
+    }
+    return bulky;
   }
 }

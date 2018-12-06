@@ -38,11 +38,14 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
   }
 
   /**
-   * TODO: Welches Baggage muss man holen
+   *
    */
   @Override
   public void selectBaggageFromDepot() {
-
+    selectedBaggageList = depot.selectNormalBaggage();//TODO get instance of depot
+    //TODO Add to container with containerategory normal
+    selectedBaggageList = depot.selectBulkyBaggage();//TODO get instance of depot
+    //TODO Add to container with containerategory bulky
   }
 
   /**
