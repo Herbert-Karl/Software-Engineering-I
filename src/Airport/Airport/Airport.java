@@ -30,7 +30,28 @@ public class Airport{
     }
 
     public int loadPassengerBaggageData(String dataFilePath){
-        //TODO
+        File passengerBaggageData = new File(dataFilePath);
+        int zeilenAnzahl;
+
+        if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
+
+        BufferedReader input = null;
+        try{
+            input = new BufferedReader(new FileReader(dataFilePath));
+            String Zeile = null;
+            while((zeile = input.readLine()) != null){
+                zeilenAnzahl++;
+                //Noch was mit den Daten machen?
+            }
+        } catch(IOExeption ioExeption){
+            ioExeption.printstackTrace();
+        } finally {
+            if(input != null) try {
+                in.close();
+            }
+        }
+
+        return zeilenAnzahl;
     }
 
     public int connectAirplane(Airplane airplane, Gate gate){
