@@ -15,4 +15,7 @@ public interface IBaggageSortingUnit {
     void sendBaggageVehicleToGate();
     void notifyGroundOperations(BaggageSortingUnitReceipt baggageSortingUnitReceipt);
     void returnEmptyLuggageTubToCheckInDesk();
+
+    BaggageDepot getDepot();
+    IBaggageVehicle getVehicle();
 }

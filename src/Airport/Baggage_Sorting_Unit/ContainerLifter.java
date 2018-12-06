@@ -1,83 +1,128 @@
 package src.Airport.Baggage_Sorting_Unit;
 
 import Airport.Airport.GateID;
+import Airport.Base.Container;
+
+import java.util.ArrayList;
 
 public class ContainerLifter implements IContainerLifter {
-    private String uuid;
-    private String id;
-    private String type;
-    private int speedInMPH;
-    private boolean isFlashingLightOn;
-    private boolean isDown;
-    private Airport.Base.Container container;
-    private int numberOfContainerLoaded;
 
-    @Override
-    public void connectToAirplane() {
+  private String uuid;
 
-    }
+  private String id;
 
-    @Override
-    public void up() {
+  private String type;
 
-    }
+  private int speedInMPH;
 
-    @Override
-    public void transferCargoSystem() {
+  private boolean isFlashingLightOn;
 
-    }
+  private boolean isDown;
 
-    @Override
-    public void down() {
+  private Container container;
 
-    }
+  private ArrayList<String> containerIDList;
 
-    @Override
-    public void disconnectFromAirplane() {
+  private Airport.Airport.Gate gate;
 
-    }
+  private Airplane.Airplane connectedAirplane;
 
-    @Override
-    public void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt) {
+  private int numberOfContainerLoaded;
 
-    }
+  @Override
+  public void setContainer(Container c) {
+    container = c;
+  }
 
-    @Override
-    public void returnToAirportResourcePool() {
+  /**
+   * TODO: Wo wird airplane implementiert
+   */
+  @Override
+  public void connectToAirplane() {
 
-    }
+  }
 
-    @Override
-    public void executeRequest(GateID gateID) {
+  /**
+   * TODO:
+   */
+  @Override
+  public void up() {
+    isDown = false;
+  }
 
-    }
+  /**
+   * TODO: was ruft man im cargo system auf
+   */
+  @Override
+  public void transferContainerToCargoSystem() {
 
-    @Override
-    public void setFlashingLightOn() {
+  }
 
-    }
+  /**
+   * TODO
+   */
+  @Override
+  public void down() {
+    isDown = true;
+  }
 
-    @Override
-    public void move(int speedInMPH) {
+  /**
+   * TODO: same as connect
+   */
+  @Override
+  public void disconnectFromAirplane() {
 
-    }
+  }
 
-    @Override
-    public void stop() {
+  /**
+   * TODO groundoperations?
+   */
+  @Override
+  public void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt) {
 
-    }
+  }
 
-    @Override
-    public void setGate(GateID gate) {
+  /**
+   * TODO: interaktion mit pool klären
+   */
+  @Override
+  public void returnToAirportResourcePool() {
 
-    }
+  }
 
-    @Override
-    public void setFlashingLightOff() {
+  /**
+   * TODO wie sieht die routine aus
+   */
+  @Override
+  public void executeRequest(GateID gateID) {
 
-    }
+  }
 
+  @Override
+  public void setFlashingLightOn() {
+    isFlashingLightOn = true;
+  }
 
+  @Override
+  public void move(int speedInMPH) {
+    this.speedInMPH = speedInMPH;
+  }
 
+  @Override
+  public void stop() {
+    speedInMPH = 0;
+  }
 
+  /**
+   * wie komme ich von gateID auf gate
+   */
+  @Override
+  public void setGate(GateID gate) {
+    this.gate = gate;
+  }
+
+  @Override
+  public void setFlashingLightOff() {
+    isFlashingLightOn = false;
+  }
 }

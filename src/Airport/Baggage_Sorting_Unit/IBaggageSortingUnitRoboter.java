@@ -6,4 +6,5 @@ public interface IBaggageSortingUnitRoboter {
     void moveBaggageToDepot(ArrayList<Airport.Base.Baggage> baggageList);
     void selectBaggageFromDepot();
     void loadContainer();
+    void addBaggage(Airport.Base.Baggage b);
 }
