@@ -50,11 +50,32 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * TODO: Kickoff routine
+   * TODO: check Kickoff routine
    */
   @Override
   public void executeRequest(GateID gateID) {
+    ArrayList<LuggageTub> fullTubs;//TODO get list of full tubs
+    loginBaggageScanner(someone, something);//TODO get correct user and pw
+    for (LuggageTub l : fullTubs) {
+      throwOff(l, destinationBox);
 
+      if (destinationBox.isFull()) {
+        emptyDestinationBox();
+      }
+    }
+    logoutBaggageScanner();
+
+    if (!destinationBox.isEmpty()) {
+      emptyDestinationBox();
+    }
+
+    loadBaggageVehicle(strategy);//TODO: get loadingstrategy
+
+    sendBaggageVehicleToGate();
+
+    baggageVehicle.transferContainerToLifter();
+
+    lifter.transferContainerToCargoSystem();//TODO: get lifter from somewhere
   }
 
   /**
@@ -90,7 +111,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void handOverToCustoms(Baggage baggage) {
     roboter.addBaggage(baggage);
     customs.executeRequest(roboter);
-    roboter = null;
+    roboter = null;//TODO: wo bekomme ich den roboter wieder her?
   }
 
   /**
@@ -116,7 +137,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * TODO: what to do?
+   * TODO: what to do? (obekt fuer lifter ist nichtmal vorhanden)
    */
   @Override
   public void sendContainerLifterToGate() {
@@ -138,7 +159,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void setBaggageVehicle() {
-
+    baggageVehicle = new BaggageVehicle();//Magically spawns vehicle(GTA CheatCode:LRLULLD)
   }
 
   /**
@@ -161,7 +182,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   /**
    * TODO: Wo bekomme ich die GroundOperations her an die ich die message sende
-   * @param baggageSortingUnitReceipt
    */
   @Override
   public void notifyGroundOperations(BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
