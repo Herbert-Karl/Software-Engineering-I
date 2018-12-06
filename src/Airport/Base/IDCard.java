@@ -5,9 +5,13 @@ public class IDCard{
     private Employee employee;
     private String password;
 
-    public IDCard(String uuid, Employee employee){
+    public IDCard(String uuid){
         this.uuid = uuid;
-        this.employee = employee;
+        this.employee = null;
         this.password = "SHA-265";
+    }
+
+    public void setEmployee(Employee employee){
+       this.employee = employee;
     }
 }
