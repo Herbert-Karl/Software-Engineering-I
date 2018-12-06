@@ -3,7 +3,6 @@ package src.Airport.Baggage_Sorting_Unit.Storage;
 import Airport.Base.Baggage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 @SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageDepot {

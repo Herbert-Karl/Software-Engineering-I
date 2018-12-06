@@ -1,9 +1,9 @@
 package src.Airport.Baggage_Sorting_Unit.Storage;
 
-import java.util.ArrayList;
-
 import Airport.Base.Baggage;
 import src.Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
+
+import java.util.ArrayList;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
@@ -17,9 +17,9 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   private ArrayList<Baggage> selectedBaggageList;
 
-  public BaggageSortingUnitRoboter(IBaggageSortingUnit baggageSortingUnit){
-    this.baggageSortingUnit=baggageSortingUnit;
-    selectedBaggageList= new ArrayList<>();
+  public BaggageSortingUnitRoboter(IBaggageSortingUnit baggageSortingUnit) {
+    this.baggageSortingUnit = baggageSortingUnit;
+    selectedBaggageList = new ArrayList<>();
   }
 
   @Override
@@ -29,10 +29,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   /**
    * Adds parameter to internal list. Then stores it to the Depot and clears list.
-   * @param baggageList
    */
   @Override
-  public void moveBaggageToDepot(@SuppressWarnings("CollectionDeclaredAsConcreteClass") ArrayList<Baggage> baggageList) {
+  public void moveBaggageToDepot(
+      @SuppressWarnings("CollectionDeclaredAsConcreteClass") ArrayList<Baggage> baggageList) {
     selectedBaggageList.addAll(baggageList);
     baggageSortingUnit.getDepot().storeAll(moveBaggage());
   }

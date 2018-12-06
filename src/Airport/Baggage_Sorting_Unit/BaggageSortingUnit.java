@@ -1,7 +1,5 @@
 package src.Airport.Baggage_Sorting_Unit;
 
-import java.util.ArrayList;
-
 import Airport.Airport.GateID;
 import Airport.Base.Baggage;
 import Airport.Base.Container;
@@ -13,6 +11,8 @@ import src.Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
 import src.Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
 import src.Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
 import src.Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
+
+import java.util.ArrayList;
 
 @SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageSortingUnit implements IBaggageSortingUnit {
