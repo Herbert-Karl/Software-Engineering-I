@@ -23,7 +23,7 @@ public class PassengerBaggageDatabase{
                 //Noch was mit den Daten machen?
             }
         } catch(IOExeption ioExeption){
-            e.printstackTrace();
+            ioExeption.printstackTrace();
         } finally {
             if(input != null) try {
                 in.close();
@@ -48,7 +48,7 @@ public class PassengerBaggageDatabase{
                 //Noch was mit den Daten machen?
             }
         } catch(IOExeption ioExeption){
-            e.printstackTrace();
+            ioExeption.printstackTrace();
         } finally {
             if(input != null) try {
                 in.close();
@@ -73,7 +73,7 @@ public class PassengerBaggageDatabase{
                 //Noch was mit den Daten machen?
             }
         } catch(IOExeption ioExeption){
-            e.printstackTrace();
+            ioExeption.printstackTrace();
         } finally {
             if(input != null) try {
                 in.close();
@@ -98,7 +98,7 @@ public class PassengerBaggageDatabase{
                 //Noch was mit den Daten machen?
             }
         } catch(IOExeption ioExeption){
-            e.printstackTrace();
+            ioExeption.printstackTrace();
         } finally {
             if(input != null) try {
                 in.close();
