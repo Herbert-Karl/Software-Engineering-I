@@ -23,9 +23,17 @@ public class AirportRecourcePool{
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
 
-    public AirportResourcePool(){
-
+    public AirportResourcePool(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
+                               int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
+                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle){
+        build(anzahlEmployees, anzahlAirCargoPalletLifter, anzahlAirCargoPalletVehicle, anzahlContainerLifter, anzahlBaggageVehicle,
+                anzahlServiceVehicleBase, anzahlServiceVehicleFreshWater, anzahlServiceVehicleNitogenOxygen, anzahlServiceVehicleWasteWater,
+                anzahlSkyTankingVehicle);
     }
+
+    //
+    // Generate Methoden
+    //
 
     private void generateEmployeesAndIDCards(int anzahl){
         //set length lists
@@ -163,17 +171,84 @@ public class AirportRecourcePool{
         //TODO
     }
 
-    public void build(){
-        generateEmployeesAndIDCards(50);
-        generateAirCargoPalletLifter(50);
-        generateAirCargoPalletVehicle(50);
-        generateContainerLifter(50);
-        generateBaggageVehicle(50);
-        generateServiceVehicleBase(50);
-        generateServiceVehicleFreshWater(50);
-        generateServiceVehicleNitrogenOxygen(50);
-        generateServiceVehicleWasteWater(50);
-        generateSkyTankingVehicle(50);
+    //
+    // Getter und Setter / Take und Return
+    //
+
+    public <E> takeResource(String resourceClass){
         //TODO
+        switch(resourceClass){
+            case "Employee":
+                return employeeList.remove(0);
+                break;
+            case "AirCargoPalletLifter":
+                return airCargoPalletLifterList.remove(0);
+                break;
+            case "AirCargoPalletVehicle":
+                return airCargoPalletLifterList.remove(0);
+                break;
+            case "ContainerLifter":
+                return containerLifterList.remove(0);
+                break;
+            case "BaggageVehicle":
+                return baggageVehicleList.remove(0);
+                break;
+            case "ServiceVehicleBase":
+                return serviceVehicleBaseList.remove(0);
+                break;
+            case "ServiceVehicleFreshWater":
+                return serviceVehicleFreshWaterList.remove(0);
+                break;
+            case "ServiceVehicleNitrogenOxygen":
+                return serviceVehicleNitrogenOxigenList.remove(0);
+                break;
+            case "ServiceVehicleWasteWater":
+                return serviceVehicleWasteWaterList.remove(0);
+                break;
+            case "SkyTankingVehicle":
+                return skyTankingVehicleList.remove(0);
+                break;
+        }
+    }
+
+    public <E>void returnResource(E resource){
+        if(resource instanceof Employee){
+            employeeList.add(resource);
+        } else if(resource instanceof AirCargoPalletLifter){
+            airCargoPalletLifterList.add(resource);
+        } else if (resource instanceof AirCargoPalletVehicle){
+            airCargoPalletVehicleList.add(resource);
+        } else if(resource instanceof ContainerLifter){
+            containerLifterList.add(resource);
+        } else if(resouce instanceof BaggageVehicle){
+            baggageVehicleList.add(resource);
+        } else if(resource instanceof ServiceVehicleBase){
+            serviceVehicleBaseList.add(resource);
+        } else if(resource instanceof ServiceVehicleFreshWater){
+            serviceVehicleFreshWaterList.add(resource);
+        } else if(resource instanceof ServiceVehicleNitrogenOxygen){
+            serviceVehicleNitrogenOxigenList.add(resource);
+        } else if(resource instanceof ServiceVehicleWasteWater){
+            serviceVehicleWasteWaterList.add(resource);
+        } else if(resource instanceof SkyTankingVehicle){
+            skyTankingVehicleList.add(resource);
+        }
+        //TODO
+
+    }
+
+    public void build(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
+                      int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
+                      int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle){
+        generateEmployeesAndIDCard(anzahlEmployees);
+        generateAirCargoPalletLifter(anzahlAirCargoPalletLifter);
+        generateAirCargoPalletVehicle(anzahlAirCargoPalletVehicle);
+        generateContainerLifter(anzahlContainerLifter);
+        generateBaggageVehicle(anzahlBaggageVehicle);
+        generateServiceVehicleBase(anzahlServiceVehicleBase);
+        generateServiceVehicleFreshWater(anzahlServiceVehicleFreshWater);
+        generateServiceVehicleNitrogenOxygen(anzahlServiceVehicleNitogenOxygen);
+        generateServiceVehicleWasteWater(anzahlServiceVehicleWasteWater);
+        generateSkyTankingVehicle(anzahlSkyTankingVehicle);
     }
 }
