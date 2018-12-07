@@ -1,4 +1,4 @@
-package Airplane.src.Tanks;
+package Airplane.Tanks;
 
 public class Battery implements IBattery {
     private String manufacturer;

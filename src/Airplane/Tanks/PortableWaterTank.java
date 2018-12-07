@@ -1,6 +1,6 @@
-package Airplane.src.Tanks;
+package Airplane.Tanks;
 
-public class PotableWaterTank implements IPotableWaterTank {
+public class PortableWaterTank implements IPortableWaterTank {
     private String manufacturer;
     private String type;
     private String id;
@@ -8,7 +8,7 @@ public class PotableWaterTank implements IPotableWaterTank {
     private int currentAmount;
     private boolean isLocked;
 
-    public PotableWaterTank(String manufacturer, String type, String id, boolean isLocked) {
+    public PortableWaterTank(String manufacturer, String type, String id, boolean isLocked) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
@@ -16,7 +16,7 @@ public class PotableWaterTank implements IPotableWaterTank {
         this.isLocked = isLocked;
     }
 
-    public PotableWaterTank(String manufacturer, String type, String id, int capacity, boolean isLocked) {
+    public PortableWaterTank(String manufacturer, String type, String id, int capacity, boolean isLocked) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;

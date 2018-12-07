@@ -1,9 +1,9 @@
-package Airplane.src.Tanks;
+package Airplane.Tanks;
 
 public interface IDeIcingSystem {
-    public String version();
-    public void activate();
-    public void deactivate();
-    public void deIce(int amount);
-    public void refill();
+    String version();
+    void activate();
+    void deactivate();
+    void deIce(int amount);
+    void refill();
 }

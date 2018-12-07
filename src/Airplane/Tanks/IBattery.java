@@ -1,7 +1,7 @@
-package Airplane.src.Tanks;
+package Airplane.Tanks;
 
 public interface IBattery {
-    public String version();
-    public void charge();
-    public void discharge();
+    String version();
+    void charge();
+    void discharge();
 }

@@ -1,11 +1,15 @@
-public class ServiceVehilceNitrogenOxygen {
+package Airport.Service_Vehicle;
+
+import Airport.Airport.GateID;
+
+public class ServiceVehicleNitrogenOxygenReceipt {
     private String uuid;
     private String vehicleID;
     private GateID gateID;
     private int amountNitrogen;
     private int amountOxygen;
 
-    public ServiceVehilceNitrogenOxygen(String uuid, String vehicleID, GateID gateID, int amountNitrogen, int amountOxygen) {
+    public ServiceVehicleNitrogenOxygenReceipt(String uuid, String vehicleID, GateID gateID, int amountNitrogen, int amountOxygen) {
         this.uuid = uuid;
         this.vehicleID = vehicleID;
         this.gateID = gateID;
