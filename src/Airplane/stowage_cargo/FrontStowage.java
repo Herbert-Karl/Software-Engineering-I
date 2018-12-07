@@ -14,14 +14,14 @@ public class FrontStowage extends Stowage {
     }
 
     protected void add_to_positionList(FrontStowagePosition position) {
-        if(this.get_isComplete()) { throw new RuntimeException("FrontStowage ist bereits vollständig."); }
+        if(this.getIsComplete()) { throw new RuntimeException("FrontStowage ist bereits vollständig."); }
         boolean alreadyInList = false;
         for( FrontStowagePosition element: this.positionList ) {
-            if(position.get_id() == element.get_id()) { alreadyInList = true; }
+            if(position.getId() == element.getId()) { alreadyInList = true; }
         }
         if(alreadyInList) { throw new RuntimeException("Position bereits belegt."); }
         this.positionList.add(position);
-        if(this.positionList.size() == 14) { this.set_isComplete(true); }
+        if(this.positionList.size() == 14) { this.setIsComplete(true); }
     }
 
     protected FrontStowagePosition remove_from_positionList() {
