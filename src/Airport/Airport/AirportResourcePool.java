@@ -23,38 +23,27 @@ public class AirportRecourcePool{
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
 
-    public AirportResourcePool(ArrayList<IDCard> idCardList, ArrayList<Employee> employeeList, ArrayList<IAirCargoPalletLifter> containerLifterList,
-                               ArrayList<IAirCargoPalletVehicle> airCargoPalletVehicleList, ArrayList<IContainerLifter> containerLifterList,
-                               ArrayList<IBaggageVehicle> baggageVehicleList, ArrayList<IServiceVehicleBase> serviceVehicleBaseList,
-                               ArrayList<IServiceVehicleFreshWater> serviceVehicleFreshWaterList,
-                               ArrayList<IServiceVehicleNitrogenOxigen> serviceVehicleNitrogenOxigenList,
-                               ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList, ArrayList<ISkyTankingVehicle> skyTankingVehicleList){
-        this.idCardList = idCardList;
-        this.employeeList = employeeList;
-        this.airCargoPalletLifterList = airCargoPalletLifterList;
-        this.airCargoPalletVehicleList = airCargoPalletVehicleList;
-        this.containerLifterList = containerLifterList;
-        this.baggageVehicleList = baggageVehicleList;
-        this.serviceVehicleBaseList = serviceVehicleBaseList;
-        this.serviceVehicleFreshWaterList = serviceVehicleFreshWaterList;
-        this.serviceVehicleNitrogenOxigenList = serviceVehicleNitrogenOxigenList;
-        this.serviceVehicleWasteWaterList = serviceVehicleWasteWaterList;
-        this.skyTankingVehicleList = skyTankingVehicleList;
+    public AirportResourcePool(){
+
     }
 
-    private void generateEmployeesAndIDCards(){
-        int zähler = 1000;
+    private void generateEmployeesAndIDCards(int anzahl){
+        //set length lists
+        idCardList = new ArrayList(anzahl);
+        employeeList = new ArrayList(anzahl);
+        //set "constants"
+        int zaehler = 1000;
         UUID employeeUUID = null;
         UUID idCardUUID = null;
         String name = "Max Mustermann";
-
-        for(int i = 0; i<50; i++){
+/       //generate anzahl
+        for(int i = 0; i<anzahl; i++){
             //Generate Employee and IDCard
             employeeUUID = UUID.randomUUID();
             idCardUUID = UUID.randomUUID();
             String uuid_employee = employeeUUID.toString();
             String uuid_card = idCardUUID.toString();
-            if((zähler%2 != 0)){gender = FEMALE;} else {gender = MALE; }  //Abwechselnd MALE und FEMALE
+            if((zaehler%2 != 0)){gender = FEMALE;} else {gender = MALE; }  //Abwechselnd MALE und FEMALE
             IDCard idCard = new IDCard(uuid_card);
             Employee employee = new Employee(uuid_employee, zähler, name, gender);
             idCard.setEmployee(employee);
@@ -62,26 +51,80 @@ public class AirportRecourcePool{
             // Put Employee and IDCard on ArrayList
             employeeList.add(employee);
             idCardList.add(idCard);
-            zähler++;
+            zaehler++;
         }
     }
 
+    private void generateAirCargoPalletLifter(int anzahl){
+        //set length of lists
+        airCargoPalletLifterList = new ArrayList(anzahl);
+        int zaehler = 2000;
+        UUID palletLifterUUID = null;
+        //TODO
+        //Type?
+        //Mit for-Schleife generieren
+        //Put on ArrayList
+    }
+
+    private void generateAirCargoPalletVehicle(int anzahl){
+        //set length of list
+        airCargoPalletVehicleList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateContainerLifter(int anzahl){
+        //set length of list
+        containerLifterList = new ArrayList(anzahl);
+/       //TODO
+    }
+
+    private void generateBaggageVehicle(int anzahl){
+        //set length of list
+        baggageVehicleList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateServiceVehicleBase(int anzahl){
+        //set length of list
+        serviceVehicleBaseList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateServiceVehicleFreshWater(int anzahl){
+        //set length of list
+        serviceVehicleFreshWaterList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateServiceVehicleNitrogenOxygen(int anzahl){
+        //set length of list
+        serviceVehicleNitrogenOxigenList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateServiceVehicleWasteWater(int anzahl){
+        //set length of list
+        serviceVehicleWasteWaterList = new ArrayList(anzahl);
+        //TODO
+    }
+
+    private void generateSkyTankingVehicle(int anzahl){
+        //set length of list
+        skyTankingVehicleList = new ArraylList(anzahl);
+        //TODO
+    }
+
     public void build(){
-        //Set lengh of lists
-        idCardList = new ArrayList(50);
-        employeeList = new ArrayList(50);
-        airCargoPalletLifterList = new ArrayList(50);
-        airCargoPalletVehicleList = new ArrayList(50);
-        containerLifterList = new ArrayList(50);
-        baggageVehicleList = new ArrayList(50);
-        serviceVehicleBaseList = new ArrayList(50);
-        serviceVehicleFreshWaterList = new ArrayList(50);
-        serviceVehicleNitrogenOxigenList = new ArrayList(50);
-        serviceVehicleWasteWaterList = new ArrayList(50);
-        skyTankingVehicleList = new ArraylList(50);
-        //build IDCards and Employyees
-        generateEmployeesAndIDCards();
-        //
+        generateEmployeesAndIDCards(50);
+        generateAirCargoPalletLifter(50);
+        generateAirCargoPalletVehicle(50);
+        generateContainerLifter(50);
+        generateBaggageVehicle(50);
+        generateServiceVehicleBase(50);
+        generateServiceVehicleFreshWater(50);
+        generateServiceVehicleNitrogenOxygen(50);
+        generateServiceVehicleWasteWater(50);
+        generateSkyTankingVehicle(50);
         //TODO
     }
 }
