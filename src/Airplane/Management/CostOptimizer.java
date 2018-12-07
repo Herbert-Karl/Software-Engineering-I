@@ -50,7 +50,7 @@ public class CostOptimizer implements ICostOptimizer {
     }
 
     public boolean validate(int costIndex) {
-        return costIndex <= 5 || costIndex >= 1;
+        return costIndex <= 5 && costIndex >= 1;
 
     }
 
