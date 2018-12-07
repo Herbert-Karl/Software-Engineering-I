@@ -1,5 +1,6 @@
 package Airport.Service_Vehicle;
 
+import Airplane.Airplane;
 import Airplane.Tanks.*;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
@@ -131,37 +132,49 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void increaseLevel(IAPUOilTank apuOilTank) {
-
+        if (getAmountAPUOil() > 0) {
+            apuOilTank.increaseLevel(getAmountEngineOil());
+        } else {
+            System.err.println("ServiceVehicleBase Error: No ApuOil left!");
+        }
     }
 
     @Override
     public void charge(IBattery battery) {
-
+        battery.charge();
     }
 
     @Override
     public void increaseLevel(IEngineOilTank engineOilTank) {
-
+        if(getAmountEngineOil() > 0) {
+            engineOilTank.increaseLevel(getAmountEngineOil());
+        } else {
+            System.err.println("ServiceVehicleBase Error: No EngineOil left!");
+        }
     }
 
     @Override
     public void change(IFireExtinguisher fireExtinguisher) {
-
+        fireExtinguisher.refill();
     }
 
     @Override
     public void refill(IDeIcingSystem deIcingSystem) {
-
+        deIcingSystem.refill();
     }
 
     @Override
     public void disconnectFromAirplane() {
-
+        setConnectedAirplane(null);
     }
 
     @Override
     public void setFlashingLightOff() {
-
+        if (isFlashingLightOn() == true) {
+            setFlashingLightOn(false);
+        } else {
+            System.err.println("ServiceVehicleBase Error: Flashinglights already off!");
+        }
     }
 
     @Override
