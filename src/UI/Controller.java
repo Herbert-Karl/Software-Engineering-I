@@ -14,14 +14,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
 public class Controller implements Initializable {
 
-    @FXML
-    private TextField commandInput;
-    @FXML
-    private TextArea commandHistory;
+    @FXML private TextField commandInput;
+    @FXML private TextArea commandHistory;
 
     private boolean parseString(String input) {
+
 
 
         //TODO: Write Parser
@@ -73,30 +73,32 @@ public class Controller implements Initializable {
                 "execute airplane pfd-show"
 
         };
-        TextFields.bindAutoCompletion(commandInput, commands);
+        //TextFields.bindAutoCompletion(commandInput, commands);
     }
 
     public void closePressed() {
 
         try {
-            if (isNotepadRunning()) {
+            if (isNotepadRunning())
+            {
                 Runtime.getRuntime().exec("taskkill /F /IM " + "notepad++.exe");
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
         Platform.exit();
     }
 
-    public void logfilePressed() {
+    public void logfilePressed(){
         try {
             Runtime.getRuntime().exec("C:\\Program Files\\Notepad++\\notepad++.exe C:\\Users\\janbe\\Documents\\ajax.html");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
     //TODO: MUELLER FRAGEN OB DAS AUCH SO AKTIVIERT WERDEN DARF ODER NICHT
     public void enterPressed() {
         executePressed();
@@ -109,8 +111,10 @@ public class Controller implements Initializable {
 
         String tasksLine;
 
-        while ((tasksLine = tasksListReader.readLine()) != null) {
-            if (tasksLine.contains("notepad++.exe")) {
+        while ((tasksLine = tasksListReader.readLine()) != null)
+        {
+            if (tasksLine.contains("notepad++.exe"))
+            {
                 return true;
             }
         }
