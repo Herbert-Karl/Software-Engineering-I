@@ -13,3 +13,6 @@ wie kann ich enums zu objekten referenzieren (zb: gateid zu gate)
 was machen uuid und id, bzw welche values haben diese
 baggagevehicle disconnect. warum benötigt es einen parameter
 für was sind dich lichter? immer an wenn fahren oder was?
+werden container nach containerType oder ContainerCategoy befüllt oder ist die funktion redundant
+Ausbalancierung von stowag mit BruteForce? was soll das heissen
+Was wird für Normal/Bulkybackage controlliert? instanceof?

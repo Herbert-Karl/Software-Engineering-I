@@ -64,7 +64,9 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void executeRequest(GateID gateID) {
     ArrayList<LuggageTub> fullTubs;//TODO get list of full tubs
     loginBaggageScanner(someone, something);//TODO get correct user and pw
-    for (LuggageTub l : fullTubs) {
+    LuggageTub l;
+   while(!fullTubs.isEmpty()){
+     l=fullTubs.remove(0);
       throwOff(l, destinationBox);
 
       if (destinationBox.isFull()) {
@@ -129,11 +131,14 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   @Override
   public void throwOff(LuggageTub luggageTub, DestinationBox destinationBox) {
     Baggage toCheck = luggageTub.getBaggage();
+    emptyLuggageTubList.add(luggageTub);
     String pattern = "Please change me. I don't know what I'm doing";
 
     if (scan(toCheck, pattern)) {
+      toCheck.setSecurityStatus(BaggageSecuriyStatus.clean);//möglicherweise nicht nötig je nach implementierung von scan
       destinationBox.add(toCheck);
     } else {
+      toCheck.setSecurityStatus(BaggageSecuriyStatus.dangerous);
       handOverToCustoms(toCheck);
     }
   }

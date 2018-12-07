@@ -4,6 +4,7 @@ LuggageTub get baggage
 destinationBox.getBaggageList()
 container.addAll() // hinzufügen con collections zu container
 destinationBox.isFull() /isEmpty()
+Baggage.setBaggageSecurityStatus()
 
 
 
