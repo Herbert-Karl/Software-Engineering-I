@@ -117,6 +117,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
         refill();
         disconnectFromAirplane();
         setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleBaseReceipt(getUuid(), getId(), getGate().getGateID(), getAmountAPUOil(),getAmountEngineOil(), 100, 100));
         returnToAirportResourcePool();
     }
 
@@ -153,6 +154,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
     public void increaseLevel(IAPUOilTank apuOilTank) {
         if (getAmountAPUOil() > 0) {
             apuOilTank.increaseLevel(getAmountEngineOil());
+            setAmountAPUOil(0);
         } else {
             System.err.println("ServiceVehicleBase Error: No ApuOil left!");
         }
@@ -167,6 +169,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
     public void increaseLevel(IEngineOilTank engineOilTank) {
         if(getAmountEngineOil() > 0) {
             engineOilTank.increaseLevel(getAmountEngineOil());
+            setAmountEngineOil(0);
         } else {
             System.err.println("ServiceVehicleBase Error: No EngineOil left!");
         }

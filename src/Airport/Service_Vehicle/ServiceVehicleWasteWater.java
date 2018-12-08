@@ -95,7 +95,15 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(getGate()));
+        pumpOut();
+        disconnectFromAirplane();
+        setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleWasteWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountWasteWater()));
     }
 
     @Override
@@ -119,7 +127,7 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void setGateID(GateID gateID) {
-        setGate(gateID);
+        setGate(searchGateById(gateID));
     }
 
     @Override
@@ -129,7 +137,8 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void pumpOut(IWasteWaterTank wasteWaterTank) {
-
+        wasteWaterTank.pumpOut();
+        setAmountWasteWater(1000);
     }
 
     @Override
