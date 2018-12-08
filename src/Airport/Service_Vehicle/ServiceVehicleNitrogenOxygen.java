@@ -116,7 +116,18 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(getGate()));
+        attachElectricalGrounding();
+        refill();
+        refill();
+        detachElectricalGrounding();
+        setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleNitrogenOxygenReceipt(getUuid(),getId(),getGate().getGateID(),getAmountNitrogen(),getAmountOxygen()));
+        returnToAirportResourcePool();
     }
 
     @Override

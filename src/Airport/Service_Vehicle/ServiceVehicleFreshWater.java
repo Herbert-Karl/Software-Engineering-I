@@ -95,7 +95,16 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(getGate()));
+        refill();
+        disconnectFromAirplane();
+        setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleFreshWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountFreshWater()));
+        returnToAirportResourcePool();
     }
 
     @Override

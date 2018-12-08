@@ -95,7 +95,15 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(getGate()));
+        pumpOut();
+        disconnectFromAirplane();
+        setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleWasteWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountWasteWater()));
     }
 
     @Override
