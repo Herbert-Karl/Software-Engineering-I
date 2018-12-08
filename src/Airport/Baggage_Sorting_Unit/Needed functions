@@ -1,0 +1,11 @@
+Employee.getIDCard()
+Pool getter udn setter (bzw andere interfacing optionen
+LuggageTub get baggage
+destinationBox.getBaggageList()
+container.addAll() // hinzufügen con collections zu container
+destinationBox.isFull() /isEmpty()
+Baggage.setBaggageSecurityStatus()
+
+
+
+
