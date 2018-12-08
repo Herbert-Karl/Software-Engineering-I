@@ -1,34 +1,9 @@
 package Airplane.door;
 
-public class BulkCargoDoor implements IBulkCargoDoor {
-    private String manufacturer;
-    private String type;
-    private String id;
-    private boolean isClosed;
-    private boolean isLocked;
+public class BulkCargoDoor extends Door {
 
-    @Override
-    public String version() {
-        return null;
-    }
-
-    @Override
-    public void close() {
-
-    }
-
-    @Override
-    public void lock() {
-
-    }
-
-    @Override
-    public void unlock() {
-
-    }
-
-    @Override
-    public void open() {
-
+    public BulkCargoDoor(String ID, String typeOfDoor)
+    {
+        setDoor(ID,"BulkCargoDoor", typeOfDoor);
     }
 }

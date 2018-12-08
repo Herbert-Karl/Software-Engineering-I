@@ -1,40 +1,18 @@
 package Airplane.door;
 
-public class EmergencyExitDoor implements IEmergencyExitDoor {
-    private String manufacturer;
-    private String type;
-    private String id;
-    private boolean isClosed;
-    private boolean isLocked;
+public class EmergencyExitDoor extends Door {
+
     private boolean isEscapeSlideActivated;
 
-    @Override
-    public String version() {
-        return null;
+    public EmergencyExitDoor(String ID, String typeOfDoor)
+    {
+        setDoor(ID,"EmergencyExitDoor", typeOfDoor);
+        isEscapeSlideActivated = false;
     }
 
-    @Override
-    public void close() {
-
-    }
-
-    @Override
-    public void lock() {
-
-    }
-
-    @Override
-    public void unlock() {
-
-    }
-
-    @Override
-    public void open() {
-
-    }
-
-    @Override
-    public void activateEscapeSlide() {
-
+    //Activates the EscapeSlide (even if it´s already active)
+    public void activateEscapeSlide()
+    {
+        isEscapeSlideActivated = true;
     }
 }

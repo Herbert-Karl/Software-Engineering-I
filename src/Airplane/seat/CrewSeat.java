@@ -1,23 +1,23 @@
 package Airplane.seat;
 
+import Airplane.airplanePart.IAirplanePart;
+
 public class CrewSeat implements ICrewSeat {
-    private String manufacturer;
-    private String type;
-    private String id;
-    private IReadingLight readingLight;
+    private IAirplanePart crewSeat;
+    private ReadingLight readingLight;
 
     @Override
     public String version() {
-        return null;
+        return crewSeat.version();
     }
 
     @Override
     public void readingLightOff() {
-
+        readingLight.off();
     }
 
     @Override
     public void readingLightOn() {
-
+        readingLight.on();
     }
 }

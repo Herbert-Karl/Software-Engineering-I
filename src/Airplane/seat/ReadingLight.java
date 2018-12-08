@@ -1,24 +1,9 @@
 package Airplane.seat;
 
-public class ReadingLight implements IReadingLight {
-    private String uuid;
-    private String manufacturer;
-    private String type;
-    private String id;
-    private boolean isOn;
+public class ReadingLight extends Sign {
 
-    @Override
-    public String version() {
-        return null;
-    }
-
-    @Override
-    public void on() {
-
-    }
-
-    @Override
-    public void off() {
-
+    public ReadingLight(String ID, String type)
+    {
+        setSign(ID, type, "ReadingLight");
     }
 }

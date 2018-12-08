@@ -1,24 +1,9 @@
 package Airplane.seat;
 
-public class SeatBeltSign implements ISeatBeltSign {
-    private String uuid;
-    private String manufacturer;
-    private String type;
-    private String id;
-    private boolean isOn;
+public class SeatBeltSign extends Sign {
 
-    @Override
-    public String version() {
-        return null;
-    }
-
-    @Override
-    public void on() {
-
-    }
-
-    @Override
-    public void off() {
-
+    public SeatBeltSign(String ID, String type)
+    {
+        setSign(ID, type, "SeatBeltSign");
     }
 }

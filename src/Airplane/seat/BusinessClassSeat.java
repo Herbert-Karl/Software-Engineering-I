@@ -1,47 +1,29 @@
 package Airplane.seat;
 
-public class BusinessClassSeat implements IBusinessClassSeat {
-    private String manufacturer;
-    private String type;
-    private String id;
-    private Passenger passenger;
-    private int level;
-    private INonSmokingSign nonSmokingSign;
-    private ISeatBeltSign seatBeltSign;
-    private IReadingLight readingLight;
+public class BusinessClassSeat extends Seat {
 
-    @Override
-    public String version() {
-        return null;
-    }
+    private ReadingLight readingLight;
 
-    @Override
-    public void assign(Passenger passenger) {
-
-    }
-
-    @Override
     public void readingLightOff() {
-
+        readingLight.off();
     }
 
-    @Override
     public void readingLightOn() {
-
+        readingLight.on();
     }
 
     @Override
-    public void upRight() {
-
-    }
-
-    @Override
-    public void level1() {
-
-    }
-
-    @Override
-    public void level2() {
-
+    public void level(int lvl)
+    {
+        switch (lvl) {
+            default: level = 0;
+                break;
+            case 0: level = 0;
+                break;
+            case 1: level = 1;
+                break;
+            case 2: level = 2;
+                break;
+        }
     }
 }
