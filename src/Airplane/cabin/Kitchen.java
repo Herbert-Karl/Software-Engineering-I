@@ -2,41 +2,31 @@ package Airplane.cabin;
 
 import java.util.ArrayList;
 
-public class Kitchen implements IKitchen {
-    private String manufacturer;
-    private KitchenType kitchenType;
-    private String id;
+public class Kitchen extends KitchenLavatory implements IKitchen {
     private ArrayList<Trolley> trolleyList;
-    private boolean isLocked;
+    private KitchenType kitchenType;
     private boolean isFilled;
 
-    @Override
-    public String version() {
-        return null;
-    }
-
-    @Override
-    public void lock() {
-
-    }
-
-    @Override
-    public void unlock() {
-
+    public Kitchen(String id, KitchenType kitchenType) {
+        setKitchen(id, "Kitchen");
+        this.kitchenType = kitchenType;
     }
 
     @Override
     public double getTotalWeightTrolleys() {
-        return 0;
+        return trolleyList.size();
     }
 
     @Override
     public void addTrolley(Trolley trolley) {
-
+        trolleyList.add(trolley);
     }
 
     @Override
-    public void emptyTrolley(Trolley trolley) {
-
+    public void emptyTrolley(Trolley trolley) { // trolley wird rausgezogen food und baverage entfernt
+       if (trolleyList.contains(trolley)) {
+           int index = trolleyList.indexOf(trolley);
+           trolleyList.get(index).removeContent();
+       }
     }
 }

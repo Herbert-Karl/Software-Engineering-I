@@ -1,35 +1,23 @@
 package Airplane.cabin;
 
-public class WaterSystem implements IWaterSystem {
-    private String manufacturer;
-    private String type;
-    private String id;
-    private boolean isOn;
+public class WaterSystem extends System implements IWaterSystem {
     private boolean isFilled;
-    private boolean isCleaned;
 
-    @Override
-    public String version() {
-        return null;
-    }
-
-    @Override
-    public void on() {
-
+    public WaterSystem(String id, String type) {
+        setSystem(id, type, "Water System");
+        isFilled = false;
     }
 
     @Override
     public void refill() {
-
-    }
-
-    @Override
-    public void off() {
-
+        if (!isFilled) isFilled = true;
     }
 
     @Override
     public void clean() {
-
+        // Methode clean hat 2 Auswirkungen
+        // isFilled false und isCleaned true
+        isFilled = false;
+        isCleaned = true;
     }
 }
