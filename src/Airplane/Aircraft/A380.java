@@ -13,6 +13,7 @@ public class A380 extends Airplane{
 
     public void startup()
     {
+
     }
     public void taxi()
     {
