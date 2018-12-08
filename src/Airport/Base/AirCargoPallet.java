@@ -15,7 +15,7 @@ public class AirCargoPallet{
         this.id = id;
     }
 
-    public void setItemList(Item[][] itemList) {
+    public void setItemList(Item[] itemList) {
         this.itemList = itemList;
     }
 
