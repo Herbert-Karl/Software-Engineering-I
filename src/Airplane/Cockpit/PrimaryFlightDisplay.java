@@ -7,7 +7,7 @@ public class PrimaryFlightDisplay {
     private java.util.ArrayList<PrimaryFlightDisplayView> PrimaryFlightDisplayViewList;
 
     public void show() {
-        //TODO Display the flightdisplay, with the currrenID
+        //TODO
     }
 
     public void nextView() {
@@ -15,7 +15,7 @@ public class PrimaryFlightDisplay {
     }
 
     public void update(String primaryFlightDisplayViewEntryName, String value) {
-        //TODO redundant mit pfdv
+        //TODO
     }
 
     public PrimaryFlightDisplay(PrimaryFlightDisplayViewID currentView) {

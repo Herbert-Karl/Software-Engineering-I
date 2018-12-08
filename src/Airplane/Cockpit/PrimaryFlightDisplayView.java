@@ -12,7 +12,7 @@ public class PrimaryFlightDisplayView{
     }
 
     public void register(PrimaryFlightDisplayViewEntry primaryFlightDisplayViewEntry){
-        // TODO adds a new entry to the entryList
+        // TODO
     }
 
     public void update(String primaryFlightDisplayViewEntryName, String value) {

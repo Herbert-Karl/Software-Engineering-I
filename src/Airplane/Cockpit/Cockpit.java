@@ -9,11 +9,11 @@ public class Cockpit implements ICockpit {
     }
 
     public void executeSelectedPhase() {
-        // TODO calls the function from airplane based on the selcted phase
+        //TODO
     }
 
     public void selectNextPrimaryFlightDisplay() {
-        //TODO  in wie fern ist das versch von nextView() aus PFD.java???
+        //TODO
     }
 
     public PrimaryFlightDisplay getPrimaryFlightDisplay() {
