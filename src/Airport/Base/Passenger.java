@@ -15,7 +15,7 @@ public class Passenger{
     private PassengerStatus status;
 
     public Passenger(String uuid, String name, String content, String birthDate, Gender gender, Passport passport, ArrayList<Baggage> baggageList,
-                     String ticketClassString, PassengerStatus status){
+                     String ticketClassString, BoardingPass testBoardingPass, PassengerStatus status){
         this.uuid = uuid;
         this.name = name;
         this.content = content;
