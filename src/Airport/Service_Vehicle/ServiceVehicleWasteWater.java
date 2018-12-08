@@ -162,7 +162,7 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void returnToAirportResourcePool() {
-
+        setGate(null);
     }
 
     public Gate searchGateById(GateID gateID) {

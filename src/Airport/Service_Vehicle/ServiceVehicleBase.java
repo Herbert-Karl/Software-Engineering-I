@@ -206,7 +206,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void returnToAirportResourcePool() {
-
+        setGate(null);
     }
 
     public Gate searchGateById(GateID gateID) {
