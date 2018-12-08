@@ -28,4 +28,8 @@ public class Cockpit implements ICockpit {
         this.primaryFlightDisplay = primaryFlightDisplay;
         this.selectedPhase = selectedPhase;
     }
+
+    public Cockpit(PrimaryFlightDisplay primaryFlightDisplay) {
+        this.primaryFlightDisplay = primaryFlightDisplay;
+    }
 }
