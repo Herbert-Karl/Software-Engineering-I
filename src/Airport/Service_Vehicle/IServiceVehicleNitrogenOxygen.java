@@ -1,5 +1,6 @@
 package Airport.Service_Vehicle;
 
+import Airplane.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
 import Airport.Airport.GateID;
@@ -11,7 +12,7 @@ public interface IServiceVehicleNitrogenOxygen {
     void stop();
     void attachElectricalGrounding();
     void setGateID(GateID gateID);
-    void connectToAirplane();
+    void connectToAirplane(Airplane airplane);
     void refill(INitrogenBottle nitrogenBottle);
     void refill(IOxygenBottle oxygenBottle);
     void disconnectFromAirplane();
