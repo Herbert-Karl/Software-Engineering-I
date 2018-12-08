@@ -2,43 +2,43 @@ package src.Airport.Baggage_Sorting_Unit.Receipts;
 
 public class BaggageSortingUnitReceipt {
 
-  private String uuid;
+    private String uuid;
 
-  private int numberOfBaggageScanned;
+    private int numberOfBaggageScanned;
 
-  private int numberOfDangerousBaggage;
+    private int numberOfDangerousBaggage;
 
-  private DestinationBox destinationBox;
+    private DestinationBox destinationBox;
 
-  private int numberOfBaggageFirstClass;
+    private int numberOfBaggageFirstClass;
 
-  private int numberOfBaggageBusinessClass;
+    private int numberOfBaggageBusinessClass;
 
-  private int numberOfBaggageEconomyClass;
+    private int numberOfBaggageEconomyClass;
 
-  private int numberOfContainerNormalBaggage;
+    private int numberOfContainerNormalBaggage;
 
-  private int numberOfContainerBulkyBaggage;
+    private int numberOfContainerBulkyBaggage;
 
-  public BaggageSortingUnitReceipt(final String uuid, int numberOfContainerBulkyBaggage,
-      int numberOfContainerNormalBaggage, int numberOfBaggageEconomyClass,
-      int numberOfBaggageBusinessClass, int numberOfBaggageFirstClass,
-      DestinationBox destinationBox, int numberOfDangerousBaggage, int numberOfBaggageScanned) {
-    this.uuid = uuid;
-    this.numberOfBaggageScanned = numberOfBaggageScanned;
+    public BaggageSortingUnitReceipt(final String uuid, int numberOfContainerBulkyBaggage,
+                                     int numberOfContainerNormalBaggage, int numberOfBaggageEconomyClass,
+                                     int numberOfBaggageBusinessClass, int numberOfBaggageFirstClass,
+                                     DestinationBox destinationBox, int numberOfDangerousBaggage, int numberOfBaggageScanned) {
+        this.uuid = uuid;
+        this.numberOfBaggageScanned = numberOfBaggageScanned;
 
-    this.numberOfDangerousBaggage = numberOfDangerousBaggage;
+        this.numberOfDangerousBaggage = numberOfDangerousBaggage;
 
-    this.destinationBox = destinationBox;
+        this.destinationBox = destinationBox;
 
-    this.numberOfBaggageFirstClass = numberOfBaggageFirstClass;
+        this.numberOfBaggageFirstClass = numberOfBaggageFirstClass;
 
-    this.numberOfBaggageBusinessClass = numberOfBaggageBusinessClass;
+        this.numberOfBaggageBusinessClass = numberOfBaggageBusinessClass;
 
-    this.numberOfBaggageEconomyClass = numberOfBaggageEconomyClass;
+        this.numberOfBaggageEconomyClass = numberOfBaggageEconomyClass;
 
-    this.numberOfContainerNormalBaggage = numberOfContainerNormalBaggage;
+        this.numberOfContainerNormalBaggage = numberOfContainerNormalBaggage;
 
-    this.numberOfContainerBulkyBaggage = numberOfContainerBulkyBaggage;
-  }
+        this.numberOfContainerBulkyBaggage = numberOfContainerBulkyBaggage;
+    }
 }

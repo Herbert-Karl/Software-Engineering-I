@@ -7,35 +7,35 @@ import src.Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 
 public interface IBaggageSortingUnit {
 
-  void executeRequest(Airport.Airport.GateID gateID);
+    void executeRequest(Airport.Airport.GateID gateID);
 
-  void loginBaggageScanner(Airport.Base.Employee employee, String password);
+    void loginBaggageScanner(Airport.Base.Employee employee, String password);
 
-  void logoutBaggageScanner();
+    void logoutBaggageScanner();
 
-  boolean scan(Airport.Base.Baggage baggage, String pattern);
+    boolean scan(Airport.Base.Baggage baggage, String pattern);
 
-  void handOverToCustoms(Airport.Base.Baggage baggage);
+    void handOverToCustoms(Airport.Base.Baggage baggage);
 
-  void throwOff(LuggageTub luggageTub, DestinationBox destinationBox);
+    void throwOff(LuggageTub luggageTub, DestinationBox destinationBox);
 
-  void emptyDestinationBox();
+    void emptyDestinationBox();
 
-  void sendContainerLifterToGate();
+    void sendContainerLifterToGate();
 
-  void optimizeAirplaneLoading();
+    void optimizeAirplaneLoading();
 
-  void setBaggageVehicle();
+    void setBaggageVehicle(IBaggageVehicle vehicle);
 
-  void loadBaggageVehicle(LoadingStrategy strategy);
+    void loadBaggageVehicle(LoadingStrategy strategy);
 
-  void sendBaggageVehicleToGate();
+    void sendBaggageVehicleToGate();
 
-  void notifyGroundOperations(BaggageSortingUnitReceipt baggageSortingUnitReceipt);
+    void notifyGroundOperations(BaggageSortingUnitReceipt baggageSortingUnitReceipt);
 
-  void returnEmptyLuggageTubToCheckInDesk();
+    void returnEmptyLuggageTubToCheckInDesk();
 
-  BaggageDepot getDepot();
+    BaggageDepot getDepot();
 
-  IBaggageVehicle getVehicle();
+    IBaggageVehicle getVehicle();
 }

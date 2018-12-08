@@ -6,23 +6,22 @@ import java.util.ArrayList;
 
 public class LoadingStrategy {
 
-  public ArrayList<String> getAirCargoPalletIDList() {
-    return airCargoPalletIDList;
-  }
+    private Airplane.stowage_cargo.Stowage stowage;
+    private ArrayList<String> containerIDList;
 
-  public void setAirCargoPalletIDList(final ArrayList<String> airCargoPalletIDList) {
-    this.airCargoPalletIDList = airCargoPalletIDList;
-  }
+    public ArrayList<String> getContainerIDList() {
+        return containerIDList;
+    }
 
-  public Stowage getStowage() {
-    return stowage;
-  }
+    public void setContainerIDList(final ArrayList<String> containerIDList) {
+        this.containerIDList = containerIDList;
+    }
 
-  public void setStowage(final Stowage stowage) {
-    this.stowage = stowage;
-  }
+    public Stowage getStowage() {
+        return stowage;
+    }
 
-  private Airplane.stowage_cargo.Stowage stowage;
-
-  private ArrayList<String> airCargoPalletIDList;
+    public void setStowage(final Stowage stowage) {
+        this.stowage = stowage;
+    }
 }

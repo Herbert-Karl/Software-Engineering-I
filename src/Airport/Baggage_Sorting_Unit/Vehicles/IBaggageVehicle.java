@@ -4,15 +4,17 @@ import java.util.Collection;
 
 public interface IBaggageVehicle extends IVehicle {
 
-  void store(Airport.Base.Container container);
+    void store(Airport.Base.Container container);
 
-  void store(Collection<Airport.Base.Baggage> b);
+    void store(Collection<Airport.Base.Baggage> b);
 
-  void connect(IContainerLifter containerLifter);
+    void connect(IContainerLifter containerLifter);
 
-  void transferContainerToLifter();
+    void transferContainerToLifter();
 
-  void disconnect(IContainerLifter containerLifter);
+    void disconnect();
 
-  void returnToBaggageSortingUnit();
+    void returnToBaggageSortingUnit();
+
+    IContainerLifter getContainerLifter();
 }
