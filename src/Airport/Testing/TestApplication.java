@@ -50,7 +50,15 @@ class TestApplication {
 
         //assertEquals(testAirplane.id, 3);
         assertEquals(testAirport.getPassengerList(), testPassengerList);
-        assertEquals(testAirport.getRecourcePool(), );
+        assertEquals(testAirport.getResourcePool(), testResourcePool);
+        assertEquals(testAirport.getGateList(), testGateList);
+        assertEquals(testAirport.getApron(), testApron);
+        assertEquals(testAirport.getGroundOperationsCenter(), testGroundOperationsCenter);
+        assertEquals(testAirport.getCheckInMediator(), testCheckInMediator);
+        assertEquals(testAirport.getBulkyBaggageDesk(), testBulkyBaggageDesk);
+        assertEquals(testAirport.getSecurityMediator(), testSecurityMediator);
+        assertEquals(testAirport.getApronControl(), testApronControl);
+        assertEquals(testAirport.getTower(), testTower);
 
     }
 }
