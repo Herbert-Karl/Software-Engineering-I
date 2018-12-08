@@ -7,12 +7,14 @@ public class Employee{
     private Gender gender;
     private IDCard idCard;
 
-    public Employee(String uuid, int id, String name, Gender gender){
+    public Employee(int id, String name, Gender gender){
         this.uuid = uuid;
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.idCard = null;
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
     }
 
     public void setIdCard(IDCard idCard){

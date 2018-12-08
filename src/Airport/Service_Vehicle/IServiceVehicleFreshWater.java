@@ -1,5 +1,6 @@
 package Airport.Service_Vehicle;
 
+import Airplane.Airplane;
 import Airplane.Tanks.IPortableWaterTank;
 import Airport.Airport.GateID;
 
@@ -9,7 +10,7 @@ public interface IServiceVehicleFreshWater {
     void move(int speedInMPH);
     void stop();
     void setGateID(GateID gateID);
-    void connectToAirplane();
+    void connectToAirplane(Airplane airplane);
     void refill(IPortableWaterTank portableWaterTank);
     void disconnectFromAirplane();
     void setFlashingLightOff();

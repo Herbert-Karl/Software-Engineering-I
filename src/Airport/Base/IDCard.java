@@ -5,10 +5,12 @@ public class IDCard{
     private Employee employee;
     private String password;
 
-    public IDCard(String uuid){
+    public IDCard(){
         this.uuid = uuid;
         this.employee = null;
         this.password = "SHA-265";
+        UUID uuid = UUID.randomUUID();
+        this uuid = uuid.toString();
     }
 
     public void setEmployee(Employee employee){
