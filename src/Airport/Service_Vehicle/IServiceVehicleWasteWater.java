@@ -1,6 +1,6 @@
 package Airport.Service_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.IWasteWaterTank;
 import Airport.Airport.GateID;
 
