@@ -1,4 +1,4 @@
 package Airplane;
 
-class Airplane implements IAirplane {
+public class Airplane implements IAirplane {
 }

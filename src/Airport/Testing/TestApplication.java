@@ -1,12 +1,13 @@
 package Airport.Testing;
 
-import Airport.Airport.Airport;
-import Airport.Airport.AirportRecourcePool;
-import Airport.Airport.GateID;
+import Airplane.Airplane;
+import Airport.Airport.*;
 import Airport.Base.*;
+import Airport.Security_Check.SecurityMediator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.*;
 
+import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -25,7 +26,7 @@ class TestApplication {
     Baggage b1 = new Baggage("b1uuid", "Koks, Bomben, Leichenteile", 47.11, BaggageSecurityStatus.Normal);
     Baggage b2 = new Baggage("b2uuid", "Weed, Waffen, chemische Kampfstoffe", 12.34, BaggageSecurityStatus.Normal);
     Baggage b3 = new Baggage("b3uuid", "Meth, Badesalz, Sexsklavin", 69.88, BaggageSecurityStatus.Normal);
-    ArrayList<Baggage> testBaggageList = new ArrayList<>(Arrays.asList(b1, b2, b3));
+    ArrayList<Baggage> testBaggageList = new ArrayList<Baggage>(Arrays.asList(b1, b2, b3));
     ArrayList<BaggageIdentificationType> testBaggageIdentificationTypeList;
     BoardingPass testBoardingPass = new BoardingPass("tBPuuid", Carrier.Emirates, "F666", p1,
             TicketClass.First, Source.MUC, Destination.FRA, "30.02.2019", GateID.A03, "25:61",
@@ -39,10 +40,46 @@ class TestApplication {
     // for resource pool
     AirportRecourcePool testAirportResourcePool = new AirportRecourcePool();
 
+    // for gate list
+    Flight testFlight = new Flight("17", Carrier.Emirates, Destination.KEF, GateID.A01);
+    Gate testGate = new Gate(GateID.A01, testFlight);
+    ArrayList<Gate> testGateList = new ArrayList<Gate>(Arrays.asList(testGate));
+
+    // for apron
+    ArrayList<TaxiCheckPoint> testTaxiCheckPointList = new ArrayList<TaxiCheckPoint>(Arrays.asList(TaxiCheckPoint.M4));
+    TaxiWay testTaxiWay = new TaxiWay(TaxiCenterLine.blue, GateID.A02, RunwayID.R26L, testTaxiCheckPointList, RunwayCheckPointID.S1);
+    ArrayList<TaxiWay> testTaxiWayList = new ArrayList<TaxiWay>();
+    ApronControl testApronControl = new ApronControl(testAirport, testApron, testTaxiWayList);
+    Apron testApron = new Apron(testAirport, testApronControl);
+
+    // for igroundoperationscenter
+    IGroundOperationsCenter testIGroundOperationscenter = new IGroundOperationsCenter();
+
+    // for Check-In-Mediator
+    CheckInMediator testCheckInMediator = new CheckInMediator();
+
+    // for ibulkybaggagedesk
+    IBulkyBaggageDesk testIBulkyBaggageDesk = new IBulkyBaggageDesk();
+
+    // for Security Mediator
+    SecurityMediator testSecurityMediator = new SecurityMediator();
+
+    // for Tower
+    ArrayList<Airplane> testAirplaneList = new ArrayList<Airplane>(Arrays.asList(testAirplane));
+    ArrayList<RunwayCheckPointID> testRunwayCheckPointID = new ArrayList<RunwayCheckPointID>(RunwayCheckPointID.S1);
+    WindDirectionSensor testWindDirectionSensor = new WindDirectionSensor();
+    Runway testRunway = new Runway(RunwayID.R26L, Position.North, testRunwayCheckPointID, testWindDirectionSensor,
+            true, false, testAirplane);
+    ArrayList<Runway> testRunwayList = new ArrayList<Runway>(Arrays.asList(testRunway));
+    IRunwayManagement testRunwayManagement = new RunwayManagement(testAirplaneList, testRunwayList);
+    Tower testTower = new Tower(testAirport, testRunwayManagement, WindDirection.WestToEast);
+
     @BeforeAll
     public void setup(){
         testAirplane = new TestAirplane(1, "abc", false);
-        testAirport = new Airport(testPassengerList, testAirportResourcePool, );
+        testAirport = new Airport(testPassengerList, testAirportResourcePool, testGateList, testApron,
+                testIGroundOperationscenter, testCheckInMediator, testIBulkyBaggageDesk, testSecurityMediator,
+                testApronControl, testTower);
     }
 
     @Test

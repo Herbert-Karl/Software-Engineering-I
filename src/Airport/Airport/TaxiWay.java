@@ -2,7 +2,7 @@ package Airport.Airport;
 
 import java.util.ArrayList;
 
-puclic class TaxiWay{
+puclic public class TaxiWay{
     private TaxiCenterLine taxiCenterLine;
     private GateID gateID;
     private RunwayID runwayID;
