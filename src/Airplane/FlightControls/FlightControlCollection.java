@@ -26,7 +26,7 @@ class FlightControlCollection {
         rudders = new LinkedList<>();
         slats = new LinkedList<>();
         spoilers = new LinkedList<>();
-        //here extract all Airplane.FlightControls
+        //here extract all Aircraft.FlightControls
     }
 
     List<IFlightControl> getAllFlightControls() {
