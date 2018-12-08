@@ -2,12 +2,14 @@ package Airport.Airport;
 
 
 import Airplane.Airplane;
+import java.util.ArrayList;
 
 public class Tower implements ITower{
     private Airport airport;
     private String frequency;
     private IRunwayManagement runwayManagement;
     private WindDirection windDirection;
+    private ArrayList<Runway> runwayList;
 
     public Tower(Airport airport, IRunwayManagement runwayManagement, WindDirection windDirection){
         this.airport = airport;
@@ -33,8 +35,8 @@ public class Tower implements ITower{
     }
 
     public void recieveFireAlarm(Airplane airplane){
-        //TODO
 
+        //TODO
     }
 
     public AlarmType determineAlarmType(Airplane airplane){
@@ -44,5 +46,9 @@ public class Tower implements ITower{
 
     public void alarm(RunwayID runwayID, Airplane airplane){
         //TODO
+    }
+
+    public WindDirection getWindDirection() {
+        return windDirection;
     }
 }
