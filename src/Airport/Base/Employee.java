@@ -7,11 +7,15 @@ public class Employee{
     private Gender gender;
     private IDCard idCard;
 
-    public Employee(String uuid, int id, String name, Gender gender, IDCard idCard){
+    public Employee(String uuid, int id, String name, Gender gender){
         this.uuid = uuid;
         this.id = id;
         this.name = name;
         this.gender = gender;
-        this.idCard = idCard;
+        this.idCard = null;
+    }
+
+    public void setIdCard(IDCard idCard){
+       this.idCard = idCard;
     }
 }

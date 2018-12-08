@@ -24,4 +24,18 @@ public class Container{
         this.baggageList = baggageList;
     }
 
+    public ContainerType getType(){
+        return this.type;
+    }
+
+    public double getWeight(){
+        double weight = 0;
+        Baggabe baggage = null;
+        while(baggageList.peek != null){
+           baggage = baggageList.pop();
+           weight = weight + baggage.getWeight();
+        }
+        return weight;
+    }
+
 }

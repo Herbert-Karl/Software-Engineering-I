@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="484.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="UI.Controller" stylesheets="@ui.css">
+   <TitledPane animated="false" collapsible="false" disable="true" expanded="false" prefHeight="484.0" prefWidth="820.0" text="Airport / Airplane">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+   </TitledPane>
+   <TextArea fx:id="commandHistory" editable="false" layoutX="16.0" layoutY="137.0" prefHeight="216.0" prefWidth="785.0"/>
+   <TextField fx:id="commandInput" layoutX="18.0" layoutY="363.0" prefHeight="88.0" prefWidth="785.0" onAction="#enterPressed"/>
+   <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="52.0" prefHeight="69.0" prefWidth="785.0" spacing="15.0" style="-fx-background-color: #273d89;" stylesheets="@ui.css" AnchorPane.leftAnchor="18.0">
+      <padding>
+         <Insets left="20.0" />
+      </padding>
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#executePressed" prefHeight="30.0" prefWidth="115.0" text="Execute" textAlignment="CENTER">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logfilePressed" prefHeight="30.0" prefWidth="115.0" text="View Logfile" textAlignment="CENTER" />
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closePressed" prefHeight="30.0" prefWidth="115.0" text="Close" textAlignment="CENTER" />
+   </HBox>
+</AnchorPane>
