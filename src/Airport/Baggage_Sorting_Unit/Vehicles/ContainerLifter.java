@@ -1,13 +1,13 @@
-package src.Airport.Baggage_Sorting_Unit.Vehicles;
+package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airport.Airport.GateID;
+import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
+import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
-import src.Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
-import src.Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 
 import java.util.ArrayList;
 
-public class ContainerLifter implements IContainerLifter {
+public class ContainerLifter implements Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter {
 
     private String uuid;
 
@@ -54,8 +54,12 @@ public class ContainerLifter implements IContainerLifter {
      */
     @Override
     public void transferContainerToCargoSystem(LoadingStrategy strategy) {
-        connectedAirplane.getCargoSystem.load(strategy.getStowage(),container,)
-
+        if (!isDown) {
+            down();
+        }
+        up();
+        connectedAirplane.getCargoSystem.load(strategy.getStowage(), container, );
+        down();
     }
 
     /**

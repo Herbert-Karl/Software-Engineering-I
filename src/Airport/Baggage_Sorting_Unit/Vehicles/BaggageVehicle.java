@@ -1,14 +1,14 @@
-package src.Airport.Baggage_Sorting_Unit.Vehicles;
+package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.Baggage;
 import Airport.Base.Container;
-import Airport.Airport.*;
 
 import java.util.Collection;
 
-public class BaggageVehicle implements IBaggageVehicle {
+public class BaggageVehicle implements Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle {
 
     private String uuid;
 
@@ -21,10 +21,10 @@ public class BaggageVehicle implements IBaggageVehicle {
     private boolean isFlashingLightOn;
 
     private Container container;
-    private IContainerLifter containerLifter;
+    private Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter containerLifter;
     private Gate gate;
 
-    public IContainerLifter getContainerLifter() {
+    public Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter getContainerLifter() {
         return containerLifter;
     }
 
@@ -45,7 +45,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     @Override
-    public void connect(IContainerLifter containerLifter) {
+    public void connect(Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter containerLifter) {
         this.containerLifter = containerLifter;
     }
 

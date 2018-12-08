@@ -1,6 +1,6 @@
-package src.Airport.Baggage_Sorting_Unit.Receipts;
+package Airport.Baggage_Sorting_Unit.Receipts;
 
-import src.Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
+import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 
 import java.util.ArrayList;
 

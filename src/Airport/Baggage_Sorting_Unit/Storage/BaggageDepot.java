@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit.Storage;
+package Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Base.Baggage;
 import Airport.Base.BulkyBaggage;

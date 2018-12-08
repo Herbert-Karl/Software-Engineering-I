@@ -1,22 +1,22 @@
-package src.Airport.Baggage_Sorting_Unit;
+package Airport.Baggage_Sorting_Unit;
 
 import Airport.Airport.GateID;
+import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
+import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
+import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
+import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
+import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
+import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.Baggage;
 import Airport.Base.Container;
 import Airport.Base.Employee;
-import src.Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
-import src.Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
-import src.Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
-import src.Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
-import src.Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
-import src.Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
-import src.Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
-import src.Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 
 import java.util.ArrayList;
 
 @SuppressWarnings("CollectionDeclaredAsConcreteClass")
-public class BaggageSortingUnit implements IBaggageSortingUnit {
+public class BaggageSortingUnit implements Airport.Baggage_Sorting_Unit.IBaggageSortingUnit {
 
     private ArrayList<Airport.Base.Employee> employeeList;
 
@@ -92,11 +92,14 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         optimizeAirplaneLoading();
 
-        baggageVehicle.getContainerLifter().transferContainerToCargoSystem();
+        IContainerLifter lifter=baggageVehicle.getContainerLifter();
+        lifter.connectToAirplane();
+        lifter.transferContainerToCargoSystem();
+        lifter.returnToAirportResourcePool();
     }
 
     /**
-     * loggs employee into Scanner via iDCard
+     * logs employee into Scanner via iDCard
      */
     @Override
     public void loginBaggageScanner(Employee employee, String password) {

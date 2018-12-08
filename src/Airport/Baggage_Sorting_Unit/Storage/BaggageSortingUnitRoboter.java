@@ -1,7 +1,7 @@
-package src.Airport.Baggage_Sorting_Unit.Storage;
+package Airport.Baggage_Sorting_Unit.Storage;
 
+import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 import Airport.Base.Baggage;
-import src.Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit.Vehicles;
+package Airport.Baggage_Sorting_Unit.Vehicles;
 
 public interface IVehicle {
 

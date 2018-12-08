@@ -1,9 +1,10 @@
-package src.Airport.Baggage_Sorting_Unit;
+package Airport.Baggage_Sorting_Unit;
 
-import src.Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
-import src.Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
-import src.Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
-import src.Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
+
+import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
+import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
+import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 
 public interface IBaggageSortingUnit {
 

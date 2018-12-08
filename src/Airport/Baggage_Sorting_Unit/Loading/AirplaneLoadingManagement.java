@@ -1,19 +1,19 @@
-package src.Airport.Baggage_Sorting_Unit.Loading;
+package Airport.Baggage_Sorting_Unit.Loading;
 
-public class AirplaneLoadingManagement implements IAirplaneLoadingManagementt {
+public class AirplaneLoadingManagement implements Airport.Baggage_Sorting_Unit.Loading.IAirplaneLoadingManagementt {
 
-  public LoadingStrategy getStrategy() {
+  public Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy getStrategy() {
     return strategy;
   }
 
-  private LoadingStrategy strategy;
+  private Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy strategy;
 
-  public AirplaneLoadingManagement(final LoadingStrategy strategy) {
+  public AirplaneLoadingManagement(final Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy strategy) {
     this.strategy = strategy;
   }
 
   public AirplaneLoadingManagement() {
-    strategy = new LoadingStrategy();
+    strategy = new Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy();
   }
 
   /**

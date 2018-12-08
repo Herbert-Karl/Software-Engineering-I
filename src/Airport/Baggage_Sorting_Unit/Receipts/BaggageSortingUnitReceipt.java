@@ -1,4 +1,4 @@
-package src.Airport.Baggage_Sorting_Unit.Receipts;
+package Airport.Baggage_Sorting_Unit.Receipts;
 
 public class BaggageSortingUnitReceipt {
 
