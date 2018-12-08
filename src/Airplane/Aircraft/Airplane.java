@@ -93,8 +93,19 @@ public abstract class Airplane {
         rightWing = new Wing();
     }
 
+    public Body getBody() {
+        return body;
+    }
 
-    //abstract Methods
+    public Wing getLeftWing() {
+        return leftWing;
+    }
+
+    public Wing getRightWing() {
+        return rightWing;
+    }
+
+//abstract Methods
 
     public abstract void startup();
     public abstract void taxi();
