@@ -169,7 +169,11 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void pump(IFuelTank fuelTank, int amount) {
+        fuelPump.connectAirportFuelTank(airport);
+        fuelPump.connectFuelTank(fuelTank);
+        fuelPump.on();
         fuelTank.refill(amount);
+        fuelPump.off();
     }
 
     @Override
@@ -202,7 +206,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void notifyGroundOperations(FuelReceipt fuelReceipt) {
-
+        setGate();
     }
 
     public Gate searchGateById(GateID gateID) {

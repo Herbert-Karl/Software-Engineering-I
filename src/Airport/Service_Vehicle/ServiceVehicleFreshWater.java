@@ -163,7 +163,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void returnToAirportResourcePool() {
-
+        setGate(null);
     }
 
     public Gate searchGateById(GateID gateID) {
