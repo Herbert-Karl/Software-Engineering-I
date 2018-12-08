@@ -1,19 +1,13 @@
 package Airplane.Aircraft;
 
 
-import Airplane.FlightControls.Implementations.*;
-import Airplane.Lights.*;
-import Airplane.Management.CostOptimizer;
-import Airplane.Management.RouteManagement;
-import Airplane.Management.SeatManagement;
-import Airplane.Tanks.*;
-import Airplane.stowage_cargo.CargoSystem;
-import Airplane.stowage_cargo.StowageNumberFive;
+import Airplane.Aircraft.Body;
+import Airplane.Aircraft.Wing;
 
 public abstract class Airplane {
+protected Configuration configuration;
     /*
     protected APU apu;
-    //public Gear gear;
     public AirConditioning airConditioning;
     public Kitchen kitchen;
     public Lavatory lavatory;
@@ -86,11 +80,8 @@ public abstract class Airplane {
     protected Wing leftWing;
     protected Wing rightWing;
 
-    public Airplane()
-    {
-        body = new Body();
-        leftWing = new Wing();
-        rightWing = new Wing();
+    public Configuration getConfiguration() {
+        return configuration;
     }
 
     public Body getBody() {
@@ -107,6 +98,7 @@ public abstract class Airplane {
 
 //abstract Methods
 
+    public abstract void build();
     public abstract void startup();
     public abstract void taxi();
     public abstract void takeOff();

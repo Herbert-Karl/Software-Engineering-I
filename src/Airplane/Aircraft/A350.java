@@ -1,6 +1,6 @@
 package Airplane.Aircraft;
 
-public class A350 extends Airplane{
+public class A350 extends Airplane {
 
     public void startup()
     {

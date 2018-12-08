@@ -7,10 +7,14 @@ import Airplane.Tanks.IBattery;
 import java.util.ArrayList;
 
 public class Body {
+    private Airplane airplane;
     private ArrayList<IBattery> batteryList;
     private ArrayList<Gear> gearList;
+    private ArrayList<Engine> engineArrayList;
+    private APU apu;
 
-    public Body() {
+    public Body(Airplane airplane) {
+        this.airplane = airplane;
         build();
     }
 
@@ -24,7 +28,19 @@ public class Body {
             batteryList.add(new Battery("M","B01","BT" + i,100));
 
         // gear
-        for (int i = 0;i < 3;i++)
+        for (int i = 0;i < airplane.getConfiguration().getNumberOfGear().;i++)
             gearList.add(new Gear());
+    }
+
+    public ArrayList<IBattery> getBatteryList() {
+        return batteryList;
+    }
+
+    public APU getApu() {
+        return apu;
+    }
+
+    public ArrayList<Engine> getEngineArrayList() {
+        return engineArrayList;
     }
 }
