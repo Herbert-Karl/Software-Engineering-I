@@ -69,7 +69,7 @@ public class FuelTankDistributionManagement implements IFuelTankDistributionMana
 
     @Override
     public String version() {
-        return "Manufacturer: " + getManufacturer() + ", Type: " + getType() + ", ID: " + getId();
+        return "<" + getId() + ">-<" + getType() + ">";
     }
 
     @Override

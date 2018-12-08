@@ -1,5 +1,7 @@
 package Airport.Sky_Tanking_Vehicle;
 
+import Airplane.Airplane;
+import Airplane.IAirplane;
 import Airplane.Tanks.IFuelTank;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
@@ -158,7 +160,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
     }
 
     @Override
-    public void connectAirplane() {
+    public void connectAirplane(Airplane airplane) {
 
     }
 
@@ -169,7 +171,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public FuelReceipt print() {
-        return null;
+        return new FuelReceipt(getUuid(), getId(), getGate(), getTotalAmount());
     }
 
     @Override
