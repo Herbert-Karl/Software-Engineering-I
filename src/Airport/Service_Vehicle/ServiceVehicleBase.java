@@ -107,27 +107,31 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void setFlashingLightOn() {
-        setFlashingLightOn(true);
+        if (isFlashingLightOn() == false) {
+            setFlashingLightOn(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+        }
     }
 
     @Override
     public void move(int speedInMPH) {
-
+        setSpeedInMPH(speedInMPH);
     }
 
     @Override
     public void stop() {
-
+        setSpeedInMPH(0);
     }
 
     @Override
     public void setGateID(GateID gateID) {
-
+        setGate(gateID);
     }
 
     @Override
     public void connectToAirplane(Airplane airplane) {
-
+        setConnectedAirplane(airplane);
     }
 
     @Override

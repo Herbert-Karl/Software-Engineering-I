@@ -131,7 +131,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isFlashingLightOn() == false) {
             setFlashingLightOn(true);
         } else {
-            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already on");
         }
     }
 
@@ -150,7 +150,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isElectricallyGrounded() == false) {
             setElectricallyGrounded(true);
         } else {
-            System.out.println("SkyTankingVehicle Error: already electrically grounded!");
+            System.err.println("SkyTankingVehicle Error: already electrically grounded!");
         }
     }
 
@@ -184,7 +184,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isElectricallyGrounded() == true) {
             setElectricallyGrounded(false);
         } else {
-            System.out.println("SkyTankingVehicle Error: already electrically ungrounded");
+            System.err.println("SkyTankingVehicle Error: already electrically ungrounded");
         }
     }
 
@@ -193,7 +193,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isFlashingLightOn() == true) {
             setFlashingLightOn(false);
         } else {
-            System.out.println("SkyTankingVehicle Error: FlashingLight is already off");
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already off");
         }
     }
 

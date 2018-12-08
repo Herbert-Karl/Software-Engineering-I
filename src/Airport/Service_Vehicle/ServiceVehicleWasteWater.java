@@ -97,27 +97,31 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void setFlashingLightOn() {
-
+        if (isFlashingLightOn() == false) {
+            setFlashingLightOn(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+        }
     }
 
     @Override
     public void move(int speedInMPH) {
-
+        setSpeedInMPH(speedInMPH);
     }
 
     @Override
     public void stop() {
-
+        setSpeedInMPH(0);
     }
 
     @Override
     public void setGateID(GateID gateID) {
-
+        setGate(gateID);
     }
 
     @Override
     public void connectToAirplane(Airplane airplane) {
-
+        setConnectedAirplane(airplane);
     }
 
     @Override
@@ -127,12 +131,16 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void disconnectFromAirplane() {
-
+        setConnectedAirplane(null);
     }
 
     @Override
     public void setFlashingLightOff() {
-
+        if (isFlashingLightOn() == true) {
+            setFlashingLightOn(false);
+        } else {
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already off");
+        }
     }
 
     @Override
