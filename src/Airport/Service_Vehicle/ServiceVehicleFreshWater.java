@@ -1,5 +1,6 @@
 package Airport.Service_Vehicle;
 
+import Airplane.Airplane;
 import Airplane.Tanks.IPortableWaterTank;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
@@ -115,7 +116,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
     }
 
     @Override
-    public void connectToAirplane() {
+    public void connectToAirplane(Airplane airplane) {
 
     }
 

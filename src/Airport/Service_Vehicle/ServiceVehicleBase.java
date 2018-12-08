@@ -126,7 +126,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
     }
 
     @Override
-    public void connectToAirplane() {
+    public void connectToAirplane(Airplane airplane) {
 
     }
 

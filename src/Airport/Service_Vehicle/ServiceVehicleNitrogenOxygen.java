@@ -1,5 +1,6 @@
 package Airport.Service_Vehicle;
 
+import Airplane.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
 import Airport.Airport.Gate;
@@ -141,7 +142,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
     }
 
     @Override
-    public void connectToAirplane() {
+    public void connectToAirplane(Airplane airplane) {
 
     }
 
