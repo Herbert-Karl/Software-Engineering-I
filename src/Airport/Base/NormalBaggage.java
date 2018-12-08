@@ -1,17 +1,17 @@
 package Airport.Base;
 
 public class NormalBaggage extends Baggage{
-    private BaggageIdentificationTag baggageIdentifikationTag;
+    private BaggageIdentificationTag baggageIdentificationTag;
 
-    public NormalBaggage(String uuid, String content, String weight, BaggageIdentifikationTag baggageIdentifikationTag){
+    public NormalBaggage(String uuid, String content, String weight, BaggageIdentificationTag baggageIdentificationTag){
         this.uuid = uuid;
         this.content = content;
         this.weight = weight;
         this.secutityStatus = null;
-        this.baggageIdentifikationTag = baggageIdentifikationTag;
+        this.baggageIdentificationTag = baggageIdentificationTag;
     }
 
-    public BaggageIdentificationTag getBaggageIdentifikationTag() {
-        return baggageIdentifikationTag;
+    public BaggageIdentificationTag getBaggageIdentificationTag() {
+        return baggageIdentificationTag;
     }
 }
