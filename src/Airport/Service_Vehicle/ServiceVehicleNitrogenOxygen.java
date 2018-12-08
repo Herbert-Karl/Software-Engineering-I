@@ -1,6 +1,6 @@
 package Airport.Service_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
 import Airport.Airport.Airport;

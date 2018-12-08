@@ -1,7 +1,6 @@
 package Airport.Sky_Tanking_Vehicle;
 
-import Airplane.Airplane;
-import Airplane.IAirplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.IFuelTank;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
@@ -169,7 +168,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void pump(IFuelTank fuelTank, int amount) {
-        fuelPump.connectAirportFuelTank(airport);
+        fuelPump.connectAirportFuelTank();
         fuelPump.connectFuelTank(fuelTank);
         fuelPump.on();
         fuelTank.refill(amount);
