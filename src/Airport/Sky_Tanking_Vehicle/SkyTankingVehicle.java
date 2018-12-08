@@ -3,6 +3,7 @@ package Airport.Sky_Tanking_Vehicle;
 import Airplane.Airplane;
 import Airplane.IAirplane;
 import Airplane.Tanks.IFuelTank;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -18,8 +19,9 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
     private Gate gate;
     private Airplane connectedAirplane;
     private int totalAmount;
+    private Airport airport;
 
-    public SkyTankingVehicle(String uuid, String id, String type, int speedInMPH, IFuelTankDistributionManagement fuelTankDistributionManagement, FuelPump fuelPump, boolean isFlashingLightOn, boolean isElectricallyGrounded, Gate gate, Airplane connectedAirplane, int totalAmount) {
+    public SkyTankingVehicle(String uuid, String id, String type, int speedInMPH, IFuelTankDistributionManagement fuelTankDistributionManagement, FuelPump fuelPump, boolean isFlashingLightOn, boolean isElectricallyGrounded, Gate gate, Airplane connectedAirplane, int totalAmount, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -31,6 +33,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
         this.totalAmount = totalAmount;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -131,7 +134,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isFlashingLightOn() == false) {
             setFlashingLightOn(true);
         } else {
-            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already on");
         }
     }
 
@@ -150,7 +153,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isElectricallyGrounded() == false) {
             setElectricallyGrounded(true);
         } else {
-            System.out.println("SkyTankingVehicle Error: already electrically grounded!");
+            System.err.println("SkyTankingVehicle Error: already electrically grounded!");
         }
     }
 
@@ -184,7 +187,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isElectricallyGrounded() == true) {
             setElectricallyGrounded(false);
         } else {
-            System.out.println("SkyTankingVehicle Error: already electrically ungrounded");
+            System.err.println("SkyTankingVehicle Error: already electrically ungrounded");
         }
     }
 
@@ -193,12 +196,20 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
         if (isFlashingLightOn() == true) {
             setFlashingLightOn(false);
         } else {
-            System.out.println("SkyTankingVehicle Error: FlashingLight is already off");
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already off");
         }
     }
 
     @Override
     public void notifyGroundOperations(FuelReceipt fuelReceipt) {
 
+    }
+
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }

@@ -3,6 +3,7 @@ package Airport.Service_Vehicle;
 import Airplane.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -17,8 +18,9 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
     private int amountOxygen;
     private Gate gate;
     private Airplane connectedAirplane;
+    private Airport airport;
 
-    public ServiceVehicleNitrogenOxygen(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, boolean isElectricalGrounded, Gate gate, Airplane connectedAirplane) {
+    public ServiceVehicleNitrogenOxygen(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, boolean isElectricalGrounded, Gate gate, Airplane connectedAirplane, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -29,6 +31,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
         this.amountOxygen = 1000;
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -118,32 +121,40 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void setFlashingLightOn() {
-
+        if (isFlashingLightOn() == false) {
+            setFlashingLightOn(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+        }
     }
 
     @Override
     public void move(int speedInMPH) {
-
+        setSpeedInMPH(speedInMPH);
     }
 
     @Override
     public void stop() {
-
+        setSpeedInMPH(0);
     }
 
     @Override
     public void attachElectricalGrounding() {
-
+        if (isElectricalGrounded() == false) {
+            setElectricalGrounded(true);
+        } else {
+            System.err.println("SkyTankingVehicle Error: already electrically grounded!");
+        }
     }
 
     @Override
     public void setGateID(GateID gateID) {
-
+        setGate(gateID);
     }
 
     @Override
     public void connectToAirplane(Airplane airplane) {
-
+        setConnectedAirplane(airplane);
     }
 
     @Override
@@ -158,17 +169,25 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void disconnectFromAirplane() {
-
+        setConnectedAirplane(null);
     }
 
     @Override
     public void detachElectricalGrounding() {
-
+        if (isElectricalGrounded() == true) {
+            setElectricalGrounded(false);
+        } else {
+            System.err.println("SkyTankingVehicle Error: already electrically ungrounded");
+        }
     }
 
     @Override
     public void setFlashingLightOff() {
-
+        if (isFlashingLightOn() == true) {
+            setFlashingLightOn(false);
+        } else {
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already off");
+        }
     }
 
     @Override
@@ -179,5 +198,13 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
     @Override
     public void returnToAirportResourcePool() {
 
+    }
+
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }

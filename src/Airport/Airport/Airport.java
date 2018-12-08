@@ -1,5 +1,6 @@
 package Airport.Airport;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import Airport.*;
 
@@ -113,5 +114,9 @@ public class Airport{
 
     public boolean executeGroundOperationsLogging(){
         //TODO
+    }
+
+    public ArrayList<Gate> getGateList() {
+        return this.gateList;
     }
 }
