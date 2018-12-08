@@ -1,7 +1,6 @@
 package Airplane.FlightControls;
 
 import Airplane.FlightControls.Interfaces.*;
-import Airplane.IAirplane;
 
 import java.util.LinkedList;
 import java.util.List;
