@@ -1,6 +1,6 @@
 package Airport.Service_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.IWasteWaterTank;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
@@ -162,7 +162,7 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
 
     @Override
     public void returnToAirportResourcePool() {
-
+        setGate(null);
     }
 
     public Gate searchGateById(GateID gateID) {
