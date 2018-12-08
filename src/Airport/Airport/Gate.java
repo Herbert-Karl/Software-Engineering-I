@@ -1,5 +1,7 @@
 package Airport.Airport;
 
+import Airplane.Airplane;
+
 public class Gate{
     private GateID gateID;
     private Flight flight;
@@ -11,6 +13,14 @@ public class Gate{
         this.flight = flight;
         this.isOpen = false;
         this.airplane = null;
+    }
+
+    public GateID getGateID() {
+        return gateID;
+    }
+
+    public Airplane getAirplane() {
+        return airplane;
     }
 
     public boolean open(){

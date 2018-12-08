@@ -2,6 +2,7 @@ package Airport.Service_Vehicle;
 
 import Airplane.Airplane;
 import Airplane.Tanks.IPortableWaterTank;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -14,8 +15,9 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
     private int amountFreshWater;
     private Gate gate;
     private Airplane connectedAirplane;
+    private Airport airport;
 
-    public ServiceVehicleFreshWater(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane) {
+    public ServiceVehicleFreshWater(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -24,6 +26,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
         this.amountFreshWater = 10000;
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -151,5 +154,13 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
     @Override
     public void returnToAirportResourcePool() {
 
+    }
+
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }

@@ -2,6 +2,7 @@ package Airport.Service_Vehicle;
 
 import Airplane.Airplane;
 import Airplane.Tanks.*;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -15,8 +16,9 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
     private int amountEngineOil;
     private Gate gate;
     private Airplane connectedAirplane;
+    private Airport airport;
 
-    public ServiceVehicleBase(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane) {
+    public ServiceVehicleBase(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -26,6 +28,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
         this.amountEngineOil = 1000;
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -102,7 +105,19 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(gate));
+        increaseLevel();
+        increaseLevel();
+        charge();
+        change();
+        refill();
+        disconnectFromAirplane();
+        setFlashingLightOff();
+        returnToAirportResourcePool();
     }
 
     @Override
@@ -126,7 +141,7 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
 
     @Override
     public void setGateID(GateID gateID) {
-        setGate(gateID);
+        setGate(searchGateById(gateID));
     }
 
     @Override
@@ -189,5 +204,13 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
     @Override
     public void returnToAirportResourcePool() {
 
+    }
+
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }

@@ -3,6 +3,7 @@ package Airport.Service_Vehicle;
 import Airplane.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -17,8 +18,9 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
     private int amountOxygen;
     private Gate gate;
     private Airplane connectedAirplane;
+    private Airport airport;
 
-    public ServiceVehicleNitrogenOxygen(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, boolean isElectricalGrounded, Gate gate, Airplane connectedAirplane) {
+    public ServiceVehicleNitrogenOxygen(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, boolean isElectricalGrounded, Gate gate, Airplane connectedAirplane, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -29,6 +31,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
         this.amountOxygen = 1000;
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -195,5 +198,13 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
     @Override
     public void returnToAirportResourcePool() {
 
+    }
+
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }
