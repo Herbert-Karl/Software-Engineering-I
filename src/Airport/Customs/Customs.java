@@ -2,6 +2,7 @@ package Airport.Customs;
 
 import Airport.Baggage_Sorting_Unit.IBaggageSortingUnitRoboter;
 import Airport.Base.*;
+import Airport.Scanner.BaggageScanner;
 import Airport.Scanner.IBaggageScanner;
 
 import java.util.ArrayList;
@@ -19,15 +20,15 @@ public class Customs implements ICustoms {
     ArrayList<Item> keepSafeItemList;
 
     public boolean loginBaggageScanner(Employee employee, String password){
-        return false;
+        return BaggageScanner.login(employee.IDCard, password);
     }
 
     public void logoutBaggageScanner(){
-
+        BaggageScanner.logout();
     }
 
     public boolean scan (Baggage baggage, IBaggageScanner scanner, String pattern){
-        return false;
+        return BaggageScanner.scan(baggage, pattern);
     }
 
     public void executeRequest (IBaggageSortingUnitRoboter baggageSortingUnitRoboter){
@@ -35,11 +36,13 @@ public class Customs implements ICustoms {
     }
 
     public int handOverBaggageToFederalPolice ( ArrayList<Baggage> baggageList){
-        return 0;
+        //foreach baggage in baggage List
+        return FederalPolice.keepSafe(baggageList);
     } //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
     public int handOverItemsToFederalPolice ( ArrayList<Item> itemList ){
-        return 0;
+        //foreach item in itemList
+        return FederalPolice..keepSafe(itemList);
     } //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
     public void notifyGroundOperations (CustomsReceipt customsReceipt){
