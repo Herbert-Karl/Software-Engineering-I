@@ -149,7 +149,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void setGateID(GateID gateID) {
-        setGate(gateID);
+        setGate(searchGateById(gateID));
     }
 
     @Override
@@ -159,12 +159,14 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void refill(INitrogenBottle nitrogenBottle) {
-
+        nitrogenBottle.refill(1000);
+        setAmountNitrogen(0);
     }
 
     @Override
     public void refill(IOxygenBottle oxygenBottle) {
-
+        oxygenBottle.refill(1000);
+        setAmountOxygen(0);
     }
 
     @Override

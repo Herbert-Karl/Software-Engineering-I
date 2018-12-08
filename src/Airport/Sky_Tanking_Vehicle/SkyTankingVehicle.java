@@ -159,17 +159,17 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void setGate(GateID gateID) {
-        setGate(gateID);
+        setGate(searchGateById(gateID));
     }
 
     @Override
     public void connectAirplane(Airplane airplane) {
-
+        setConnectedAirplane(airplane);
     }
 
     @Override
     public void pump(IFuelTank fuelTank, int amount) {
-
+        fuelTank.refill(amount);
     }
 
     @Override

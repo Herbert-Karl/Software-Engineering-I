@@ -119,7 +119,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void setGateID(GateID gateID) {
-        setGate(gateID);
+        setGate(searchGateById(gateID));
     }
 
     @Override
@@ -129,7 +129,8 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void refill(IPortableWaterTank portableWaterTank) {
-
+        portableWaterTank.refill(10000);
+        setAmountFreshWater(0);
     }
 
     @Override
