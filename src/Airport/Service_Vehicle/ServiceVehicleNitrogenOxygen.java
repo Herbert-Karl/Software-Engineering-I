@@ -1,6 +1,6 @@
 package Airport.Service_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.INitrogenBottle;
 import Airplane.Tanks.IOxygenBottle;
 import Airport.Airport.Airport;
@@ -210,7 +210,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
 
     @Override
     public void returnToAirportResourcePool() {
-
+        setGate(null);
     }
 
     public Gate searchGateById(GateID gateID) {
