@@ -30,10 +30,6 @@ public class DestinationBox {
     }
 
     public boolean isFull(){
-        if(baggageList.size() >= maximumNumberOfBaggages){
-            return true;
-        } else {
-            return false;
-        }
+        return baggageList.size() >= maximumNumberOfBaggages;
     }
 }
