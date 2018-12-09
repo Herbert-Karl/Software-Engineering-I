@@ -2,7 +2,6 @@ package Airplane.FlightControls;
 
 import Airplane.FlightControls.Interfaces.IFlap;
 import Airplane.FlightControls.Interfaces.IFlightControl;
-import Airplane.IAirplane;
 
 public class FlightControlController implements IFlightControlController {
 

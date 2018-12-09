@@ -1,5 +1,7 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.Container;
+
 public interface IStowageNumberFive {
 
     //
