@@ -100,6 +100,7 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
         move(15);
         stop();
         connectToAirplane(searchAirplaneByGate(getGate()));
+        //WasteWater
         pumpOut();
         disconnectFromAirplane();
         setFlashingLightOff();

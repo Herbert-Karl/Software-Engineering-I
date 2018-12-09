@@ -100,6 +100,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
         move(15);
         stop();
         connectToAirplane(searchAirplaneByGate(getGate()));
+        //WaterTanks
         refill();
         disconnectFromAirplane();
         setFlashingLightOff();

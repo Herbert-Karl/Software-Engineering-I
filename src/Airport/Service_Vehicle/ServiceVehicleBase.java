@@ -110,11 +110,16 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
         move(15);
         stop();
         connectToAirplane(searchAirplaneByGate(gate));
-        increaseLevel();
-        increaseLevel();
-        charge();
+        //EngineOilTank
+        connectedAirplane.getLeftWing().getEngineOilTankArrayList().forEach(e -> increaseLevel(e));
+        connectedAirplane.getRightWing().getEngineOilTankArrayList().forEach(e -> increaseLevel(e));
+        //APUOilTank
+
+        connectedAirplane.getBody().getBatteryList().forEach(e -> charge(e));
+
         change();
-        refill();
+        connectedAirplane.getLeftWing().getDeIcingSystemArrayList().forEach(e -> refill(e));
+        connectedAirplane.getRightWing().getDeIcingSystemArrayList().forEach(e -> refill(e));
         disconnectFromAirplane();
         setFlashingLightOff();
         notifyGroundOperations(new ServiceVehicleBaseReceipt(getUuid(), getId(), getGate().getGateID(), getAmountAPUOil(),getAmountEngineOil(), 100, 100));
