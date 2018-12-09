@@ -44,4 +44,7 @@ public class Container{
         return weight;
     }
 
+    public Stack<Baggage> getBaggageList() {
+        return baggageList;
+    }
 }
