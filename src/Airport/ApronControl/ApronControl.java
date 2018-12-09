@@ -7,6 +7,8 @@ import Airport.Airport.*;
 
 import java.util.ArrayList;
 
+import static Airport.Airport.RunwayCheckPointID.*;
+import static Airport.Airport.TaxiCheckPoint.*;
 import static java.lang.Math.abs;
 
 public class ApronControl{
@@ -50,9 +52,9 @@ public class ApronControl{
         String[] R08 3] = {M6;S4;L6}
 
         // wenn GateID A muss taxicenterline gelb oder grün sein
-        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString() == 'yellow' || taxiCenterLine.toString() == 'green'))
+        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString() == "yellow" || taxiCenterLine.toString() == "green"))
         {
-            if (taxiCenterLine.toString() == 'yellow')
+            if (taxiCenterLine.toString() == "yellow")
             {
                 int startRunway = 6;
                 char runwayLetter = 'O';
