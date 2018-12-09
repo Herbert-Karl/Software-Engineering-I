@@ -1,9 +1,9 @@
 package Airplane.seat;
 
 public interface INonSmokingSign {
-    public String version();
+    String version();
 
-    public void on();
+    void on();
 
-    public void off();
+    void off();
 }

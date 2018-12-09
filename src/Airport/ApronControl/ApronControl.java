@@ -1,11 +1,18 @@
-/*
+package Airport.ApronControl;/*
 group 17
 */
 
+import Airplane.Aircraft.Airplane;
+import Airport.Airport.*;
+
+import java.util.ArrayList;
+
+import static java.lang.Math.abs;
+
 public class ApronControl{
 
-    private Airport            airport;
-    private Apron              apron;
+    private Airport airport;
+    private Apron apron;
     private String             frequency; /*121,5*/
     private ArrayList<TaxiWay> taxiWayList;
 
@@ -37,10 +44,10 @@ public class ApronControl{
         // l oder r runwayids, taxi center line ist farbe, gateid a bis b
 
         // Anfangspunkte der Linien entpsrechend runwayid
-        String L26[3] = {O6;N6;S3}
-        String L08[3] = {L1;M1;S2}
-        String R26[3] = {O1;S1;N1}
-        String R08[3] = {M6;S4;L6}
+        String[] L26 3] = {O6;N6;S3}
+        String[] L08 3] = {L1;M1;S2}
+        String[] R26 3] = {O1;S1;N1}
+        String[] R08 3] = {M6;S4;L6}
 
         // wenn GateID A muss taxicenterline gelb oder grün sein
         if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString() == 'yellow' || taxiCenterLine.toString() == 'green'))
