@@ -1,20 +1,24 @@
 package Ariport.Base;
 
+import java.util.UUID;
+
 public class BaggageIdentificationTag {
-    private string uuid;
+    private String uuid;
     private BoardingPass boardingPass;
-    private string flight;
+    private String flight;
     private int sequence;
-    private string via01="N/A";
-    private string via02="N/A";
-    private string via03="N/A";
+    private String via01="N/A";
+    private String via02="N/A";
+    private String via03="N/A";
     private Baggage baggage;
     private boolean isLocal=true;
     private boolean isTransfer=false;
-    private string barCode;
+    private String barCode;
 
-    public BaggageIdentificationTag(String uuid, BoardingPass boardingPass, String flight, int sequence, String via01, String via02, String via03, Baggage baggage, boolean isLocal, boolean isTransfer, String barCode) {
-        this.uuid = uuid;
+    public BaggageIdentificationTag(BoardingPass boardingPass, String flight, int sequence, String via01, String via02,
+                                    String via03, Baggage baggage, boolean isLocal, boolean isTransfer, String barCode) {
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.boardingPass = boardingPass;
         this.flight = flight;
         this.sequence = sequence;

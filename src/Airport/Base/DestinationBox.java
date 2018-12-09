@@ -9,18 +9,31 @@ public class DestinationBox {
     private ArrayList<Baggage> baggageList;
     private int maximumNumberOfBaggages = 50;
 
-    public DestinationBox(String uuid, Flight flight, ArrayList<Baggage> baggageList, int maximumNumberOfBaggages) {
-        this.uuid = uuid;
+    public DestinationBox(Flight flight, ArrayList<Baggage> baggageList, int maximumNumberOfBaggages) {
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.flight = flight;
         this.baggageList = baggageList;
         this.maximumNumberOfBaggages = maximumNumberOfBaggages;
     }
 
     public ArrayList<Baggage> getBaggageList() {
-        return baggageList;
+        return this.baggageList;
     }
 
     public void empty() { //empties the DestinationBox
         baggageList.clear();
+    }
+
+    public boolean isempty(){
+        return baggageList.isEmpty();
+    }
+
+    public boolean isFull(){
+        if(baggageList.size() >= maximumNumberOfBaggages){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

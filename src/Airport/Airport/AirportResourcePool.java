@@ -233,7 +233,6 @@ public class AirportRecourcePool{
         } else if(resource instanceof SkyTankingVehicle){
             skyTankingVehicleList.add(resource);
         }
-        //TODO
 
     }
 
