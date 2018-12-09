@@ -10,4 +10,21 @@ public class RunwayCheckPoint{
         this.isOccupied = isOccupied;
         this.airplane = airplane;
     }
+
+
+    public RunwayCheckPointID getRunwayCheckPointID() {
+        return runwayCheckPointID;
+    }
+
+    public void setRunwayCheckPointID(RunwayCheckPointID runwayCheckPointID) {
+        this.runwayCheckPointID = runwayCheckPointID;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
+    }
 }

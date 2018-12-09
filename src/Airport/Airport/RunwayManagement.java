@@ -1,23 +1,22 @@
 package Airport.Airport;
 
-import Airplane.Airplane;
-
+import Airplane.Aircraft.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RunwayManagement implements IRunwayManagement{
+public class RunwayManagement implements IRunwayManagement {
     private ArrayList<Airplane> airplaneList;
     private ArrayList<Runway> runwayList;
 
     private Tower tower;
 
-    public RunwayManagement(ArrayList<Airplane> airplaneList, ArrayList<Runway> runwayList, Tower tower){
+    public RunwayManagement(ArrayList<Airplane> airplaneList, ArrayList<Runway> runwayList, Tower tower) {
         this.airplaneList = airplaneList;
         this.runwayList = runwayList;
         this.tower = tower;
     }
 
-    public RunwayCheckPointID provideRunwayCheckPointID(Airplane airplane){
+    public RunwayCheckPointID provideRunwayCheckPointID(Airplane airplane) {
         RunwayCheckPointID runwayToStart = null;
         WindDirection windDirection = tower.getWindDirection();
 
@@ -26,13 +25,14 @@ public class RunwayManagement implements IRunwayManagement{
         Runway randomRunWay = runwayList.get(0);
         RunwayCheckPointID selectedRanwayCheckPoint;
 
-        switch (windDirection){
+        switch (windDirection) {
             case WestToEast:
                 selectedRanwayCheckPoint = randomRunWay.getCheckPoints().get(0);
-              break;
+                break;
             case EastToWest:
 
                 break;
-        return runwayToStart;
+            return runwayToStart;
+        }
     }
 }
