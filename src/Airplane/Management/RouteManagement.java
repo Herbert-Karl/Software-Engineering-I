@@ -58,5 +58,53 @@ public class RouteManagement implements IRouteManagement{
     public void off() {
         isOn = false;
     }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public void setOn(boolean on) {
+        isOn = on;
+    }
+
+    public ArrayList<CheckPoint> getCheckPointList() {
+        return checkPointList;
+    }
+
+    public void setCheckPointList(ArrayList<CheckPoint> checkPointList) {
+        this.checkPointList = checkPointList;
+    }
+
+    public double getCostIndex() {
+        return costIndex;
+    }
+
+    public void setCostIndex(double costIndex) {
+        this.costIndex = costIndex;
+    }
 }
 
