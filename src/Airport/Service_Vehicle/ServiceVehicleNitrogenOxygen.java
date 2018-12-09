@@ -122,6 +122,7 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
         stop();
         connectToAirplane(searchAirplaneByGate(getGate()));
         attachElectricalGrounding();
+        //oxygen + Nitrogen
         refill();
         refill();
         detachElectricalGrounding();

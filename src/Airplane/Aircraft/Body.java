@@ -7,6 +7,15 @@ import Airplane.Management.CostOptimizer;
 import Airplane.Management.RouteManagement;
 import Airplane.Management.SeatManagement;
 import Airplane.Tanks.*;
+import Airplane.cabin.*;
+import Airplane.door.BulkCargoDoor;
+import Airplane.door.CrewDoor;
+import Airplane.door.EmergencyExitDoor;
+import Airplane.door.GearDoor;
+import Airplane.seat.BusinessClassSeat;
+import Airplane.seat.CrewSeat;
+import Airplane.seat.FirstClassSeat;
+import Airplane.seat.TouristClassSeat;
 import Airplane.stowage_cargo.CargoSystem;
 import Airplane.stowage_cargo.StowageNumberFive;
 
