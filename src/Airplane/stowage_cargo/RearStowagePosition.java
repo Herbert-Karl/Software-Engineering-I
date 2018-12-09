@@ -1,5 +1,7 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.AirCargoPallet;
+
 public class RearStowagePosition {
 
     private RearStowagePositionID id;
@@ -13,15 +15,15 @@ public class RearStowagePosition {
         this.airCargoPallet = airCargoPallet;
     }
 
-    public RearStowagePositionID get_id() {
+    public RearStowagePositionID getId() {
         return this.id;
     }
 
-    public AirCargoPallet get_airCargoPallet() {
+    public AirCargoPallet getAirCargoPallet() {
         return this.airCargoPallet;
     }
 
-    protected void set_airCargoPallet( AirCargoPallet pallet ) {
+    protected void setAirCargoPallet( AirCargoPallet pallet ) {
         this.airCargoPallet = pallet;
     }
 

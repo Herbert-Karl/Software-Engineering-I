@@ -2,6 +2,9 @@ package Airplane.stowage_cargo;
 
 import java.util.ArrayList;
 
+import Airport.Base.AirCargoPallet;
+import Airport.Base.Container;
+
 public interface ICargoSystem {
 
     public String version();

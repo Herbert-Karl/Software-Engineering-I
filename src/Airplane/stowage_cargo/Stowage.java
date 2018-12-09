@@ -13,15 +13,15 @@ public class Stowage {
         this.isComplete = false;
     }
 
-    public StowageType get_StowageType() {
+    public StowageType getStowageType() {
         return this.type;
     }
 
-    public boolean get_isComplete() {
+    public boolean getIsComplete() {
         return this.isComplete;
     }
 
-    protected void set_isComplete(boolean value) {
+    protected void setIsComplete(boolean value) {
         this.isComplete = value;
     }
 

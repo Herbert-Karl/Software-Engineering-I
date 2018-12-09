@@ -30,12 +30,21 @@ public class Container{
 
     public double getWeight(){
         double weight = 0;
-        Baggabe baggage = null;
-        while(baggageList.peek != null){
+        Stack<Baggage> temp = null;
+        Baggage baggage = null;
+        while(baggageList.peek()) != null){
+            //stack ist leer
            baggage = baggageList.pop();
            weight = weight + baggage.getWeight();
+           temp.push(baggage);
+        }
+        while(temp.peek() != null)){
+            baggageList.push(temp.pop());
         }
         return weight;
     }
 
+    public Stack<Baggage> getBaggageList() {
+        return baggageList;
+    }
 }
