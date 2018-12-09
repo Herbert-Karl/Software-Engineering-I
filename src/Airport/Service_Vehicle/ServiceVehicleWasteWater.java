@@ -101,7 +101,7 @@ public class ServiceVehicleWasteWater implements IServiceVehicleWasteWater {
         stop();
         connectToAirplane(searchAirplaneByGate(getGate()));
         //WasteWater
-        pumpOut();
+        connectedAirplane.getBody().getWasteWaterTankArrayList().forEach(e -> pumpOut(e));
         disconnectFromAirplane();
         setFlashingLightOff();
         notifyGroundOperations(new ServiceVehicleWasteWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountWasteWater()));
