@@ -5,10 +5,10 @@ import Airport.Base.BoardingPass;
 import Airport.Base.Passport;
 import Airport.Scanner.ReadingDevice;
 
-public class BoardingControl implements src.Airport.Boarding_Control.IBoardingControl {
+public class BoardingControl implements Airport.Boarding_Control.IBoardingControl {
 
     private ReadingDevice readingDevice;
-    private ArrayList<BoardPassList> boardingPassList;
+    private ArrayList<BoardingPassList> boardingPassList;
     private ISeatManagement seatManagement;
 
     public BoardingControl() {

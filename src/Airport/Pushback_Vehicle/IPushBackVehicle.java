@@ -1,4 +1,4 @@
-package Airport.Pushback_Vehicle.;
+package Airport.Pushback_Vehicle;
 
 import Airplane.Aircraft.Airplane;
 
@@ -6,7 +6,7 @@ import Airplane.Aircraft.Airplane;
 public interface IPushBackVehicle {
      void connect(Airplane airplane);
      void disconnectAirplane();
-     void execute(Airplane airplane,Taxiway taxiWay);
+     void execute(Airplane airplane, Taxiway taxiWay);
      void forward(int speedInMPH);
      void backward(int speedInMPH);
      void turnLeft(int degree);
@@ -18,6 +18,6 @@ public interface IPushBackVehicle {
      void setFlashingLightOff();
      void setSteeringPin();
      void removeSteeringPin();
-     void notifyGroundOperations(src.Airport.PushBack_Vehicle.PushBackVehicleReceipt pushBackVehicleReceipt);
+     void notifyGroundOperations(PushBackVehicleReceipt pushBackVehicleReceipt);
 
 }

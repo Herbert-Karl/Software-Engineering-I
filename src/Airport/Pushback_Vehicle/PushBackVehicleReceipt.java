@@ -12,7 +12,7 @@ public class PushBackVehicleReceipt {
     public PushBackVehicleReceipt(String uuid, String pushBackVehicleID, Gate gate) {
         this.uuid = uuid;
         this.pushBackVehicleID = pushBackVehicleID;
-        this.Gate = gate;
+        this.gate = gate;
     }
 
     public String getUuid() {
