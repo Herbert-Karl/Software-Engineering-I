@@ -1,5 +1,8 @@
 package Airport.Airport;
 
+import Airplane.Aircraft.Airplane;
+import Airport.Base.Flight;
+
 public class Gate{
     private GateID gateID;
     private Flight flight;
@@ -13,13 +16,21 @@ public class Gate{
         this.airplane = null;
     }
 
+    public GateID getGateID() {
+        return gateID;
+    }
+
+    public Airplane getAirplane() {
+        return airplane;
+    }
+
     public boolean open(){
-        isOpen = airplane = !null;
+        isOpen = airplane != null;
         return isOpen;
     }
 
     public boolean connect(Airplane airplane){
-        if(airplane =! null){
+        if(airplane != null){
             return false;
         }
         else{

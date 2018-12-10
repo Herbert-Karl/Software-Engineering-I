@@ -1,7 +1,15 @@
 package Airport.Airport;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+import Airplane.Aircraft.Airplane;
 import Airport.*;
+import Airport.Base.Passenger;
+import Airport.Security_Check.SecurityMediator;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -113,5 +121,9 @@ public class Airport{
 
     public boolean executeGroundOperationsLogging(){
         //TODO
+    }
+
+    public ArrayList<Gate> getGateList() {
+        return this.gateList;
     }
 }
