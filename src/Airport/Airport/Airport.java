@@ -46,10 +46,11 @@ public class Airport{
         this.apronControl = apronControl;
         this.tower = tower;
     }
+    
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
-        int zeilenAnzahl;
+        int zeilenAnzahl = 0;
         if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Kann Datei nicht lesen.");}
         BufferedReader input = null;
         try{
@@ -64,6 +65,8 @@ public class Airport{
         } finally {
             if(input != null) try {
                 input.close();
+            } catch (IOException ioException){
+                ioException.printStackTrace();
             }
         }
         return zeilenAnzahl;
