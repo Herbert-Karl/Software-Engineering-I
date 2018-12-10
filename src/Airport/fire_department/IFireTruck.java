@@ -1,21 +1,29 @@
 package Airport.fire_department;
 
+import Airport.Airport.RunwayID;
+
 public interface IFireTruck
 {
-    int forward(int speedInMPH);
-
-    int backward(int speedInMPH);
+    int move(int speedInMPH);
 
     int stop();
+
+    void executeRequest(RunwayID runwayID);
+
+    void setRunway(RunwayID runway);
+
+    void setAirplane();
+
+    void returnToFireDepartment();
 
     boolean setFlashingLightON();
 
     boolean setFlashingLightOFF();
 
     boolean extinguish(int amount,
-                       IEngine engine);
+        IEngine engine);
 
     boolean extinguish(boolean useFoam,
-                       IEngine engine);
+        IEngine engine);
 
 }

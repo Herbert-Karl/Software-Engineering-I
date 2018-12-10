@@ -1,10 +1,13 @@
 package Airport.fire_department;
 
+import Airport.Airport.RunwayID;
+
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FireTruck implements IFireTruck
 {
-    private String uuid;
+    private String uuid = UUID.randomUUID().toString();
     private String id;
     private ArrayList<FireFighter> fireFighterList;
     private boolean isFlashlightOn;
@@ -21,13 +24,7 @@ public class FireTruck implements IFireTruck
     private boolean hasSpecialTool;
 
     @Override
-    public int forward(final int speedInMPH)
-    {
-        return 0;
-    }
-
-    @Override
-    public int backward(final int speedInMPH)
+    public int move(final int speedInMPH)
     {
         return 0;
     }
@@ -39,15 +36,50 @@ public class FireTruck implements IFireTruck
     }
 
     @Override
+    public void executeRequest(final RunwayID runwayID)
+    {
+
+        setFlashingLightON();
+        move(15);
+        setRunway(runwayID);
+        setAirplane();
+        stop();
+
+//TODO
+        returnToFireDepartment();
+
+    }
+
+    @Override
+    public void setRunway(final RunwayID runway)
+    {
+        //TODO: lookup runway
+    }
+
+    @Override
+    public void setAirplane()
+    {
+        //TODO:GET Airplane from runway
+    }
+
+    @Override
+    public void returnToFireDepartment()
+    {
+
+    }
+
+    @Override
     public boolean setFlashingLightON()
     {
-        return false;
+        isFlashlightOn = true;
+        return isFlashlightOn;
     }
 
     @Override
     public boolean setFlashingLightOFF()
     {
-        return false;
+        isFlashlightOn = false;
+        return isFlashlightOn;
     }
 
     @Override
