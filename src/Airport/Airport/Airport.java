@@ -6,11 +6,18 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
+import Airport.AirCargoPalletLifter.AirCargoPalletVehicel;
 import Airport.Base.Passenger;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
 import Airport.Base.Flight;
+import Airport.Service_Vehicle.ServiceVehicleBase;
+import Airport.Service_Vehicle.ServiceVehicleFreshWater;
+import Airport.Service_Vehicle.ServiceVehicleNitrogenOxygen;
+import Airport.Service_Vehicle.ServiceVehicleWasteWater;
+import Airport.Sky_Tanking_Vehicle.SkyTankingVehicle;
+import java.io.IOException;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -23,6 +30,7 @@ public class Airport{
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
+    private AirportFuelTank fuelTank = new AirportFuelTank();
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
@@ -42,20 +50,20 @@ public class Airport{
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
         int zeilenAnzahl;
-        if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
+        if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Kann Datei nicht lesen.");}
         BufferedReader input = null;
         try{
             input = new BufferedReader(new FileReader(dataFilePath));
-            String Zeile = null;
+            String zeile = null;
             while((zeile = input.readLine()) != null){
                 zeilenAnzahl++;
                 //Noch was mit den Daten machen?
             }
-        } catch(IOExeption ioExeption){
-            ioExeption.printstackTrace();
+        } catch(IOException ioExeption){
+            ioExeption.printStackTrace();
         } finally {
             if(input != null) try {
-                in.close();
+                input.close();
             }
         }
         return zeilenAnzahl;
@@ -82,18 +90,24 @@ public class Airport{
     }
 
     public boolean executeServiceWasteWater(GateID gateID){
-        //TODO
-        return false;
+        ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
+        boolean b = groundOperationsCenter.assign(serviceVehicle);
+        serviceVehicle.executeRequest(gateID);
+        //TODO: get Receipt from Ground Operations
+        resourcePool.returnResource(serviceVehicle);
+        return b;
     }
 
     public boolean executeCheckIn(Flight flight){
-        //TODO
-        return false;
+        checkInMediator.executeRequest();
+        //get Receipt from Ground operations
+        return true;
     }
 
     public boolean executeSecurity(){
-        //TODO
-        return false;
+        securityMediator.executeRequest();
+        //TODO: get Receipt from Ground Operations
+        return true;
     }
 
     public boolean executeCustoms(){
@@ -102,6 +116,7 @@ public class Airport{
     }
 
     public boolean executeAirCargo(GateID gateID){
+        AirCargoPalletVehicle airCargoPalletVehicle = resourcePool.
         //TODO
         return false;
     }
@@ -112,22 +127,34 @@ public class Airport{
     }
 
     public boolean executeServiceBase(GateID gateID){
-        //TODO
-        return false;
+        ServiceVehicleBase base = resourcePool.takeResource("ServiceVehicleBase");
+        base.executeRequest(gateID);
+        //TODO: get receipt from ground operations
+        resourcePool.returnResource(base);
+        return true;
     }
 
     public boolean executeServiceFreshWater(GateID gateID){
-        //TODO
+        ServiceVehicleFreshWater freshWaterVehicle = resourcePool.takeResource("ServiceVehicleFreshWater");
+        freshWaterVehicle.executeRequest(gateID);
+        //TODO: get receipt from ground operations
+        resourcePool.returnResource(freshWaterVehicle);
         return false;
     }
 
     public boolean executeServiceNitrogenOxygen(GateID gateID){
-        //TODO
-        return false;
+        ServiceVehicleNitrogenOxygen nitrogenOxygenVehicle = resourcePool.takeResource("ServiceVehicleNitrogenOxygen");
+        nitrogenOxygenVehicle.executeRequest(gateID);
+        //TODO: get receipt from ground operations
+        resourcePool.returnResource(nitrogenOxygenVehicle);
+        return true;
     }
 
     public boolean executeSkyTanking(GateID gateID){
-        //TODO
+        SkyTankingVehicle skyTankingVehicle = resourcePool.takeResource("SkyTankingVehicle");
+        skyTankingVehicle.executeRequest(gateID);
+        //TODO get receipt from ground operations
+        resourcePool.returnResource(skyTankingVehicle);
         return false;
     }
 
@@ -148,5 +175,13 @@ public class Airport{
 
     public ArrayList<Gate> getGateList() {
         return this.gateList;
+    }
+
+    public AirportFuelTank getFuelTank(){
+        return this.fuelTank;
+    }
+
+    public AirportResourcePool getResourcePool(){
+        return this.resourcePool;
     }
 }
