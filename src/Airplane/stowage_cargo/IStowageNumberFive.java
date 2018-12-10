@@ -1,14 +1,16 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.Container;
+
 public interface IStowageNumberFive {
 
     //
-    public boolean load(Container container);
+    boolean load(Container container);
 
     //
-    public Container unload();
+    Container unload();
 
     //
-    public double weightOfStowageNumberFive();
+    double weightOfStowageNumberFive();
 
 }

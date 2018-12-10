@@ -1,96 +1,65 @@
 package Airplane.Aircraft;
 
 
-import Airplane.FlightControls.Implementations.*;
-import Airplane.Lights.*;
-import Airplane.Management.CostOptimizer;
-import Airplane.Management.RouteManagement;
-import Airplane.Management.SeatManagement;
-import Airplane.Tanks.*;
-import Airplane.stowage_cargo.CargoSystem;
-import Airplane.stowage_cargo.StowageNumberFive;
+import Airplane.Aircraft.Body;
+import Airplane.Aircraft.Wing;
+import Airplane.FlightControls.FlightControlController;
+import Airplane.FlightControls.IFlightControlController;
+import Airplane.FlightControls.Implementations.Gear;
 
-public abstract class Airplane {
-    /*
-    protected APU apu;
-    //public Gear gear;
-    public AirConditioning airConditioning;
-    public Kitchen kitchen;
-    public Lavatory lavatory;
-    public Wastesystem wastesystem;
-    public Watersystem watersystem;
-    public EscapeSlide escapeSlide;
-    public BulkCargoDoor bulkCargoDoor;
-    public CrewDoor crewDoor;
-    public EmergencyExitDoor emergencyExitDoor;
-    public GearDoor gearDoor;
-    public FirstClassSeat firstClassSeat;
-    public BusinessClassSeat businessClassSeat;
-    public TouristClassSeat touristClassSeat;
-    public CrewSeat crewSeat;
-    public APUOilTank apuOilTank;
-    public Battery battery;
-    public NitrogenBottle nitrogenBottle;
-    public OxygenBottle oxygenBottle;
-    public PotableWaterTank potableWaterTank;
-    public WasteWaterTank wasteWaterTank;
-    public FireExtinguisher fireExtinguisher;
-    public AntiCollisionLight antiCollisionLight;
-    public CargoCompartmentLight cargoCompartmentLight;
-    public LogoLight logoLight;
-    public TailNavigationLight tailNavigationLight;
-    public TaxiLight taxiLight;
-    public TCASLight tcasLight;
-    public Elevator elevator;
-    public Rudder rudder;
-    public OxygenSensor oxygenSensor;
-    public PilotTube pilotTube;
-    public RadarAltimeter radarAltimeter;
-    public TCAS tcas;
-    public GPS gps;
-    public Radar radar;
-    public SatCom satCom;
-    public VHF vhf;
-    public CargoSystem cargoSystem;
-    public StowageNumberFive stowageNumberFive;
-    public CostOptimizer costOptimizer;
-    public RouteManagement routeManagement;
-    public SeatManagement seatManagement;
-    public HydraulicPump hydraulicPump;
-    public DelcingSystem delcingSystem;
-    public LandingLight landingLight;
-    public IceDetectorProbe iceDetectorProbe;
-    public FireDetector fireDetector;
-    public ShockSensor shockSensor;
-    public StallingSensor stallingSensor;
-    public TemeratureSensor temeratureSensor;
-    public AirflowSensor airflowSensor;
-    public TurbulentAirFlowSensor turbulentAirFlowSensor;
-    public Camera camera;
-    public Engine engine;
-    public EngineOilTank engineOilTank;
-    public FuelTank fuelTank;
-    public LeftNavigationLight leftNavigationLight;
-    public RightNavigationLight rightNavigationLight;
-    public DroopNose droopNose;
-    public Flap flap;
-    public Slat slat;
-    public LeftAileron leftAileron;
-    public RightAileron rightAileron;
-    public Spoiler spoiler;
-    public ExhaustGasTemeratureSensor exhaustGasTemeratureSensor;
-    public FuelFlowSensor fuelFlowSensor;
-    public FuelSensor fuelSensor;
-*/
+public class Airplane {
+protected Configuration configuration;
+
     protected Body body;
     protected Wing leftWing;
     protected Wing rightWing;
 
-    public Airplane()
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public Airplane(Configuration configuration)
     {
-        body = new Body();
-        leftWing = new Wing();
-        rightWing = new Wing();
+        body = new Body(this);
+        leftWing = new Wing(this);
+        rightWing = new Wing(this);
+    }
+
+    public void startup()
+    {
+        new FlightControlController(this).startup();
+        for(APU apu : body.getApuArrayList())
+            apu.start()
+        for(Engine engine : leftWing.getEngineArrayList())
+            engine.start();
+        for(Engine engine : rightWing.getEngineArrayList())
+            engine.start();
+        for(AirConditioning airConditioning : body.getAirConditioningArrayList())
+            airConditioning.on();
+        for(Kitchen kitchen : body.getKitchenArrayList())
+            kitchen.look();
+        for()
+    }
+    public void climbing(){
+        new FlightControlController(this).climbing();
+    }
+    public void taxi()
+    {
+        new FlightControlController(this).taxi();
+    }
+    public void takeOff()
+    {
+        new FlightControlController(this).takeOff();
+        for (Gear gear : body.getGearList())
+            gear.up();
+    }
+    public void rightTurn()
+    {
+        new FlightControlController(this).rightTurn();
+    }
+    public void leftTurn()
+    {
+        new FlightControlController(this).leftTurn();
     }
 
     public Body getBody() {
@@ -105,11 +74,5 @@ public abstract class Airplane {
         return rightWing;
     }
 
-//abstract Methods
 
-    public abstract void startup();
-    public abstract void taxi();
-    public abstract void takeOff();
-    public abstract void rightTurn();
-    public abstract void leftTurn();
 }
