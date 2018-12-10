@@ -6,6 +6,13 @@ public abstract class Baggage{
     private double weight;
     private BaggageSecurityStatus securityStatus;
 
+    public Baggage(String content, double weight){
+        this.content = content;
+        this.weight = weight;
+        UUID uuid = UUID.ramdomUUID();
+        this.uuid = uuid.toString();
+    }
+
     public BaggageSecurityStatus getSecurityStatus() {
         return securityStatus;
     }

@@ -14,14 +14,14 @@ public class RearStowage extends Stowage {
     }
 
     protected void add_to_positionList(RearStowagePosition position) {
-        if(this.get_isComplete()) { throw new RuntimeException("RearStowage ist bereits vollständig."); }
+        if(this.getIsComplete()) { throw new RuntimeException("RearStowage ist bereits vollständig."); }
         boolean alreadyInList = false;
         for( RearStowagePosition element: this.positionList ) {
-            if(position.get_id() == element.get_id()) { alreadyInList = true; }
+            if(position.getId() == element.getId()) { alreadyInList = true; }
         }
         if(alreadyInList) { throw new RuntimeException("Position bereits belegt."); }
         this.positionList.add(position);
-        if(this.positionList.size() == 7) { this.set_isComplete(true); }
+        if(this.positionList.size() == 7) { this.setIsComplete(true); }
     }
 
     protected RearStowagePosition remove_from_positionList() {

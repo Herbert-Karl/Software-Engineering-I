@@ -1,11 +1,17 @@
 package Airport.Airport;
 
+import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
+import Airport.AirCargoPalletLifter.IAirCargoPalletLifter;
+import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
+import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
 import Airport.Service_Vehicle.IServiceVehicleBase;
 import Airport.Service_Vehicle.IServiceVehicleFreshWater;
+import Airport.Service_Vehicle.IServiceVehicleNitrogenOxygen;
 import Airport.Service_Vehicle.IServiceVehicleWasteWater;
 import Airport.Base.*;
+import Airport.Sky_Tanking_Vehicle.ISkyTankingVehicle;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -13,13 +19,13 @@ import java.util.UUID;
 public class AirportRecourcePool{
     private ArrayList<IDCard> idCardList;
     private ArrayList<Employee> employeeList;
-    private Arraylist<IAirCargoPalletLifter> airCargoPalletLifterList;
+    private ArrayList<IAirCargoPalletLifter> airCargoPalletLifterList;
     private ArrayList<IAirCargoPalletVehicle> airCargoPalletVehicleList;
     private ArrayList<IContainerLifter> containerLifterList;
     private ArrayList<IBaggageVehicle> baggageVehicleList;
     private ArrayList<IServiceVehicleBase> serviceVehicleBaseList;
     private ArrayList<IServiceVehicleFreshWater> serviceVehicleFreshWaterList;
-    private ArrayList<IServiceVehicleNitrogenOxigen> serviceVehicleNitrogenOxigenList;
+    private ArrayList<IServiceVehicleNitrogenOxygen> serviceVehicleNitrogenOxigenList;
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
 
@@ -233,7 +239,6 @@ public class AirportRecourcePool{
         } else if(resource instanceof SkyTankingVehicle){
             skyTankingVehicleList.add(resource);
         }
-        //TODO
 
     }
 

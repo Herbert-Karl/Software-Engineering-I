@@ -5,6 +5,7 @@ import Airplane.Tanks.IFuelTank;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
+import Airport.Base.AirportFuelTank;
 
 public class SkyTankingVehicle implements ISkyTankingVehicle {
     private String uuid;
@@ -125,7 +126,13 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGate(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectAirplane(searchAirplaneByGate(gate));
+        connectedAirplane.getLeftWing().getFuelTankArrayList().forEach(e -> pump(e,1000));
+        connectedAirplane.getRightWing().getFuelTankArrayList().forEach(e -> pump(e, 1000));
     }
 
     @Override
@@ -168,7 +175,7 @@ public class SkyTankingVehicle implements ISkyTankingVehicle {
 
     @Override
     public void pump(IFuelTank fuelTank, int amount) {
-        fuelPump.connectAirportFuelTank();
+        fuelPump.connectAirportFuelTank(new AirportFuelTank(123,10000));
         fuelPump.connectFuelTank(fuelTank);
         fuelPump.on();
         fuelTank.refill(amount);
