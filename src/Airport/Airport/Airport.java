@@ -46,7 +46,29 @@ public class Airport{
         this.apronControl = apronControl;
         this.tower = tower;
     }
-    
+
+    public Airport(){
+
+    }
+
+    //
+    //Singleton:
+    //
+
+    private static Airport airport = new Airport();
+    public static Airport getAirport(){
+        return airport;
+    }
+
+    public void setPassengerList(ArrayList<Passenger> passengerList){
+        this.passengerList = passengerList;
+    }
+    public void setResourcePool(AirportResourcePool resourcePool){ this.resourcePool = resourcePool;}
+    //TODO: Weitere Setter
+
+    //
+    //
+    //
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);

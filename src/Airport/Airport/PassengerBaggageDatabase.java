@@ -111,7 +111,6 @@ public class PassengerBaggageDatabase{
     }
 
     public PassengerBaggageDatabase(){
-        //TODO
-        //
+
     }
 }
