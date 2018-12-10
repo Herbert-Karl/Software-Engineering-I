@@ -28,4 +28,7 @@ public class Passenger{
         this.status = status;
     }
 
+    public String getContent() {
+        return content;
+    }
 }

@@ -13,6 +13,10 @@ public abstract class Baggage{
         this.uuid = uuid.toString();
     }
 
+    public String getContent() {
+        return content;
+    }
+
     public BaggageSecurityStatus getSecurityStatus() {
         return securityStatus;
     }

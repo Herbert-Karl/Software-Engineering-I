@@ -17,4 +17,8 @@ public class IDCard{
     public void setEmployee(Employee employee){
        this.employee = employee;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }

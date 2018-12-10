@@ -1,5 +1,6 @@
 package Airport.Scanner;
 
+import Airport.Base.CottonPad;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
 import Airport.Base.Passenger;

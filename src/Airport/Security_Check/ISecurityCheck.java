@@ -1,6 +1,7 @@
 package Airport.Security_Check;
 
 import Airport.Base.Baggage;
+import Airport.Base.CottonPad;
 import Airport.Base.Employee;
 import Airport.Base.Passenger;
 

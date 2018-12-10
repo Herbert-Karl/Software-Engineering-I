@@ -1,10 +1,7 @@
 package Airport.Security_Check;
 
 import Airport.Airport.Airport;
-import Airport.Base.Baggage;
-import Airport.Base.Employee;
-import Airport.Base.IDCard;
-import Airport.Base.Passenger;
+import Airport.Base.*;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Federal_Police.FederalPoliceOfficer;
 import Airport.Scanner.IBaggageScanner;
