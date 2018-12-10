@@ -45,7 +45,7 @@ public class Controller implements Initializable {
     }
 
     public void initialize(URL location, ResourceBundle resources) {
-        String commands[] = {
+        String[] commands = {
                 "execute airplane build [A350 | A380]\n",
                 "execute airport build\n",
                 "execute airport assign airplane to gate [random | <id>]\n",

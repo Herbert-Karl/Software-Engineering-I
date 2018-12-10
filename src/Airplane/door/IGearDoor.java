@@ -1,15 +1,15 @@
 package Airplane.door;
 
 public interface IGearDoor {
-    public String version();
+    String version();
 
-    public void setGearDoorType(String type); // war vorher GearDoorType
+    void setGearDoorType(String type); // war vorher GearDoorType
 
-    public void close(); // war vorher boolean
+    void close(); // war vorher boolean
 
-    public void lock(); // war vorher boolean
+    void lock(); // war vorher boolean
 
-    public void unlock(); // war vorher boolean
+    void unlock(); // war vorher boolean
 
-    public void open(); // war vorher boolean
+    void open(); // war vorher boolean
 }

@@ -114,10 +114,12 @@ public class ServiceVehicleBase implements IServiceVehicleBase {
         connectedAirplane.getLeftWing().getEngineOilTankArrayList().forEach(e -> increaseLevel(e));
         connectedAirplane.getRightWing().getEngineOilTankArrayList().forEach(e -> increaseLevel(e));
         //APUOilTank
+        connectedAirplane.getBody().getApuOilTankArrayList().forEach(e -> increaseLevel(e));
 
         connectedAirplane.getBody().getBatteryList().forEach(e -> charge(e));
 
-        change();
+        connectedAirplane.getBody().getFireExtinguisherArrayList().forEach(e -> change(e));
+
         connectedAirplane.getLeftWing().getDeIcingSystemArrayList().forEach(e -> refill(e));
         connectedAirplane.getRightWing().getDeIcingSystemArrayList().forEach(e -> refill(e));
         disconnectFromAirplane();
