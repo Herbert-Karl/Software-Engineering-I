@@ -30,4 +30,4 @@ public BoardingPass(String uuid, Carrier carrier, String flight, Passenger passe
         this.baggageIdentifikationTagList = baggageIdentifikationTagList;
         }
 
-        }
+}

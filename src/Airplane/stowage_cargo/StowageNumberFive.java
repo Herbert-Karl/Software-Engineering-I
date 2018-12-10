@@ -1,5 +1,8 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.Container;
+import Airport.Base.ContainerType;
+
 public class StowageNumberFive implements IStowageNumberFive {
 
     private Container container;
@@ -16,7 +19,7 @@ public class StowageNumberFive implements IStowageNumberFive {
     //  false -> ContainerType != AKH || Stowage schon beladen
     //  true -> ContainerType = AKH
     public boolean load(Container container) {
-        if(container.get_type() != ContainerType.AKH || this.container != null) { return false; }
+        if(container.getType() != ContainerType.AKH || this.container != null) { return false; }
         this.container = container;
         return true;
     }
@@ -30,7 +33,7 @@ public class StowageNumberFive implements IStowageNumberFive {
 
     //
     public double weightOfStowageNumberFive() {
-        return container.get_weight();
+        return container.getWeight();
     }
 
 }
