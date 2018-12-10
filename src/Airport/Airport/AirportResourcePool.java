@@ -1,8 +1,6 @@
 package Airport.Airport;
 
 import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
-import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
-import Airport.AirCargoPalletLifter.AirCargoPalletVehicel;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
@@ -96,8 +94,8 @@ public class AirportResourcePool{
             //NEED TO SET PARAMETERS
            AirCargoPalletVehicle palletVehicle = new AirCargoPalletVehicle();
            //In Liste schreiben
+            airCargoPalletVehicleList.add(palletVehicle);
         }
-        //TODO
     }
 
     private void generateContainerLifter(int anzahl){
@@ -109,7 +107,6 @@ public class AirportResourcePool{
            ContainerLifter containerLifter = new ContainerLifter();
             containerLifterList.add(containerLifter);
         }
-       //TODO
     }
 
     private void generateBaggageVehicle(int anzahl){
@@ -121,7 +118,6 @@ public class AirportResourcePool{
             BaggageVehicle baggageVehicle = new BaggageVehicle();
             baggageVehicleList.add(baggageVehicle);
         }
-        //TODO
     }
 
     private void generateServiceVehicleBase(int anzahl){
@@ -135,7 +131,6 @@ public class AirportResourcePool{
             serviceVehicleBaseList.add(vehicleBase);
             zaehler++;
         }
-        //TODO
     }
 
     private void generateServiceVehicleFreshWater(int anzahl){
@@ -149,7 +144,6 @@ public class AirportResourcePool{
            serviceVehicleFreshWaterList.add(freshWater);
            zaehler++;
         }
-        //TODO
     }
 
     private void generateServiceVehicleNitrogenOxygen(int anzahl){
@@ -165,7 +159,6 @@ public class AirportResourcePool{
            serviceVehicleNitrogenOxigenList.add(nitrogenOxygen);
            zaehler++;
         }
-        //TODO
     }
 
     private void generateServiceVehicleWasteWater(int anzahl){
@@ -180,7 +173,6 @@ public class AirportResourcePool{
             serviceVehicleWasteWaterList.add(wasteWater);
             zaehler++;
         }
-        //TODO
     }
 
     private void generateSkyTankingVehicle(int anzahl){
@@ -195,7 +187,6 @@ public class AirportResourcePool{
             skyTankingVehicleList.add(skyTankingVehicle);
             zaehler++;
         }
-        //TODO
     }
 
     //
@@ -203,7 +194,6 @@ public class AirportResourcePool{
     //
 
     public <T> T takeResource(String resourceClass){
-        //TODO
         switch(resourceClass){
             case "Employee":
                 T element= (T)employeeList.get(0);
