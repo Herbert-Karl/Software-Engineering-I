@@ -49,7 +49,7 @@ public class FuelPump {
         setConnectedAirportFuelTank(airportFuelTank);
     }
 
-    public void connectFuelTank(FuelTank fuelTank) {
+    public void connectFuelTank(IFuelTank fuelTank) {
         setConnectedFuelTank(fuelTank);
     }
 

@@ -69,7 +69,7 @@ public class FuelTankDistributionManagement implements IFuelTankDistributionMana
 
     @Override
     public String version() {
-        return "Manufacturer: " + getManufacturer() + ", Type: " + getType() + ", ID: " + getId();
+        return "<" + getId() + ">-<" + getType() + ">";
     }
 
     @Override
@@ -84,6 +84,11 @@ public class FuelTankDistributionManagement implements IFuelTankDistributionMana
 
     @Override
     public void calculateFuelTankDistribution() {
-
+        ArrayList<FuelTankDistributionRecord> temp = getFuelTankDistribution();
+        for (FuelTankDistributionRecord tank : temp){
+            if(tank.getRequiredAmount() >= 42750*0.95) {
+                tank.getFuelTank().takeOut((int)(42750*0.05));
+            }
+        }
     }
 }

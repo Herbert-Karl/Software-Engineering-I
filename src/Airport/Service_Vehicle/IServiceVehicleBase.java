@@ -1,4 +1,5 @@
 package Airport.Service_Vehicle;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.*;
 import Airport.Airport.GateID;
 
@@ -8,7 +9,7 @@ public interface IServiceVehicleBase {
     void move(int speedInMPH);
     void stop();
     void setGateID(GateID gateID);
-    void connectToAirplane();
+    void connectToAirplane(Airplane airplane);
     void increaseLevel(IAPUOilTank apuOilTank);
     void charge(IBattery battery);
     void increaseLevel(IEngineOilTank engineOilTank);
