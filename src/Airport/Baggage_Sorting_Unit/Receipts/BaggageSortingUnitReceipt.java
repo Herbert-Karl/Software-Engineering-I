@@ -43,4 +43,17 @@ public class BaggageSortingUnitReceipt {
 
         this.numberOfContainerBulkyBaggage = numberOfContainerBulkyBaggage;
     }
+
+    @Override
+    public String toString(){
+        return ("UUID: "+uuid
+            +"\nNumber of baggage scanned: "+numberOfBaggageScanned
+            +"\nNumber of dangerous baggage: "+numberOfDangerousBaggage
+            +"\nNumber of first class baggage: "+numberOfBaggageFirstClass
+            +"\nNumber of business class baggage: "+numberOfBaggageBusinessClass
+            +"\nNumber of economy class baggage: "+numberOfBaggageEconomyClass
+            +"\nNumber of containers with normal baggage: "+numberOfContainerNormalBaggage
+            +"\nNumber of containers with bulky baggage: "+numberOfContainerBulkyBaggage
+            +"\nState of the destination box: "+destinationBox);
+    }
 }

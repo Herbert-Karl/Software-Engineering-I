@@ -108,8 +108,9 @@ public class BaggageVehicle implements IBaggageVehicle {
     speedInMPH = 0;
   }
 
-  public void setGate(GateID id) {
-    for (Gate g : Airport.getAirport().getGateList()) {
+  @Override
+  public void setGate(final GateID id) {
+    for (final Gate g : Airport.getAirport().getGateList()) {
       if (g.getGateID() == id) {
         gate = g;
         break;

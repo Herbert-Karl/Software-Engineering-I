@@ -44,8 +44,6 @@ public class ContainerLifter implements IContainerLifter {
     containerIDList = new ArrayList<>();
   }
 
-
-
   @Override
   public void setContainer(final Container c) {
     container = c;
@@ -54,7 +52,7 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO: Wo wird airplane implementiert
+   * Sets the connected airplane to the instance which is connected to the current gate
    */
   @Override
   public void connectToAirplane() {
@@ -75,7 +73,7 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO: was ruft man im cargo system auf
+   * TODO: use strategy
    */
   @Override
   public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
@@ -108,19 +106,20 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO groundoperations?
+   * requests ground operations from airport and calls notify with the receipt
    */
   @Override
   public void notifyGroundOperations(final ContainerLifterReceipt containerLifterReceipt) {
-
+    Airport.getAirport().getGroundOperatiosn.notify(
+        containerLifterReceipt);//TODO needs airport get GroundOps
   }
 
   /**
-   * TODO: check sytax
+   * Returns this instance to the pool
    */
   @Override
   public void returnToAirportResourcePool() {
-    Airport.getInstance().getAirportResourcePool().returnResource(this);
+    Airport.getAirport().getResourcePool().returnResource(this);
   }
 
   /**
@@ -130,7 +129,7 @@ public class ContainerLifter implements IContainerLifter {
   public void executeRequest(final GateID gateID) {
     setFlashingLightOn();
     move(15);
-    setGate();
+    setGate(gateID);
     stop();
     setFlashingLightOff();
     connectToAirplane();
@@ -157,14 +156,12 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * wie komme ich von gateID auf gate
-   * Gatelist aus Airport Holen
-   * Wo bekomme ich die instanz von airport her oder soll das ganze statisch, singleton sein?
+   * Sets the Gate to the instance with the corresponding id
    */
   @Override
   public void setGate(final GateID gate) {
 
-    for (final Gate g : Airport.getGateList()) {
+    for (final Gate g : Airport.getAirport().getGateList()) {
       if (g.getGateID() == gate) {
         this.gate = g;
         break;

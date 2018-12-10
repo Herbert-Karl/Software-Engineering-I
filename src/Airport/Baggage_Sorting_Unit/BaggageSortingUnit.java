@@ -246,8 +246,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     emptyLuggageTubList.clear();
   }
 
-  protected void setGate(GateID id) {
-    for (Gate g : airport.getGateList()) {
+  protected void setGate(final GateID id) {
+    for (final Gate g : airport.getGateList()) {
       if (g.getGateID() == id) {
         gate = g;
         break;
