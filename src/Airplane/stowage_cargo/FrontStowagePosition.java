@@ -1,5 +1,7 @@
 package Airplane.stowage_cargo;
 
+import Airport.base.Container;
+
 public class FrontStowagePosition {
     private FrontStowagePositionID id;
     private Container container;

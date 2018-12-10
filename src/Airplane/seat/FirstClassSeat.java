@@ -1,5 +1,7 @@
 package Airplane.seat;
 
+import Airport.base.Passenger;
+
 public class FirstClassSeat implements IFirstClassSeat {
     String manufacturer;
     String type;

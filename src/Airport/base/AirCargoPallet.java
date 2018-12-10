@@ -1,4 +1,4 @@
-package Airplane.stowage_cargo;
+package Airport.base;
 
 public class AirCargoPallet {
 }

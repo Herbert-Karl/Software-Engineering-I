@@ -1,5 +1,7 @@
 package Airplane.Aircraft;
 
+import Airport.base.Flight;
+
 public class Airplane {
     IBody body;
     IWing leftWing;

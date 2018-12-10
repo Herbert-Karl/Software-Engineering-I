@@ -1,5 +1,7 @@
 package Airplane.stowage_cargo;
 
+import Airport.base.AirCargoPallet;
+
 public class RearStowagePosition {
     private RearStowagePositionID id;
     private AirCargoPallet airCargoPallet;

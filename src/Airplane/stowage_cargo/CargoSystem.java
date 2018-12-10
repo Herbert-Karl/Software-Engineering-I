@@ -1,5 +1,8 @@
 package Airplane.stowage_cargo;
 
+import Airport.base.AirCargoPallet;
+import Airport.base.Container;
+
 import java.util.ArrayList;
 
 public class CargoSystem implements ICargoSystem {

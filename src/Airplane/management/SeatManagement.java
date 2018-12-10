@@ -1,6 +1,7 @@
 package Airplane.management;
 
 import Airplane.seat.ITouristClassSeat;
+import Airport.base.Passenger;
 
 import java.util.ArrayList;
 
