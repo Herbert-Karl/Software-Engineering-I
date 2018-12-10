@@ -7,18 +7,18 @@ import java.util.ArrayList;
 
 public class ContainerLifterReceipt {
 
-    private String uuid;
+    private final String uuid;
 
-    private String id;
+    private final String id;
 
-    private String type;
+    private final String type;
 
-    private IBaggageSortingUnit baggageSortingUnit;
+    private final IBaggageSortingUnit baggageSortingUnit;
 
-    private ArrayList<Baggage> selectedBaggageList;
+    private final ArrayList<Baggage> selectedBaggageList;
 
-    public ContainerLifterReceipt(String uuid, String id, String type,
-                                  IBaggageSortingUnit baggageSortingUnit, ArrayList<Baggage> selectedBaggageList) {
+    public ContainerLifterReceipt(final String uuid, final String id, final String type,
+                                  final IBaggageSortingUnit baggageSortingUnit, final ArrayList<Baggage> selectedBaggageList) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;

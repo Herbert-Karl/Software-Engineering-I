@@ -12,12 +12,12 @@ public class BaggageDepot {
 
     private ArrayList<Baggage> baggageList;
 
-    void store(Baggage baggage) {
+    void store(final Baggage baggage) {
         baggageList.add(baggage);
     }
 
-    void storeAll(Iterable<Baggage> baggage) {
-        for (Baggage b : baggage) {
+    void storeAll(final Iterable<Baggage> baggage) {
+        for (final Baggage b : baggage) {
             store(b);
         }
     }
@@ -27,10 +27,10 @@ public class BaggageDepot {
      *
      * @param ticketClassString What does this do?
      */
-    ArrayList<Baggage> selectNormalBaggage(String ticketClassString) {
+    ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
 
-        ArrayList<Baggage> normal = new ArrayList<>();
-        for (Baggage b : baggageList) {
+        final ArrayList<Baggage> normal = new ArrayList<>();
+        for (final Baggage b : baggageList) {
             if (b instanceof NormalBaggage) {
                 normal.add(b);
             }
@@ -43,8 +43,8 @@ public class BaggageDepot {
      */
     ArrayList<Baggage> selectBulkyBaggage() {
 
-        ArrayList<Baggage> bulky = new ArrayList<>();
-        for (Baggage b : baggageList) {
+        final ArrayList<Baggage> bulky = new ArrayList<>();
+        for (final Baggage b : baggageList) {
             if (b instanceof BulkyBaggage) {
                 bulky.add(b);
             }

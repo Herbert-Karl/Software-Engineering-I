@@ -1,6 +1,5 @@
 package Airport.Baggage_Sorting_Unit;
 
-import Airport.Airport.AirportRecourcePool;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
@@ -17,6 +16,7 @@ import Airport.Base.DestinationBox;
 import Airport.Base.Employee;
 import Airport.Base.LuggageTub;
 import Airport.Customs.ICustoms;
+import Airport.Scanner.BaggageScanner;
 import Airport.Scanner.IBaggageScanner;
 
 import java.util.ArrayList;
@@ -27,32 +27,40 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private ArrayList<String> scanPatternList;
 
-  private IBaggageScanner baggageScanner;
+  private final IBaggageScanner baggageScanner;
 
   private IBaggageSortingUnitRoboter roboter;
 
-  private BaggageDepot baggageDepot;
+  private final BaggageDepot baggageDepot;
 
-  private DestinationBox destinationBox;
+  private final DestinationBox destinationBox;
 
-  private ArrayList<LuggageTub> emptyLuggageTubList;
+  private final ArrayList<LuggageTub> emptyLuggageTubList;
 
-  private ArrayList<Container> emptyContainerList;
+  private final ArrayList<Container> emptyContainerList;
 
-  private ArrayList<Container> filledContainerList;
+  private final ArrayList<Container> filledContainerList;
 
   private IBaggageVehicle baggageVehicle;
 
-  private ICustoms customs;
+  private final ICustoms customs;
 
   /**
-   * Init with base data from Pool
-   * TODO:
+   * Init
+   * TODO: check
    */
-  public BaggageSortingUnit(final AirportRecourcePool pool) {
+  public BaggageSortingUnit(final ArrayList<Employee> employeeList, final BaggageScanner baggageScanner, final DestinationBox destinationBox,
+      final ICustoms customs) {
 
-    employeeList = pool.getEmployees();
+    this.employeeList = employeeList;
+    this.baggageScanner = baggageScanner;
     roboter = new BaggageSortingUnitRoboter(this);
+    baggageDepot = new BaggageDepot();
+    this.destinationBox=destinationBox;
+    emptyLuggageTubList=new ArrayList<>();
+    emptyContainerList=new ArrayList<>();
+    filledContainerList=new ArrayList<>();
+    this.customs=customs;
   }
 
   @Override
@@ -71,7 +79,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   @Override
   public void executeRequest(final GateID gateID) {
     ArrayList<LuggageTub> fullTubs;//TODO get list of full tubs
-    loginBaggageScanner(someone, something);//TODO get correct user and pw
+    loginBaggageScanner(employeeList.get(0), employeeList.get(0).getPassword());//TODO get correct user and pw
     LuggageTub l;
     while (!fullTubs.isEmpty()) {
       l = fullTubs.remove(0);
@@ -166,7 +174,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * TODO: what to do? (obekt fuer lifter ist nichtmal vorhanden)
+   * TODO: what to do? (objekt fuer lifter ist nichtmal vorhanden)
    */
   @Override
   public void sendContainerLifterToGate() {

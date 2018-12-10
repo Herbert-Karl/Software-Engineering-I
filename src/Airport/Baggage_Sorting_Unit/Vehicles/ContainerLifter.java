@@ -2,8 +2,10 @@ package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
 import Airport.Airport.Airport;
+import Airport.Airport.AirportRecourcePool;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
+import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
@@ -12,11 +14,11 @@ import java.util.ArrayList;
 
 public class ContainerLifter implements IContainerLifter {
 
-  private String uuid;
+  private final String uuid;
 
-  private String id;
+  private final String id;
 
-  private String type;
+  private final String type;
 
   private int speedInMPH;
 
@@ -26,13 +28,28 @@ public class ContainerLifter implements IContainerLifter {
 
   private Container container;
 
-  private ArrayList<String> containerIDList;
+  private final ArrayList<String> containerIDList;
 
   private Gate gate;
 
   private Airplane connectedAirplane;
 
-  private int numberOfContainerLoaded;
+  private final int numberOfContainerLoaded;
+
+  public ContainerLifter(final String uuid, final String id) {
+    this.uuid = uuid;
+    this.id = id;
+    type = null;//TODO set type to something useful
+    speedInMPH = 0;
+    isFlashingLightOn = false;
+    numberOfContainerLoaded = 0;
+    containerIDList = new ArrayList<>();
+  }
+
+  @Override
+  public IBaggageSortingUnit getBaggageSortingUnit() {
+    return null;
+  }
 
   @Override
   public void setContainer(final Container c) {
@@ -70,7 +87,7 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO
+   * Sets attribute isDown
    */
   @Override
   public void down() {
@@ -78,11 +95,11 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO: same as connect
+   * resets connectedAirplane
    */
   @Override
   public void disconnectFromAirplane() {
-
+    connectedAirplane = null;
   }
 
   /**
@@ -94,11 +111,11 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO: interaktion mit pool klären
+   *
    */
   @Override
   public void returnToAirportResourcePool() {
-
+    AirportRecourcePool
   }
 
   /**
@@ -127,7 +144,7 @@ public class ContainerLifter implements IContainerLifter {
   /**
    * wie komme ich von gateID auf gate
    * Gatelist aus Airport Holen
-   *  Wo bekomme ich die instanz von airport her oder soll das ganze statisch, singleton sein?
+   * Wo bekomme ich die instanz von airport her oder soll das ganze statisch, singleton sein?
    */
   @Override
   public void setGate(final GateID gate) {

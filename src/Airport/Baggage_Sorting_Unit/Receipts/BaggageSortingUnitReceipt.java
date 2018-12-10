@@ -4,28 +4,28 @@ import Airport.Base.DestinationBox;
 
 public class BaggageSortingUnitReceipt {
 
-    private String uuid;
+    private final String uuid;
 
-    private int numberOfBaggageScanned;
+    private final int numberOfBaggageScanned;
 
-    private int numberOfDangerousBaggage;
+    private final int numberOfDangerousBaggage;
 
-    private DestinationBox destinationBox;
+    private final DestinationBox destinationBox;
 
-    private int numberOfBaggageFirstClass;
+    private final int numberOfBaggageFirstClass;
 
-    private int numberOfBaggageBusinessClass;
+    private final int numberOfBaggageBusinessClass;
 
-    private int numberOfBaggageEconomyClass;
+    private final int numberOfBaggageEconomyClass;
 
-    private int numberOfContainerNormalBaggage;
+    private final int numberOfContainerNormalBaggage;
 
-    private int numberOfContainerBulkyBaggage;
+    private final int numberOfContainerBulkyBaggage;
 
-    public BaggageSortingUnitReceipt(final String uuid, int numberOfContainerBulkyBaggage,
-                                     int numberOfContainerNormalBaggage, int numberOfBaggageEconomyClass,
-                                     int numberOfBaggageBusinessClass, int numberOfBaggageFirstClass,
-                                     DestinationBox destinationBox, int numberOfDangerousBaggage, int numberOfBaggageScanned) {
+    public BaggageSortingUnitReceipt(final String uuid, final int numberOfContainerBulkyBaggage,
+                                     final int numberOfContainerNormalBaggage, final int numberOfBaggageEconomyClass,
+                                     final int numberOfBaggageBusinessClass, final int numberOfBaggageFirstClass,
+                                     final DestinationBox destinationBox, final int numberOfDangerousBaggage, final int numberOfBaggageScanned) {
         this.uuid = uuid;
         this.numberOfBaggageScanned = numberOfBaggageScanned;
 

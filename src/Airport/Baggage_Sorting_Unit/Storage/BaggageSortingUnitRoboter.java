@@ -13,17 +13,17 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
     private String type;
 
-    private IBaggageSortingUnit baggageSortingUnit;
+    private final IBaggageSortingUnit baggageSortingUnit;
 
     private ArrayList<Baggage> selectedBaggageList;
 
-    public BaggageSortingUnitRoboter(IBaggageSortingUnit baggageSortingUnit) {
+    public BaggageSortingUnitRoboter(final IBaggageSortingUnit baggageSortingUnit) {
         this.baggageSortingUnit = baggageSortingUnit;
         selectedBaggageList = new ArrayList<>();
     }
 
     @Override
-    public void addBaggage(Baggage b) {
+    public void addBaggage(final Baggage b) {
         selectedBaggageList.add(b);
     }
 
@@ -32,7 +32,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      */
     @Override
     public void moveBaggageToDepot(
-            ArrayList<Baggage> baggageList) {
+            final ArrayList<Baggage> baggageList) {
         selectedBaggageList.addAll(baggageList);
         baggageSortingUnit.getDepot().storeAll(moveBaggage());
     }
@@ -42,9 +42,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      */
     @Override
     public void selectBaggageFromDepot() {
-        selectedBaggageList = depot.selectNormalBaggage();//TODO get instance of depot
+        final BaggageDepot depot=baggageSortingUnit.getDepot();
+        selectedBaggageList = depot.selectNormalBaggage();
         //TODO Add to container with containerCategory normal
-        selectedBaggageList = depot.selectBulkyBaggage();//TODO get instance of depot
+        selectedBaggageList = depot.selectBulkyBaggage();
         //TODO Add to container with containerCategory bulky
     }
 
@@ -57,7 +58,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     }
 
     private ArrayList<Baggage> moveBaggage() {
-        ArrayList<Baggage> temp = selectedBaggageList;
+        final ArrayList<Baggage> temp = selectedBaggageList;
         selectedBaggageList.clear();
         return temp;
     }

@@ -10,11 +10,11 @@ import java.util.Collection;
 
 public class BaggageVehicle implements IBaggageVehicle {
 
-  private String uuid;
+  private final String uuid;
 
-  private String id;
+  private final String id;
 
-  private String type;
+  private final String type;
 
   private int speedInMPH;
 
@@ -25,6 +25,14 @@ public class BaggageVehicle implements IBaggageVehicle {
   private IContainerLifter containerLifter;
 
   private Gate gate;
+
+  public BaggageVehicle(final String uuid, final String id){
+    this.uuid=uuid;
+    this.id=id;
+    type =null;//TODO set type to something useful
+    speedInMPH=0;
+    isFlashingLightOn=false;
+  }
 
   @Override
   public IContainerLifter getContainerLifter() {
