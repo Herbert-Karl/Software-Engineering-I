@@ -3,9 +3,9 @@ package Airplane.cabin;
 import java.util.ArrayList;
 
 public class Trolley {
-    int numberOfBeverage;
-    int numberOfMeals;
-    double totalWeightBeveragesMeals;
+    private int numberOfBeverage;
+    private int numberOfMeals;
+    private double totalWeightBeveragesMeals;
 
     public Trolley() {
     }

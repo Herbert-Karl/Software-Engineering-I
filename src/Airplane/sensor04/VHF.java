@@ -1,12 +1,12 @@
 package Airplane.sensor04;
 
 public class VHF implements IVHF {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    String[] channelList;
-    String selectedChannel;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private String[] channelList;
+    private String selectedChannel;
 
     public VHF(String manufacturer, String type, String id, boolean isOn, String[] channelList, String selectedChannel) {
         this.manufacturer = manufacturer;

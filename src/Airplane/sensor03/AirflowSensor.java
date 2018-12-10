@@ -1,11 +1,11 @@
 package Airplane.sensor03;
 
 public class AirflowSensor implements IAirflowSensor {
-    String manufacturer;
-    String type;
-    String id;
-    int airPreasure;
-    boolean isAlarm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int airPreasure;
+    private boolean isAlarm;
 
     public AirflowSensor(String manufacturer, String type, String id, int airPreasure, boolean isAlarm) {
         this.manufacturer = manufacturer;

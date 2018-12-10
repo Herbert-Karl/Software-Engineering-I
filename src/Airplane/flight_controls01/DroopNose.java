@@ -1,10 +1,10 @@
 package Airplane.flight_controls01;
 
 public class DroopNose implements IDroopNose {
-    String manufacturer;
-    String type;
-    String id;
-    int degree;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int degree;
 
     public DroopNose(String manufacturer, String type, String id, int degree) {
         this.manufacturer = manufacturer;

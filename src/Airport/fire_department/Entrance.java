@@ -3,9 +3,9 @@ package Airport.fire_department;
 import java.util.ArrayList;
 
 public class Entrance {
-    EntranceID id;
-    ArrayList<Door> doorList;
-    boolean isOpen;
+    private EntranceID id;
+    private ArrayList<Door> doorList;
+    private boolean isOpen;
 
     public Entrance(EntranceID id, ArrayList<Door> doorList, boolean isOpen) {
         this.id = id;

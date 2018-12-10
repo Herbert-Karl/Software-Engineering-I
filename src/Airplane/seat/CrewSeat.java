@@ -1,10 +1,10 @@
 package Airplane.seat;
 
 public class CrewSeat implements ICrewSeat {
-    String manufacturer;
-    String type;
-    String id;
-    IReadingLight readingLight;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private IReadingLight readingLight;
 
     public CrewSeat(String manufacturer, String type, String id, IReadingLight readingLight) {
         this.manufacturer = manufacturer;

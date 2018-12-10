@@ -1,10 +1,10 @@
 package Airplane.sensor02;
 
 public class OxygenSensor implements IOxygenSensor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isAlarm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isAlarm;
 
     public OxygenSensor(String manufacturer, String type, String id, boolean isAlarm) {
         this.manufacturer = manufacturer;

@@ -1,12 +1,12 @@
 package Airplane.cabin;
 
 public class WasteSystem implements IWasteSystem {
-    String manufacturer;
-    String type;
-    String id;
-    String[] waste;
-    boolean isOn;
-    boolean isCleaned;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private String[] waste;
+    private boolean isOn;
+    private boolean isCleaned;
 
     public WasteSystem(String manufacturer, String type, String id, String[] waste, boolean isOn, boolean isCleaned) {
         this.manufacturer = manufacturer;

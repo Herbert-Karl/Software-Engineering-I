@@ -3,12 +3,12 @@ package Airplane.management;
 import java.util.ArrayList;
 
 public class RouteManagement implements IRouteManagement {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    ArrayList<CheckPoint> checkPointList;
-    double costIndex;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private ArrayList<CheckPoint> checkPointList;
+    private double costIndex;
 
     public RouteManagement(String manufacturer, String type, String id, boolean isOn, ArrayList<CheckPoint> checkPointList, double costIndex) {
         this.manufacturer = manufacturer;

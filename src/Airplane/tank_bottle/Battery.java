@@ -1,11 +1,11 @@
 package Airplane.tank_bottle;
 
 public class Battery implements IBattery {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    int currentPercentage;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private int currentPercentage;
 
     public Battery(String manufacturer, String type, String id, int currentPercentage) {
         this.manufacturer = manufacturer;

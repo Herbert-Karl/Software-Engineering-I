@@ -1,8 +1,8 @@
 package Airplane.cockpit;
 
 public class Cockpit implements ICockpit {
-    PrimaryFlightDisplay primaryFlightDisplay;
-    Phase selectedPhase;
+    private PrimaryFlightDisplay primaryFlightDisplay;
+    private Phase selectedPhase;
 
     public Cockpit(PrimaryFlightDisplay primaryFlightDisplay, Phase selectedPhase) {
         this.primaryFlightDisplay = primaryFlightDisplay;

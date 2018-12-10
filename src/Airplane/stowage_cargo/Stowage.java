@@ -1,8 +1,8 @@
 package Airplane.stowage_cargo;
 
 public class Stowage {
-    StowageType type;
-    boolean isComplete;
+    private StowageType type;
+    private boolean isComplete;
 
     public Stowage(StowageType type, boolean isComplete) {
         this.type = type;

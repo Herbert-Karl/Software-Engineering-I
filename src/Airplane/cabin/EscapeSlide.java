@@ -1,10 +1,10 @@
 package Airplane.cabin;
 
 public class EscapeSlide implements IEscapeSlide {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isActivated;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isActivated;
 
     public EscapeSlide(String manufacturer, String type, String id, boolean isActivated) {
         this.manufacturer = manufacturer;

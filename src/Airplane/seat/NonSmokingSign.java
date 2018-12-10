@@ -1,11 +1,11 @@
 package Airplane.seat;
 
 public class NonSmokingSign implements INonSmokingSign {
-    String uuid;
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
+    private String uuid;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
 
     public NonSmokingSign(String uuid, String manufacturer, String type, String id, boolean isOn) {
         this.uuid = uuid;

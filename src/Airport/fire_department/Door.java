@@ -1,8 +1,8 @@
 package Airport.fire_department;
 
 public class Door {
-    DoorID id;
-    boolean isOpen;
+    private DoorID id;
+    private boolean isOpen;
 
     public Door(DoorID id, boolean isOpen) {
         this.id = id;

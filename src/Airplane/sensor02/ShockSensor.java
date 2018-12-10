@@ -1,11 +1,11 @@
 package Airplane.sensor02;
 
 public class ShockSensor implements IShockSensor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isCalibrated;
-    boolean isShockDetected;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isCalibrated;
+    private boolean isShockDetected;
 
     public ShockSensor(String manufacturer, String type, String id, boolean isCalibrated, boolean isShockDetected) {
         this.manufacturer = manufacturer;

@@ -1,11 +1,11 @@
 package Airplane.apu_engine_gear_pump;
 
 public class APU implements IAPU {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isStarted;
-    int rpm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isStarted;
+    private int rpm;
 
     public APU(String manufacturer, String type, String id, boolean isStarted, int rpm) {
         this.manufacturer = manufacturer;

@@ -1,10 +1,10 @@
 package Airplane.flight_controls02;
 
 public class LeftAileron implements ILeftAileron {
-    String manufacturer;
-    String type;
-    String id;
-    int degree;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int degree;
 
     public LeftAileron(String manufacturer, String type, String id, int degree) {
         this.manufacturer = manufacturer;

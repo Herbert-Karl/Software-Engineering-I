@@ -1,10 +1,10 @@
 package Airplane.tank_bottle;
 
 public class FireExtinguisher implements IFireExtinguisher {
-    String manufacturer;
-    String type;
-    String id;
-    int currentPercentage;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int currentPercentage;
 
     public FireExtinguisher(String manufacturer, String type, String id, int currentPercentage) {
         this.manufacturer = manufacturer;

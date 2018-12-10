@@ -1,12 +1,12 @@
 package Airplane.door;
 
 public class EmergencyExitDoor implements IEmergencyExitDoor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isClosed;
-    boolean isLocked;
-    boolean isEscapeSlideActivated;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isClosed;
+    private boolean isLocked;
+    private boolean isEscapeSlideActivated;
 
     public EmergencyExitDoor(String manufacturer, String type, String id, boolean isClosed, boolean isLocked, boolean isEscapeSlideActivated) {
         this.manufacturer = manufacturer;

@@ -1,11 +1,11 @@
 package Airplane.sensor03;
 
 public class PitotTube implements IPitotTube {
-    String manufacturer;
-    String type;
-    String id;
-    int velocity;
-    boolean isCleaned;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int velocity;
+    private boolean isCleaned;
 
     public PitotTube(String manufacturer, String type, String id, int velocity, boolean isCleaned) {
         this.manufacturer = manufacturer;

@@ -1,11 +1,11 @@
 package Airplane.light;
 
 public class RightNavigationLight implements IRightNavigationLight {
-    String manufacturer;
-    String type;
-    String id;
-    Position position;
-    boolean isOn;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private Position position;
+    private boolean isOn;
 
     public RightNavigationLight(String manufacturer, String type, String id, Position position, boolean isOn) {
         this.manufacturer = manufacturer;

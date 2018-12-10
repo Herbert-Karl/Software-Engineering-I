@@ -1,10 +1,10 @@
 package Airplane.sensor03;
 
 public class TurbulentAirFlowSensor implements ITurbulentAirFlowSensor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isAlarm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isAlarm;
 
     public TurbulentAirFlowSensor(String manufacturer, String type, String id, boolean isAlarm) {
         this.manufacturer = manufacturer;

@@ -3,8 +3,8 @@ package Airplane.cockpit;
 import java.util.ArrayList;
 
 public class PrimaryFlightDisplay {
-    PrimaryFlightDisplayViewID currentViewID;
-    ArrayList<PrimaryFlightDisplayView> primaryFlightDisplayViewList;
+    private PrimaryFlightDisplayViewID currentViewID;
+    private ArrayList<PrimaryFlightDisplayView> primaryFlightDisplayViewList;
 
     public PrimaryFlightDisplay(PrimaryFlightDisplayViewID currentViewID, ArrayList<PrimaryFlightDisplayView> primaryFlightDisplayViewList) {
         this.currentViewID = currentViewID;

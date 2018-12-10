@@ -1,11 +1,11 @@
 package Airplane.sensor03;
 
 public class RadarAltimeter implements IRadarAltimeter {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    int altitude;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private int altitude;
 
     public RadarAltimeter(String manufacturer, String type, String id, boolean isOn, int altitude) {
         this.manufacturer = manufacturer;

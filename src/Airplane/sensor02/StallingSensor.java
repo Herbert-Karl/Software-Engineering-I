@@ -1,10 +1,10 @@
 package Airplane.sensor02;
 
 public class StallingSensor implements IStallingSensor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isAlarm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isAlarm;
 
     public StallingSensor(String manufacturer, String type, String id, boolean isAlarm) {
         this.manufacturer = manufacturer;

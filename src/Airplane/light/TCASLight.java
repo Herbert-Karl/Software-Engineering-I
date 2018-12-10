@@ -1,10 +1,10 @@
 package Airplane.light;
 
 public class TCASLight implements ITCASLight {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
 
     public TCASLight(String manufacturer, String type, String id, boolean isOn) {
         this.manufacturer = manufacturer;

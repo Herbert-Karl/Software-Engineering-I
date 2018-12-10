@@ -1,12 +1,12 @@
 package Airplane.apu_engine_gear_pump;
 
 public class Engine implements IEngine {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isStarted;
-    int rpm;
-    boolean isFire;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isStarted;
+    private int rpm;
+    private boolean isFire;
 
     public Engine(String manufacturer, String type, String id, boolean isStarted, int rpm, boolean isFire) {
         this.manufacturer = manufacturer;

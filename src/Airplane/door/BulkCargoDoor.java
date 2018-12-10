@@ -1,11 +1,11 @@
 package Airplane.door;
 
 public class BulkCargoDoor implements IBulkCargoDoor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isClosed;
-    boolean isLocked;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isClosed;
+    private boolean isLocked;
 
     public BulkCargoDoor(String manufacturer, String type, String id, boolean isClosed, boolean isLocked) {
         this.manufacturer = manufacturer;

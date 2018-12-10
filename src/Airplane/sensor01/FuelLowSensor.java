@@ -1,10 +1,10 @@
 package Airplane.sensor01;
 
 public class FuelLowSensor implements IFuelLowSensor {
-    String manufacturer;
-    String type;
-    String id;
-    int fuelFlow;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int fuelFlow;
 
     public FuelLowSensor(String manufacturer, String type, String id, int fuelFlow) {
         this.manufacturer = manufacturer;

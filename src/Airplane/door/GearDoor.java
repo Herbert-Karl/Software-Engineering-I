@@ -1,11 +1,11 @@
 package Airplane.door;
 
 public class GearDoor implements IGearDoor {
-    String manufacturer;
-    GearDoorType type;
-    String id;
-    boolean isClosed;
-    boolean isLocked;
+    private String manufacturer;
+    private GearDoorType type;
+    private String id;
+    private boolean isClosed;
+    private boolean isLocked;
 
     public GearDoor(String manufacturer, GearDoorType type, String id, boolean isClosed, boolean isLocked) {
         this.manufacturer = manufacturer;

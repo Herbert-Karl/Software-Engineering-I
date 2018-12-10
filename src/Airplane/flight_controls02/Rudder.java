@@ -1,10 +1,10 @@
 package Airplane.flight_controls02;
 
 public class Rudder implements IRudder {
-    String manufacturer;
-    String type;
-    String id;
-    int degree;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int degree;
 
     public Rudder(String manufacturer, String type, String id, int degree) {
         this.manufacturer = manufacturer;

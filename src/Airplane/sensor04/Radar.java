@@ -1,10 +1,10 @@
 package Airplane.sensor04;
 
 public class Radar implements IRadar {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
 
     public Radar(String manufacturer, String type, String id, boolean isOn) {
         this.manufacturer = manufacturer;

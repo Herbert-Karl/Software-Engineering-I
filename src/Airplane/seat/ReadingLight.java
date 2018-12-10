@@ -1,11 +1,11 @@
 package Airplane.seat;
 
 public class ReadingLight implements IReadingLight {
-    String uuid;
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
+    private String uuid;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
 
     public ReadingLight(String uuid, String manufacturer, String type, String id, boolean isOn) {
         this.uuid = uuid;

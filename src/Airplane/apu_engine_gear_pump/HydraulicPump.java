@@ -1,10 +1,10 @@
 package Airplane.apu_engine_gear_pump;
 
 public class HydraulicPump implements IHydraulicPump {
-    String manufacturer;
-    String type;
-    String id;
-    int amountOfOil;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int amountOfOil;
 
     public HydraulicPump(String manufacturer, String type, String id) {
         this.manufacturer = manufacturer;

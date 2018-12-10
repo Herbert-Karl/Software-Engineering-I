@@ -3,7 +3,7 @@ package Airplane.stowage_cargo;
 import Airport.base.Container;
 
 public class StowageNumberFive implements IStowageNumberFive {
-    Container container;
+    private Container container;
 
     public StowageNumberFive(Container container) {
         this.container = container;

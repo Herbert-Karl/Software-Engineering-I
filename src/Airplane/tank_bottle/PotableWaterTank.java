@@ -1,12 +1,12 @@
 package Airplane.tank_bottle;
 
 public class PotableWaterTank implements IPotableWaterTank {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    boolean isLocked;
-    int currentAmount;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private boolean isLocked;
+    private int currentAmount;
 
     public PotableWaterTank(String manufacturer, String type, String id, boolean isLocked, int currentAmount) {
         this.manufacturer = manufacturer;

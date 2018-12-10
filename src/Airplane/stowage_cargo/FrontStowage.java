@@ -3,7 +3,7 @@ package Airplane.stowage_cargo;
 import java.util.ArrayList;
 
 public class FrontStowage extends Stowage {
-    ArrayList<FrontStowagePosition> positionList;
+    private ArrayList<FrontStowagePosition> positionList;
 
     public FrontStowage(StowageType type, boolean isComplete, ArrayList<FrontStowagePosition> positionList) {
         super(type, isComplete);

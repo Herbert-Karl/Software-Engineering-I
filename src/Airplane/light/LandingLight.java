@@ -1,10 +1,10 @@
 package Airplane.light;
 
 public class LandingLight implements ILandingLight {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
 
     public LandingLight(String manufacturer, String type, String id, boolean isOn) {
         this.manufacturer = manufacturer;

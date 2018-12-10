@@ -1,12 +1,12 @@
 package Airplane.sensor01;
 
 public class FuelSensor implements IFuelSensor {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isAlarmReserve;
-    boolean isAlarmMajor;
-    boolean isAlarmCritical;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isAlarmReserve;
+    private boolean isAlarmMajor;
+    private boolean isAlarmCritical;
 
     public FuelSensor(String manufacturer, String type, String id, boolean isAlarmReserve, boolean isAlarmMajor, boolean isAlarmCritical) {
         this.manufacturer = manufacturer;

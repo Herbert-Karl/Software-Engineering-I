@@ -3,13 +3,13 @@ package Airplane.Aircraft;
 import Airport.base.Flight;
 
 public class Airplane {
-    IBody body;
-    IWing leftWing;
-    IWing rightWing;
-    Flight flight;
-    int numberOfSeatTicketClassEconomy;
-    int numberofSeatTicketClassBusiness;
-    int numberOfSeatTicketClassFirst;
+    private IBody body;
+    private IWing leftWing;
+    private IWing rightWing;
+    private Flight flight;
+    private int numberOfSeatTicketClassEconomy;
+    private int numberofSeatTicketClassBusiness;
+    private int numberOfSeatTicketClassFirst;
 
     public Airplane(IBody body, IWing leftWing, IWing rightWing, Flight flight, int numberOfSeatTicketClassEconomy, int numberofSeatTicketClassBusiness, int numberOfSeatTicketClassFirst) {
         this.body = body;

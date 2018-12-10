@@ -1,11 +1,11 @@
 package Airplane.tank_bottle;
 
 public class EngineOilTank implements IEngineOilTank {
-    String manufacturer;
-    String type;
-    String id;
-    int maximumLevel;
-    int currentLevel;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int maximumLevel;
+    private int currentLevel;
 
     public EngineOilTank(String manufacturer, String type, String id, int currentLevel) {
         this.manufacturer = manufacturer;

@@ -1,10 +1,10 @@
 package Airplane.sensor04;
 
 public class SatCom implements ISatCom {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isConnected;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isConnected;
 
     public SatCom(String manufacturer, String type, String id, boolean isConnected) {
         this.manufacturer = manufacturer;

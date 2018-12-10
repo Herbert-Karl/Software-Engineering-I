@@ -6,14 +6,14 @@ import Airport.base.Container;
 import java.util.ArrayList;
 
 public class CargoSystem implements ICargoSystem {
-    String manufacturer;
-    String type;
-    String id;
-    ArrayList<Stowage> stowages;
-    boolean isLocked;
-    boolean isSecured;
-    double totalWeightContainer;
-    double totalWeightAirCargoPallet;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private ArrayList<Stowage> stowages;
+    private boolean isLocked;
+    private boolean isSecured;
+    private double totalWeightContainer;
+    private double totalWeightAirCargoPallet;
 
     public CargoSystem(String manufacturer, String type, String id, ArrayList<Stowage> stowages, boolean isLocked, boolean isSecured, double totalWeightContainer, double totalWeightAirCargoPallet) {
         this.manufacturer = manufacturer;

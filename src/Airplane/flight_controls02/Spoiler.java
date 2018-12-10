@@ -1,10 +1,10 @@
 package Airplane.flight_controls02;
 
 public class Spoiler implements ISpoiler {
-    String manufacturer;
-    String type;
-    String id;
-    int degree;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int degree;
 
     public Spoiler(String manufacturer, String type, String id, int degree) {
         this.manufacturer = manufacturer;

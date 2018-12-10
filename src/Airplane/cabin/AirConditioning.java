@@ -1,11 +1,11 @@
 package Airplane.cabin;
 
 public class AirConditioning implements IAirConditioning {
-    String manufacturer;
-    String type;
-    String id;
-    int temperature;
-    boolean isOn;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int temperature;
+    private boolean isOn;
 
     public AirConditioning(String manufacturer, String type, String id, int temperature, boolean isOn) {
         this.manufacturer = manufacturer;

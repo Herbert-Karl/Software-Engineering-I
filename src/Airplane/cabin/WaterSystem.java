@@ -1,12 +1,12 @@
 package Airplane.cabin;
 
 public class WaterSystem implements IWaterSystem {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    boolean isFilled;
-    boolean isCleaned;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private boolean isFilled;
+    private boolean isCleaned;
 
     public WaterSystem(String manufacturer, String type, String id, boolean isOn, boolean isFilled, boolean isCleaned) {
         this.manufacturer = manufacturer;

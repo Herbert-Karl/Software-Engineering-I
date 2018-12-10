@@ -1,11 +1,11 @@
 package Airplane.sensor04;
 
 public class GPS implements IGPS {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    boolean isConnected;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private boolean isConnected;
 
     public GPS(String manufacturer, String type, String id, boolean isOn, boolean isConnected) {
         this.manufacturer = manufacturer;

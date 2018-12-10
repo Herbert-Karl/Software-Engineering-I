@@ -1,12 +1,12 @@
 package Airplane.sensor01;
 
 public class ExhaustGasTemeratureSensor implements IExhaustGasTemeratureSensor {
-    String manufacturer;
-    String type;
-    String id;
-    int temperature;
-    boolean isAlarmMajor;
-    boolean isAlarmCritical;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int temperature;
+    private boolean isAlarmMajor;
+    private boolean isAlarmCritical;
 
     public ExhaustGasTemeratureSensor(String manufacturer, String type, String id, int temperature, boolean isAlarmMajor, boolean isAlarmCritical) {
         this.manufacturer = manufacturer;

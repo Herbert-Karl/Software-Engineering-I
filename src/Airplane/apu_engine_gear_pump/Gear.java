@@ -3,11 +3,11 @@ package Airplane.apu_engine_gear_pump;
 import java.util.ArrayList;
 
 public class Gear implements IGear {
-    String manufacturer;
-    GearType type;
-    String id;
-    ArrayList<Wheel> wheels;
-    boolean isDown;
+    private String manufacturer;
+    private GearType type;
+    private String id;
+    private ArrayList<Wheel> wheels;
+    private boolean isDown;
 
     public Gear(String manufacturer, GearType type, String id, ArrayList<Wheel> wheels, boolean isDown) {
         this.manufacturer = manufacturer;

@@ -3,7 +3,7 @@ package Airplane.stowage_cargo;
 import java.util.ArrayList;
 
 public class RearStowage extends Stowage {
-    ArrayList<RearStowagePosition> positionList;
+    private ArrayList<RearStowagePosition> positionList;
 
     public RearStowage(StowageType type, boolean isComplete, ArrayList<RearStowagePosition> positionList) {
         super(type, isComplete);

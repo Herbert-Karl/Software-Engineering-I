@@ -1,9 +1,9 @@
 package Airplane.apu_engine_gear_pump;
 
 public class Brake {
-    String id;
-    long dateOfManufacture;
-    int percentage;
+    private String id;
+    private long dateOfManufacture;
+    private int percentage;
 
     public Brake(String id, long dateOfManufacture, int percentage) {
         this.id = id;

@@ -1,11 +1,11 @@
 package Airplane.sensor04;
 
 public class Camera implements ICamera {
-    String manufacturer;
-    CameraType type;
-    String id;
-    boolean isOn;
-    double factor;
+    private String manufacturer;
+    private CameraType type;
+    private String id;
+    private boolean isOn;
+    private double factor;
 
     public Camera(String manufacturer, CameraType type, String id, boolean isOn, double factor) {
         this.manufacturer = manufacturer;

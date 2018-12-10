@@ -3,13 +3,13 @@ package Airplane.seat;
 import Airport.base.Passenger;
 
 public class TouristClassSeat implements ITouristClassSeat {
-    String manufacturer;
-    String type;
-    String id;
-    Passenger passenger;
-    int level;
-    INonSmokingSign nonSmokingSign;
-    ISeatBeltSign seatBeltSign;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private Passenger passenger;
+    private int level;
+    private INonSmokingSign nonSmokingSign;
+    private ISeatBeltSign seatBeltSign;
 
     public TouristClassSeat(String manufacturer, String type, String id, Passenger passenger, int level, INonSmokingSign nonSmokingSign, ISeatBeltSign seatBeltSign) {
         this.manufacturer = manufacturer;

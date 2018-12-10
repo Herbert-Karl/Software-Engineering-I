@@ -1,11 +1,11 @@
 package Airplane.sensor01;
 
 public class IceDetectorProbe implements IIceDetectorProbe {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isActivated;
-    boolean isIceDetected;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isActivated;
+    private boolean isIceDetected;
 
     public IceDetectorProbe(String manufacturer, String type, String id, boolean isActivated, boolean isIceDetected) {
         this.manufacturer = manufacturer;

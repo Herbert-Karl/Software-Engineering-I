@@ -1,11 +1,11 @@
 package Airplane.cabin;
 
 public class Lavatory implements ILavatory {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isLocked;
-    boolean isCleaned;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isLocked;
+    private boolean isCleaned;
 
     public Lavatory(String manufacturer, String type, String id, boolean isLocked, boolean isCleaned) {
         this.manufacturer = manufacturer;

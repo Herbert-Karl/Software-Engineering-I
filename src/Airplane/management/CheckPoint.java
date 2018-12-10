@@ -1,10 +1,10 @@
 package Airplane.management;
 
-public class CheckPoint {
-    int sequenceID;
-    String name;
-    String latitude;
-    String longitude;
+class CheckPoint {
+    private int sequenceID;
+    private String name;
+    private String latitude;
+    private String longitude;
 
     public CheckPoint(int sequenceID, String name, String latitude, String longitude) {
         this.sequenceID = sequenceID;

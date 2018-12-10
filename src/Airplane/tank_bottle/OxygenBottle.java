@@ -1,11 +1,11 @@
 package Airplane.tank_bottle;
 
 public class OxygenBottle implements IOxygenBottle {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    int currentAmount;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private int currentAmount;
 
     public OxygenBottle(String manufacturer, String type, String id, int currentAmount) {
         this.manufacturer = manufacturer;

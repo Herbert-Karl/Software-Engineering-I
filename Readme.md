@@ -3,6 +3,7 @@
 **Do Not Touch!**
 
 Known errors:
-+ Passenger package is missing for seat package
-+ Passenger package is missing for management package
-+ SeatManagement in management package needs adjustments
++ None
+
+To-Do's:
++ Add Attributes and Functions to Airport packages

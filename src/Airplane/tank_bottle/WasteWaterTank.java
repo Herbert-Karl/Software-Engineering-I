@@ -1,11 +1,11 @@
 package Airplane.tank_bottle;
 
 public class WasteWaterTank implements IWasteWaterTank {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    boolean isLocked;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private boolean isLocked;
 
     public WasteWaterTank(String manufacturer, String type, String id, boolean isLocked) {
         this.manufacturer = manufacturer;

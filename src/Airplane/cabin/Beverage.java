@@ -1,8 +1,8 @@
 package Airplane.cabin;
 
 public class Beverage {
-    String description;
-    double weight;
+    private String description;
+    private double weight;
 
     public Beverage(String description, double weight) {
         this.description = description;

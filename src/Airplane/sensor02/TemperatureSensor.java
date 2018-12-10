@@ -1,11 +1,11 @@
 package Airplane.sensor02;
 
 public class TemperatureSensor implements ITemperatureSensor {
-    String manufacturer;
-    String type;
-    String id;
-    int temperature;
-    boolean isAlarm;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int temperature;
+    private boolean isAlarm;
 
     public TemperatureSensor(String manufacturer, String type, String id, int temperature, boolean isAlarm) {
         this.manufacturer = manufacturer;

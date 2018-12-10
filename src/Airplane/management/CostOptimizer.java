@@ -3,12 +3,12 @@ package Airplane.management;
 import java.util.ArrayList;
 
 public class CostOptimizer implements ICostOptimizer {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    ArrayList<CheckPoint> checkPointList;
-    int costIndex;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private ArrayList<CheckPoint> checkPointList;
+    private int costIndex;
 
     public CostOptimizer(String manufacturer, String type, String id, boolean isOn, ArrayList<CheckPoint> checkPointList, int costIndex) {
         this.manufacturer = manufacturer;

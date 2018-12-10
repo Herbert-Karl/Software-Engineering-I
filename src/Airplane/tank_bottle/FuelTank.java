@@ -1,11 +1,11 @@
 package Airplane.tank_bottle;
 
 public class FuelTank implements IFuelTank {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    int currentAmount;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private int currentAmount;
 
     public FuelTank(String manufacturer, String type, String id, int currentAmount) {
         this.manufacturer = manufacturer;

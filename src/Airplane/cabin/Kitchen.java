@@ -3,12 +3,12 @@ package Airplane.cabin;
 import java.util.ArrayList;
 
 public class Kitchen implements IKitchen {
-    String manufacturer;
-    KitchenType kitchenType;
-    String id;
-    ArrayList<Trolley> trolleyList;
-    boolean isLocked;
-    boolean isFilled;
+    private String manufacturer;
+    private KitchenType kitchenType;
+    private String id;
+    private ArrayList<Trolley> trolleyList;
+    private boolean isLocked;
+    private boolean isFilled;
 
     public Kitchen(String manufacturer, KitchenType kitchenType, String id, ArrayList<Trolley> trolleyList, boolean isLocked, boolean isFilled) {
         this.manufacturer = manufacturer;

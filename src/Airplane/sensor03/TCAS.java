@@ -1,13 +1,13 @@
 package Airplane.sensor03;
 
 public class TCAS implements ITCAS {
-    String manufacturer;
-    String type;
-    String id;
-    boolean isOn;
-    boolean isConnected;
-    boolean isAlarm;
-    int altitude;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private boolean isOn;
+    private boolean isConnected;
+    private boolean isAlarm;
+    private int altitude;
 
     public TCAS(String manufacturer, String type, String id, boolean isOn, boolean isConnected, boolean isAlarm, int altitude) {
         this.manufacturer = manufacturer;

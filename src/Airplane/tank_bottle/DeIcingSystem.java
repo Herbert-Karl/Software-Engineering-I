@@ -1,12 +1,12 @@
 package Airplane.tank_bottle;
 
 public class DeIcingSystem implements IDeIcingSystem {
-    String manufacturer;
-    String type;
-    String id;
-    int capacity;
-    boolean isActivated;
-    int currentAmount;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int capacity;
+    private boolean isActivated;
+    private int currentAmount;
 
     public DeIcingSystem(String manufacturer, String type, String id, boolean isActivated, int currentAmount) {
         this.manufacturer = manufacturer;

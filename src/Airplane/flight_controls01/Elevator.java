@@ -1,10 +1,10 @@
 package Airplane.flight_controls01;
 
 public class Elevator implements IElevator {
-    String manufacturer;
-    String type;
-    String id;
-    int degree;
+    private String manufacturer;
+    private String type;
+    private String id;
+    private int degree;
 
     public Elevator(String manufacturer, String type, String id, int degree) {
         this.manufacturer = manufacturer;
