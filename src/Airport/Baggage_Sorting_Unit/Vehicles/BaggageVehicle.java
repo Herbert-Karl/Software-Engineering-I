@@ -26,12 +26,12 @@ public class BaggageVehicle implements IBaggageVehicle {
 
   private Gate gate;
 
-  public BaggageVehicle(final String uuid, final String id){
-    this.uuid=uuid;
-    this.id=id;
-    type =null;//TODO set type to something useful
-    speedInMPH=0;
-    isFlashingLightOn=false;
+  public BaggageVehicle(final String uuid, final String id) {
+    this.uuid = uuid;
+    this.id = id;
+    type = null;//TODO set type to something useful
+    speedInMPH = 0;
+    isFlashingLightOn = false;
   }
 
   @Override
@@ -108,12 +108,13 @@ public class BaggageVehicle implements IBaggageVehicle {
     speedInMPH = 0;
   }
 
-  /**
-   * TODO: get gate from gatelist in Airport
-   */
-  @Override
-  public void setGate(final GateID gate) {
-    this.gate = Airport.getGate(gate);
+  public void setGate(GateID id) {
+    for (Gate g : Airport.getAirport().getGateList()) {
+      if (g.getGateID() == id) {
+        gate = g;
+        break;
+      }
+    }
   }
 
   @Override

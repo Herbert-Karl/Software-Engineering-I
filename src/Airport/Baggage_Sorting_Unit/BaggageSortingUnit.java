@@ -1,6 +1,7 @@
 package Airport.Baggage_Sorting_Unit;
 
 import Airport.Airport.Airport;
+import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
@@ -46,6 +47,10 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private final ICustoms customs;
 
+  protected final Airport airport;
+
+  protected Gate gate;
+
   /**
    * Init
    * TODO: check
@@ -63,6 +68,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     emptyContainerList = new ArrayList<>();
     filledContainerList = new ArrayList<>();
     this.customs = customs;
+    airport = Airport.getAirport();
   }
 
   @Override
@@ -80,6 +86,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void executeRequest(final GateID gateID) {
+    setGate(gateID);
     ArrayList<LuggageTub> fullTubs;//TODO get list of full tubs
     loginBaggageScanner(employeeList.get(0),
         employeeList.get(0).getPassword());//TODO get correct user and pw
@@ -183,7 +190,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     lifter.setFlashingLightOn();
     lifter.move(15);
-    lifter.setGate();//TODO get gate
+    lifter.setGate(gate.getGateID());
     lifter.stop();
     lifter.setFlashingLightOff();
   }
@@ -217,25 +224,34 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void sendBaggageVehicleToGate() {
     baggageVehicle.setFlashingLightOn();
     baggageVehicle.move(15);
-    baggageVehicle.setGate();//TODO: get Gate from Airport
+    baggageVehicle.setGate(gate.getGateID());
     baggageVehicle.stop();
     baggageVehicle.setFlashingLightOff();
   }
 
   /**
-   * TODO: Wo bekomme ich die GroundOperations her an die ich die message sende
+   * TODO: need airpotr get groundOp
    */
   @Override
   public void notifyGroundOperations(final BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
-    Airport.getInstance().getGroundOperationsCenter().notify(baggageSortingUnitReceipt);
+    airport.getGroundOperationsCenter().notify(baggageSortingUnitReceipt);
   }
 
   /**
-   * TODO: Wo bekomme ich den CheckInDest mit dem ich rede
+   * TODO: need airport.getCheckIn
    */
   @Override
   public void returnEmptyLuggageTubToCheckInDesk() {
-    Airport.getInstance().getCheckInMediator().returnLuggageTubs(emptyLuggageTubList);
+    airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList);
     emptyLuggageTubList.clear();
+  }
+
+  protected void setGate(GateID id) {
+    for (Gate g : airport.getGateList()) {
+      if (g.getGateID() == id) {
+        gate = g;
+        break;
+      }
+    }
   }
 }
