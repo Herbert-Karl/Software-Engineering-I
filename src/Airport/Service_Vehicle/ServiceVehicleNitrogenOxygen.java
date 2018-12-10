@@ -123,8 +123,8 @@ public class ServiceVehicleNitrogenOxygen implements IServiceVehicleNitrogenOxyg
         connectToAirplane(searchAirplaneByGate(getGate()));
         attachElectricalGrounding();
         //oxygen + Nitrogen
-        refill();
-        refill();
+        connectedAirplane.getBody().getNitrogenBottleArrayList().forEach(e -> refill(e));
+        connectedAirplane.getBody().getOxygenBottleArrayList().forEach(e -> refill(e));
         detachElectricalGrounding();
         setFlashingLightOff();
         notifyGroundOperations(new ServiceVehicleNitrogenOxygenReceipt(getUuid(),getId(),getGate().getGateID(),getAmountNitrogen(),getAmountOxygen()));

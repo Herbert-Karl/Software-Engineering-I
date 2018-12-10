@@ -56,4 +56,60 @@ public class SeatManagement implements ISeatManagement{
         //TODO
 
     }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ArrayList<Seat> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(ArrayList<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public int getNumberOfPassengersFirstClassAssigned() {
+        return numberOfPassengersFirstClassAssigned;
+    }
+
+    public void setNumberOfPassengersFirstClassAssigned(int numberOfPassengersFirstClassAssigned) {
+        this.numberOfPassengersFirstClassAssigned = numberOfPassengersFirstClassAssigned;
+    }
+
+    public int getNumberOfPassengersBusinessClassAssigned() {
+        return numberOfPassengersBusinessClassAssigned;
+    }
+
+    public void setNumberOfPassengersBusinessClassAssigned(int numberOfPassengersBusinessClassAssigned) {
+        this.numberOfPassengersBusinessClassAssigned = numberOfPassengersBusinessClassAssigned;
+    }
+
+    public int getNumberOFPassengersEconomyClassAssigned() {
+        return numberOFPassengersEconomyClassAssigned;
+    }
+
+    public void setNumberOFPassengersEconomyClassAssigned(int numberOFPassengersEconomyClassAssigned) {
+        this.numberOFPassengersEconomyClassAssigned = numberOFPassengersEconomyClassAssigned;
+    }
 }
