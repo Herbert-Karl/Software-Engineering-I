@@ -1,5 +1,8 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airplane.Aircraft.Airplane;
+import Airport.Airport.Airport;
+import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
@@ -7,126 +10,134 @@ import Airport.Base.Container;
 
 import java.util.ArrayList;
 
-public class ContainerLifter implements Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter {
+public class ContainerLifter implements IContainerLifter {
 
-    private String uuid;
+  private String uuid;
 
-    private String id;
+  private String id;
 
-    private String type;
+  private String type;
 
-    private int speedInMPH;
+  private int speedInMPH;
 
-    private boolean isFlashingLightOn;
+  private boolean isFlashingLightOn;
 
-    private boolean isDown;
+  private boolean isDown;
 
-    private Container container;
+  private Container container;
 
-    private ArrayList<String> containerIDList;
+  private ArrayList<String> containerIDList;
 
-    private Airport.Airport.Gate gate;
+  private Gate gate;
 
-    private Airplane.IAirplane connectedAirplane;
+  private Airplane connectedAirplane;
 
-    private int numberOfContainerLoaded;
+  private int numberOfContainerLoaded;
 
-    @Override
-    public void setContainer(Container c) {
-        container = c;
+  @Override
+  public void setContainer(final Container c) {
+    container = c;
+  }
+
+  /**
+   * TODO: Wo wird airplane implementiert
+   */
+  @Override
+  public void connectToAirplane() {
+    connectedAirplane = gate.getAirplane();
+  }
+
+  @Override
+  public void up() {
+    isDown = false;
+  }
+
+  /**
+   * TODO: was ruft man im cargo system auf
+   */
+  @Override
+  public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
+    if (!isDown) {
+      down();
     }
+    up();
+    connectedAirplane.getBody()
+        .getCargoSystemArrayList()
+        .get(0)
+        .load(container,
+            null);//TODO: get the correct cargosystem from the list | get correct frontStowagePositionID
+    down();
+  }
 
-    /**
-     * TODO: Wo wird airplane implementiert
-     */
-    @Override
-    public void connectToAirplane() {
-        connectedAirplane = gate.getAirplane();
-    }
+  /**
+   * TODO
+   */
+  @Override
+  public void down() {
+    isDown = true;
+  }
 
-    @Override
-    public void up() {
-        isDown = false;
-    }
+  /**
+   * TODO: same as connect
+   */
+  @Override
+  public void disconnectFromAirplane() {
 
-    /**
-     * TODO: was ruft man im cargo system auf
-     */
-    @Override
-    public void transferContainerToCargoSystem(LoadingStrategy strategy) {
-        if (!isDown) {
-            down();
-        }
-        up();
-        connectedAirplane.getCargoSystem.load(strategy.getStowage(), container, );
-        down();
-    }
+  }
 
-    /**
-     * TODO
-     */
-    @Override
-    public void down() {
-        isDown = true;
-    }
+  /**
+   * TODO groundoperations?
+   */
+  @Override
+  public void notifyGroundOperations(final ContainerLifterReceipt containerLifterReceipt) {
 
-    /**
-     * TODO: same as connect
-     */
-    @Override
-    public void disconnectFromAirplane() {
+  }
 
-    }
+  /**
+   * TODO: interaktion mit pool klären
+   */
+  @Override
+  public void returnToAirportResourcePool() {
 
-    /**
-     * TODO groundoperations?
-     */
-    @Override
-    public void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt) {
+  }
 
-    }
+  /**
+   * TODO wie sieht die routine aus
+   */
+  @Override
+  public void executeRequest(final GateID gateID) {
 
-    /**
-     * TODO: interaktion mit pool klären
-     */
-    @Override
-    public void returnToAirportResourcePool() {
+  }
 
-    }
+  @Override
+  public void setFlashingLightOn() {
+    isFlashingLightOn = true;
+  }
 
-    /**
-     * TODO wie sieht die routine aus
-     */
-    @Override
-    public void executeRequest(GateID gateID) {
+  @Override
+  public void move(final int speedInMPH) {
+    this.speedInMPH = speedInMPH;
+  }
 
-    }
+  @Override
+  public void stop() {
+    speedInMPH = 0;
+  }
 
-    @Override
-    public void setFlashingLightOn() {
-        isFlashingLightOn = true;
-    }
+  /**
+   * wie komme ich von gateID auf gate
+   * Gatelist aus Airport Holen
+   *  Wo bekomme ich die instanz von airport her oder soll das ganze statisch, singleton sein?
+   */
+  @Override
+  public void setGate(final GateID gate) {
 
-    @Override
-    public void move(int speedInMPH) {
-        this.speedInMPH = speedInMPH;
-    }
+    Airport.getGateList();
+    this.gate = gate;
+  }
 
-    @Override
-    public void stop() {
-        speedInMPH = 0;
-    }
-
-    /**
-     * wie komme ich von gateID auf gate
-     */
-    @Override
-    public void setGate(GateID gate) {
-        this.gate = gate;
-    }
-
-    @Override
-    public void setFlashingLightOff() {
-        isFlashingLightOn = false;
-    }
+  @Override
+  public void setFlashingLightOff() {
+    isFlashingLightOn = false;
+  }
 }

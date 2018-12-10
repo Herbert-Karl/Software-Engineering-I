@@ -1,14 +1,17 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Base.Baggage;
+import Airport.Base.Container;
+
 import java.util.Collection;
 
-public interface IBaggageVehicle extends Airport.Baggage_Sorting_Unit.Vehicles.IVehicle {
+public interface IBaggageVehicle extends IVehicle {
 
-    void store(Airport.Base.Container container);
+    void store(Container container);
 
-    void store(Collection<Airport.Base.Baggage> b);
+    void store(Collection<Baggage> b);
 
-    void connect(Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter containerLifter);
+    void connect(IContainerLifter containerLifter);
 
     void transferContainerToLifter();
 
@@ -16,5 +19,5 @@ public interface IBaggageVehicle extends Airport.Baggage_Sorting_Unit.Vehicles.I
 
     void returnToBaggageSortingUnit();
 
-    Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter getContainerLifter();
+    IContainerLifter getContainerLifter();
 }

@@ -6,7 +6,6 @@ import Airport.Base.NormalBaggage;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageDepot {
 
     private String uuid;

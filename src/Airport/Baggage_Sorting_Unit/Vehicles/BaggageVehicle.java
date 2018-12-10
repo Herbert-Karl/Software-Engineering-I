@@ -8,106 +8,108 @@ import Airport.Base.Container;
 
 import java.util.Collection;
 
-public class BaggageVehicle implements Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle {
+public class BaggageVehicle implements IBaggageVehicle {
 
-    private String uuid;
+  private String uuid;
 
-    private String id;
+  private String id;
 
-    private String type;
+  private String type;
 
-    private int speedInMPH = 0;
+  private int speedInMPH;
 
-    private boolean isFlashingLightOn;
+  private boolean isFlashingLightOn;
 
-    private Container container;
-    private Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter containerLifter;
-    private Gate gate;
+  private Container container;
 
-    public Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter getContainerLifter() {
-        return containerLifter;
-    }
+  private IContainerLifter containerLifter;
 
-    /**
-     * adding baggages to internal container
-     */
-    @Override
-    public void store(Collection<Baggage> b) {
-        container.addAll(b);
-    }
+  private Gate gate;
 
-    /**
-     * setting internal container
-     */
-    @Override
-    public void store(Container container) {
-        this.container = container;
-    }
+  @Override
+  public IContainerLifter getContainerLifter() {
+    return containerLifter;
+  }
 
-    @Override
-    public void connect(Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter containerLifter) {
-        this.containerLifter = containerLifter;
-    }
+  /**
+   * adding baggages to internal container
+   */
+  @Override
+  public void store(final Collection<Baggage> b) {
+    container.addAll(b);
+  }
 
-    @Override
-    public void transferContainerToLifter() {
-        containerLifter.setContainer(container);
-    }
+  /**
+   * setting internal container
+   */
+  @Override
+  public void store(final Container container) {
+    this.container = container;
+  }
 
-    /**
-     *
-     */
-    @Override
-    public void disconnect() {
-        this.containerLifter = null;
-    }
+  @Override
+  public void connect(final IContainerLifter containerLifter) {
+    this.containerLifter = containerLifter;
+  }
 
-    /**
-     *
-     */
-    @Override
-    public void returnToBaggageSortingUnit() {
-        setFlashingLightOn();
-        move(20);
-        stop();
-        containerLifter.getBaggageSortingUnit().setBaggageVehicle(this);
-        setFlashingLightOff();
-    }
+  @Override
+  public void transferContainerToLifter() {
+    containerLifter.setContainer(container);
+  }
 
-    /**
-     * TODO: Routine implementieren
-     */
-    @Override
-    public void executeRequest(GateID gateID) {
+  /**
+   *
+   */
+  @Override
+  public void disconnect() {
+    containerLifter = null;
+  }
 
-    }
+  /**
+   *
+   */
+  @Override
+  public void returnToBaggageSortingUnit() {
+    setFlashingLightOn();
+    move(20);
+    stop();
+    containerLifter.getBaggageSortingUnit().setBaggageVehicle(this);
+    setFlashingLightOff();
+  }
 
-    @Override
-    public void setFlashingLightOn() {
-        isFlashingLightOn = true;
-    }
+  /**
+   * TODO: Routine implementieren
+   */
+  @Override
+  public void executeRequest(final GateID gateID) {
 
-    @Override
-    public void move(int speedInMPH) {
-        this.speedInMPH = speedInMPH;
-    }
+  }
 
-    @Override
-    public void stop() {
-        speedInMPH = 0;
-    }
+  @Override
+  public void setFlashingLightOn() {
+    isFlashingLightOn = true;
+  }
 
-    /**
-     * TODO: get gate from gatelist in Airport
-     * @param gate
-     */
-    @Override
-    public void setGate(GateID gate) {
-        this.gate = Airport.getGate(gate);
-    }
+  @Override
+  public void move(final int speedInMPH) {
+    this.speedInMPH = speedInMPH;
+  }
 
-    @Override
-    public void setFlashingLightOff() {
-        isFlashingLightOn = false;
-    }
+  @Override
+  public void stop() {
+    speedInMPH = 0;
+  }
+
+  /**
+   * TODO: get gate from gatelist in Airport
+   */
+  @Override
+  public void setGate(final GateID gate) {
+    this.gate = Airport.getGate(gate);
+  }
+
+  @Override
+  public void setFlashingLightOff() {
+    isFlashingLightOn = false;
+  }
 }

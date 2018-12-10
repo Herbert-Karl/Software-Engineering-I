@@ -1,5 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Receipts;
 
+import Airport.Base.DestinationBox;
+
 public class BaggageSortingUnitReceipt {
 
     private String uuid;

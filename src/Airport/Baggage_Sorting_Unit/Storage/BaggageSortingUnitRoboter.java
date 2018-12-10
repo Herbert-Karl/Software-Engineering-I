@@ -32,7 +32,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      */
     @Override
     public void moveBaggageToDepot(
-            @SuppressWarnings("CollectionDeclaredAsConcreteClass") ArrayList<Baggage> baggageList) {
+            ArrayList<Baggage> baggageList) {
         selectedBaggageList.addAll(baggageList);
         baggageSortingUnit.getDepot().storeAll(moveBaggage());
     }
@@ -56,7 +56,6 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         baggageSortingUnit.getVehicle().store(moveBaggage());
     }
 
-    @SuppressWarnings("CollectionDeclaredAsConcreteClass")
     private ArrayList<Baggage> moveBaggage() {
         ArrayList<Baggage> temp = selectedBaggageList;
         selectedBaggageList.clear();
