@@ -1,9 +1,12 @@
-package src.Airport.PushBack_Vehicle;
+package Airport.Pushback_Vehicle;
+
+import Airplane.Aircraft.Airplane;
+
 //Fertig
 public interface IPushBackVehicle {
      void connect(Airplane airplane);
      void disconnectAirplane();
-     void execute(Airplane airplane,Taxiway taxiWay);
+     void execute(Airplane airplane, Taxiway taxiWay);
      void forward(int speedInMPH);
      void backward(int speedInMPH);
      void turnLeft(int degree);

@@ -1,4 +1,7 @@
-package src.Airport.Boarding_Control;
+package Airport.Boarding_Control;
+
+import Airport.Base.BoardingPass;
+import Airport.Base.Passport;
 
 public interface IBoardingControl {
 

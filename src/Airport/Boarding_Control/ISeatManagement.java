@@ -1,4 +1,4 @@
-package src.Airport.PushBack_Vehicle;
+package Airport.Boarding_Control;
 
 public interface ISeatManagement {
 }
