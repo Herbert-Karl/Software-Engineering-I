@@ -9,6 +9,8 @@ import Airplane.Aircraft.Airplane;
 import Airport.Base.Passenger;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
+import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
+import Airport.Base.Flight;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -17,13 +19,13 @@ public class Airport{
     private Apron apron;
     private GroundOperationsCenter groundOperationsCenter;
     private CheckInMediator checkInMediator;
-    private IBulkyBaggageDesk bulkyBaggageDesk;
+    private BulkyBaggageDesk bulkyBaggageDesk;
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
-                   Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, IBulkyBaggageDesk bulkyBaggageDesk,
+                   Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
                    SecurityMediator securityMediator, ApronControl apronControl, Tower tower){
         this.passengerList = passengerList;
         this.resourcePool = resourcePool;
@@ -59,48 +61,69 @@ public class Airport{
         return zeilenAnzahl;
     }
 
-    public int connectAirplane(Airplane airplane, Gate gate){
-        gate.connect(airplane);
+    public boolean connectAirplane(Airplane airplane, Gate gate){
+        if(gate.getAirplane() == null) {
+            gate.connect(airplane);
+            return true;
+        } else {
+            System.out.println("Flugzeug kann nicht connected werden. Gate ist bereits belegt.");
+            return false;
+        }
     }
 
     public boolean disconnectAirplane(Airplane airplane, Gate gate){
-        gate.disconnectAirplane();
+        if ((gate.getAirplane() != null) && (gate.getAirplane() == airplane)) {
+            gate.disconnectAirplane();
+            return true;
+        }
+        else {
+            System.out.println("Flugzeug kann nicht disconnected werden.");
+            return false;}
     }
 
     public boolean executeServiceWasteWater(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeCheckIn(Flight flight){
         //TODO
+        return false;
     }
 
     public boolean executeSecurity(){
         //TODO
+        return false;
     }
 
     public boolean executeCustoms(){
         //TODO
+        return false;
     }
 
     public boolean executeAirCargo(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeBaggageSortingUnit(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeServiceBase(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeServiceFreshWater(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeServiceNitrogenOxygen(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeSkyTanking(GateID gateID){
