@@ -2,10 +2,8 @@ package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
 import Airport.Airport.Airport;
-import Airport.Airport.AirportRecourcePool;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
-import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
@@ -34,7 +32,7 @@ public class ContainerLifter implements IContainerLifter {
 
   private Airplane connectedAirplane;
 
-  private final int numberOfContainerLoaded;
+  private int numberOfContainerLoaded;
 
   public ContainerLifter(final String uuid, final String id) {
     this.uuid = uuid;
@@ -46,14 +44,13 @@ public class ContainerLifter implements IContainerLifter {
     containerIDList = new ArrayList<>();
   }
 
-  @Override
-  public IBaggageSortingUnit getBaggageSortingUnit() {
-    return null;
-  }
+
 
   @Override
   public void setContainer(final Container c) {
     container = c;
+    containerIDList.add(c.getID());
+    numberOfContainerLoaded++;
   }
 
   /**
@@ -67,6 +64,14 @@ public class ContainerLifter implements IContainerLifter {
   @Override
   public void up() {
     isDown = false;
+  }
+
+  /**
+   * TODO check if this header is correct
+   */
+  @Override
+  public void transferContainerToCargoSystem() {
+
   }
 
   /**
@@ -111,19 +116,29 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   *
+   * TODO: check sytax
    */
   @Override
   public void returnToAirportResourcePool() {
-    AirportRecourcePool
+    Airport.getInstance().getAirportResourcePool().returnResource(this);
   }
 
   /**
-   * TODO wie sieht die routine aus
+   * TODO check
    */
   @Override
   public void executeRequest(final GateID gateID) {
-
+    setFlashingLightOn();
+    move(15);
+    setGate();
+    stop();
+    setFlashingLightOff();
+    connectToAirplane();
+    transferContainerToCargoSystem();
+    disconnectFromAirplane();
+    notifyGroundOperations(new ContainerLifterReceipt(uuid, id, type, getBaggageSortingUnit(),
+        roboter.getSelectedBaggage()));//TODO add correct values for receipt
+    returnToAirportResourcePool();
   }
 
   @Override
@@ -149,8 +164,12 @@ public class ContainerLifter implements IContainerLifter {
   @Override
   public void setGate(final GateID gate) {
 
-    Airport.getGateList();
-    this.gate = gate;
+    for (final Gate g : Airport.getGateList()) {
+      if (g.getGateID() == gate) {
+        this.gate = g;
+        break;
+      }
+    }
   }
 
   @Override
