@@ -10,32 +10,15 @@ public class AutomaticBoardingPassControlDesk implements  IAutomaticBoardingPass
     private Employee employee;
     private IReadingDevice iReadingDevice;
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
+    public AutomaticBoardingPassControlDesk(String uuid, IReadingDevice iReadingDevice) {
         this.uuid = uuid;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public IReadingDevice getiReadingDevice() {
-        return iReadingDevice;
-    }
-
-    public void setiReadingDevice(IReadingDevice iReadingDevice) {
         this.iReadingDevice = iReadingDevice;
     }
+
 
     @Override
     public boolean scan(BoardingPass boardingPass) {
         return false;
     }
 }
+

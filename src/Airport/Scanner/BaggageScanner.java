@@ -11,7 +11,6 @@ public class BaggageScanner implements  IBaggageScanner {
     String uuid;
     String id;
     String type;
-    StringSearchAlgorithm stringSearchAlgorithm;
     List<Employee> registeredEmployeeList;
     IReadingDevice readingDevice;
     Employee employee;

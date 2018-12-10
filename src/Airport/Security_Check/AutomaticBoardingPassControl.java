@@ -1,6 +1,7 @@
 package Airport.Security_Check;
 
 import Airport.Base.BoardingPass;
+import Airport.Base.Passport;
 import Airport.Scanner.IReadingDevice;
 
 import java.util.List;
@@ -12,14 +13,26 @@ public class AutomaticBoardingPassControl implements  IAutomaticBoardingPassCont
     private IReadingDevice readingDevice;
     private List<IDoor> doorList;
 
+    public AutomaticBoardingPassControl(String uuid, AutomaticBoardingPassControlID id, IReadingDevice readingDevice) {
+        this.uuid = uuid;
+        this.id = id;
+        this.readingDevice = readingDevice;
+    }
+
     @Override
     public boolean openDoors() {
-        return false;
+        for(IDoor door : doorList) {
+            door.open();
+        }
+        return true;
     }
 
     @Override
     public boolean closeDoors() {
-        return false;
+        for(IDoor door : doorList) {
+            door.close();
+        }
+        return true;
     }
 
     @Override

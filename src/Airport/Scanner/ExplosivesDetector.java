@@ -10,7 +10,6 @@ public class ExplosivesDetector implements IExplosivesDetector {
     private String uuid;
     private String id;
     private String type;
-    private StringSearchAlgorithm stringSearchAlgorithm;
     private List<Employee> registeredEmployeeList;
     private IReadingDevice readingDevice;
     private Employee employee;

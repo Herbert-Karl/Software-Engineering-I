@@ -15,5 +15,5 @@ public interface ISecurityCheck {
     boolean scan(Passenger passenger, CottonPad cottonPad);
     boolean scan(Baggage baggage, String pattern);
     boolean scan(Baggage baggage, CottonPad cottonPad);
-    void notifyGroudOperation(SecurityCheckReceipt securityCheckReceipt);
+    void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt);
 }

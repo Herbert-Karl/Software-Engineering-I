@@ -11,7 +11,6 @@ public class BodyScanner implements IBodyScanner{
     private String uuid;
     private String id;
     private String type;
-    private StringSearchAlgorithm stringSearchAlgorithm;
     private List<Employee> registeredEmployeeList;
     private IReadingDevice readingDevice;
     private Employee employee;

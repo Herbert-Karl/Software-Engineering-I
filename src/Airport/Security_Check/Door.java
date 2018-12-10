@@ -4,6 +4,14 @@ public class Door implements IDoor {
 
     private boolean isOpen;
 
+    public Door() {
+        isOpen = false;
+    }
+
+    public Door(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
+
     public boolean isOpen() {
         return isOpen;
     }
@@ -14,10 +22,12 @@ public class Door implements IDoor {
 
     @Override
     public void close() {
-
+        isOpen = false;
     }
+
     @Override
     public void open() {
-
+        isOpen = true;
     }
 }
+

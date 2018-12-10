@@ -3,7 +3,10 @@ package Airport.Security_Check;
 import Airport.Airport.Airport;
 import Airport.Base.Baggage;
 import Airport.Base.Employee;
+import Airport.Base.IDCard;
 import Airport.Base.Passenger;
+import Airport.Federal_Police.FederalPolice;
+import Airport.Federal_Police.FederalPoliceOfficer;
 import Airport.Scanner.IBaggageScanner;
 import Airport.Scanner.IBodyScanner;
 import Airport.Scanner.IExplosivesDetector;
@@ -23,56 +26,67 @@ public class SecurityCheck implements ISecurityCheck {
     private IExplosivesDetector explosivesDetector;
     private FederalPolice federalPolice;
 
-    @Override
-    public boolean loginBaggageScanner(Employee employee, String password){
-        return false;
+    public SecurityCheck(String uuid, SecurityCheckID securityCheckID, Airport airport, IBaggageScanner baggageScanner, IBodyScanner bodyScanner, IExplosivesDetector explosivesDetector) {
+        this.uuid = uuid;
+        this.securityCheckID = securityCheckID;
+        this.airport = airport;
+        this.baggageScanner = baggageScanner;
+        this.bodyScanner = bodyScanner;
+        this.explosivesDetector = explosivesDetector;
     }
+
+    @Override
+    public boolean loginBaggageScanner(Employee employee, String password) {
+        return baggageScanner.login(employee.getIdCard(), password);
+    }
+
     @Override
     public void logoutBaggageScanner() {
+        baggageScanner.logout();
     }
 
     @Override
     public boolean loginBodyScanner(Employee employee, String password) {
-        return false;
+        return bodyScanner.login(employee.getIdCard(), password);
     }
 
     @Override
     public void logoutBodyScanner() {
-
+        bodyScanner.logut();
     }
 
     @Override
     public boolean loginExplosivesDetector(Employee employee, String password) {
-        return false;
+        return explosivesDetector.login(employee.getIdCard(), password);
     }
 
     @Override
     public void logoutExplosivesDetector() {
-
+        explosivesDetector.logout();
     }
 
     @Override
     public boolean scan(Passenger passenger, String pattern) {
-        return false;
+        return bodyScanner.scan(passenger, pattern);
     }
 
     @Override
     public boolean scan(Passenger passenger, CottonPad cottonPad) {
-        return false;
+        return bodyScanner.scan(passenger, cottonPad);
     }
 
     @Override
     public boolean scan(Baggage baggage, String pattern) {
-        return false;
+        return baggageScanner.scan(baggage, pattern);
     }
 
     @Override
     public boolean scan(Baggage baggage, CottonPad cottonPad) {
-        return false;
+        return baggageScanner.scan(baggage, cottonPad);
     }
 
     @Override
-    public void notifyGroudOperation(SecurityCheckReceipt securityCheckReceipt) {
-
+    public void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt) {
+//TODO notify police close doors etc.?
     }
 }
