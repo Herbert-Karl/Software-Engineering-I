@@ -3,28 +3,27 @@ package Airport.Airport;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
-import Airport.*;
 import Airport.Base.Passenger;
 import Airport.Security_Check.SecurityMediator;
+import Airport.Ground_Operations.GroundOperationsCenter;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
     private AirportResourcePool resourcePool;
     private ArrayList<Gate> gateList;
     private Apron apron;
-    private IGroundOperationsCenter groundOperationsCenter;
+    private GroundOperationsCenter groundOperationsCenter;
     private CheckInMediator checkInMediator;
     private IBulkyBaggageDesk bulkyBaggageDesk;
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
 
-    public Airport(ArrayList<Passenger> passengerList, AirportRecourcePool recourcePool, ArrayList<Gate> gateList,
-                   Apron apron, IGroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, IBulkyBaggageDesk bulkyBaggageDesk,
+    public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
+                   Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, IBulkyBaggageDesk bulkyBaggageDesk,
                    SecurityMediator securityMediator, ApronControl apronControl, Tower tower){
         this.passengerList = passengerList;
         this.resourcePool = resourcePool;
@@ -41,9 +40,7 @@ public class Airport{
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
         int zeilenAnzahl;
-
         if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
-
         BufferedReader input = null;
         try{
             input = new BufferedReader(new FileReader(dataFilePath));
@@ -59,7 +56,6 @@ public class Airport{
                 in.close();
             }
         }
-
         return zeilenAnzahl;
     }
 
@@ -109,18 +105,22 @@ public class Airport{
 
     public boolean executeSkyTanking(GateID gateID){
         //TODO
+        return false;
     }
 
     public boolean executeBoardingControl(Gate gate){
         //TODO
+        return false;
     }
 
     public boolean executePushback(Gate gate){
         //TODO
+        return false;
     }
 
     public boolean executeGroundOperationsLogging(){
         //TODO
+        return false;
     }
 
     public ArrayList<Gate> getGateList() {
