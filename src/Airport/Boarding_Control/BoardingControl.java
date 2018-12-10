@@ -1,8 +1,11 @@
-package src.Airport.Boarding_Control;
+package Airport.Boarding_Control;
 
-import pushback_vehicle.ISeatManagement;
 
-public class BoardingControl implements IBoardingControl {
+import Airport.Base.BoardingPass;
+import Airport.Base.Passport;
+import Airport.Scanner.ReadingDevice;
+
+public class BoardingControl implements src.Airport.Boarding_Control.IBoardingControl {
 
     private ReadingDevice readingDevice;
     private ArrayList<BoardPassList> boardingPassList;
@@ -22,7 +25,7 @@ public class BoardingControl implements IBoardingControl {
     }
     public void print(PassengerList passengerList)
     {
-
+        System.out.println("Test"+passengerList);
     }
     public void notifyGroundOperations(BoardingControlReceipt boardingControlReceipt)
     {

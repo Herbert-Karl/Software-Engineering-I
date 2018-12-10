@@ -1,4 +1,7 @@
-package src.Airport.PushBack_Vehicle;
+package Airport.Pushback_Vehicle.;
+
+import Airplane.Aircraft.Airplane;
+
 //Fertig
 public interface IPushBackVehicle {
      void connect(Airplane airplane);
@@ -15,6 +18,6 @@ public interface IPushBackVehicle {
      void setFlashingLightOff();
      void setSteeringPin();
      void removeSteeringPin();
-     void notifyGroundOperations(PushBackVehicleReceipt pushBackVehicleReceipt);
+     void notifyGroundOperations(src.Airport.PushBack_Vehicle.PushBackVehicleReceipt pushBackVehicleReceipt);
 
 }

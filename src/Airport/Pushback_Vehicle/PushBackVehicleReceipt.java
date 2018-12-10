@@ -1,6 +1,8 @@
-package src.Airport.PushBack_Vehicle;
+package Airport.Pushback_Vehicle;
 //Test
 //Test
+
+import Airport.Airport.Gate;
 
 public class PushBackVehicleReceipt {
     private String uuid;
