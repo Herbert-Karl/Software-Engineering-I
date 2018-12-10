@@ -8,16 +8,16 @@ public class Airplane {
     private IWing rightWing;
     private Flight flight;
     private int numberOfSeatTicketClassEconomy;
-    private int numberofSeatTicketClassBusiness;
+    private int numberOfSeatTicketClassBusiness;
     private int numberOfSeatTicketClassFirst;
 
-    public Airplane(IBody body, IWing leftWing, IWing rightWing, Flight flight, int numberOfSeatTicketClassEconomy, int numberofSeatTicketClassBusiness, int numberOfSeatTicketClassFirst) {
+    public Airplane(IBody body, IWing leftWing, IWing rightWing, Flight flight, int numberOfSeatTicketClassEconomy, int numberOfSeatTicketClassBusiness, int numberOfSeatTicketClassFirst) {
         this.body = body;
         this.leftWing = leftWing;
         this.rightWing = rightWing;
         this.flight = flight;
         this.numberOfSeatTicketClassEconomy = numberOfSeatTicketClassEconomy;
-        this.numberofSeatTicketClassBusiness = numberofSeatTicketClassBusiness;
+        this.numberOfSeatTicketClassBusiness = numberOfSeatTicketClassBusiness;
         this.numberOfSeatTicketClassFirst = numberOfSeatTicketClassFirst;
     }
 
@@ -90,11 +90,11 @@ public class Airplane {
     }
 
     public int getNumberofSeatTicketClassBusiness() {
-        return numberofSeatTicketClassBusiness;
+        return numberOfSeatTicketClassBusiness;
     }
 
-    public void setNumberofSeatTicketClassBusiness(int numberofSeatTicketClassBusiness) {
-        this.numberofSeatTicketClassBusiness = numberofSeatTicketClassBusiness;
+    public void setNumberOfSeatTicketClassBusiness(int numberOfSeatTicketClassBusiness) {
+        this.numberOfSeatTicketClassBusiness = numberOfSeatTicketClassBusiness;
     }
 
     public int getNumberOfSeatTicketClassFirst() {
