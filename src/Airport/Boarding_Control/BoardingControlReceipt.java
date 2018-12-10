@@ -1,12 +1,14 @@
-package src.Airport.Boarding_Control;
+package Airport.Boarding_Control;
+
+import Airport.Airport.Gate;
 
 public class BoardingControlReceipt {
 
     private String uuid;
     private Gate gate;
-    private ArrayList<BoardingPass> boardingPassList;
+    private ArrayList<BoardingPassList> boardingPassList;
 
-    public BoardingControlReceipt(String uuid, Gate gate, ArrayList<BoardingPass> boardingPassList) {
+    public BoardingControlReceipt(String uuid, Gate gate, ArrayList<BoardingPassList> boardingPassList) {
         this.uuid = uuid;
         this.gate = gate;
         this.boardingPassList = boardingPassList;
