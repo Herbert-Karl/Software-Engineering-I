@@ -4,6 +4,11 @@ public abstract class Baggage{
     private String uuid;
     private String content;
     private double weight;
+
+    public void setSecurityStatus(final BaggageSecurityStatus securityStatus) {
+        this.securityStatus = securityStatus;
+    }
+
     private BaggageSecurityStatus securityStatus;
 
     public Baggage(String content, double weight){
