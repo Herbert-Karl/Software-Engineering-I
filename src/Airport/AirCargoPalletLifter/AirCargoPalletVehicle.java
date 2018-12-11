@@ -4,7 +4,7 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicel {
+public class AirCargoPalletVehicle {
     private String uuid;
     private String id;
     private String type;
@@ -14,7 +14,7 @@ public class AirCargoPalletVehicel {
     private IAirCargoPalletLifter connectedAirCargoPalletLifter;
     private Gate gate;
 
-    public AirCargoPalletVehicel(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, AirCargoPallet airCargoPallet, IAirCargoPalletLifter connectedAirCargoPalletLifter, Gate gate) {
+    public AirCargoPalletVehicle(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, AirCargoPallet airCargoPallet, IAirCargoPalletLifter connectedAirCargoPalletLifter, Gate gate) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
