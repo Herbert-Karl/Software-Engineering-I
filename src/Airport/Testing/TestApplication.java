@@ -6,11 +6,9 @@ import Airport.Base.*;
 import Airport.Security_Check.SecurityMediator;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.*;
-
 import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestApplication {

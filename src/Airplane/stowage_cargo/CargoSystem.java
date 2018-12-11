@@ -2,6 +2,9 @@ package Airplane.stowage_cargo;
 
 import java.util.ArrayList;
 
+import Airport.Base.Container;
+import Airport.Base.AirCargoPallet;
+
 public class CargoSystem implements ICargoSystem {
 
     private String manufacturer;
@@ -40,15 +43,17 @@ public class CargoSystem implements ICargoSystem {
     }
 
     public void load(Container container, FrontStowagePositionID position) {
+        if(this.isLocked || this.isSecured) { throw new RuntimeException("CargoSystem bereits gesichert oder geschlossen!"); }
         FrontStowagePosition helpPosition = new FrontStowagePosition(position, container);
         ((FrontStowage) this.frontStowage).add_to_positionList(helpPosition);
-        this.totalWeightContainer += container.get_weight();
+        this.totalWeightContainer += container.getWeight();
     }
 
     public void load(AirCargoPallet airCargoPallet, RearStowagePositionID position) {
+        if(this.isLocked || this.isSecured) { throw new RuntimeException("CargoSystem bereits gesichert oder geschlossen!"); }
         RearStowagePosition helpPosition = new RearStowagePosition(position, airCargoPallet);
         ((RearStowage) this.rearStowage).add_to_positionList(helpPosition);
-        this.totalWeightAirCargoPallet += airCargoPallet.get_weight();
+        this.totalWeightAirCargoPallet += airCargoPallet.getWeight();
     }
 
     public double determineTotalWeightAirCargoPallet() {
@@ -57,6 +62,12 @@ public class CargoSystem implements ICargoSystem {
 
     public double determineTotalWeightContainer() {
         return this.totalWeightContainer;
+    }
+
+    public void lock() {
+        if(!this.isSecured) { throw new RuntimeException("CargoSystem noch nicht gesichert."); }
+        if(!this.isLocked) { this.isLocked = true; }
+        else { throw new RuntimeException("CargoSystem bereits abgeschlossen."); }
     }
 
     public void unlock() {
@@ -69,17 +80,14 @@ public class CargoSystem implements ICargoSystem {
         else { throw new RuntimeException("CargoSystem bereits gesichert."); }
     }
 
-    public void lock() {
-        if(!this.isSecured) { throw new RuntimeException("CargoSystem noch nicht gesichert."); }
-        if(!this.isLocked) { this.isLocked = true; }
-        else { throw new RuntimeException("CargoSystem bereits abgeschlossen."); }
-    }
 
     public ArrayList<Container> unloadContainer() {
+        if(this.isLocked) { throw new RuntimeException("CargoSystem noch verschlossen!"); }
+        this.isSecured = false;
         ArrayList<Container> helpList = new ArrayList<Container>();
         FrontStowagePosition helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
         do {
-            helpList.add(helpObject.get_container());
+            helpList.add(helpObject.getContainer());
             helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
         } while(helpObject != null);
         this.totalWeightContainer = 0.0;
@@ -87,13 +95,15 @@ public class CargoSystem implements ICargoSystem {
     }
 
     public AirCargoPallet unloadAirCargoPallet() {
+        if(this.isLocked) { throw new RuntimeException("CargoSystem noch verschlossen!"); }
+        this.isSecured = false;
         RearStowagePosition helpObject = ((RearStowage) this.rearStowage).remove_from_positionList();
         if(helpObject == null) { return null; }
-        AirCargoPallet pallet = helpObject.get_airCargoPallet();
-        this.totalWeightAirCargoPallet -= pallet.get_weight();
+        AirCargoPallet pallet = helpObject.getAirCargoPallet();
+        this.totalWeightAirCargoPallet -= pallet.getWeight();
         return pallet;
     }
 
-    public String get_manufacturer() { return this.manufacturer; }
+    public String getManufacturer() { return this.manufacturer; }
 
 }

@@ -100,7 +100,8 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
         move(15);
         stop();
         connectToAirplane(searchAirplaneByGate(getGate()));
-        refill();
+        //WaterTanks
+        connectedAirplane.getBody().getPortableWaterTankArrayList().forEach(e -> refill(e));
         disconnectFromAirplane();
         setFlashingLightOff();
         notifyGroundOperations(new ServiceVehicleFreshWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountFreshWater()));

@@ -2,26 +2,29 @@ package Airplane.stowage_cargo;
 
 import java.util.ArrayList;
 
+import Airport.Base.AirCargoPallet;
+import Airport.Base.Container;
+
 public interface ICargoSystem {
 
-    public String version();
+    String version();
 
-    public void load(Container container, FrontStowagePositionID position);
+    void load(Container container, FrontStowagePositionID position);
 
-    public void load(AirCargoPallet airCargoPallet, RearStowagePositionID position);
+    void load(AirCargoPallet airCargoPallet, RearStowagePositionID position);
 
-    public double determineTotalWeightAirCargoPallet();
+    double determineTotalWeightAirCargoPallet();
 
-    public double determineTotalWeightContainer();
+    double determineTotalWeightContainer();
 
-    public void unlock();
+    void unlock();
 
-    public void secure();
+    void secure();
 
-    public void lock();
+    void lock();
 
-    public ArrayList<Container> unloadContainer();
+    ArrayList<Container> unloadContainer();
 
-    public AirCargoPallet unloadAirCargoPallet();
+    AirCargoPallet unloadAirCargoPallet();
 
 }
