@@ -28,7 +28,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private final ArrayList<Employee> employeeList;
 
-  private ArrayList<String> scanPatternList;
+  private ArrayList<String> scanPatternList;//TODO get patterns from somewhere
 
   private final IBaggageScanner baggageScanner;
 
@@ -74,11 +74,35 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   @Override
   public String toString() {
-    String message = "Employees: " + employeeList + "\nScanner: " + baggageScanner + "\nRoboter: "
-        + roboter + "\nDepot: " + baggageDepot + "\nDestination box: " + destinationBox
-        + "\nFilled containers: " + filledContainerList;
+    final String message = "Employees: " + employeeList + "\nScanner: " + baggageScanner
+        + "\nRoboter: " + roboter + "\nDepot: " + baggageDepot + "\nDestination box: "
+        + destinationBox + "\nFilled containers: " + filledContainerList;
 
     return message;
+  }
+
+  public ArrayList<Employee> getEmployeeList() {
+    return employeeList;
+  }
+
+  public ArrayList<String> getScanPatternList() {
+    return scanPatternList;
+  }
+
+  public BaggageDepot getBaggageDepot() {
+    return baggageDepot;
+  }
+
+  public ArrayList<LuggageTub> getEmptyLuggageTubList() {
+    return emptyLuggageTubList;
+  }
+
+  public ArrayList<Container> getEmptyContainerList() {
+    return emptyContainerList;
+  }
+
+  public ArrayList<Container> getFilledContainerList() {
+    return filledContainerList;
   }
 
   @Override
