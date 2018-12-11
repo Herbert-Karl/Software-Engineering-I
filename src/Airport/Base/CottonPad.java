@@ -6,4 +6,12 @@ public class CottonPad {
     public CottonPad(String surface) {
         this.surface = surface;
     }
+
+    public String getSurface(){
+        return surface;
+    }
+
+    public void setSurface(String surface){
+        this.surface = surface;
+    }
 }

@@ -113,4 +113,12 @@ public class PassengerBaggageDatabase{
     public PassengerBaggageDatabase(){
 
     }
+
+    ///
+    /// Getter und Setter
+    ///
+
+    public ArrayList<Passenger> getPassengerList(){
+        return passengerList;
+    }
 }
