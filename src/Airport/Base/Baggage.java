@@ -2,44 +2,45 @@ package Airport.Base;
 
 import java.util.UUID;
 
-public abstract class Baggage{
-    private String uuid;
-    private String content;
-    private double weight;
+public abstract class Baggage {
 
-    public void setSecurityStatus(final BaggageSecurityStatus securityStatus) {
-        this.securityStatus = securityStatus;
-    }
+  private final String uuid;
 
-    private BaggageSecurityStatus securityStatus;
+  private String content;
 
-    public Baggage(String content, double weight){
-        this.content = content;
-        this.weight = weight;
-        UUID uuid = UUID.randomUUID();
-        this.uuid = uuid.toString();
-    }
+  private double weight;
 
-    public Baggage(){
-        UUID uuid = UUID.randomUUID();
-        this.uuid = uuid.toString();
-    }
+  public void setSecurityStatus(final BaggageSecurityStatus securityStatus) {
+    this.securityStatus = securityStatus;
+  }
 
-    public BaggageSecurityStatus getSecurityStatus() {
-        return securityStatus;
-    }
+  private BaggageSecurityStatus securityStatus;
 
-    public double getWeight() {
-        return weight;
-    }
+  public Baggage(final String content, final double weight) {
+    this.content = content;
+    this.weight = weight;
+    final UUID uuid = UUID.randomUUID();
+    this.uuid = uuid.toString();
+  }
 
-    public void setContent(String content){
-        this.content = content;
-    }
-    public void setWeight(double weight){
-        this.weight = weight;
-    }
-    public void setSecurityStatus(BaggageSecurityStatus securityStatus){
-        this.securityStatus = securityStatus;
-    }
+  public Baggage() {
+    final UUID uuid = UUID.randomUUID();
+    this.uuid = uuid.toString();
+  }
+
+  public BaggageSecurityStatus getSecurityStatus() {
+    return securityStatus;
+  }
+
+  public double getWeight() {
+    return weight;
+  }
+
+  public void setContent(final String content) {
+    this.content = content;
+  }
+
+  public void setWeight(final double weight) {
+    this.weight = weight;
+  }
 }

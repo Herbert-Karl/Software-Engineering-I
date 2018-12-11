@@ -1,7 +1,6 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
-import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
@@ -36,7 +35,7 @@ public class ContainerLifter implements IContainerLifter {
 
   private int numberOfContainerLoaded;
 
-  public ContainerLifter(final String uuid, final String id, String type) {
+  public ContainerLifter(final String uuid, final String id, final String type) {
     this.uuid = uuid;
     this.id = id;
     this.type = type;
@@ -61,6 +60,14 @@ public class ContainerLifter implements IContainerLifter {
     }
 
     return message;
+  }
+
+  public Gate getGate() {
+    return gate;
+  }
+
+  public void setGate(final Gate gate) {
+    this.gate = gate;
   }
 
   public String getUuid() {
@@ -168,7 +175,7 @@ public class ContainerLifter implements IContainerLifter {
    */
   @Override
   public void returnToAirportResourcePool() {
-    Airport.getAirport().getResourcePool().returnResource(this);
+    //Airport.getAirport().getResourcePool().returnResource(this); TODO get correct airport
   }
 
   /**
@@ -217,13 +224,13 @@ public class ContainerLifter implements IContainerLifter {
    */
   @Override
   public void setGate(final GateID gate) {
-
+/*
     for (final Gate g : Airport.getAirport().getGateList()) {
       if (g.getGateID() == gate) {
         this.gate = g;
         break;
       }
-    }
+    }TODO get airport*/
   }
 
   @Override
