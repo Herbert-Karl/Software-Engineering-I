@@ -1,5 +1,7 @@
 package Airplane.Management;
 
+import Airport.Base.Passenger;
+
 import java.util.ArrayList;
 
 public interface ISeatManagement {

@@ -103,8 +103,5 @@ public class RouteManagement implements IRouteManagement{
         return costIndex;
     }
 
-    public void setCostIndex(double costIndex) {
-        this.costIndex = costIndex;
-    }
 }
 

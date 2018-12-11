@@ -2,6 +2,10 @@ package Airplane.Management;
 
 import java.util.ArrayList;
 
+import Airport.Base.Passenger;
+import Airport.Base.TicketClass;
+
+
 public class SeatManagement implements ISeatManagement{
 
     private String manufacturer;
@@ -30,15 +34,19 @@ public class SeatManagement implements ISeatManagement{
     }
 
     public int assign(ArrayList<Passenger> passengers) {
-        //TODO
+        int a = 0;
+
+        return a;
     }
 
     public int countAvailableSeat() {
-        //TODO
+        return seats.size();
     }
 
     public int countAvailableSeat(String ticketClassString) {
-        //TODO
+        int a = 0;
+
+        return a;
 
     }
 
