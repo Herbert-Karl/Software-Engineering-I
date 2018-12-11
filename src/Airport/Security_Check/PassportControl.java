@@ -22,12 +22,12 @@ public class PassportControl implements IPassportControl {
 
     @Override
     public boolean verify(Passport passport) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean scan(Passport passport) {
-        return false;
+        return true;
     }
 }
 

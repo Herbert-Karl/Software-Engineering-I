@@ -16,4 +16,8 @@ public class Item{
     public double getWeight(){
         return this.weight;
     }
+
+    public String getContent() {
+        return content;
+    }
 }

@@ -2,6 +2,7 @@ package Airport.Security_Check;
 
 import Airport.Base.Employee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SecurityCheckReceipt {
@@ -10,7 +11,16 @@ public class SecurityCheckReceipt {
     private List<Employee> employeeList;
     private int numberOfPassengerScanned;
     private int numberOfBaggageScanned;
-    private int numberOfDangeroursBaggage;
+    private int numberOfDangerousBaggage;
+
+    public SecurityCheckReceipt(String uuid, SecurityCheckID id) {
+        this.uuid = uuid;
+        this.id = id;
+        employeeList = new ArrayList<Employee>();
+        numberOfPassengerScanned = 0;
+        numberOfBaggageScanned = 0;
+        numberOfDangerousBaggage = 0;
+    }
 
     public String getUuid() {
         return uuid;
@@ -52,11 +62,17 @@ public class SecurityCheckReceipt {
         this.numberOfBaggageScanned = numberOfBaggageScanned;
     }
 
-    public int getNumberOfDangeroursBaggage() {
-        return numberOfDangeroursBaggage;
+    public int getNumberOfDangerousBaggage() {
+        return numberOfDangerousBaggage;
     }
 
     public void setNumberOfDangeroursBaggage(int numberOfDangeroursBaggage) {
-        this.numberOfDangeroursBaggage = numberOfDangeroursBaggage;
+        this.numberOfDangerousBaggage = numberOfDangeroursBaggage;
+    }
+    public void addEmployee(Employee employee) {
+        employeeList.add(employee);
+    }
+    public void removeEmployee(Employee employee) {
+        employeeList.remove(employee);
     }
 }

@@ -4,4 +4,5 @@ import Airport.Base.BoardingPass;
 
 public interface IAutomaticBoardingPassControlDesk {
     boolean scan(BoardingPass boardingPass);
+    //Employee setzen
 }

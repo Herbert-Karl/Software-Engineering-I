@@ -31,4 +31,8 @@ public class Passenger{
     public String getContent() {
         return content;
     }
+
+    public BoardingPass getBoardingPass() {
+        return boardingPass;
+    }
 }

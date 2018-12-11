@@ -9,6 +9,6 @@ public interface IExplosivesDetector {
     void unregister(Employee employee);
     boolean login(IDCard idCard, String password);
     boolean scan(CottonPad cottonPad);
-    boolean logout();
+    void logout();
     String version();
 }

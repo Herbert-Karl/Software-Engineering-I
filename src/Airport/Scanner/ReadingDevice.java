@@ -4,11 +4,11 @@ import Airport.Base.IDCard;
 
 public class ReadingDevice implements IReadingDevice {
     private String uuid;
-    private String type;
     private String id;
+    private String type;
     private IDCard idCard;
 
-    public ReadingDevice(String uuid, String type, String id, IDCard idCard) {
+    public ReadingDevice(String uuid, String id, String type, IDCard idCard) {
         this.uuid = uuid;
         this.type = type;
         this.id = id;
@@ -23,6 +23,6 @@ public class ReadingDevice implements IReadingDevice {
 
     @Override
     public boolean verify(IDCard idCard, String password) {
-        return false;
+        return idCard.getPassword().equals(password);
     }
 }

@@ -11,7 +11,7 @@ public class Door implements IDoor {
     public Door(boolean isOpen) {
         this.isOpen = isOpen;
     }
-
+    
     public boolean isOpen() {
         return isOpen;
     }

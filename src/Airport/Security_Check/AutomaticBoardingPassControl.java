@@ -35,11 +35,12 @@ public class AutomaticBoardingPassControl implements  IAutomaticBoardingPassCont
         return true;
     }
 
+    //TODO Scann logik nicht klar
     @Override
     public boolean scan(BoardingPass boardingPass) {
-        return false;
+        return true;
     }
-
+//TODO
     @Override
     public void alarm() {
 

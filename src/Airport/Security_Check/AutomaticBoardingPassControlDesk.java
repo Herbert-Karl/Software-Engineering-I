@@ -18,6 +18,10 @@ public class AutomaticBoardingPassControlDesk implements  IAutomaticBoardingPass
 
     @Override
     public boolean scan(BoardingPass boardingPass) {
+        if(employee != null) {
+            //TODO Scan logik
+            return true;
+        }
         return false;
     }
 }

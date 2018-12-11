@@ -21,4 +21,8 @@ public class IDCard{
     public String getPassword() {
         return password;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
 }
