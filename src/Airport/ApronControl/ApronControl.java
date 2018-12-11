@@ -2,7 +2,16 @@
 group 17
 */
 
+import Airport.Airport.*;
+import java.util.*;
+import Airplane.Aircraft.*;
+import java.lang.*;
+
+package ApronControl.ApronControl;
+
+
 public class ApronControl{
+
 
     private Airport            airport;
     private Apron              apron;
@@ -11,18 +20,18 @@ public class ApronControl{
 
     public ApronControl()
     {
-        frequency =  "121.5";
+        this.frequency =  "121.5";
     }
 
     public boolean approveRequestStartEngines(Airplane airplane)
     {
-        // criteria?
+        // Immer true
         return true;
     }
 
     public boolean approveRequestPushback(Airplane airplane)
     {
-        // criteria?
+        // Immer true
         return true;
     }
 
@@ -37,13 +46,13 @@ public class ApronControl{
         // l oder r runwayids, taxi center line ist farbe, gateid a bis b
 
         // Anfangspunkte der Linien entpsrechend runwayid
-        String L26[3] = {O6;N6;S3}
-        String L08[3] = {L1;M1;S2}
-        String R26[3] = {O1;S1;N1}
-        String R08[3] = {M6;S4;L6}
+        String [] L26 = {O6,N6,S3};
+        String []L08 = {L1,M1,S2};
+        String []R26 = {O1,S1,N1};
+        String []R08 = {M6,S4,L6};
 
         // wenn GateID A muss taxicenterline gelb oder grün sein
-        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString() == 'yellow' || taxiCenterLine.toString() == 'green'))
+        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString().equals('yellow') || taxiCenterLine.equals('green'))
         {
             if (taxiCenterLine.toString() == 'yellow')
             {
@@ -59,7 +68,7 @@ public class ApronControl{
         }
 
         // wenn gateid b muss blau oder rot sein
-        if (gateID.toString().charAt(0) == 'B' && (taxiCenterLine.toString() == 'blue' || taxiCenterLine.toString() == 'red'))
+        if (gateID.toString().charAt(0) == 'B' && (taxiCenterLine.toString().equals('blue') || taxiCenterLine.toString().equals('red')))
         {
 
         }
