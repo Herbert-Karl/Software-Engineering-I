@@ -1,6 +1,7 @@
 package Airplane.Aircraft;
 
 import Airplane.FlightControls.Implementations.Flap;
+import Airplane.FlightControls.Interfaces.*;
 import Airplane.Lights.LandingLight;
 import Airplane.Lights.LeftNavigationLight;
 import Airplane.Lights.RightNavigationLight;
@@ -20,11 +21,11 @@ public class Wing {
     private ArrayList<FuelTank> fuelTankArrayList;
     private ArrayList<DeIcingSystem> deIcingSystemArrayList;
     private ArrayList<LandingLight> landingLightArrayList;
-    private ArrayList<Flap> flapArrayList;
-    private ArrayList<Slat> slatArrayList;
-    private ArrayList<LeftAileron> leftAileronArrayList;
-    private ArrayList<RightAileron> rightAileronArrayList;
-    private ArrayList<Spoiler> spoilerArrayList;
+    private ArrayList<IFlap> flapArrayList;
+    private ArrayList<ISlat> slatArrayList;
+    private ArrayList<ILeftAileron> leftAileronArrayList;
+    private ArrayList<IRightAileron> rightAileronArrayList;
+    private ArrayList<ISpoiler> spoilerArrayList;
     private ArrayList<ExhaustGasTemperatureSensor> exhaustGasTemperatureSensorArrayList;
     private ArrayList<FuelFlowSensor> fuelFlowSensorArrayList;
     private ArrayList<IceDetectorProbe> iceDetectorProbeArrayList;
@@ -34,6 +35,7 @@ public class Wing {
     private ArrayList<AirflowSensor> airflowSensorArrayList;
     private ArrayList<TurbulentAirFlowSensor> turbulentAirFlowSensorArrayList;
     private ArrayList<Camera> cameraArrayList;
+    private ArrayList<IDroopNose> DroopNoseArrayList;
 
     public Wing(Airplane airplane) {
         this.airplane = airplane;
@@ -76,25 +78,25 @@ public class Wing {
         return landingLightArrayList;
     }
 
-    public ArrayList<Flap> getFlapArrayList() {
+    public ArrayList<IFlap> getFlapArrayList() {
         return flapArrayList;
     }
 
-    public ArrayList<Slat> getSlatArrayList() {
+    public ArrayList<ISlat> getSlatArrayList() {
         return slatArrayList;
     }
 
-    public ArrayList<LeftAileron> getLeftAileronArrayList() {
+    public ArrayList<ILeftAileron> getLeftAileronArrayList() {
         return leftAileronArrayList;
     }
 
-    public ArrayList<RightAileron> getRightAileronArrayList() {
+    public ArrayList<IRightAileron> getRightAileronArrayList() {
         return rightAileronArrayList;
     }
+    
+    public ArrayList<IDroopNose> getDroopNoseArrayList() {return DroopNoseArrayList;}
 
-    public ArrayList<Spoiler> getSpoilerArrayList() {
-        return spoilerArrayList;
-    }
+    public ArrayList<ISpoiler> getSpoilerArrayList() {return spoilerArrayList;}
 
     public ArrayList<ExhaustGasTemperatureSensor> getExhaustGasTemperatureSensorArrayList() {
         return exhaustGasTemperatureSensorArrayList;
