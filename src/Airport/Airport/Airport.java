@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
-import Airport.AirCargoPalletLifter.AirCargoPalletVehicel;
+import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Base.Passenger;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
