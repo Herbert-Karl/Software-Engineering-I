@@ -1,13 +1,14 @@
 package Airplane.FlightControls;
 
+import Airplane.Aircraft.Airplane;
 import Airplane.FlightControls.Interfaces.IFlap;
 import Airplane.FlightControls.Interfaces.IFlightControl;
 
 public class FlightControlController implements IFlightControlController {
 
-    private final IAirplane airplane;
+    private final Airplane airplane;
 
-    public FlightControlController(IAirplane airplane) {
+    public FlightControlController(Airplane airplane) {
         this.airplane = airplane;
     }
 

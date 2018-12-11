@@ -1,7 +1,8 @@
 package Airplane.Aircraft;
 
-import Airplane.FlightControls.Implementations.Elevator;
 import Airplane.FlightControls.Implementations.Gear;
+import Airplane.FlightControls.Interfaces.IElevator;
+import Airplane.FlightControls.Interfaces.IRudder;
 import Airplane.Lights.*;
 import Airplane.Management.CostOptimizer;
 import Airplane.Management.RouteManagement;
@@ -56,8 +57,8 @@ public class Body {
     private ArrayList<TailNavigationLight> tailNavigationLightArrayList;
     private ArrayList<TaxiLight> taxiLightArrayList;
     private ArrayList<TCASLight> tcasLightArrayList;
-    private ArrayList<Elevator> elevatorArrayList;
-    private ArrayList<Rudder> rudderArrayList;
+    private ArrayList<IElevator> elevatorArrayList;
+    private ArrayList<IRudder> rudderArrayList;
     private ArrayList<IceDetectorProbe> iceDetectorProbeArrayList;
     private ArrayList<FireDetector> fireDetectorArrayList;
     private ArrayList<OxygenSensor> oxygenSensorArrayList;
@@ -73,6 +74,7 @@ public class Body {
     private ArrayList<GPS> gpsArrayList;
     private ArrayList<Radar> radarArrayList;
     private ArrayList<SatCom> satComArrayList;
+    private ArrayList<VHF> vhfArrayList;
     private ArrayList<VHF> vhfArrayList;
     private ArrayList<CargoSystem> cargoSystemArrayList;
     private ArrayList<StowageNumberFive> stowageNumberFiveArrayList;
@@ -208,11 +210,11 @@ public class Body {
         return tcasLightArrayList;
     }
 
-    public ArrayList<Elevator> getElevatorArrayList() {
+    public ArrayList<IElevator> getElevatorArrayList() {
         return elevatorArrayList;
     }
 
-    public ArrayList<Rudder> getRudderArrayList() {
+    public ArrayList<IRudder> getRudderArrayList() {
         return rudderArrayList;
     }
 

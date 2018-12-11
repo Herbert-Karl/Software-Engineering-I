@@ -7,59 +7,96 @@ import java.util.ArrayList;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
-    private String uuid;
+  private final String uuid;
 
-    private String id;
+  private final String id;
 
-    private String type;
+  private final String type;
 
-    private IBaggageSortingUnit baggageSortingUnit;
+  private final IBaggageSortingUnit baggageSortingUnit;
 
-    private ArrayList<Baggage> selectedBaggageList;
+  public ArrayList<Baggage> getSelectedBaggageList() {
+    return selectedBaggageList;
+  }
 
-    public BaggageSortingUnitRoboter(IBaggageSortingUnit baggageSortingUnit) {
-        this.baggageSortingUnit = baggageSortingUnit;
-        selectedBaggageList = new ArrayList<>();
+  private ArrayList<Baggage> selectedBaggageList;
+
+  public BaggageSortingUnitRoboter(final IBaggageSortingUnit baggageSortingUnit, final String uuid,
+      final String id, final String type) {
+    this.uuid = uuid;
+    this.id = id;
+    this.type = type;
+    this.baggageSortingUnit = baggageSortingUnit;
+    selectedBaggageList = new ArrayList<>();
+  }
+
+  public String toString() {
+    String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
+        + "\nAssigned Baggage Sorting Unit: " + baggageSortingUnit
+        + "\nCurrently selected baggage: ";
+
+    for (final Baggage b : selectedBaggageList) {
+      message += "\n    " + b;
     }
+    return message;
+  }
 
-    @Override
-    public void addBaggage(Baggage b) {
-        selectedBaggageList.add(b);
-    }
+  public String getUuid() {
+    return uuid;
+  }
 
-    /**
-     * Adds parameter to internal list. Then stores it to the Depot and clears list.
-     */
-    @Override
-    public void moveBaggageToDepot(
-            @SuppressWarnings("CollectionDeclaredAsConcreteClass") ArrayList<Baggage> baggageList) {
-        selectedBaggageList.addAll(baggageList);
-        baggageSortingUnit.getDepot().storeAll(moveBaggage());
-    }
+  public String getId() {
+    return id;
+  }
 
-    /**
-     *
-     */
-    @Override
-    public void selectBaggageFromDepot() {
-        selectedBaggageList = depot.selectNormalBaggage();//TODO get instance of depot
-        //TODO Add to container with containerCategory normal
-        selectedBaggageList = depot.selectBulkyBaggage();//TODO get instance of depot
-        //TODO Add to container with containerCategory bulky
-    }
+  public String getType() {
+    return type;
+  }
 
-    /**
-     * TODO: check
-     */
-    @Override
-    public void loadContainer() {
-        baggageSortingUnit.getVehicle().store(moveBaggage());
-    }
+  @Override
+  public void addBaggage(final Baggage b) {
+    selectedBaggageList.add(b);
+  }
 
-    @SuppressWarnings("CollectionDeclaredAsConcreteClass")
-    private ArrayList<Baggage> moveBaggage() {
-        ArrayList<Baggage> temp = selectedBaggageList;
-        selectedBaggageList.clear();
-        return temp;
-    }
+  /**
+   * Adds parameter to internal list. Then stores it to the Depot and clears list.
+   */
+  @Override
+  public void moveBaggageToDepot(final ArrayList<Baggage> baggageList) {
+    selectedBaggageList.addAll(baggageList);
+    baggageSortingUnit.getDepot().storeAll(moveBaggage());
+  }
+
+  /**
+   * Adds normal baggage from depot to container with normal type and then adds  bulky baggage to
+   * container with bulky type
+   */
+  @Override
+  public void selectBaggageFromDepot() {
+    final BaggageDepot depot = baggageSortingUnit.getDepot();
+    selectedBaggageList = depot.selectNormalBaggage(
+        "42 is always the correct class");//TODO add correct class string
+    //TODO Add to container with containerCategory normal
+    selectedBaggageList = depot.selectBulkyBaggage();
+    //TODO Add to container with containerCategory bulky
+  }
+
+  /**
+   * TODO: check
+   */
+  @Override
+  public void loadContainer() {
+    baggageSortingUnit.getVehicle().store(moveBaggage());
+  }
+
+  /**
+   * clears selected baggage list
+   *
+   * @return content of selected baggage list
+   */
+  private ArrayList<Baggage> moveBaggage() {
+    final ArrayList<Baggage> temp = selectedBaggageList;
+    selectedBaggageList.clear();
+    return temp;
+  }
 }

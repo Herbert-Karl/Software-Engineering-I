@@ -1,25 +1,28 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
-import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
+import Airport.Airport.Gate;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
+import Airport.Base.Container;
 
-public interface IContainerLifter extends Airport.Baggage_Sorting_Unit.Vehicles.IVehicle {
+public interface IContainerLifter extends IVehicle {
 
-    void connectToAirplane();
+  void connectToAirplane();
 
-    void up();
+  void up();
 
-    void transferContainerToCargoSystem();
+  void transferContainerToCargoSystem();
 
-    void down();
+  void down();
 
-    void disconnectFromAirplane();
+  void disconnectFromAirplane();
 
-    void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt);
+  void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt);
 
-    void returnToAirportResourcePool();
+  void returnToAirportResourcePool();
 
-    void setContainer(Airport.Base.Container c);
+  void setContainer(Container c);
 
-    IBaggageSortingUnit getBaggageSortingUnit():
+  void setGate(Gate gate);
+
+  Gate getGate();
 }

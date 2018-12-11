@@ -1,6 +1,6 @@
 package Airplane.FlightControls;
 
-interface IFlightControlController {
+public interface IFlightControlController {
     void neutral();
 
     void startup();

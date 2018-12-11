@@ -32,7 +32,9 @@ public class RunwayManagement implements IRunwayManagement {
             case EastToWest:
 
                 break;
-            return runwayToStart;
         }
+        return runwayToStart;
     }
+
+
 }
