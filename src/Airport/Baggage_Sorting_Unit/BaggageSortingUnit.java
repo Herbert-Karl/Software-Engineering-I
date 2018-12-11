@@ -82,10 +82,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     return message;
   }
 
+  @Override
   public Gate getGate() {
     return gate;
   }
 
+  @Override
   public void setGate(final Gate gate) {
     this.gate = gate;
   }

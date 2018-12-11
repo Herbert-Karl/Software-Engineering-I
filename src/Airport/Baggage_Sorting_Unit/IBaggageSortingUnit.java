@@ -1,5 +1,6 @@
 package Airport.Baggage_Sorting_Unit;
 
+import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
@@ -43,4 +44,8 @@ public interface IBaggageSortingUnit {
   BaggageDepot getDepot();
 
   IBaggageVehicle getVehicle();
+
+  void setGate(Gate gate);
+
+  Gate getGate();
 }
