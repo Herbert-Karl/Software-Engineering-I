@@ -50,7 +50,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   protected final Airport airport;
 
-  protected Gate gate;
+  private Gate gate;
 
   /**
    * Init
@@ -69,7 +69,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     emptyContainerList = new ArrayList<>();
     filledContainerList = new ArrayList<>();
     this.customs = customs;
-    airport = Airport.getAirport();
+    airport = new Airport(null, null, null, null, null, null, null, null, null,
+        null);// Airport.getAirport(); TODO get correct airport
   }
 
   @Override
@@ -79,6 +80,14 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         + destinationBox + "\nFilled containers: " + filledContainerList;
 
     return message;
+  }
+
+  public Gate getGate() {
+    return gate;
+  }
+
+  public void setGate(final Gate gate) {
+    this.gate = gate;
   }
 
   public ArrayList<Employee> getEmployeeList() {
