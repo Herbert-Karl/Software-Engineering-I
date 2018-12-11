@@ -4,8 +4,3 @@ container.addAll() // hinzufügen con collections zu container
 container.getID
 aiport. getGroundOperations
 airport.getChinInMediator
-
-
-
-
-
