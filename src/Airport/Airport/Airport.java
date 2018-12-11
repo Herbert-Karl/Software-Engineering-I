@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
+import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Base.Passenger;
 import Airport.Checkin_Desk.CheckInMediator;
@@ -93,17 +94,17 @@ public class Airport{
             return false;}
     }
 
-    public boolean executeServiceWasteWater(GateID gateID){
+    public boolean executeServiceWasteWater(Gate gate){
         ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
-        boolean b = groundOperationsCenter.assign(serviceVehicle);
-        serviceVehicle.executeRequest(gateID);
+        boolean b = groundOperationsCenter.assign(serviceVehicle, gate);
+        serviceVehicle.executeRequest(gate.getGateID());
         //TODO: get Receipt from Ground Operations
         resourcePool.returnResource(serviceVehicle);
         return b;
     }
 
     public boolean executeCheckIn(Flight flight){
-        checkInMediator.executeRequest();
+        checkInMediator.executeRequest(flight);
         //get Receipt from Ground operations
         return true;
     }
@@ -120,8 +121,9 @@ public class Airport{
     }
 
     public boolean executeAirCargo(GateID gateID){
-        AirCargoPalletVehicle airCargoPalletVehicle = resourcePool.
+        AirCargoPalletVehicle airCargoPalletVehicle = resourcePool.takeResource("AirCargoPalletVehicle");
         //TODO
+        resourcePool.returnResource(airCargoPalletVehicle);
         return false;
     }
 
