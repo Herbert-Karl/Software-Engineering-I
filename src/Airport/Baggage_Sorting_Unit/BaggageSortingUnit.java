@@ -16,6 +16,7 @@ import Airport.Base.BaggageSecurityStatus;
 import Airport.Base.Container;
 import Airport.Base.DestinationBox;
 import Airport.Base.Employee;
+import Airport.Base.IDCard;
 import Airport.Base.LuggageTub;
 import Airport.Customs.ICustoms;
 import Airport.Scanner.BaggageScanner;
@@ -61,14 +62,23 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     this.employeeList = employeeList;
     this.baggageScanner = baggageScanner;
-    roboter = new BaggageSortingUnitRoboter(this);
-    baggageDepot = new BaggageDepot();
+    roboter = new BaggageSortingUnitRoboter(this, "42", "42", "42");//TODO init correctly
+    baggageDepot = new BaggageDepot("42");//TODO set correct UUID
     this.destinationBox = destinationBox;
     emptyLuggageTubList = new ArrayList<>();
     emptyContainerList = new ArrayList<>();
     filledContainerList = new ArrayList<>();
     this.customs = customs;
     airport = Airport.getAirport();
+  }
+
+  @Override
+  public String toString() {
+    String message = "Employees: " + employeeList + "\nScanner: " + baggageScanner + "\nRoboter: "
+        + roboter + "\nDepot: " + baggageDepot + "\nDestination box: " + destinationBox
+        + "\nFilled containers: " + filledContainerList;
+
+    return message;
   }
 
   @Override
@@ -83,13 +93,15 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   /**
    * TODO: check Kickoff routine
+   * <p>
+   * kicks of the routine for sorting all Baggage from the given Gate
    */
   @Override
   public void executeRequest(final GateID gateID) {
     setGate(gateID);
-    ArrayList<LuggageTub> fullTubs=new ArrayList<>();//TODO get list of full tubs
+    final ArrayList<LuggageTub> fullTubs = new ArrayList<>();//TODO get list of full tubs
     loginBaggageScanner(employeeList.get(0),
-        employeeList.get(0).getPassword());//TODO get correct user and pw
+        "420");//TODO get correct user and pw employeeList.get(0).getPassword()
     LuggageTub l;
     while (!fullTubs.isEmpty()) {
       l = fullTubs.remove(0);
@@ -105,7 +117,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
       emptyDestinationBox();
     }
 
-    loadBaggageVehicle(strategy);//TODO: get loadingstrategy
+    loadBaggageVehicle(new LoadingStrategy());//TODO: get correct LoadingStrategy
 
     sendBaggageVehicleToGate();
 
@@ -126,7 +138,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void loginBaggageScanner(final Employee employee, final String password) {
-    baggageScanner.login(employee.getIdCard(), password);
+    baggageScanner.login(new IDCard(), password);//TODO employee.getIdCard()
   }
 
   /**
@@ -142,7 +154,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public boolean scan(final Baggage baggage, final String pattern) {
-
     return baggageScanner.scan(baggage, pattern);
   }
 
@@ -157,7 +168,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * checks baggage and decides where to move it
+   * checks baggage and sets securityStatus
+   * adds it to destinationBox or hands over to customs
    */
   @Override
   public void throwOff(final LuggageTub luggageTub, final DestinationBox destinationBox) {
@@ -168,13 +180,16 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     if (scan(toCheck, pattern)) {//TODO check return value
       toCheck.setSecurityStatus(
           BaggageSecurityStatus.clean);//möglicherweise nicht nötig je nach implementierung von scan
-      destinationBox.add(toCheck);
+      //destinationBox.add(toCheck); TODO add Baggage to destination box
     } else {
       toCheck.setSecurityStatus(BaggageSecurityStatus.dangerous);
       handOverToCustoms(toCheck);
     }
   }
 
+  /**
+   * Tells Robot to move all baggage to the depot and clears local box
+   */
   @Override
   public void emptyDestinationBox() {
     roboter.moveBaggageToDepot(destinationBox.getBaggageList());
@@ -182,7 +197,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * get lifter from baggageVehicle and run a routine
+   * get lifter from baggageVehicle move it and set the gate
    */
   @Override
   public void sendContainerLifterToGate() {
@@ -196,12 +211,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * TODO: check
+   * Creates AirplaneLoadingManagement to balance a strategy
    */
   @Override
   public void optimizeAirplaneLoading() {
     final AirplaneLoadingManagement manage
-        = new AirplaneLoadingManagement();//AirplaneLoadingManagement magically appears
+        = new AirplaneLoadingManagement();//TODO AirplaneLoadingManagement magically appears
     manage.optimizeBalancing();
     loadBaggageVehicle(manage.getStrategy());
   }
@@ -212,6 +227,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
+   * Tells robot to select Baggage and load the container
    * TODO: use strategy
    */
   @Override
@@ -220,6 +236,9 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     roboter.loadContainer();
   }
 
+  /**
+   * Moves vehicle and sets gate
+   */
   @Override
   public void sendBaggageVehicleToGate() {
     baggageVehicle.setFlashingLightOn();
@@ -230,23 +249,27 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   }
 
   /**
-   * TODO: need airpotr get groundOp
+   * gets GroundoperationsCenter and notifys it with the receipt
    */
   @Override
   public void notifyGroundOperations(final BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
-    airport.getGroundOperationsCenter().notify(baggageSortingUnitReceipt);
+    //airport.getOps() TODO get correct Groundoperation
+    //new GroundOperationsCenter().notify(baggageSortingUnitReceipt); TODO call correct notify
   }
 
   /**
-   * TODO: need airport.getCheckIn
+   * Returns empty luggage tubs via CheckInMediator
    */
   @Override
   public void returnEmptyLuggageTubToCheckInDesk() {
-    airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList);
+    //airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList); TODO Get Mediator from airport
     emptyLuggageTubList.clear();
   }
 
-  protected void setGate(final GateID id) {
+  /**
+   * finds correct gate for the ID and sets internal attribute
+   */
+  private void setGate(final GateID id) {
     for (final Gate g : airport.getGateList()) {
       if (g.getGateID() == id) {
         gate = g;
