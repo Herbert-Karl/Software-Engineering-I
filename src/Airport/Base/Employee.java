@@ -21,4 +21,8 @@ public class Employee{
     public void setIdCard(IDCard idCard){
        this.idCard = idCard;
     }
+
+    public String getUuid(){
+        return uuid;
+    }
 }
