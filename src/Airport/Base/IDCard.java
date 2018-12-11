@@ -1,16 +1,17 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public class IDCard{
     private String uuid;
     private Employee employee;
     private String password;
 
     public IDCard(){
-        this.uuid = uuid;
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.employee = null;
         this.password = "SHA-265";
-        UUID uuid = UUID.randomUUID();
-        this uuid = uuid.toString();
     }
 
     public void setEmployee(Employee employee){

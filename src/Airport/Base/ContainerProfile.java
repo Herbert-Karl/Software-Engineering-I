@@ -1,8 +1,8 @@
-package Ariport.Base;
+package Airport.Base;
 
 public class ContainerProfile {
-    private string destination;
-    private string stowagePositionID;
+    private String destination;
+    private String stowagePositionID;
     private int numberOfBaggage;
     private double totalWeight;
 
