@@ -4,20 +4,20 @@ import Airport.Base.Baggage;
 import Airport.Base.Container;
 
 import java.util.Collection;
-@Deprecated
+
 public interface IBaggageVehicle extends IVehicle {
 
-    void store(Container container);
+  void store(Container container);
 
-    void store(Collection<Baggage> b);
+  void store(Collection<Baggage> b);
 
-    void connect(IContainerLifter containerLifter);
+  void connect(IContainerLifter containerLifter);
 
-    void transferContainerToLifter();
+  void transferContainerToLifter();
 
-    void disconnect();
+  void disconnect();
 
-    void returnToBaggageSortingUnit();
+  void returnToBaggageSortingUnit();
 
-    IContainerLifter getContainerLifter();
+  IContainerLifter getContainerLifter();
 }
