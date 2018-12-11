@@ -94,7 +94,6 @@ public class AirportResourcePool{
         for(int i = 0; i<anzahl; i++){
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            //NEED TO SET PARAMETERS
            AirCargoPalletVehicle palletVehicle = new AirCargoPalletVehicle(uuid.toString(), id, "", 0,false,null,null,null);
            //In Liste schreiben
             airCargoPalletVehicleList.add(palletVehicle);
@@ -106,10 +105,13 @@ public class AirportResourcePool{
         containerLifterList = new ArrayList(anzahl);
         int zaehler = 2500;
         //type?
-        for(int i = 0; i<anzahl; i++){
+        for(int i = 0; i<anzahl; i++) {
+            UUID uuid = UUID.randomUUID();
+            String id = "" + zaehler;
            //NEED TO SET PARAMETERS
-           ContainerLifter containerLifter = new ContainerLifter();
+           ContainerLifter containerLifter = new ContainerLifter(uuid.toString(), id, "");
             containerLifterList.add(containerLifter);
+            zaehler++;
         }
     }
 
@@ -118,9 +120,11 @@ public class AirportResourcePool{
         int zaehler = 3000;
         //type?
         for(int i = 0; i<anzahl; i++){
-           //NEED TO SET PARAMETERS
-            BaggageVehicle baggageVehicle = new BaggageVehicle();
+            UUID uuid = UUID.randomUUID();
+            String id = "" + zaehler;
+            BaggageVehicle baggageVehicle = new BaggageVehicle(uuid.toString(), id, "", null);
             baggageVehicleList.add(baggageVehicle);
+            zaehler++;
         }
     }
 
@@ -128,7 +132,6 @@ public class AirportResourcePool{
         serviceVehicleBaseList = new ArrayList(anzahl);
         int zaehler = 3500;
         for(int i = 0; i<anzahl; i++){
-            //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
             ServiceVehicleBase vehicleBase = new ServiceVehicleBase(uuid.toString(), id, "", 0, false, null, null, null);
@@ -141,7 +144,6 @@ public class AirportResourcePool{
         serviceVehicleFreshWaterList = new ArrayList(anzahl);
         int zaehler = 4000;
         for(int i = 0; i<anzahl; i++){
-           //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
            ServiceVehicleFreshWater freshWater = new ServiceVehicleFreshWater(uuid.toString(), id, "", 0, false, null, null, null);
@@ -156,7 +158,6 @@ public class AirportResourcePool{
         int zaehler = 4500;
         //type?
         for(int i = 0; i<anzahl; i++){
-            //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
            ServiceVehicleNitrogenOxygen nitrogenOxygen = new ServiceVehicleNitrogenOxygen(uuid.toString(), id, "", 0, false, false, null, null, null);
