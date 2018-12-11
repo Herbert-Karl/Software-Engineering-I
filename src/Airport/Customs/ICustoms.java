@@ -1,10 +1,8 @@
 package Airport.Customs;
 
-import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
-import Airport.Base.Baggage;
-import Airport.Base.Employee;
-import Airport.Base.Item;
+import Airport.Base.*;
 import Airport.Scanner.IBaggageScanner;
+import Airport.Baggage_Sorting_Unit.*;
 
 import java.util.ArrayList;
 
