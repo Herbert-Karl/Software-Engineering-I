@@ -17,10 +17,29 @@ public class BaggageDepot {
     baggageList = new ArrayList<>();
   }
 
-  void store(final Baggage baggage) {
+  public String getUuid() {
+    return uuid;
+  }
+
+  @Override
+  public String toString() {
+    String content = "UUID: " + uuid + "\nStored Baggage: ";
+    for (final Baggage b : baggageList) {
+      content += "\n    " + b;
+    }
+    return content;
+  }
+
+  /**
+   * adds baggage to baggageList
+   */
+  private void store(final Baggage baggage) {
     baggageList.add(baggage);
   }
 
+  /**
+   * adds a collection of baggage to BaggageList
+   */
   void storeAll(final Iterable<Baggage> baggage) {
     for (final Baggage b : baggage) {
       store(b);
@@ -28,7 +47,10 @@ public class BaggageDepot {
   }
 
   /**
-   * @param ticketClassString What does this do?
+   * returns all instances of NormalBaggage from the baggageList
+   * * Does not remove the instances
+   *
+   * @param ticketClassString What does this do? TODO
    */
   ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
 
@@ -42,7 +64,8 @@ public class BaggageDepot {
   }
 
   /**
-   *
+   * returns all instances of BulkyBaggage from the baggageList
+   * * Does not remove the instances
    */
   ArrayList<Baggage> selectBulkyBaggage() {
 

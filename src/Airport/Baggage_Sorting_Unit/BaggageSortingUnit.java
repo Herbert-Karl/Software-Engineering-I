@@ -87,7 +87,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   @Override
   public void executeRequest(final GateID gateID) {
     setGate(gateID);
-    ArrayList<LuggageTub> fullTubs;//TODO get list of full tubs
+    ArrayList<LuggageTub> fullTubs=new ArrayList<>();//TODO get list of full tubs
     loginBaggageScanner(employeeList.get(0),
         employeeList.get(0).getPassword());//TODO get correct user and pw
     LuggageTub l;
