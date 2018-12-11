@@ -1,13 +1,11 @@
 package Airport.Ground_Operations;
 
-import Airplane.Aircraft.Configuration;
 import Airport.AirCargoPalletLifter.AirCargoPalletLifterReceipt;
 import Airport.AirCargoPalletLifter.IAirCargoPalletLifter;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
-import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Customs.CustomsReceipt;
@@ -75,6 +73,10 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     public void setAirport(Airport airport){
         this.airport = airport;
+    }
+
+    public ArrayList<ServiceVehicleWasteWaterReceipt> getServiceVehicleWasteWaterReceiptList() {
+        return serviceVehicleWasteWaterReceiptList;
     }
 
     ///
