@@ -7,6 +7,7 @@ import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
+import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Customs.CustomsReceipt;
@@ -89,9 +90,12 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     @Override
     public boolean assign(IContainerLifter containerLifter, Gate gate) {
-        containerLifter.setGate(gate.getGateID());
-        return false;
-        //TODO
+        if(containerLifter.getGate() == null) {
+            containerLifter.setGate(gate.getGateID());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
