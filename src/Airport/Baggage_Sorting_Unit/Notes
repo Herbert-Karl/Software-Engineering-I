@@ -1,3 +1,7 @@
 Wo kommt das Pattern für Scan her?
 werden container nach containerType oder ContainerCategoy befüllt oder ist die funktion redundant
 Ausbalancierung von stowag mit BruteForce? was soll das heissen
+    LoadingStrategy für rear, eine für front???????????????
+BaggageSortUnit: emptyContainerList in Konstruktor befüllen, müssen wir checken ob emptyList leer ist?
+sendBaggageVehicle/ContainerLifter toGate bekommt keinen Parameter Gate
+verschiedene Stowage Container? Unterschied Rear Front?

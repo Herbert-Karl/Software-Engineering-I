@@ -57,6 +57,7 @@ public class BaggageDepot {
     final ArrayList<Baggage> normal = new ArrayList<>();
     for (final Baggage b : baggageList) {
       if (b instanceof NormalBaggage) {
+        //TODO: hier filter nach baggageClass über b.getBaggageIdentificationTag().getBoardingPass().getTicketClass() == ticketClassString i guess
         normal.add(b);
       }
     }
