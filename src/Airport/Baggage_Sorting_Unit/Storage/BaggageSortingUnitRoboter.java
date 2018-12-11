@@ -1,7 +1,9 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
+import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 import Airport.Base.Baggage;
+import Airport.Base.ContainerCategory;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   private final String type;
 
-  private final IBaggageSortingUnit baggageSortingUnit;
+  private final BaggageSortingUnit baggageSortingUnit;
 
   public ArrayList<Baggage> getSelectedBaggageList() {
     return selectedBaggageList;
@@ -21,7 +23,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   private ArrayList<Baggage> selectedBaggageList;
 
-  public BaggageSortingUnitRoboter(final IBaggageSortingUnit baggageSortingUnit, final String uuid,
+  public BaggageSortingUnitRoboter(final BaggageSortingUnit baggageSortingUnit, final String uuid,
       final String id, final String type) {
     this.uuid = uuid;
     this.id = id;
@@ -75,13 +77,14 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
   public void selectBaggageFromDepot() {
     final BaggageDepot depot = baggageSortingUnit.getDepot();
     selectedBaggageList = depot.selectNormalBaggage(
-        "42 is always the correct class");//TODO add correct class string
-    //TODO Add to container with containerCategory normal
+        "42 is always the correct ticketClass");//TODO add correct class string
+    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
     selectedBaggageList = depot.selectBulkyBaggage();
-    //TODO Add to container with containerCategory bulky
+    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Bulky).setBaggageList(selectedBaggageList);TODO setBaggageList
   }
 
   /**
+   * moves baggage to the container on the baggageVehicle
    * TODO: check
    */
   @Override
