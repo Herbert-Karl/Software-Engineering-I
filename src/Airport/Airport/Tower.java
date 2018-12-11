@@ -1,12 +1,15 @@
 package Airport.Airport;
 
-public class Tower{
+
+import Airplane.Airplane;
+
+public class Tower implements ITower{
     private Airport airport;
     private String frequency;
     private IRunwayManagement runwayManagement;
     private WindDirection windDirection;
 
-    public Tower(Airport airport, IRunwayManagement runwayManagement, WindDirection windDirection;){
+    public Tower(Airport airport, IRunwayManagement runwayManagement, WindDirection windDirection){
         this.airport = airport;
         this.runwayManagement = runwayManagement;
         this.windDirection = windDirection;
@@ -31,10 +34,12 @@ public class Tower{
 
     public void recieveFireAlarm(Airplane airplane){
         //TODO
+
     }
 
     public AlarmType determineAlarmType(Airplane airplane){
         //TODO
+        return null;
     }
 
     public void alarm(RunwayID runwayID, Airplane airplane){
