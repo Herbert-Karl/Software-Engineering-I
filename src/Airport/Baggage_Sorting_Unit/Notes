@@ -1,0 +1,18 @@
+Wie ist BulkyBaggage definiert? gewicht?
+robot.selectBagaggeFromDepot. Was soll geholt werden? alles?
+robot.loadContainer wo ist der container? wenn auf dem Vehicle dann gut
+Interaktion mit resourcePool. wie bekomme ich resourcen on owher weis der pool was ich brauche(anzahl empleyee usw)
+Wo kommt das Pattern für Scan her?
+SortingUnit.sendLiftertoGate. Soll das vehicle losschicken und dieses schickt den lifter los?
+SortingUnit.setBaggageVehicle. was macht eine setter methode ohne parameter?
+container könnte ein addAll oder ähnliches gebrauchen um baggae hinzuzufügen
+Lifter up down nur bool setzen?
+connect disconnect airplane?
+Ground Operation. wo wird die instanz gehalten
+wie kann ich enums zu objekten referenzieren (zb: gateid zu gate)
+was machen uuid und id, bzw welche values haben diese
+baggagevehicle disconnect. warum benötigt es einen parameter
+für was sind dich lichter? immer an wenn fahren oder was?
+werden container nach containerType oder ContainerCategoy befüllt oder ist die funktion redundant
+Ausbalancierung von stowag mit BruteForce? was soll das heissen
+Was wird für Normal/Bulkybackage controlliert? instanceof?

@@ -50,12 +50,60 @@ public class CostOptimizer implements ICostOptimizer {
     }
 
     public boolean validate(int costIndex) {
-        return costIndex <= 4 || costIndex >= 1;
+        return costIndex <= 5 && costIndex >= 1;
 
     }
 
     public void off() {
         isOn = false;
 
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public void setOn(boolean on) {
+        isOn = on;
+    }
+
+    public ArrayList<CheckPoint> getCheckPointList() {
+        return checkPointList;
+    }
+
+    public void setCheckPointList(ArrayList<CheckPoint> checkPointList) {
+        this.checkPointList = checkPointList;
+    }
+
+    public int getCostIndex() {
+        return costIndex;
+    }
+
+    public void setCostIndex(int costIndex) {
+        this.costIndex = costIndex;
     }
 }
