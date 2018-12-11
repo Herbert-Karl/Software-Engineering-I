@@ -1,13 +1,16 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public class LuggageTub {
-    private string uuid;
-    private string barCode;
-    private string barCodeDestinationBox;
+    private String uuid;
+    private String barCode;
+    private String barCodeDestinationBox;
     private Baggage baggage;
 
-    public LuggageTub(String uuid, String barCode, String barCodeDestinationBox, Baggage baggage){
-        this.uuid = uuid;
+    public LuggageTub(String barCode, String barCodeDestinationBox, Baggage baggage){
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.barCode = barCode;
         this.barCodeDestinationBox = barCodeDestinationBox;
         this.baggage = baggage;

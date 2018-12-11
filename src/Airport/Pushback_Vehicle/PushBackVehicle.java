@@ -1,6 +1,12 @@
-package src.Airport.PushBack_Vehicle;
+package Airport.Pushback_Vehicle;
 
-public class PushBackVehicle implements IPushBackVehicle{
+import Airplane.Aircraft.Airplane;
+import Airport.Airport.TaxiWay;
+import Airport.Ground_Operations.GroundOperationsCenter;
+import Airport.Pushback_Vehicle.IPushBackVehicle;
+import Airport.Pushback_Vehicle.PushBackVehicleReceipt;
+
+public class PushBackVehicle implements IPushBackVehicle {
 
     private String uuid;
     private String id;
@@ -32,7 +38,7 @@ public class PushBackVehicle implements IPushBackVehicle{
         isAirplaneConnected = false;
     }
 
-    public void execute(Airplane airplane, Taxiway taxiWay) {
+    public void execute(Airplane airplane, TaxiWay taxiWay) {
 
     }
 

@@ -1,13 +1,14 @@
 package Airport.Base;
 
+import Airport.Base.Baggage;
+
 public class NormalBaggage extends Baggage{
     private BaggageIdentificationTag baggageIdentificationTag;
 
-    public NormalBaggage(String uuid, String content, String weight, BaggageIdentificationTag baggageIdentificationTag){
-        this.uuid = uuid;
-        this.content = content;
-        this.weight = weight;
-        this.secutityStatus = null;
+    public NormalBaggage(String content, double weight, BaggageIdentificationTag baggageIdentificationTag){
+        setContent(content);
+        setWeight(weight);
+        setSecurityStatus(null);
         this.baggageIdentificationTag = baggageIdentificationTag;
     }
 

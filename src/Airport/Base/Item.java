@@ -1,13 +1,16 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public class Item{
     private String uuid;
     private int id;
     private String content;
     private double weight;
 
-    public Item(String uuid, int id, String content, double weight){
-        this.uuid = uuid;
+    public Item(int id, String content, double weight){
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.id = id;
         this.content = content;
         this.weight = weight;
