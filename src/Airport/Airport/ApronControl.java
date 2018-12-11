@@ -1,5 +1,9 @@
 package Airport.Airport;
 
+import Airplane.Aircraft.Airplane;
+
+import java.util.ArrayList;
+
 public class ApronControl{
     private Airport airport;
     private Apron apron;
@@ -15,22 +19,27 @@ public class ApronControl{
 
     public boolean approveRequestStartEngines(Airplane aiplane){
         //TODO
+        return false;
     }
 
     public boolean approveRequestPushback(Airplane airplane){
         //TODO
+        return false;
     }
 
     public RunwayCheckPointID requestRunwayCheckPointID(Airplane airplane){
 
         //TODO
+        return null;
     }
 
     public TaxiWay search(TaxiCenterLine taxiCenterLine, GateID gateID, RunwayID runwayID){
         //TODO
+        return null;
     }
 
-    public bloolean approveRequestTaxi(Airplane airplane, TaxiWay taxiWay){
+    public boolean approveRequestTaxi(Airplane airplane, TaxiWay taxiWay){
         //TODO
+        return false;
     }
 }

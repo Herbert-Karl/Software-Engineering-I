@@ -1,7 +1,7 @@
 package Airport.Base;
 
 public class CottonPad {
-    private string surface;
+    private String surface;
 
     public CottonPad(String surface) {
         this.surface = surface;

@@ -2,9 +2,10 @@ package Airport.Base;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class DestinationBox {
-    private string uuid;
+    private String uuid;
     private Flight flight;
     private ArrayList<Baggage> baggageList;
     private int maximumNumberOfBaggages = 50;

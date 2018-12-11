@@ -1,4 +1,9 @@
-package src.Airport.Boarding_Control;
+package Airport.Boarding_Control;
+
+import Airport.Airport.Gate;
+import Airport.Base.BoardingPass;
+
+import java.util.ArrayList;
 
 public class BoardingControlReceipt {
 

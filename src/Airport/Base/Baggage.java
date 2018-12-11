@@ -1,5 +1,7 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public abstract class Baggage{
     private String uuid;
     private String content;
@@ -9,7 +11,12 @@ public abstract class Baggage{
     public Baggage(String content, double weight){
         this.content = content;
         this.weight = weight;
-        UUID uuid = UUID.ramdomUUID();
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
+    }
+
+    public Baggage(){
+        UUID uuid = UUID.randomUUID();
         this.uuid = uuid.toString();
     }
 
@@ -19,5 +26,15 @@ public abstract class Baggage{
 
     public double getWeight() {
         return weight;
+    }
+
+    public void setContent(String content){
+        this.content = content;
+    }
+    public void setWeight(double weight){
+        this.weight = weight;
+    }
+    public void setSecurityStatus(BaggageSecurityStatus securityStatus){
+        this.securityStatus = securityStatus;
     }
 }
