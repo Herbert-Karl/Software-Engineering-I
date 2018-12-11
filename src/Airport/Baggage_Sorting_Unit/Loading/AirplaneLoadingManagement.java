@@ -1,6 +1,6 @@
 package Airport.Baggage_Sorting_Unit.Loading;
 
-public class AirplaneLoadingManagement implements IAirplaneLoadingManagementt {
+public class AirplaneLoadingManagement implements IAirplaneLoadingManagement {
 
   public LoadingStrategy getStrategy() {
     return strategy;
@@ -21,6 +21,5 @@ public class AirplaneLoadingManagement implements IAirplaneLoadingManagementt {
    */
   @Override
   public void optimizeBalancing() {
-
   }
 }
