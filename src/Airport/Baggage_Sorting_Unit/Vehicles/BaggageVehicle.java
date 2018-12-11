@@ -39,6 +39,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     this.unit = unit;
   }
 
+  @Override
   public String toString() {
     String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
         + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";

@@ -15,6 +15,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   private final IBaggageSortingUnit baggageSortingUnit;
 
+  public ArrayList<Baggage> getSelectedBaggageList() {
+    return selectedBaggageList;
+  }
+
   private ArrayList<Baggage> selectedBaggageList;
 
   public BaggageSortingUnitRoboter(final IBaggageSortingUnit baggageSortingUnit, final String uuid,

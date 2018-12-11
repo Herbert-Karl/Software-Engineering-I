@@ -4,8 +4,10 @@ import Airplane.Aircraft.Airplane;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
+import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Base.Container;
 
 import java.util.ArrayList;
@@ -34,10 +36,10 @@ public class ContainerLifter implements IContainerLifter {
 
   private int numberOfContainerLoaded;
 
-  public ContainerLifter(final String uuid, final String id) {
+  public ContainerLifter(final String uuid, final String id, String type) {
     this.uuid = uuid;
     this.id = id;
-    type = null;//TODO set type to something useful
+    this.type = type;
     speedInMPH = 0;
     isFlashingLightOn = false;
     numberOfContainerLoaded = 0;
@@ -45,14 +47,62 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   @Override
+  public String toString() {
+    String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
+        + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";
+    message += ((isFlashingLightOn) ? "on" : "off");
+    message += "\nCurrent Gate: " + gate + "\nCurrent fork position: ";
+    message += ((isDown) ? "down" : "up");
+    message += "\nNumber of loaded containers: " + numberOfContainerLoaded
+        + "\nConnected Airplane: " + connectedAirplane + "\nList of container ID'S: ";
+
+    for (final String c : containerIDList) {
+      message += c + ", ";
+    }
+
+    return message;
+  }
+
+  public String getUuid() {
+    return uuid;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public int getSpeedInMPH() {
+    return speedInMPH;
+  }
+
+  public boolean isFlashingLightOn() {
+    return isFlashingLightOn;
+  }
+
+  public boolean isDown() {
+    return isDown;
+  }
+
+  public Airplane getConnectedAirplane() {
+    return connectedAirplane;
+  }
+
+  /**
+   * sets container, adds its ID to the list and ups te number of containers loaded
+   */
+  @Override
   public void setContainer(final Container c) {
     container = c;
-    containerIDList.add(c.getID());
+    containerIDList.add("42");//TODO Get actual container id (c.getID())
     numberOfContainerLoaded++;
   }
 
   /**
-   * Sets the connected airplane to the instance which is connected to the current gate
+   * Sets the connected airplane to the instance at to the current gate
    */
   @Override
   public void connectToAirplane() {
@@ -73,9 +123,8 @@ public class ContainerLifter implements IContainerLifter {
   }
 
   /**
-   * TODO: use strategy
+   * TODO: use strategy (probably for cargosystem and frontStowagePositionID
    */
-  @Override
   public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
     if (!isDown) {
       down();
@@ -110,8 +159,8 @@ public class ContainerLifter implements IContainerLifter {
    */
   @Override
   public void notifyGroundOperations(final ContainerLifterReceipt containerLifterReceipt) {
-    Airport.getAirport().getGroundOperatiosn.notify(
-        containerLifterReceipt);//TODO needs airport get GroundOps
+    // Airport.getAirport().getGroundOperatiosn() TODO get correct operation
+    // new GroundOperationsCenter().notify(containerLifterReceipt);//magically spawns Operation Center TODO call correct notify function
   }
 
   /**
@@ -135,8 +184,10 @@ public class ContainerLifter implements IContainerLifter {
     connectToAirplane();
     transferContainerToCargoSystem();
     disconnectFromAirplane();
-    notifyGroundOperations(new ContainerLifterReceipt(uuid, id, type, getBaggageSortingUnit(),
-        roboter.getSelectedBaggage()));//TODO add correct values for receipt
+    notifyGroundOperations(new ContainerLifterReceipt(uuid, id, type,
+        new BaggageSortingUnit(null, null, null, null),/*TODO get correct baggaeSortingunit*/
+        new BaggageSortingUnitRoboter(null, null, null,
+            null).getSelectedBaggageList()));/*TODO get correct BaggageSortingRobot*/
     returnToAirportResourcePool();
   }
 
@@ -145,11 +196,17 @@ public class ContainerLifter implements IContainerLifter {
     isFlashingLightOn = true;
   }
 
+  /**
+   * sets speed
+   */
   @Override
   public void move(final int speedInMPH) {
     this.speedInMPH = speedInMPH;
   }
 
+  /**
+   * sets speed to 0
+   */
   @Override
   public void stop() {
     speedInMPH = 0;
