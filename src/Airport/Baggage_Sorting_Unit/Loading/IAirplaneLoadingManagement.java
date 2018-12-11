@@ -1,6 +1,6 @@
 package Airport.Baggage_Sorting_Unit.Loading;
 
-public interface IAirplaneLoadingManagementt {
+public interface IAirplaneLoadingManagement {
 
   void optimizeBalancing();
 }
