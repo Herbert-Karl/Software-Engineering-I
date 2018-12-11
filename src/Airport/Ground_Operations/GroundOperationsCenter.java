@@ -32,7 +32,7 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     private ArrayList<AirCargoPalletLifterReceipt> airCargoPalletLifterReceiptList;
     private ArrayList<BaggageSortingUnitReceipt> baggageSortingUnitReceiptList;
     private ArrayList<ContainerLifterReceipt> containerLifterReceiptList;
-    private ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptLis;
+    private ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptList;
     private ArrayList<ServiceVehicleNitrogenOxygenReceipt> serviceVehicleNitrogenOxygenReceiptList;
     private ArrayList<ServiceVehicleFreshWaterReceipt> serviceVehicleFreshWaterReceiptList;
     private ArrayList<FuelReceipt> fuelReceiptList;
@@ -109,77 +109,77 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     @Override
     public void receive(FuelReceipt fuelReceipt) {
-        //TODO
+        fuelReceiptList.add(fuelReceipt);
     }
 
     @Override
     public void receive(CustomsReceipt customsReceipt) {
-        //TODO
+        customsReceiptList.add(customsReceipt);
     }
 
     @Override
     public void receive(CheckInDeskReceipt checkInReceipt) {
-        //TODO
+        checkInReceiptList.add(checkInReceipt);
     }
 
     @Override
     public void receive(FederalPoliceReceipt federalPoliceReceipt) {
-        //TODO
+        federalPoliceReceiptList.add(federalPoliceReceipt);
     }
 
     @Override
     public void receive(SecurityCheckReceipt securityCheckReceipt) {
-        //TODO
+        securityCheckReceiptList.add(securityCheckReceipt);
     }
 
     @Override
     public void receive(BoardingControlReceipt boardingControlReceipt) {
-        //TODO
+        boardingControlReceiptList.add(boardingControlReceipt);
     }
 
     @Override
     public void receive(ContainerLifterReceipt containerLifterReceipt) {
-        //TODO
+        containerLifterReceiptList.add(containerLifterReceipt);
     }
 
     @Override
     public void receive(PushBackVehicleReceipt pushBackVehicleReceipt) {
-        //TODO
+        pushBackVehicleReceiptList.add(pushBackVehicleReceipt);
     }
 
     @Override
     public void receive(BulkyBaggageDeskReceipt bulkyBaggageDeskReceipt) {
-        //TODO
+        bulkyBaggageDeskReceiptList.add(bulkyBaggageDeskReceipt);
     }
 
     @Override
     public void receive(BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
-        //TODO
+        baggageSortingUnitReceiptList.add(baggageSortingUnitReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleBaseReceipt serviceVehicleBaseReceipt) {
-        //TODO
+        serviceVehicleBaseReceiptList.add(serviceVehicleBaseReceipt);
     }
 
     @Override
     public void receive(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt) {
-        //TODO
+        airCargoPalletLifterReceiptList.add(airCargoPalletLifterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleFreshWaterReceipt serviceVehicleFreshWaterReceipt) {
-        //TODO
+        serviceVehicleFreshWaterReceiptList.add(serviceVehicleFreshWaterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleWasteWaterReceipt serviceVehicleWasteWaterReceipt) {
-        //TODO
+        serviceVehicleWasteWaterReceiptList.add(serviceVehicleWasteWaterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleNitrogenOxygenReceipt serviceVehicleNitrogenOxygenReceipt) {
-        //TODO
+        serviceVehicleNitrogenOxygenReceiptList.add(serviceVehicleNitrogenOxygenReceipt);
     }
 
     ///
