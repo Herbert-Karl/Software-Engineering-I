@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import Airplane.Aircraft.Airplane;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Base.Passenger;
+import Airport.Checkin_Desk.CheckInMediator;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
@@ -47,28 +48,6 @@ public class Airport{
         this.tower = tower;
     }
 
-    public Airport(){
-
-    }
-
-    //
-    //Singleton:
-    //
-
-    private static Airport airport = new Airport();
-    public static Airport getAirport(){
-        return airport;
-    }
-
-    public void setPassengerList(ArrayList<Passenger> passengerList){
-        this.passengerList = passengerList;
-    }
-    public void setResourcePool(AirportResourcePool resourcePool){ this.resourcePool = resourcePool;}
-    //TODO: Weitere Setter
-
-    //
-    //
-    //
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
@@ -198,9 +177,9 @@ public class Airport{
         return false;
     }
 
-    public ArrayList<Gate> getGateList() {
-        return this.gateList;
-    }
+    //
+    // Getter und Setter
+    //
 
     public AirportFuelTank getFuelTank(){
         return this.fuelTank;
@@ -209,4 +188,21 @@ public class Airport{
     public AirportResourcePool getResourcePool(){
         return this.resourcePool;
     }
+
+    public CheckInMediator getCheckInMediator() {
+        return checkInMediator;
+    }
+
+    public GroundOperationsCenter getGroundOperationsCenter() {
+        return groundOperationsCenter;
+    }
+
+    public ArrayList<Passenger> getPassengerList() {
+        return passengerList;
+    }
+
+    public ArrayList<Gate> getGateList() {
+        return this.gateList;
+    }
+
 }

@@ -31,10 +31,12 @@ public class AirportResourcePool{
     private ArrayList<IServiceVehicleNitrogenOxygen> serviceVehicleNitrogenOxigenList;
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
+    private Airport airport;
 
     AirportResourcePool(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
                                int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
-                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle){
+                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, Airport airport){
+        this.airport = airport;
         build(anzahlEmployees, anzahlAirCargoPalletLifter, anzahlAirCargoPalletVehicle, anzahlContainerLifter, anzahlBaggageVehicle,
                 anzahlServiceVehicleBase, anzahlServiceVehicleFreshWater, anzahlServiceVehicleNitogenOxygen, anzahlServiceVehicleWasteWater,
                 anzahlSkyTankingVehicle);
@@ -91,10 +93,12 @@ public class AirportResourcePool{
         //Mit Schleife generieren
         for(int i = 0; i<anzahl; i++){
             UUID uuid = UUID.randomUUID();
+            String id = "" + zaehler;
             //NEED TO SET PARAMETERS
-           AirCargoPalletVehicle palletVehicle = new AirCargoPalletVehicle();
+           AirCargoPalletVehicle palletVehicle = new AirCargoPalletVehicle(uuid.toString(), id, "", 0,false,null,null,null);
            //In Liste schreiben
             airCargoPalletVehicleList.add(palletVehicle);
+            zaehler++;
         }
     }
 
@@ -177,13 +181,13 @@ public class AirportResourcePool{
 
     private void generateSkyTankingVehicle(int anzahl){
         //set length of list
-        skyTankingVehicleList = new ArrayList(anzahl);
+        skyTankingVehicleList = new ArrayList<ISkyTankingVehicle>(anzahl);
         int zaehler = 5500;
         for(int i = 0; i<anzahl; i++){
             //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, flase);
+            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, this.airport);
             skyTankingVehicleList.add(skyTankingVehicle);
             zaehler++;
         }
@@ -199,53 +203,45 @@ public class AirportResourcePool{
                 T element= (T)employeeList.get(0);
                 employeeList.remove(0);
                 return element;
-                break;
             case "AirCargoPalletLifter":
                 T element1 = (T)airCargoPalletLifterList.get(0);
                 airCargoPalletLifterList.remove(0);
                 return element1;
-                break;
             case "AirCargoPalletVehicle":
                 T element2 = (T) airCargoPalletLifterList.get(0);
                 airCargoPalletLifterList.remove(0);
                 return element2;
-                break;
             case "ContainerLifter":
                 T element3 = (T) containerLifterList.get(0);
                 containerLifterList.remove(0);
                 return element3;
-                break;
             case "BaggageVehicle":
                 T element4 = (T) baggageVehicleList.get(0);
                 baggageVehicleList.remove(0);
                 return element4;
-                break;
             case "ServiceVehicleBase":
                 T element5 = (T) serviceVehicleBaseList.get(0);
                 serviceVehicleBaseList.remove(0);
                 return element5;
-                break;
             case "ServiceVehicleFreshWater":
                 T element6 = (T) serviceVehicleFreshWaterList.get(0);
                 serviceVehicleFreshWaterList.remove(0);
                 return element6;
-                break;
             case "ServiceVehicleNitrogenOxygen":
                 T element7 = (T) serviceVehicleNitrogenOxigenList.get(0);
                 serviceVehicleNitrogenOxigenList.remove(0);
                 return element7;
-                break;
             case "ServiceVehicleWasteWater":
                 T element8 = (T) serviceVehicleWasteWaterList.get(0);
                 serviceVehicleWasteWaterList.remove(0);
                 return element8;
-                break;
             case "SkyTankingVehicle":
                 T element9 = (T) skyTankingVehicleList.get(0);
                 skyTankingVehicleList.remove(0);
                 return element9;
-                break;
         }
+        System.out.println("Es konnte eine Resource nicht aus dem Resourcenpool geholt werden");
+        return null;
     }
 
     public <E>void returnResource(E resource){
