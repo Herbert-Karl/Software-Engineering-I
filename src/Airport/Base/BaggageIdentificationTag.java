@@ -24,4 +24,16 @@ public class BaggageIdentificationTag {
         this.baggage = baggage;
         this.barcode = barcode;
     }
+
+    public void setVia01(String via){
+        this.via01 = via;
+    }
+
+    public void setVia02(String via){
+        this.via02 = via;
+    }
+
+    public void setVia03(String via){
+        this.via03 = via;
+    }
 }

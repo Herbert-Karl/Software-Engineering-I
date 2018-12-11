@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
-import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Base.Passenger;
 import Airport.Checkin_Desk.CheckInMediator;
@@ -165,6 +164,7 @@ public class Airport{
     }
 
     public boolean executeBoardingControl(Gate gate){
+        securityMediator.executeRequest();
         //TODO
         return false;
     }
@@ -175,6 +175,7 @@ public class Airport{
     }
 
     public boolean executeGroundOperationsLogging(){
+
         //TODO
         return false;
     }
