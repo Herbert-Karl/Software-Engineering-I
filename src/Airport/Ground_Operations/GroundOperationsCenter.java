@@ -1,5 +1,6 @@
 package Airport.Ground_Operations;
 
+import Airplane.Aircraft.Configuration;
 import Airport.AirCargoPalletLifter.AirCargoPalletLifterReceipt;
 import Airport.AirCargoPalletLifter.IAirCargoPalletLifter;
 import Airport.Airport.Airport;
@@ -19,7 +20,12 @@ import Airport.Bulky_Baggage_Desk.BulkyBaggageDeskReceipt;
 import Airport.Sky_Tanking_Vehicle.FuelReceipt;
 import Airport.Sky_Tanking_Vehicle.ISkyTankingVehicle;
 
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static Airport.Configuration.Configuration.LOGFILEPATH;
 
 public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundOperationsCenterLogEngine{
     private Airport airport;
@@ -43,8 +49,23 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     ///  Konstruktor
     ///
 
-    public GroundOperationsCenter(Airport airport){
+    public GroundOperationsCenter(Airport airport, int listSize){
         this.airport = airport;
+        this.serviceVehicleWasteWaterReceiptList = new ArrayList<ServiceVehicleWasteWaterReceipt>(listSize);
+        this.checkInReceiptList = new ArrayList<CheckInDeskReceipt>(listSize);
+        this.bulkyBaggageDeskReceiptList = new ArrayList<>(listSize);
+        this.securityCheckReceiptList = new ArrayList<>(listSize);
+        this.federalPoliceReceiptList = new ArrayList<>(listSize);
+        this.customsReceiptList = new ArrayList<>(listSize);
+        this.airCargoPalletLifterReceiptList = new ArrayList<>(listSize);
+        this.baggageSortingUnitReceiptList = new ArrayList<>(listSize);
+        this.containerLifterReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleBaseReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleNitrogenOxygenReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleFreshWaterReceiptList = new ArrayList<>(listSize);
+        this.fuelReceiptList = new ArrayList<>(listSize);
+        this.boardingControlReceiptList = new ArrayList<>(listSize);
+        this.pushBackVehicleReceiptList = new ArrayList<>(listSize);
     }
 
     ///
@@ -61,48 +82,56 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     @Override
     public boolean assign(IBaggageVehicle baggageVehicle, Gate gate) {
-        //TODO
+        baggageVehicle.setGate(gate.getGateID());
         return false;
+        //TODO
     }
 
     @Override
     public boolean assign(IContainerLifter containerLifter, Gate gate) {
+        containerLifter.setGate(gate.getGateID());
         return false;
         //TODO
     }
 
     @Override
     public boolean assign(ISkyTankingVehicle skyTankingVehicle, Gate gate) {
+        skyTankingVehicle.setGate(gate.getGateID());
         //TODO
         return false;
     }
 
     @Override
     public boolean assign(IServiceVehicleBase serviceVehicleBase, Gate gate) {
+        serviceVehicleBase.setGateID(gate.getGateID());
         //TODO
         return false;
     }
 
     @Override
     public boolean assign(IAirCargoPalletLifter airCargoPalletLifter, Gate gate) {
+        airCargoPalletLifter.setGate(gate.getGateID());
         //TODO
         return false;
     }
 
     @Override
     public boolean assign(IServiceVehicleFreshWater serviceVehicleFreshWater, Gate gate) {
+        serviceVehicleFreshWater.setGateID(gate.getGateID());
         //TODO
         return false;
     }
 
     @Override
     public boolean assign(IServiceVehicleWasteWater serviceVehicleWasteWater, Gate gate) {
+        serviceVehicleWasteWater.setGateID(gate.getGateID());
         //TODO
         return false;
     }
 
     @Override
     public boolean assign(IServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen, Gate gate) {
+        serviceVehicleNitrogenOxygen.setGateID(gate.getGateID());
         //TODO
         return false;
     }
@@ -186,9 +215,22 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     /// IGroundOperationsLogEngine
     ///
 
-
+    String logFilePath = LOGFILEPATH.pathToString();
     @Override
     public void logServiceVehicleWasteWater(ArrayList<ServiceVehicleWasteWaterReceipt> serviceVehicleWasteWaterReceiptList) {
+        try {
+
+            FileWriter writer = new FileWriter(logFilePath);
+
+            for (int i = 0; i < serviceVehicleWasteWaterReceiptList.size(); i++) {
+                writer.write("" + "\\r\\n");
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //TODO
     }
 
