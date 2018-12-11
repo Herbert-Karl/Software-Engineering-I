@@ -188,7 +188,77 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
 
     @Override
-    public void log(ArrayList<ServiceVehicleWasteWaterReceipt> serviceVehicleWasteWaterReceiptList) {
+    public void logServiceVehicleWasteWater(ArrayList<ServiceVehicleWasteWaterReceipt> serviceVehicleWasteWaterReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logCheckIn(ArrayList<CheckInDeskReceipt> checkInDeskReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logBulkyBaggageDesk(ArrayList<BulkyBaggageDeskReceipt> bulkyBaggageDeskReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logSecurityCheck(ArrayList<SecurityCheckReceipt> securityCheckReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logFederalPolice(ArrayList<FederalPoliceReceipt> federalPoliceReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logCustoms(ArrayList<CustomsReceipt> customsReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logCargoPalletLifter(ArrayList<AirCargoPalletLifterReceipt> airCargoPalletLifterReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logBaggageSortingUnit(ArrayList<BaggageSortingUnitReceipt> baggageSortingUnitReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logContainerLifter(ArrayList<ContainerLifterReceipt> containerLifterReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logServiceVehicleBase(ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logServiceVehicleNitrogenOxygen(ArrayList<ServiceVehicleNitrogenOxygenReceipt> serviceVehicleNitrogenOxygenReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logServiceVehicleFreshWater(ArrayList<ServiceVehicleFreshWaterReceipt> serviceVehicleFreshWaterReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logFuel(ArrayList<FuelReceipt> fuelReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logBoardingControl(ArrayList<BoardingControlReceipt> boardingControlReceiptList) {
+        //TODO
+    }
+
+    @Override
+    public void logPushbackVehicle(ArrayList<PushBackVehicleReceipt> pushBackVehicleReceiptList) {
         //TODO
     }
 }
