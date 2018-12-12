@@ -2,38 +2,29 @@ package Airport.configuration;
 
 import Airport.base.Source;
 
-public class Configuration {
-    private String dataFilePath;
-    private String logFilePath;
-    private Source source;
+import static Airport.base.Source.MUC;
 
-    public Configuration(String dataFilePath, String logFilePath) {
-        this.dataFilePath = dataFilePath;
-        this.logFilePath = logFilePath;
-        this.source = Source.MUC;
+public enum Configuration {
+    DATAFILEPATH(""), LOGFILEPATH(""), SOURCE(MUC);
+
+    private String path;
+    private Source source ;
+
+    Configuration(final String path) {
+        this.path = path;
     }
 
-    public String getDataFilePath() {
-        return dataFilePath;
+    Configuration(final Source source){
+        this.source = source;
     }
 
-    public void setDataFilePath(String dataFilePath) {
-        this.dataFilePath = dataFilePath;
+
+    public String pathToString() {
+        return path;
     }
 
-    public String getLogFilePath() {
-        return logFilePath;
-    }
-
-    public void setLogFilePath(String logFilePath) {
-        this.logFilePath = logFilePath;
-    }
-
-    public Source getSource() {
+    public Source sourceToSource(){
         return source;
     }
 
-    public void setSource(Source source) {
-        this.source = source;
-    }
 }
