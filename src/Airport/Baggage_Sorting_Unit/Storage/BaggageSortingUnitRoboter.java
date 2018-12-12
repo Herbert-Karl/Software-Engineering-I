@@ -1,9 +1,8 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
-import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
 import Airport.Base.Baggage;
-import Airport.Base.ContainerCategory;
+import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
 
@@ -75,10 +74,19 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
    */
   @Override
   public void selectBaggageFromDepot() {
+    //getting depot
     final BaggageDepot depot = baggageSortingUnit.getDepot();
+
+    //getting normal baggages
     selectedBaggageList = depot.selectNormalBaggage(
-        "42 is always the correct ticketClass");//TODO add correct class string
+        TicketClass.First.toString());//Sinnlos... Enum direkt verwenden macht mehr sinn
     //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
+    selectedBaggageList = depot.selectNormalBaggage(TicketClass.Business.toString());
+    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
+    selectedBaggageList = depot.selectNormalBaggage(TicketClass.Economy.toString());
+    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
+
+    //getting bulky baggage
     selectedBaggageList = depot.selectBulkyBaggage();
     //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Bulky).setBaggageList(selectedBaggageList);TODO setBaggageList
   }
