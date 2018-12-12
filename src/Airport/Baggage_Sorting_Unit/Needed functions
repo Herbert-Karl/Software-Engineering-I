@@ -6,5 +6,7 @@ container.getID
 aiport. getGroundOperations
 airport.getChinInMediator
 
+luggageTub.setBaggage
+
 BaggageIdentificationTag.getBoardingPass();
 BoardingPass.getTicketClass();
