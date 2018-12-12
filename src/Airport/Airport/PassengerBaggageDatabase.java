@@ -1,6 +1,9 @@
 package Airport.Airport;
 
+import Airport.Base.Baggage;
+import Airport.Base.Gender;
 import Airport.Base.Passenger;
+import Airport.Base.Passport;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,17 +16,29 @@ import static Airport.Configuration.Configuration.DATAFILEPATH;
 public class PassengerBaggageDatabase{
     private ArrayList<Passenger> passengerList;
 
+    private Passenger createPassenger(String id){
+        Passport passport = new Passport(id, "", null);
+        ArrayList<Baggage> baggageList = new ArrayList<>();
+        Passenger passenger = new Passenger("Max Mustermann", "","1.1.2000", Gender.Male, passport, baggageList, "", null );
+        passport.setPassenger(passenger);
+        return passenger;
+    }
+
     public int loadPassengerData(String dataFilePath){
         File passengerData = new File(dataFilePath);
         int zeilenAnzahl = 0;
         if(!passengerData.canRead() || !passengerData.isFile()){System.out.println("Fehler beim Einlesen der Datei.");}
         BufferedReader inp = null;
         try{
-            inp = new BufferedReader(new FileReader(dataFilePath));
-            String zeile = null;
-            while((zeile = inp.readLine()) != null){
-                zeilenAnzahl++;
-                //Noch was?
+            for(int nummer = 1; nummer <= 568; nummer++) {
+                inp = new BufferedReader(new FileReader(dataFilePath + "/passenger_" + nummer + ".txt"));
+                String zeile = null;
+                zeile = inp.readLine();
+                    zeilenAnzahl++;
+                    //Noch was?
+                    Passenger passenger = createPassenger("" + nummer);
+                    passenger.setContent(zeile);
+                    passengerList.add(passenger);
             }
         } catch(IOException ioException){
             ioException.printStackTrace();
@@ -34,7 +49,7 @@ public class PassengerBaggageDatabase{
                 ioE.printStackTrace();
             }
         }
-        return zeilenAnzahl;
+        return passengerList.size();
     }
 
     public int loadAssignCabinBaggageData(String dataFilePath){
@@ -43,7 +58,7 @@ public class PassengerBaggageDatabase{
         if(!assignCabinBaggageData.canRead() || !assignCabinBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
         try{
-            input = new BufferedReader(new FileReader(dataFilePath));
+            input = new BufferedReader(new FileReader(dataFilePath + "/hand_baggage_" + nummer + ".txt"));
             String zeile = null;
             while((zeile = input.readLine()) != null){
                 zeilenAnzahl++;
@@ -68,11 +83,11 @@ public class PassengerBaggageDatabase{
         if(!assignNormalBaggageData.canRead() || !assignNormalBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
         try{
-            input = new BufferedReader(new FileReader(dataFilePath));
+            input = new BufferedReader(new FileReader(dataFilePath + "/normal_baggage_" + nummer + ".txt"));
             String zeile = null;
             while((zeile = input.readLine()) != null){
                 zeilenAnzahl++;
-                //Noch was mit den Daten machen?
+                //TODO: Noch was mit den Daten machen?
             }
         } catch(IOException ioExeption){
             ioExeption.printStackTrace();
@@ -93,7 +108,7 @@ public class PassengerBaggageDatabase{
         if(!assignBulkyBaggageData.canRead() || !assignBulkyBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
         try{
-            input = new BufferedReader(new FileReader(dataFilePath));
+            input = new BufferedReader(new FileReader(dataFilePath + "/bulky_baggage_" + nummer + ".txt"));
             String zeile = null;
             while((zeile = input.readLine()) != null){
                 zeilenAnzahl++;
@@ -113,10 +128,10 @@ public class PassengerBaggageDatabase{
     }
 
     public PassengerBaggageDatabase(){
-        loadAssignBulkyBaggageData(DATAFILEPATH.pathToString());
-        loadAssignCabinBaggageData(DATAFILEPATH.pathToString());
-        loadAssignNormalBaggageData(DATAFILEPATH.pathToString());
-        loadPassengerData(DATAFILEPATH.pathToString());
+        loadPassengerData("");
+        loadAssignBulkyBaggageData("");
+        loadAssignCabinBaggageData("");
+        loadAssignNormalBaggageData("");
     }
 
     ///
