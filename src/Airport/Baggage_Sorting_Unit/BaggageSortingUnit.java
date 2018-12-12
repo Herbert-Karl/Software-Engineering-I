@@ -272,6 +272,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void loadBaggageVehicle(final LoadingStrategy strategy) {
+    //TODO use LoadingStrategy
     roboter.selectBaggageFromDepot();
     roboter.loadContainer();
   }
