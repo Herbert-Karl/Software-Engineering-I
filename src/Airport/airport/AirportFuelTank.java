@@ -1,4 +1,4 @@
-package Airport.base;
+package Airport.airport;
 
 public class AirportFuelTank {
 }

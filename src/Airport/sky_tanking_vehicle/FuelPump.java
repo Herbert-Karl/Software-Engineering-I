@@ -1,7 +1,8 @@
 package Airport.sky_tanking_vehicle;
 
 import Airplane.tank_bottle.IFuelTank;
-import Airport.base.AirportFuelTank;
+import Airport.airport.AirportFuelTank;
+
 
 public class FuelPump {
     private boolean isOn;
