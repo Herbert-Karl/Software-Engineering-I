@@ -6,5 +6,5 @@ Known errors:
 + None
 
 To-Do's:
-+ Make Seat an abtract class and extends other
-+ BoardingControl print function hs unknown parameter
++ Need to implement Logic and adjust Code to be fully functional
++ BoardingControl print function has unknown parameter (PassengerList)

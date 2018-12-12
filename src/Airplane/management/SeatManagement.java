@@ -1,14 +1,15 @@
 package Airplane.management;
 
 import Airplane.seat.ITouristClassSeat;
+import Airplane.seat.Seat;
 import Airport.base.Passenger;
 
 import java.util.ArrayList;
 
 public class SeatManagement implements ISeatManagement {
-    String manufacturer;
-    String type;
-    String id;
+    private String manufacturer;
+    private String type;
+    private String id;
 
     public SeatManagement(String manufacturer, String type, String id) {
         this.manufacturer = manufacturer;
@@ -37,7 +38,7 @@ public class SeatManagement implements ISeatManagement {
     }
 
     @Override
-    public ArrayList<ITouristClassSeat> searchSeatByPassengerName(String name) {
+    public ArrayList<Seat> searchSeatByPassengerName(String name) {
         return null;
     }
 
