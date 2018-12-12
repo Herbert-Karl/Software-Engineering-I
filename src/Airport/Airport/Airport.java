@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import Airplane.Aircraft.Airplane;
 import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
+import Airport.ApronControl.ApronControl;
+import Airport.ApronControl.Apron;
 import Airport.Base.Passenger;
 import Airport.Checkin_Desk.CheckInMediator;
 import Airport.Security_Check.SecurityMediator;
@@ -21,6 +23,9 @@ import Airport.Service_Vehicle.ServiceVehicleWasteWater;
 import Airport.Sky_Tanking_Vehicle.SkyTankingVehicle;
 import java.io.IOException;
 
+import static Airport.Airport.GateID.A01;
+import static Airport.Airport.GateID.GATE_ID;
+
 public class Airport{
     private ArrayList<Passenger> passengerList;
     private AirportResourcePool resourcePool;
@@ -32,7 +37,7 @@ public class Airport{
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
-    private AirportFuelTank fuelTank = new AirportFuelTank();
+    private AirportFuelTank fuelTank;
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
@@ -49,6 +54,45 @@ public class Airport{
         this.tower = tower;
     }
 
+
+    }
+
+    public void init(Airport airport){
+        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
+        this.passengerList = passengerBaggageDatabase.getPassengerList();
+
+        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,airport);
+
+        gateList = new ArrayList<Gate>(10);
+        for(int number = 1; number <= 10; number++){
+            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
+            gateList.add(gate);
+        }
+        //TODO: create Gates and put in list
+
+        apronControl = new ApronControl();
+        apronControl.setAirport(airport);
+        apron = new Apron(airport, apronControl);
+
+        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
+
+        checkInMediator = new CheckInMediator();
+        // TODO: Übergabeparameter?
+
+        bulkyBaggageDesk = new BulkyBaggageDesk();
+        //TODO: Übergabeparameter?
+
+        securityMediator = new SecurityMediator();
+        //TODO: Übergabeparameter?
+
+        tower = new Tower(airport, null, null);
+        //TODO: replace null values
+        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        //TODO: replace null values
+        tower.setRunwayManagement(runwayManagement);
+
+        fuelTank = new AirportFuelTank();
+    }
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
@@ -165,6 +209,7 @@ public class Airport{
     }
 
     public boolean executeBoardingControl(Gate gate){
+        securityMediator.executeRequest();
         //TODO
         return false;
     }
@@ -175,6 +220,7 @@ public class Airport{
     }
 
     public boolean executeGroundOperationsLogging(){
+
         //TODO
         return false;
     }
