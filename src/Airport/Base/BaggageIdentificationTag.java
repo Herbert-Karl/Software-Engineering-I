@@ -25,6 +25,50 @@ public class BaggageIdentificationTag {
         this.barcode = barcode;
     }
 
+    ///
+    /// Getter:
+    ///
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getFlight() {
+        return flight;
+    }
+
+    public Baggage getBaggage() {
+        return baggage;
+    }
+
+    public int getSequence() {
+        return sequence;
+    }
+
+    public String getVia01() {
+        return via01;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public String getVia02() {
+        return via02;
+    }
+
+    public String getVia03() {
+        return via03;
+    }
+
+    public BoardingPass getBoardingPass() {
+        return boardingPass;
+    }
+
+    ///
+    /// Setter:
+    ///
+
     public void setVia01(String via){
         this.via01 = via;
     }

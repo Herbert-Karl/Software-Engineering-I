@@ -43,4 +43,12 @@ public abstract class Baggage {
   public void setWeight(final double weight) {
     this.weight = weight;
   }
+
+  public String getUuid() {
+    return uuid;
+  }
+
+  public String getContent() {
+    return content;
+  }
 }
