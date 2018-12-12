@@ -22,6 +22,9 @@ import Airport.Service_Vehicle.ServiceVehicleWasteWater;
 import Airport.Sky_Tanking_Vehicle.SkyTankingVehicle;
 import java.io.IOException;
 
+import static Airport.Airport.GateID.A01;
+import static Airport.Airport.GateID.GATE_ID;
+
 public class Airport{
     private ArrayList<Passenger> passengerList;
     private AirportResourcePool resourcePool;
@@ -61,6 +64,10 @@ public class Airport{
         resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,airport);
 
         gateList = new ArrayList<Gate>(10);
+        for(int number = 1; number <= 10; number++){
+            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
+            gateList.add(gate);
+        }
         //TODO: create Gates and put in list
 
         apronControl = new ApronControl();
@@ -70,18 +77,22 @@ public class Airport{
         groundOperationsCenter = new GroundOperationsCenter(airport, 100);
 
         checkInMediator = new CheckInMediator();
+        // TODO: Übergabeparameter?
 
         bulkyBaggageDesk = new BulkyBaggageDesk();
+        //TODO: Übergabeparameter?
 
         securityMediator = new SecurityMediator();
+        //TODO: Übergabeparameter?
 
         tower = new Tower(airport, null, null);
+        //TODO: replace null values
         IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        //TODO: replace null values
         tower.setRunwayManagement(runwayManagement);
 
         fuelTank = new AirportFuelTank();
     }
-
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
