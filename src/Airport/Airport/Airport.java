@@ -33,7 +33,7 @@ public class Airport{
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
-    private AirportFuelTank fuelTank = new AirportFuelTank();
+    private AirportFuelTank fuelTank;
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
@@ -48,6 +48,38 @@ public class Airport{
         this.securityMediator = securityMediator;
         this.apronControl = apronControl;
         this.tower = tower;
+    }
+
+    public Airport(){
+
+    }
+
+    public void init(Airport airport){
+        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
+        this.passengerList = passengerBaggageDatabase.getPassengerList();
+
+        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,airport);
+
+        gateList = new ArrayList<Gate>(10);
+        //TODO: create Gates and put in list
+
+        apronControl = new ApronControl();
+        apronControl.setAirport(airport);
+        apron = new Apron(airport, apronControl);
+
+        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
+
+        checkInMediator = new CheckInMediator();
+
+        bulkyBaggageDesk = new BulkyBaggageDesk();
+
+        securityMediator = new SecurityMediator();
+
+        tower = new Tower(airport, null, null);
+        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        tower.setRunwayManagement(runwayManagement);
+
+        fuelTank = new AirportFuelTank();
     }
 
 
