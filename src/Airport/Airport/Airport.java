@@ -68,7 +68,6 @@ public class Airport{
             Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
             gateList.add(gate);
         }
-        //TODO: create Gates and put in list
 
         apronControl = new ApronControl();
         apronControl.setAirport(airport);
@@ -215,6 +214,7 @@ public class Airport{
     }
 
     public boolean executePushback(Gate gate){
+        
         //TODO
         return false;
     }
