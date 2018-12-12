@@ -1,5 +1,6 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.Gate;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
 
@@ -20,4 +21,8 @@ public interface IContainerLifter extends IVehicle {
   void returnToAirportResourcePool();
 
   void setContainer(Container c);
+
+  void setGate(Gate gate);
+
+  Gate getGate();
 }

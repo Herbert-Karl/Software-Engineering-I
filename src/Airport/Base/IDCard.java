@@ -14,7 +14,31 @@ public class IDCard{
         this.password = "SHA-265";
     }
 
+    ///
+    /// Getter:
+    ///
+
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    ///
+    /// Setter:
+    ///
     public void setEmployee(Employee employee){
        this.employee = employee;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -15,4 +15,45 @@ public class Flight{
         this.destination = destination;
         this.gateID = gateID;
     }
+
+    ///
+    /// Getter:
+    ///
+
+    public String getId() {
+        return id;
+    }
+
+    public Carrier getCarrier() {
+        return carrier;
+    }
+
+    public Destination getDestination() {
+        return destination;
+    }
+
+    public GateID getGateID() {
+        return gateID;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
+
+    public void setGateID(GateID gateID) {
+        this.gateID = gateID;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDestination(Destination destination) {
+        this.destination = destination;
+    }
 }

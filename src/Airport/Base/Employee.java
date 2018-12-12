@@ -18,7 +18,39 @@ public class Employee{
         this.uuid = uuid.toString();
     }
 
+    ///
+    /// Getter:
+    ///
+
+    public String getUuid(){
+        return uuid;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public IDCard getIdCard() {
+        return idCard;
+    }
+
+    ///
+    /// Setter:
+    ///
+
     public void setIdCard(IDCard idCard){
        this.idCard = idCard;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
