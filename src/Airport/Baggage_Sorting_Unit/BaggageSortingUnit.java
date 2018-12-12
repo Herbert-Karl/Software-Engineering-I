@@ -14,6 +14,7 @@ import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.Baggage;
 import Airport.Base.BaggageSecurityStatus;
 import Airport.Base.Container;
+import Airport.Base.ContainerCategory;
 import Airport.Base.DestinationBox;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
@@ -28,7 +29,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private final ArrayList<Employee> employeeList;
 
-  private ArrayList<String> scanPatternList;//TODO get patterns from somewhere
+  private ArrayList<String> scanPatternList;//TODO get patterns from somewhere, or default for unauthorized objects?
+
 
   private final IBaggageScanner baggageScanner;
 
@@ -132,14 +134,29 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   @Override
   public void executeRequest(final GateID gateID) {
     setGate(gateID);
-    final ArrayList<LuggageTub> fullTubs = new ArrayList<>();//TODO get list of full tubs
+    final ArrayList<LuggageTub> fullTubs = new ArrayList<>();//TODO get list of full tubs from checkin (CheckInDesk.getLuggageTubList())
     loginBaggageScanner(employeeList.get(0),
         "420");//TODO get correct user and pw employeeList.get(0).getPassword()
     LuggageTub l;
     while (!fullTubs.isEmpty()) {
       l = fullTubs.remove(0);
-      throwOff(l, destinationBox);
+      final Baggage toCheck = l.getBaggage();
+      toCheck.setSecurityStatus(BaggageSecurityStatus.clean);
+      for(String pattern: scanPatternList){
+        boolean clean = scan(toCheck, pattern); //TODO check how scan is implemented
+        if(!clean){
+          toCheck.setSecurityStatus(BaggageSecurityStatus.dangerous);
+        }
 
+      }
+      if(toCheck.getSecurityStatus() == BaggageSecurityStatus.clean){
+        throwOff(l, destinationBox);
+      }
+      else{
+        handOverToCustoms(l.getBaggage());
+        //TODO set Baggage of l to null
+        emptyLuggageTubList.add(l);
+      }
       if (destinationBox.isFull()) {
         emptyDestinationBox();
       }
@@ -206,18 +223,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void throwOff(final LuggageTub luggageTub, final DestinationBox destinationBox) {
-    final Baggage toCheck = luggageTub.getBaggage();
+    //TODO put baggage from luggageTub into destinationBox, empty luggagetub
     emptyLuggageTubList.add(luggageTub);
-    final String pattern = "Please change me. I don't know what I'm doing";//TODO Pattern
-
-    if (scan(toCheck, pattern)) {//TODO check return value
-      toCheck.setSecurityStatus(
-          BaggageSecurityStatus.clean);//möglicherweise nicht nötig je nach implementierung von scan
-      //destinationBox.add(toCheck); TODO add Baggage to destination box
-    } else {
-      toCheck.setSecurityStatus(BaggageSecurityStatus.dangerous);
-      handOverToCustoms(toCheck);
-    }
   }
 
   /**
@@ -265,6 +272,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void loadBaggageVehicle(final LoadingStrategy strategy) {
+    //TODO use LoadingStrategy
     roboter.selectBaggageFromDepot();
     roboter.loadContainer();
   }
@@ -297,6 +305,16 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void returnEmptyLuggageTubToCheckInDesk() {
     //airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList); TODO Get Mediator from airport
     emptyLuggageTubList.clear();
+  }
+
+  public Container selectEmptyContainer(ContainerCategory category) {
+    for (Container c : emptyContainerList) {
+      /*
+      if (c.getContainerCategory() == category) {
+        return c;
+      }TODO get containerCategory*/
+    }
+    return null;
   }
 
   /**

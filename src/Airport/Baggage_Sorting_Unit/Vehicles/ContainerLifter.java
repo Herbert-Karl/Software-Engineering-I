@@ -191,10 +191,7 @@ public class ContainerLifter implements IContainerLifter {
     connectToAirplane();
     transferContainerToCargoSystem();
     disconnectFromAirplane();
-    notifyGroundOperations(new ContainerLifterReceipt(uuid, id, type,
-        new BaggageSortingUnit(null, null, null, null),/*TODO get correct baggaeSortingunit*/
-        new BaggageSortingUnitRoboter(null, null, null,
-            null).getSelectedBaggageList()));/*TODO get correct BaggageSortingRobot*/
+    notifyGroundOperations(new ContainerLifterReceipt(uuid, id, gateID, numberOfContainerLoaded, containerIDList));
     returnToAirportResourcePool();
   }
 
