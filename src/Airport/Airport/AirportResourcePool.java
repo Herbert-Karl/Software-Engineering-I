@@ -204,12 +204,16 @@ public class AirportResourcePool{
                 T element= (T)employeeList.get(0);
                 employeeList.remove(0);
                 return element;
+            case "IDCard":
+                T element10 = (T) idCardList.get(0);
+                idCardList.remove(0);
+                return element10;
             case "AirCargoPalletLifter":
                 T element1 = (T)airCargoPalletLifterList.get(0);
                 airCargoPalletLifterList.remove(0);
                 return element1;
             case "AirCargoPalletVehicle":
-                T element2 = (T) airCargoPalletLifterList.get(0);
+                T element2 = (T) airCargoPalletVehicleList.get(0);
                 airCargoPalletLifterList.remove(0);
                 return element2;
             case "ContainerLifter":
@@ -276,6 +280,9 @@ public class AirportResourcePool{
         } else if(resource instanceof SkyTankingVehicle){
             SkyTankingVehicle skyTankingVehicle = (SkyTankingVehicle) resource;
             skyTankingVehicleList.add(skyTankingVehicle);
+        } else if(resource instanceof IDCard){
+            IDCard idCard = (IDCard) resource;
+            idCardList.add(idCard);
         }
 
     }

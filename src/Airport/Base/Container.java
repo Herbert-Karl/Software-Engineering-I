@@ -26,6 +26,10 @@ public class Container{
         this.baggageList = baggageList;
     }
 
+    ///
+    /// Getter:
+    ///
+
     public ContainerType getType(){
         return this.type;
     }
@@ -48,5 +52,38 @@ public class Container{
 
     public Stack<Baggage> getBaggageList() {
         return baggageList;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getBarCodeIDCategory() {
+        return barCodeIDCategory;
+    }
+
+    public ContainerCategory getCategory() {
+        return category;
+    }
+
+    public String getQrCodeIDCategory() {
+        return qrCodeIDCategory;
+    }
+
+    public ContainerProfile getProfile() {
+        return profile;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setBaggageList(Stack<Baggage> baggageList) {
+        this.baggageList = baggageList;
     }
 }

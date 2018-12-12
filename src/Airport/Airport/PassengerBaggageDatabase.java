@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+import static Airport.Configuration.Configuration.DATAFILEPATH;
+
 public class PassengerBaggageDatabase{
     private ArrayList<Passenger> passengerList;
 
@@ -111,7 +113,10 @@ public class PassengerBaggageDatabase{
     }
 
     public PassengerBaggageDatabase(){
-
+        loadAssignBulkyBaggageData(DATAFILEPATH.pathToString());
+        loadAssignCabinBaggageData(DATAFILEPATH.pathToString());
+        loadAssignNormalBaggageData(DATAFILEPATH.pathToString());
+        loadPassengerData(DATAFILEPATH.pathToString());
     }
 
     ///
