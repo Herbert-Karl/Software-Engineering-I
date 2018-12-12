@@ -14,6 +14,7 @@ import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.Baggage;
 import Airport.Base.BaggageSecurityStatus;
 import Airport.Base.Container;
+import Airport.Base.ContainerCategory;
 import Airport.Base.DestinationBox;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
@@ -297,6 +298,16 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public void returnEmptyLuggageTubToCheckInDesk() {
     //airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList); TODO Get Mediator from airport
     emptyLuggageTubList.clear();
+  }
+
+  public Container selectEmptyContainer(ContainerCategory category) {
+    for (Container c : emptyContainerList) {
+      /*
+      if (c.getContainerCategory() == category) {
+        return c;
+      }TODO get containerCategory*/
+    }
+    return null;
   }
 
   /**
