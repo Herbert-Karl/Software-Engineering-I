@@ -5,6 +5,8 @@ group 17
 package Airport.ApronControl;
 
 import Airport.Airport.*;
+
+import java.lang.reflect.Array;
 import java.util.*;
 import Airplane.Aircraft.*;
 import java.lang.*;
@@ -36,58 +38,77 @@ public class ApronControl{
 
     public RunwayCheckPointID requestRunwayCheckPointID(Airplane airplane)
     {
-
+        return ( RunwayCheckPointID.S1);
+        // todo: herausfinden, was Aiplane übergibt
         // S1 to S4
     }
 
     public TaxiWay search(TaxiCenterLine taxiCenterLine, GateID gateID, RunwayID runwayID) {
-        // get shortest path for taxi
-        // l oder r runwayids, taxi center line ist farbe, gateid a bis b
 
-        // Anfangspunkte der Linien entpsrechend runwayid
-        String []L26 = {"O6","N6","S3"};
-        String []L08 = {"L1","M1","S2"};
-        String []R26 = {"O1","S1","N1"};
-        String []R08 = {"M6","S4","L6"};
-
-        // wenn GateID A muss taxicenterline gelb oder grün sein
-
-        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString().equals("yellow") || taxiCenterLine.equals("green")))
-        {
-            if (taxiCenterLine.toString().equals("yellow"))
+            if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString().equals("yellow") || taxiCenterLine.equals("green")))
             {
-                int startRunway = 6;
-                char runwayLetter = 'O';
-                int gate = Character.getNumericValue(gateID.toString().charAt(2));
-                // Betrag
-                int difference = Math.abs(startRunway - gate);
-                int endRunway = startRunway - difference;
-
-                String end = runwayLetter + String.valueOf(endRunway);
-
-                //List of Points needed to go to Destination
-                List <TaxiCheckPoint> taxiCheckPointList = new ArrayList <TaxiCheckPoint> ();
-                RunwayCheckPointID runwayCheckPoint = new RunwayCheckPointID();
-
-                TaxiWay taxiWay = new TaxiWay(taxiCenterLine,gateID,runwayID,taxiCheckPointList,runwayCheckPoint);
-
-                for ( int i = 0; i < endRunway; i++) {
-
+                if (taxiCenterLine.toString().equals("yellow")) {
+                    return (taxiWayByColor(gateID,runwayID,taxiCenterLine,'O'));
+                }
+                else {
+                    return (taxiWayByColor(gateID,runwayID,taxiCenterLine,'N'));
                 }
             }
+
+            // wenn gateid b muss blau oder rot sein
+            else if (gateID.toString().charAt(0) == 'B' && (taxiCenterLine.toString().equals("blue") || taxiCenterLine.toString().equals("red")))
+            {
+                if (taxiCenterLine.toString().equals("blue")) {
+                    return (taxiWayByColor(gateID,runwayID,taxiCenterLine,'M'));
+                }
+                else {
+                    return (taxiWayByColor(gateID,runwayID,taxiCenterLine,'L'));
+                }
+        }
+    }
+
+
+    private TaxiWay taxiWayByColor(GateID gateID,RunwayID runwayID,TaxiCenterLine taxiCenterLine,char colorLetter){
+        //int startRunway = 6;
+        //char runwayLetter = 'O';
+        int gate = Character.getNumericValue(gateID.toString().charAt(2));
+        // Betrag
+        //int difference = Math.abs(startRunway - gate);
+        //int endRunway = startRunway - difference;
+
+        //List of Points needed to go to Destination
+        ArrayList<TaxiCheckPoint> taxiCheckPointList = new ArrayList <TaxiCheckPoint> ();
+
+
+
+        for ( int i = 6; i >= gate; i-- ) {
+            String checkPoint = colorLetter + Integer.toString(i);
+            taxiCheckPointList.add(TaxiCheckPoint.valueOf(checkPoint));
         }
 
-        // wenn gateid b muss blau oder rot sein
-        if (gateID.toString().charAt(0) == 'B' && (taxiCenterLine.toString().equals('blue') || taxiCenterLine.toString().equals('red')))
-        {
+        //load default
+        RunwayCheckPointID runwayCheckPoint = RunwayCheckPointID.S1;
 
+        if ( runwayID.equals("26R") ) {
+            runwayCheckPoint = RunwayCheckPointID.S1;
         }
+        else if ( runwayID.equals("26L") ) {
+            runwayCheckPoint = RunwayCheckPointID.S3;
+        }
+        else if ( runwayID.equals("08L") ) {
+            runwayCheckPoint = RunwayCheckPointID.S2;
+        }
+        else if ( runwayID.equals("08R") ) {
+            runwayCheckPoint = RunwayCheckPointID.S4;
+        }
+
+        TaxiWay taxiWay = new TaxiWay(taxiCenterLine,gateID,runwayID,taxiCheckPointList,runwayCheckPoint);
+        return taxiWay;
     }
 
     public boolean approveRequestTaxi(Airplane airplane, TaxiWay taxiWay)
     {
-        // is taxi way free?
-        // is airplane there?
+        return true;
     }
 
     public Airport getAirport() {
