@@ -2,22 +2,25 @@ package Airport.Base;
 
 public class BulkyBaggage extends Baggage{
     private BulkyBaggageType type;
-    private BaggageIdentifikationTag baggageIdentifikationTag;
+    private BaggageIdentificationTag baggageIdentificationTag;
 
-    public BulkyBaggage(String uuid, String content, double weight, BulkyBaggageType type, BaggageIdentifikationTag baggageIdentifikationTag){
-        this.uuid = uuid;
-        this.content = content;
-        this.weight = weight;
+    public BulkyBaggage(String content, double weight, BulkyBaggageType type, BaggageIdentificationTag baggageIdentificationTag){
+        setContent(content);
+        setWeight(weight);
         this.type = type;
-        this.baggageIdentifikationTag = baggageIdentifikationTag;
-        this.securityStatus = null;
+        this.baggageIdentificationTag = baggageIdentificationTag;
+        setSecurityStatus(null);
     }
+
+    ///
+    /// Getter:
+    ///
 
     public BulkyBaggageType getType() {
         return type;
     }
 
-    public BaggageIdentifikationTag getBaggageIdentifikationTag() {
-        return baggageIdentifikationTag;
+    public BaggageIdentificationTag getBaggageIdentificationTag() {
+        return baggageIdentificationTag;
     }
 }

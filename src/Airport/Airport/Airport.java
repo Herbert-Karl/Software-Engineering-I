@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
-import Airport.AirCargoPalletLifter.AirCargoPalletVehicel;
+import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
+import Airport.ApronControl.ApronControl;
+import Airport.ApronControl.Apron;
 import Airport.Base.Passenger;
+import Airport.Checkin_Desk.CheckInMediator;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
@@ -18,6 +21,9 @@ import Airport.Service_Vehicle.ServiceVehicleNitrogenOxygen;
 import Airport.Service_Vehicle.ServiceVehicleWasteWater;
 import Airport.Sky_Tanking_Vehicle.SkyTankingVehicle;
 import java.io.IOException;
+
+import static Airport.Airport.GateID.A01;
+import static Airport.Airport.GateID.GATE_ID;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -30,7 +36,7 @@ public class Airport{
     private SecurityMediator securityMediator;
     private ApronControl apronControl;
     private Tower tower;
-    private AirportFuelTank fuelTank = new AirportFuelTank();
+    private AirportFuelTank fuelTank;
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
@@ -51,24 +57,42 @@ public class Airport{
 
     }
 
-    //
-    //Singleton:
-    //
+    public void init(Airport airport){
+        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
+        this.passengerList = passengerBaggageDatabase.getPassengerList();
 
-    private static Airport airport = new Airport();
-    public static Airport getAirport(){
-        return airport;
+        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,airport);
+
+        gateList = new ArrayList<Gate>(10);
+        for(int number = 1; number <= 10; number++){
+            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
+            gateList.add(gate);
+        }
+        //TODO: create Gates and put in list
+
+        apronControl = new ApronControl();
+        apronControl.setAirport(airport);
+        apron = new Apron(airport, apronControl);
+
+        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
+
+        checkInMediator = new CheckInMediator();
+        // TODO: Übergabeparameter?
+
+        bulkyBaggageDesk = new BulkyBaggageDesk();
+        //TODO: Übergabeparameter?
+
+        securityMediator = new SecurityMediator();
+        //TODO: Übergabeparameter?
+
+        tower = new Tower(airport, null, null);
+        //TODO: replace null values
+        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        //TODO: replace null values
+        tower.setRunwayManagement(runwayManagement);
+
+        fuelTank = new AirportFuelTank();
     }
-
-    public void setPassengerList(ArrayList<Passenger> passengerList){
-        this.passengerList = passengerList;
-    }
-    public void setResourcePool(AirportResourcePool resourcePool){ this.resourcePool = resourcePool;}
-    //TODO: Weitere Setter
-
-    //
-    //
-    //
 
     public int loadPassengerBaggageData(String dataFilePath){
         File passengerBaggageData = new File(dataFilePath);
@@ -114,17 +138,17 @@ public class Airport{
             return false;}
     }
 
-    public boolean executeServiceWasteWater(GateID gateID){
+    public boolean executeServiceWasteWater(Gate gate){
         ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
-        boolean b = groundOperationsCenter.assign(serviceVehicle);
-        serviceVehicle.executeRequest(gateID);
+        boolean b = groundOperationsCenter.assign(serviceVehicle, gate);
+        serviceVehicle.executeRequest(gate.getGateID());
         //TODO: get Receipt from Ground Operations
         resourcePool.returnResource(serviceVehicle);
         return b;
     }
 
     public boolean executeCheckIn(Flight flight){
-        checkInMediator.executeRequest();
+        checkInMediator.executeRequest(flight);
         //get Receipt from Ground operations
         return true;
     }
@@ -141,8 +165,9 @@ public class Airport{
     }
 
     public boolean executeAirCargo(GateID gateID){
-        AirCargoPalletVehicle airCargoPalletVehicle = resourcePool.
+        AirCargoPalletVehicle airCargoPalletVehicle = resourcePool.takeResource("AirCargoPalletVehicle");
         //TODO
+        resourcePool.returnResource(airCargoPalletVehicle);
         return false;
     }
 
@@ -184,6 +209,7 @@ public class Airport{
     }
 
     public boolean executeBoardingControl(Gate gate){
+        securityMediator.executeRequest();
         //TODO
         return false;
     }
@@ -194,13 +220,14 @@ public class Airport{
     }
 
     public boolean executeGroundOperationsLogging(){
+
         //TODO
         return false;
     }
 
-    public ArrayList<Gate> getGateList() {
-        return this.gateList;
-    }
+    //
+    // Getter und Setter
+    //
 
     public AirportFuelTank getFuelTank(){
         return this.fuelTank;
@@ -209,4 +236,21 @@ public class Airport{
     public AirportResourcePool getResourcePool(){
         return this.resourcePool;
     }
+
+    public CheckInMediator getCheckInMediator() {
+        return checkInMediator;
+    }
+
+    public GroundOperationsCenter getGroundOperationsCenter() {
+        return groundOperationsCenter;
+    }
+
+    public ArrayList<Passenger> getPassengerList() {
+        return passengerList;
+    }
+
+    public ArrayList<Gate> getGateList() {
+        return this.gateList;
+    }
+
 }

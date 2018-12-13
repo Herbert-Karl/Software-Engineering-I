@@ -28,4 +28,24 @@ public class AirCargoPallet{
         }
         return weight;
     }
+
+    ///
+    /// Getter:
+    ///
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Item[] getItemList() {
+        return itemList;
+    }
 }

@@ -1,5 +1,7 @@
 package Airport.Airport;
 
+import Airplane.Aircraft.Airplane;
+
 public class RunwayCheckPoint{
     private RunwayCheckPointID runwayCheckPointID;
     private boolean isOccupied;
