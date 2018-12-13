@@ -2,12 +2,12 @@
 group 17
 */
 
+package Airport.ApronControl;
+
 import Airport.Airport.*;
 import java.util.*;
 import Airplane.Aircraft.*;
 import java.lang.*;
-
-
 
 public class ApronControl{
 
@@ -24,20 +24,20 @@ public class ApronControl{
 
     public boolean approveRequestStartEngines(Airplane airplane)
     {
-        // Immer true
+        // always true
         return true;
     }
 
     public boolean approveRequestPushback(Airplane airplane)
     {
-        // Immer true
+        // always true
         return true;
     }
 
     public RunwayCheckPointID requestRunwayCheckPointID(Airplane airplane)
     {
+
         // S1 to S4
-        // woher weiß man das
     }
 
     public TaxiWay search(TaxiCenterLine taxiCenterLine, GateID gateID, RunwayID runwayID) {
@@ -45,24 +45,35 @@ public class ApronControl{
         // l oder r runwayids, taxi center line ist farbe, gateid a bis b
 
         // Anfangspunkte der Linien entpsrechend runwayid
-        String [] L26 = {O6,N6,S3};
-        String []L08 = {L1,M1,S2};
-        String []R26 = {O1,S1,N1};
-        String []R08 = {M6,S4,L6};
+        String []L26 = {"O6","N6","S3"};
+        String []L08 = {"L1","M1","S2"};
+        String []R26 = {"O1","S1","N1"};
+        String []R08 = {"M6","S4","L6"};
 
         // wenn GateID A muss taxicenterline gelb oder grün sein
-        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString().equals('yellow') || taxiCenterLine.equals('green'))
+
+        if (gateID.toString().charAt(0) == 'A' && (taxiCenterLine.toString().equals("yellow") || taxiCenterLine.equals("green")))
         {
-            if (taxiCenterLine.toString() == 'yellow')
+            if (taxiCenterLine.toString().equals("yellow"))
             {
                 int startRunway = 6;
                 char runwayLetter = 'O';
                 int gate = Character.getNumericValue(gateID.toString().charAt(2));
                 // Betrag
-                int difference = abs(startRunway - gate);
+                int difference = Math.abs(startRunway - gate);
                 int endRunway = startRunway - difference;
 
+                String end = runwayLetter + String.valueOf(endRunway);
 
+                //List of Points needed to go to Destination
+                List <TaxiCheckPoint> taxiCheckPointList = new ArrayList <TaxiCheckPoint> ();
+                RunwayCheckPointID runwayCheckPoint = new RunwayCheckPointID();
+
+                TaxiWay taxiWay = new TaxiWay(taxiCenterLine,gateID,runwayID,taxiCheckPointList,runwayCheckPoint);
+
+                for ( int i = 0; i < endRunway; i++) {
+
+                }
             }
         }
 
