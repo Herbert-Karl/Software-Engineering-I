@@ -2,7 +2,8 @@
 group 17
 */
 
-import Airport.Airport.Airport;
+package Airport.ApronControl;
+import Airport.Airport.*;
 
 public class Apron{
     private Airport airport;
