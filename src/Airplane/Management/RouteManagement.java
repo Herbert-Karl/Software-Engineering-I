@@ -12,13 +12,12 @@ public class RouteManagement implements IRouteManagement{
     private double costIndex;
 
     public RouteManagement(String manufacturer, String type, String id, boolean isOn,
-                           ArrayList<CheckPoint> checkPointList, double costIndex) {
+                           ArrayList<CheckPoint> checkPointList) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
         this.isOn = isOn;
         this.checkPointList = checkPointList;
-        this.costIndex = costIndex;
     }
 
 

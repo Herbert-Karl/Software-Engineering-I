@@ -11,21 +11,13 @@ public class SeatManagement implements ISeatManagement{
     private String manufacturer;
     private String type;
     private String id;
-    private ArrayList<Seat> seats;
-    private int numberOfPassengersFirstClassAssigned;
-    private int numberOfPassengersBusinessClassAssigned;
-    private int numberOFPassengersEconomyClassAssigned;
 
-    public SeatManagement(String manufacturer, String type, String id, ArrayList<Seat> seats,
-                          int numberOfPassengersFirstClassAssigned, int numberOfPassengersBusinessClassAssigned,
-                          int numberOFPassengersEconomyClassAssigned) {
+
+    public SeatManagement(String manufacturer, String type, String id) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
-        this.seats = seats;
-        this.numberOfPassengersFirstClassAssigned = numberOfPassengersFirstClassAssigned;
-        this.numberOfPassengersBusinessClassAssigned = numberOfPassengersBusinessClassAssigned;
-        this.numberOFPassengersEconomyClassAssigned = numberOFPassengersEconomyClassAssigned;
+
     }
 
     public String version() {
@@ -97,27 +89,4 @@ public class SeatManagement implements ISeatManagement{
         this.seats = seats;
     }
 
-    public int getNumberOfPassengersFirstClassAssigned() {
-        return numberOfPassengersFirstClassAssigned;
-    }
-
-    public void setNumberOfPassengersFirstClassAssigned(int numberOfPassengersFirstClassAssigned) {
-        this.numberOfPassengersFirstClassAssigned = numberOfPassengersFirstClassAssigned;
-    }
-
-    public int getNumberOfPassengersBusinessClassAssigned() {
-        return numberOfPassengersBusinessClassAssigned;
-    }
-
-    public void setNumberOfPassengersBusinessClassAssigned(int numberOfPassengersBusinessClassAssigned) {
-        this.numberOfPassengersBusinessClassAssigned = numberOfPassengersBusinessClassAssigned;
-    }
-
-    public int getNumberOFPassengersEconomyClassAssigned() {
-        return numberOFPassengersEconomyClassAssigned;
-    }
-
-    public void setNumberOFPassengersEconomyClassAssigned(int numberOFPassengersEconomyClassAssigned) {
-        this.numberOFPassengersEconomyClassAssigned = numberOFPassengersEconomyClassAssigned;
-    }
 }
