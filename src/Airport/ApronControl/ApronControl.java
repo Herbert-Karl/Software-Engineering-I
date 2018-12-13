@@ -7,7 +7,6 @@ import java.util.*;
 import Airplane.Aircraft.*;
 import java.lang.*;
 
-package ApronControl.ApronControl;
 
 
 public class ApronControl{
