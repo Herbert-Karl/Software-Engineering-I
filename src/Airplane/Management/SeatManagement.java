@@ -1,9 +1,16 @@
 package Airplane.Management;
 
 import java.util.ArrayList;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
+
+import Airplane.Aircraft.Airplane;
+import Airplane.Aircraft.Body;
+import Airport.Airport.GateID;
+import Airport.Airport.PassengerBaggageDatabase;
 import Airport.Base.Passenger;
-import Airport.Base.TicketClass;
+import Airport.Airport.Gate;
 
 
 public class SeatManagement implements ISeatManagement{
@@ -25,25 +32,43 @@ public class SeatManagement implements ISeatManagement{
 
     }
 
-    public int assign(ArrayList<Passenger> passengers) {
-        int a = 0;
+    public boolean assign(ArrayList<Passenger> passengers) {
+        String assign;
+        ArrayList<String> allSeats = new ArrayList<String>();
 
-        return a;
+        Body body  = new Body();
+        allSeats.addAll(body.getFirstClassSeatArrayList());
+
+        passengers.forEach(p -> p.getBoardingPass().getSeat());
+
+        ArrayList<GateID> gateids = new ArrayList<GateID>();
+        passengers.stream().forEach((Passenger p) ->
+        {
+           GateID id = p.getBoardingPass().getGate();
+            if (!gateids.contains(id))
+                gateids.add(id);
+        });
+
+
+
+
     }
 
     public int countAvailableSeat() {
-        return seats.size();
+
+    //Class Airplane legt an, wieviel First, Business und Touristclass Seats es gibt
+
     }
 
     public int countAvailableSeat(String ticketClassString) {
-        int a = 0;
 
-        return a;
 
     }
 
-    public ArrayList<Seat> searchSeatByPassengerName(String name) {
-        //TODO
+    public Passenger searchSeatByPassengerName(String name) {
+        //Passenger hat einen namen und besitzt
+        ArrayList<Passenger> passenger = new ArrayList<Passenger>();
+
 
     }
 

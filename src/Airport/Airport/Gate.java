@@ -62,4 +62,6 @@ public class Gate{
     public void setAirplane(Airplane airplane) {
         this.airplane = airplane;
     }
+
+
 }

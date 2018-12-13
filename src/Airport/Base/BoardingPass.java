@@ -5,7 +5,7 @@ import Airport.Airport.GateID;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class BoardingPass{
+public enum BoardingPass{
         private String uuid;
         private Carrier carrier;
         private String flight;

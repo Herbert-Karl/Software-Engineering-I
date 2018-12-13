@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 import static Airport.Configuration.Configuration.DATAFILEPATH;
 
-public class PassengerBaggageDatabase{
+public enum PassengerBaggageDatabase{
+    ;
     private ArrayList<Passenger> passengerList;
 
     public int loadPassengerData(String dataFilePath){
@@ -18,6 +19,11 @@ public class PassengerBaggageDatabase{
         int zeilenAnzahl = 0;
         if(!passengerData.canRead() || !passengerData.isFile()){System.out.println("Fehler beim Einlesen der Datei.");}
         BufferedReader inp = null;
+        zeilenAnzahl = getZeilenAnzahl(dataFilePath, zeilenAnzahl, inp);
+        return zeilenAnzahl;
+    }
+
+    static int getZeilenAnzahl(String dataFilePath, int zeilenAnzahl, BufferedReader inp) {
         try{
             inp = new BufferedReader(new FileReader(dataFilePath));
             String zeile = null;
@@ -42,22 +48,7 @@ public class PassengerBaggageDatabase{
         int zeilenAnzahl = 0;
         if(!assignCabinBaggageData.canRead() || !assignCabinBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
-        try{
-            input = new BufferedReader(new FileReader(dataFilePath));
-            String zeile = null;
-            while((zeile = input.readLine()) != null){
-                zeilenAnzahl++;
-                //Noch was mit den Daten machen?
-            }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE) {
-                ioE.printStackTrace();
-            }
-        }
+        zeilenAnzahl = getZeilenAnzahl(dataFilePath, zeilenAnzahl, input);
 
         return zeilenAnzahl;
     }
@@ -67,22 +58,7 @@ public class PassengerBaggageDatabase{
         int zeilenAnzahl = 0;
         if(!assignNormalBaggageData.canRead() || !assignNormalBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
-        try{
-            input = new BufferedReader(new FileReader(dataFilePath));
-            String zeile = null;
-            while((zeile = input.readLine()) != null){
-                zeilenAnzahl++;
-                //Noch was mit den Daten machen?
-            }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE){
-                ioE.printStackTrace();
-            }
-        }
+        zeilenAnzahl = getZeilenAnzahl(dataFilePath, zeilenAnzahl, input);
 
         return zeilenAnzahl;
     }
@@ -92,27 +68,12 @@ public class PassengerBaggageDatabase{
         int zeilenAnzahl = 0;
         if(!assignBulkyBaggageData.canRead() || !assignBulkyBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
         BufferedReader input = null;
-        try{
-            input = new BufferedReader(new FileReader(dataFilePath));
-            String zeile = null;
-            while((zeile = input.readLine()) != null){
-                zeilenAnzahl++;
-                //Noch was mit den Daten machen?
-            }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE){
-                ioE.printStackTrace();
-            }
-        }
+        zeilenAnzahl = getZeilenAnzahl(dataFilePath, zeilenAnzahl, input);
 
         return zeilenAnzahl;
     }
 
-    public PassengerBaggageDatabase(){
+     PassengerBaggageDatabase(){
         loadAssignBulkyBaggageData(DATAFILEPATH.pathToString());
         loadAssignCabinBaggageData(DATAFILEPATH.pathToString());
         loadAssignNormalBaggageData(DATAFILEPATH.pathToString());

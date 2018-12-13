@@ -14,6 +14,7 @@ protected Configuration configuration;
     protected Wing leftWing;
     protected Wing rightWing;
 
+
     public Configuration getConfiguration() {
         return configuration;
     }
@@ -23,6 +24,7 @@ protected Configuration configuration;
         body = new Body(this);
         leftWing = new Wing(this);
         rightWing = new Wing(this);
+
     }
 
     public void startup()
