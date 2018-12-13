@@ -18,4 +18,12 @@ class CockpitTest extends TestCase {
     @Test
     void selectNextPrimaryFlightDisplay() {
     }
+
+    @Test
+    void getPrimaryFlightDisplay() {
+    }
+
+    @Test
+    void setPrimaryFlightDisplay() {
+    }
 }

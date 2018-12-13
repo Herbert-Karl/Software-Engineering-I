@@ -6,6 +6,9 @@ import Airplane.Aircraft.Wing;
 import Airplane.FlightControls.FlightControlController;
 import Airplane.FlightControls.IFlightControlController;
 import Airplane.FlightControls.Implementations.Gear;
+import Airplane.cabin.AirConditioning;
+import Airplane.cabin.Kitchen;
+import com.sun.xml.internal.ws.api.pipe.Engine;
 
 public class Airplane {
 protected Configuration configuration;
@@ -29,7 +32,7 @@ protected Configuration configuration;
     {
         new FlightControlController(this).startup();
         for(APU apu : body.getApuArrayList())
-            apu.start()
+            apu.start();
         for(Engine engine : leftWing.getEngineArrayList())
             engine.start();
         for(Engine engine : rightWing.getEngineArrayList())
@@ -37,8 +40,7 @@ protected Configuration configuration;
         for(AirConditioning airConditioning : body.getAirConditioningArrayList())
             airConditioning.on();
         for(Kitchen kitchen : body.getKitchenArrayList())
-            kitchen.look();
-        for()
+            kitchen.loook();
     }
     public void climbing(){
         new FlightControlController(this).climbing();
