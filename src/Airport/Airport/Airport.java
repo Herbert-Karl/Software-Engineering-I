@@ -105,6 +105,7 @@ public class Airport{
     public int loadPassengerBaggageData(String dataFilePath){
         PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
         passengerList = passengerBaggageDatabase.getPassengerList();
+        return passengerList.size();
     }
 
     public boolean connectAirplane(Airplane airplane, Gate gate){
