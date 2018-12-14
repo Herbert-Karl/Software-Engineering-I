@@ -36,4 +36,7 @@ private ArrayList<BaggageIdentifikationTag> baggageIdentifikationTagList;
         this.baggageIdentifikationTagList = baggageIdentifikationTagList;
         }
 
+        public String getFlight() {
+                return flight;
+        }
 }

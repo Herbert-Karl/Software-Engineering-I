@@ -8,7 +8,9 @@ import Airport.Scanner.IBaggageScanner;
 import Airport.Scanner.IBodyScanner;
 import Airport.Scanner.IExplosivesDetector;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SecurityCheck implements ISecurityCheck {
 
@@ -23,13 +25,17 @@ public class SecurityCheck implements ISecurityCheck {
     private IExplosivesDetector explosivesDetector;
     private FederalPolice federalPolice;
 
-    public SecurityCheck(String uuid, SecurityCheckID securityCheckID, Airport airport, IBaggageScanner baggageScanner, IBodyScanner bodyScanner, IExplosivesDetector explosivesDetector) {
-        this.uuid = uuid;
+    public SecurityCheck(SecurityCheckID securityCheckID, Airport airport, IBaggageScanner baggageScanner, IBodyScanner bodyScanner, IExplosivesDetector explosivesDetector) {
+        this.uuid = UUID.randomUUID().toString();
         this.securityCheckID = securityCheckID;
         this.airport = airport;
         this.baggageScanner = baggageScanner;
         this.bodyScanner = bodyScanner;
         this.explosivesDetector = explosivesDetector;
+        scanPatternList = new ArrayList<String>();
+        scanPatternList.add("drug");
+        scanPatternList.add("explosive");
+        scanPatternList.add("knife");
     }
 
     @Override
@@ -49,7 +55,7 @@ public class SecurityCheck implements ISecurityCheck {
 
     @Override
     public void logoutBodyScanner() {
-        bodyScanner.logut();
+        bodyScanner.logout();
     }
 
     @Override
@@ -63,8 +69,14 @@ public class SecurityCheck implements ISecurityCheck {
     }
 
     @Override
-    public boolean scan(Passenger passenger, String pattern) {
-        return bodyScanner.scan(passenger, pattern);
+    public boolean scan(Passenger passenger) {
+        boolean ret = false;
+        for(String pattern:scanPatternList) {
+            if(bodyScanner.scan(passenger, pattern)) {
+                ret = true;
+            }
+        }
+        return ret;
     }
 
     @Override
@@ -73,8 +85,14 @@ public class SecurityCheck implements ISecurityCheck {
     }
 
     @Override
-    public boolean scan(Baggage baggage, String pattern) {
-        return baggageScanner.scan(baggage, pattern);
+    public boolean scan(Baggage baggage) {
+        boolean ret = false;
+        for(String pattern:scanPatternList) {
+            if(baggageScanner.scan(baggage, pattern)) {
+                ret = true;
+            }
+        }
+        return ret;
     }
 
     @Override
@@ -84,6 +102,6 @@ public class SecurityCheck implements ISecurityCheck {
 
     @Override
     public void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt) {
-//TODO notify police close doors etc.?
+        //TODO
     }
 }

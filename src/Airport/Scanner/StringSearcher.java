@@ -18,6 +18,8 @@ public class StringSearcher {
             return boyermoore(textArray, patternArray);
         } else if (stringSearchAlgorithm.equals(StringSearchAlgorithm.KNUTHMORRISPRATT)) {
             return knuthmorrispratt(textArray, patternArray);
+        } else if(stringSearchAlgorithm.equals(StringSearchAlgorithm.JAVASTRINGCONTAINS)) {
+            return text.contains(pattern);
         }
         return false;
     }

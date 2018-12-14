@@ -4,6 +4,7 @@ import Airport.Base.Employee;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SecurityCheckReceipt {
     private String uuid;
@@ -13,8 +14,8 @@ public class SecurityCheckReceipt {
     private int numberOfBaggageScanned;
     private int numberOfDangerousBaggage;
 
-    public SecurityCheckReceipt(String uuid, SecurityCheckID id) {
-        this.uuid = uuid;
+    public SecurityCheckReceipt(SecurityCheckID id) {
+        this.uuid = UUID.randomUUID().toString();
         this.id = id;
         employeeList = new ArrayList<Employee>();
         numberOfPassengerScanned = 0;

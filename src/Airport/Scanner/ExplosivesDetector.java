@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class ExplosivesDetector extends AScanner implements IExplosivesDetector {
 
 
-    public ExplosivesDetector(String uuid, String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(uuid, id, type, stringSearchAlgorithm, readingDevice);
+    public ExplosivesDetector(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
+        super(id, type, stringSearchAlgorithm, readingDevice);
     }
 
     @Override

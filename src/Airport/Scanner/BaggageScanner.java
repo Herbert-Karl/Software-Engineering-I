@@ -17,8 +17,8 @@ public class BaggageScanner extends AScanner implements IBaggageScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
-    public BaggageScanner(String uuid, String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(uuid, id, type, stringSearchAlgorithm, readingDevice);
+    public BaggageScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
+        super(id, type, stringSearchAlgorithm, readingDevice);
     }
 
 

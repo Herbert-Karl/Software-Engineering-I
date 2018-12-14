@@ -10,8 +10,8 @@ import java.util.List;
 public class BodyScanner extends AScanner implements IBodyScanner {
 
 
-    public BodyScanner(String uuid, String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(uuid, id, type, stringSearchAlgorithm, readingDevice);
+    public BodyScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
+        super(id, type, stringSearchAlgorithm, readingDevice);
     }
 
     @Override

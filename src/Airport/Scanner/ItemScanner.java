@@ -6,8 +6,8 @@ import java.util.List;
 
 public class ItemScanner extends AScanner implements IItemScanner {
 
-    public ItemScanner(String uuid, String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(uuid, id, type, stringSearchAlgorithm, readingDevice);
+    public ItemScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
+        super(id, type, stringSearchAlgorithm, readingDevice);
     }
 
     @Override

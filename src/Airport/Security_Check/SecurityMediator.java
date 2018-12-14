@@ -5,46 +5,37 @@ import Airport.Base.Employee;
 import Airport.Base.IDCard;
 import Airport.Base.Passenger;
 import Airport.Base.TicketClass;
-import Airport.Scanner.BaggageScanner;
-import Airport.Scanner.BodyScanner;
-import Airport.Scanner.ExplosivesDetector;
-import Airport.Scanner.ReadingDevice;
+import Airport.Federal_Police.FederalPolice;
+import Airport.Scanner.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class SecurityMediator {
 
-   /* private List<IAutomaticBoardingPassControl> automaticBoardingPassControlList;
-    private List<ISecurityCheck> securityCheckList;
-    private List<IPassportControl> passportControlList;
-    */
+    private HashMap<AutomaticBoardingPassControlID, IAutomaticBoardingPassControl> automaticBoardingPassControlHashMap;
+    private HashMap<SecurityCheckID, ISecurityCheck> securityCheckHashMap;
+    FederalPolice federalPolice;
 
-   private HashMap<AutomaticBoardingPassControlID, IAutomaticBoardingPassControl> automaticBoardingPassControlHashMap;
-   private HashMap<SecurityCheckID, ISecurityCheck> securityCheckHashMap;
-   Airport airport;
-
-
+    Airport airport;
     SecurityCheckReceipt securityCheckReceipt;
 
     private List<Passenger> passengerList;
 
-    public SecurityMediator(Airport airport) {
-       /* automaticBoardingPassControlList = new ArrayList<IAutomaticBoardingPassControl>();
-        securityCheckList = new ArrayList<ISecurityCheck>();
-        passportControlList = new ArrayList<IPassportControl>();
-*/
+    public SecurityMediator(Airport airport, FederalPolice federalPolice) {
         passengerList = new ArrayList<Passenger>();
-        //securityCheckReceipt = new SecurityCheckReceipt();
         this.airport = airport;
-        build();
+        this.federalPolice = federalPolice;
     }
 
-    //TODO Variablen mit sinnvolleren Werten füllen
     public void build() {
-        for(AutomaticBoardingPassControlID id : AutomaticBoardingPassControlID.values()) {
-            automaticBoardingPassControlHashMap.put(id, new AutomaticBoardingPassControl(id.toString(), id, new ReadingDevice("1", "1", "test", null)));
+        for (AutomaticBoardingPassControlID id : AutomaticBoardingPassControlID.values()) {
+            automaticBoardingPassControlHashMap.put(id, new AutomaticBoardingPassControl(id, new ReadingDevice( "1", "test"), federalPolice));
+        }
+        for(SecurityCheckID id : SecurityCheckID.values()) {
+            //Todo Initialize, fix securitychecks
         }
     }
 

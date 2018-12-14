@@ -2,17 +2,17 @@ package Airport.Scanner;
 
 import Airport.Base.IDCard;
 
+import java.util.UUID;
+
 public class ReadingDevice implements IReadingDevice {
     private String uuid;
     private String id;
     private String type;
-    private IDCard idCard;
 
-    public ReadingDevice(String uuid, String id, String type, IDCard idCard) {
-        this.uuid = uuid;
+    public ReadingDevice(String id, String type) {
+        this.uuid = UUID.randomUUID().toString();
         this.type = type;
         this.id = id;
-        this.idCard = idCard;
     }
 
     @Override

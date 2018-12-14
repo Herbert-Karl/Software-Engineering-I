@@ -12,9 +12,9 @@ public interface ISecurityCheck {
     void logoutBodyScanner();
     boolean loginExplosivesDetector(Employee employee, String password);
     void logoutExplosivesDetector();
-    boolean scan(Passenger passenger, String pattern);
+    boolean scan(Passenger passenger);
     boolean scan(Passenger passenger, CottonPad cottonPad);
-    boolean scan(Baggage baggage, String pattern);
+    boolean scan(Baggage baggage);
     boolean scan(Baggage baggage, CottonPad cottonPad);
     void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt);
 }

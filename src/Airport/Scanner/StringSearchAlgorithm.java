@@ -1,5 +1,5 @@
 package Airport.Scanner;
 
 public enum StringSearchAlgorithm {
-    BITAP, BOYERMOORE, KNUTHMORRISPRATT;
+    BITAP, BOYERMOORE, KNUTHMORRISPRATT, JAVASTRINGCONTAINS;
 }
