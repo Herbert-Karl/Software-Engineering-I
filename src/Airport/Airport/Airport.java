@@ -41,6 +41,7 @@ public class Airport{
     private Tower tower;
     private AirportFuelTank fuelTank;
     private Customs customs;
+    private BaggageSortingUnit baggageSortingUnit;
 
     public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
@@ -97,11 +98,13 @@ public class Airport{
         fuelTank = new AirportFuelTank();
 
         customs = new Customs();
+
+        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
     }
 
     public int loadPassengerBaggageData(String dataFilePath){
         PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
-        //TODO
+        passengerList = passengerBaggageDatabase.getPassengerList();
     }
 
     public boolean connectAirplane(Airplane airplane, Gate gate){
@@ -143,6 +146,7 @@ public class Airport{
 
     public boolean executeCustoms(){
         //Dafür braucht man einen BaggageSortingunitRoboter! Woher?
+        customs.executeRequest();
         //TODO
         return false;
     }
@@ -155,9 +159,8 @@ public class Airport{
     }
 
     public boolean executeBaggageSortingUnit(GateID gateID){
-        //Woher kommt das BaggageSortingUnit?
-        //TODO
-        return false;
+        baggageSortingUnit.executeRequest(gateID);
+        return true;
     }
 
     public boolean executeServiceBase(GateID gateID){
@@ -195,8 +198,9 @@ public class Airport{
 
     public boolean executePushback(Gate gate){
         PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
-        TaxiWay taxiway = null;
-        //TODO: get Taxiway from Apron???
+        TaxiWay taxiway = apronControl.search(TaxiCenterLine.yellow, gate.getGateID(), RunwayID.R08L);
+        //TODO: random parameters?
+        //Where to get parameters?
         pushBackVehicle.execute(gate.getAirplane(), taxiway);
         resourcePool.returnResource(pushBackVehicle);
         return true;
