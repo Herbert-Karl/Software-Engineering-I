@@ -50,8 +50,8 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     public GroundOperationsCenter(Airport airport, int listSize){
         this.airport = airport;
-        this.serviceVehicleWasteWaterReceiptList = new ArrayList<ServiceVehicleWasteWaterReceipt>(listSize);
-        this.checkInReceiptList = new ArrayList<CheckInDeskReceipt>(listSize);
+        this.serviceVehicleWasteWaterReceiptList = new ArrayList<>(listSize);
+        this.checkInReceiptList = new ArrayList<>(listSize);
         this.bulkyBaggageDeskReceiptList = new ArrayList<>(listSize);
         this.securityCheckReceiptList = new ArrayList<>(listSize);
         this.federalPoliceReceiptList = new ArrayList<>(listSize);

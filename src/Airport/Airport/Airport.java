@@ -146,10 +146,10 @@ public class Airport{
     }
 
     public boolean executeCustoms(){
-        //Dafür braucht man einen BaggageSortingunitRoboter! Woher?
-        customs.executeRequest();
+        //Dafür braucht man einen BaggageSortingUnitRoboter! Woher?
+        customs.executeRequest(baggageSortingUnit.getBaggageSortingUnitRoboter());
         //TODO
-        return false;
+        return true;
     }
 
     public boolean executeAirCargo(GateID gateID){
@@ -223,9 +223,7 @@ public class Airport{
        groundOperationsCenter.logSecurityCheck(groundOperationsCenter.getSecurityCheckReceiptList());
        groundOperationsCenter.logServiceVehicleWasteWater(groundOperationsCenter.getServiceVehicleWasteWaterReceiptList());
        groundOperationsCenter.logServiceVehicleNitrogenOxygen(groundOperationsCenter.getServiceVehicleNitrogenOxygenReceiptList());
-
-
-        return false;
+        return true;
     }
 
     //
