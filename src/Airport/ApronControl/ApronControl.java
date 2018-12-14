@@ -38,8 +38,7 @@ public class ApronControl{
 
     public RunwayCheckPointID requestRunwayCheckPointID(Airplane airplane)
     {
-        return ( RunwayCheckPointID.S1);
-        // todo: herausfinden, was Aiplane übergibt
+        return ( RunwayCheckPointID.S1 );
         // S1 to S4
     }
 
