@@ -127,6 +127,14 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
         return serviceVehicleNitrogenOxygenReceiptList;
     }
 
+    public ArrayList<BoardingControlReceipt> getBoardingControlReceiptList(){
+        return boardingControlReceiptList;
+    }
+
+    public ArrayList<PushBackVehicleReceipt> getPushBackVehicleReceiptList(){
+        return pushBackVehicleReceiptList;
+    }
+
     ///
     /// IGroundOperationCenter
     ///

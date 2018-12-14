@@ -203,8 +203,23 @@ public class Airport{
     }
 
     public boolean executeGroundOperationsLogging(){
-        //Woher kommen die Receipts?
-        //TODO
+       groundOperationsCenter.logBaggageSortingUnit(groundOperationsCenter.getBaggageSortingUnitReceiptList());
+       groundOperationsCenter.logBoardingControl(groundOperationsCenter.getBoardingControlReceiptList());
+       groundOperationsCenter.logBulkyBaggageDesk(groundOperationsCenter.getBulkyBaggageDeskReceiptList());
+       groundOperationsCenter.logCargoPalletLifter(groundOperationsCenter.getAirCargoPalletLifterReceiptList());
+       groundOperationsCenter.logCheckIn(groundOperationsCenter.getCheckInReceiptList());
+       groundOperationsCenter.logContainerLifter(groundOperationsCenter.getContainerLifterReceiptList());
+       groundOperationsCenter.logCustoms(groundOperationsCenter.getCustomsReceiptList());
+       groundOperationsCenter.logFederalPolice(groundOperationsCenter.getFederalPoliceReceiptList());
+       groundOperationsCenter.logFuel(groundOperationsCenter.getFuelReceiptList());
+       groundOperationsCenter.logPushbackVehicle(groundOperationsCenter.getPushBackVehicleReceiptList());
+       groundOperationsCenter.logServiceVehicleBase(groundOperationsCenter.getServiceVehicleBaseReceiptList());
+       groundOperationsCenter.logServiceVehicleFreshWater(groundOperationsCenter.getServiceVehicleFreshWaterReceiptList());
+       groundOperationsCenter.logSecurityCheck(groundOperationsCenter.getSecurityCheckReceiptList());
+       groundOperationsCenter.logServiceVehicleWasteWater(groundOperationsCenter.getServiceVehicleWasteWaterReceiptList());
+       groundOperationsCenter.logServiceVehicleNitrogenOxygen(groundOperationsCenter.getServiceVehicleNitrogenOxygenReceiptList());
+
+
         return false;
     }
 
