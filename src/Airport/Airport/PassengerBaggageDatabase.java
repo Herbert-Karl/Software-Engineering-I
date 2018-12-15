@@ -138,9 +138,8 @@ public class PassengerBaggageDatabase{
                         }
                     }
                     filenumber++;
-                    //ToDo get baggageIdentificationTag
-                    // Baggage baggage = new NormalBaggage(content, 20.0, baggageIdentificationTag);
-                    //baggageList.add(baggage);
+                    Baggage baggage = new NormalBaggage(content, 20.0);
+                    baggageList.add(baggage);
                 }
                 i++;
                 name.setBaggageList(baggageList);
@@ -191,9 +190,8 @@ public class PassengerBaggageDatabase{
                         }
                     }
                     filenumber++;
-                    //ToDo get baggageIdentificationTag
-                    // Baggage baggage = new BulkyBaggage(content, 20.0, baggageIdentificationTag);
-                    //baggageList.add(baggage);
+                    Baggage baggage = new BulkyBaggage(content, 20.0);
+                    baggageList.add(baggage);
                 }
                 i++;
                 name.setBaggageList(baggageList);
