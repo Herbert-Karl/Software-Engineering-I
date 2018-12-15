@@ -23,6 +23,6 @@ public class EscapeSlide implements IEscapeSlide {
 
     @Override
     public void test() {
-        System.out.println("Test ausgeführt");
+        java.lang.System.out.println("Test ausgeführt");
     }
 }

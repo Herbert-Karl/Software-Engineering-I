@@ -1,11 +1,11 @@
 package Airplane.seat;
 
 public interface ITouristClassSeat {
-    String version();
+    public String version();
 
-    void assign(Passenger passenger);
+    public void assign(Passenger passenger);
 
-    void upRight();
+    public void upRight();
 
-    void level1();
+    public void level1();
 }

@@ -1,5 +1,5 @@
 package Airplane.cabin;
 
 public enum KitchenType {
-    FIRST, BUSINESS, ECONOMY
+    FIRST, BUSINESS, ECONOMY;
 }

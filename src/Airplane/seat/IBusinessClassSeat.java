@@ -1,17 +1,17 @@
 package Airplane.seat;
 
 public interface IBusinessClassSeat {
-    String version();
+    public String version();
 
-    void assign(Passenger passenger);
+    public void assign(Passenger passenger);
 
-    void readingLightOff();
+    public void readingLightOff();
 
-    void readingLightOn();
+    public void readingLightOn();
 
-    void upRight();
+    public void upRight();
 
-    void level1();
+    public void level1();
 
-    void level2();
+    public void level2();
 }

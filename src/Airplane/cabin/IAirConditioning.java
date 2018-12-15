@@ -2,15 +2,15 @@ package Airplane.cabin;
 
 public interface IAirConditioning {
 
-    String version();
+    public String version();
 
-    void on();
+    public void on();
 
-    String clean(String airFlow);
+    public String clean(String airFlow);
 
-    String heat(String airFlow, int temperature);
+    public String heat(String airFlow, int temperature);
 
-    String cool(String airFlow, int temperature);
+    public String cool(String airFlow, int temperature);
 
-    void off();
+    public void off();
 }

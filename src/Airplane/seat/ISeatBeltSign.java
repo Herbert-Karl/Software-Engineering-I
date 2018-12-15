@@ -1,9 +1,9 @@
 package Airplane.seat;
 
 public interface ISeatBeltSign {
-    String version();
+    public String version();
 
-    void on();
+    public void on();
 
-    void off();
+    public void off();
 }
