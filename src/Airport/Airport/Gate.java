@@ -46,4 +46,20 @@ public class Gate{
     public void close(){
         isOpen = false;
     }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    public void setGateID(GateID gateID) {
+        this.gateID = gateID;
+    }
+
+    public void setAirplane(Airplane airplane) {
+        this.airplane = airplane;
+    }
 }

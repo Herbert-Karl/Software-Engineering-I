@@ -12,6 +12,10 @@ public class BulkyBaggage extends Baggage{
         setSecurityStatus(null);
     }
 
+    ///
+    /// Getter:
+    ///
+
     public BulkyBaggageType getType() {
         return type;
     }
