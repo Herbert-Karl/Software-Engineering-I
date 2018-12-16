@@ -15,38 +15,46 @@ import static Airport.Configuration.Configuration.DATAFILEPATH;
 public class PassengerBaggageDatabase{
     private ArrayList<Passenger> passengerList;
 
-    private Passenger createPassenger(String id){
-        Passport passport = new Passport(id, "", null);
-        ArrayList<Baggage> baggageList = new ArrayList<>();
-        Passenger passenger = new Passenger("Max Mustermann", "","1.1.2000", Gender.Male, passport, baggageList, "", null );
-        passport.setPassenger(passenger);
-        return passenger;
-    }
+    // Initialize passengers and passports from csv
+    public int loadPassengerData(String dataFilePath){ // path with passenger data and csv files
+        String csvFile = dataFilePath + "/passenger_base_baggage_assignment.csv";
+        String line = "";
+        String cvsSplitBy = ",";
 
-    public int loadPassengerData(String dataFilePath){
-        File passengerData = new File(dataFilePath);
-        int zeilenAnzahl = 0;
-        if(!passengerData.canRead() || !passengerData.isFile()){System.out.println("Fehler beim Einlesen der Datei.");}
-        BufferedReader inp = null;
-        try{
-            for(int nummer = 1; nummer <= 568; nummer++) {
-                inp = new BufferedReader(new FileReader(dataFilePath + "/passenger_" + nummer + ".txt"));
-                String zeile = null;
-                zeile = inp.readLine();
-                    zeilenAnzahl++;
-                    //Noch was?
-                    Passenger passenger = createPassenger("" + nummer);
-                    passenger.setContent(zeile);
-                    passengerList.add(passenger);
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+
+            while ((line = br.readLine()) != null) { // iterate through file lines
+                String[] dataFields = line.split(cvsSplitBy);
+                String ticketClass = dataFields[1];
+                String name = dataFields[2];
+                String birthDate = dataFields[3];
+                String genderString = dataFields[4];
+                String passportString = dataFields[5];
+                String passportPictureTemp = dataFields[6];
+                String passportPicture = dataFields[7];
+                String numberHandBaggages = dataFields[8];
+                String numberNormalBaggages = dataFields[9];
+                String numberBulkyBaggages = dataFields[10];
+                String handBaggageID = dataFields[11];
+                String normalBaggageID = dataFields[12];
+                String bulkyBaggageID = dataFields[13];
+                Gender gender = Gender.Female;
+
+                // Get Gender
+                if (genderString == "m") {
+                    gender = Gender.Male;
+                }
+
+                Passport passport = new Passport(passportString, passportPicture, null);
+                ArrayList<Baggage> baggageList = new ArrayList<>();
+                //ToDo Set passenger content
+                Passenger passenger = new Passenger(name, null, birthDate, gender, passport, baggageList, ticketClass, PassengerStatus.Initialized);
+                passport.setPassenger(passenger);
+                passengerList.add(passenger);
             }
-        } catch(IOException ioException){
-            ioException.printStackTrace();
-        } finally {
-            if(inp != null) try {
-                inp.close();
-            } catch(IOException ioE){
-                ioE.printStackTrace();
-            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return passengerList.size();
     }
