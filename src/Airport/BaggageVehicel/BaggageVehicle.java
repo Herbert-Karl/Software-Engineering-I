@@ -4,8 +4,6 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.Container;
 
-
-//todo
 public class BaggageVehicle {
     private String uuid;
     private String id;
