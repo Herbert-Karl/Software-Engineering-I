@@ -29,10 +29,9 @@ public class FrontStowage extends Stowage {
             this.positionList.forEach(e -> {
                 if (e.getId() == frontStowagePosition.getId() && e.getContainer() == null) {
                     e.setContainer(frontStowagePosition.getContainer());
-                    return true;
                 }
             });
-            return false;
+            return true;
         }
         
         return false;

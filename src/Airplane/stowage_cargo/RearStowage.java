@@ -29,10 +29,9 @@ public class RearStowage extends Stowage {
             this.positionList.forEach(e -> {
                 if (e.getId() == rearStowagePosition.getId() && e.getAirCargoPallet() == null) {
                     e.setAirCargoPallet(rearStowagePosition.getAirCargoPallet());
-                    return true;
                 }
             });
-            return false;
+            return true;
         }
 
         return false;
