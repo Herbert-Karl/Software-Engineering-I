@@ -4,6 +4,7 @@ import Airport.base.AirCargoPallet;
 import Airport.base.Container;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CargoSystem implements ICargoSystem {
     private String manufacturer;
@@ -28,52 +29,91 @@ public class CargoSystem implements ICargoSystem {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void unlock() {
-
+        this.isLocked = false;
     }
 
     @Override
     public void load(Stowage stowage, Container container, FrontStowagePositionID position) {
-
+        if (!this.isLocked) {
+            FrontStowage temp = (FrontStowage) stowage;
+            boolean result = temp.load(new FrontStowagePosition(position, container));
+            if (!result) {
+                System.err.println("Not Loaded!");
+            }
+        }
     }
 
     @Override
     public void load(Stowage stowage, AirCargoPallet airCargoPallet, RearStowagePositionID position) {
-
+        if (!this.isLocked) {
+            RearStowage temp = (RearStowage) stowage;
+            boolean result = temp.load(new RearStowagePosition(position, airCargoPallet));
+            if (!result) {
+                System.err.println("Not Loaded!");
+            }
+        }
     }
 
     @Override
     public double determineTotalWeightContainer(Stowage stowage) {
-        return 0;
+        AtomicReference<Double> weight = new AtomicReference<>(0.0);
+        FrontStowage temp = (FrontStowage) stowage;
+        temp.getPositionList().forEach(e -> e.getContainer().getBaggageStack().forEach(b -> weight.updateAndGet(v -> (double) (v + b.getWeight()))));
+        return weight.get();
     }
 
     @Override
     public double determineTotalWeigthAirCargoPallet(Stowage stowage) {
-        return 0;
+        AtomicReference<Double> weight = new AtomicReference<>(0.0);
+        RearStowage temp = (RearStowage) stowage;
+        temp.getPositionList().forEach(e -> {
+            for (int i = 0; i <= e.getAirCargoPallet().getItemList().length; i++) {
+                int finalI = i;
+                weight.updateAndGet(v -> v + e.getAirCargoPallet().getItemList()[finalI].getWeight());
+            }
+        });
+        return weight.get();
     }
 
     @Override
     public void secure() {
-
+        this.isSecured = true;
     }
 
     @Override
     public void lock() {
-
+        if (this.isSecured) {
+            this.isLocked = true;
+        } else {
+            System.err.println("Ladung nicht gesichert!");
+        }
     }
 
     @Override
     public ArrayList<Container> unloadContainer(Stowage stowage) {
-        return null;
+        ArrayList<Container> output = new ArrayList<>();
+        if (!this.isLocked) {
+            this.isSecured = false;
+            FrontStowage temp = (FrontStowage) stowage;
+            output = temp.unloadAll();
+        }
+        return output;
     }
 
     @Override
     public ArrayList<AirCargoPallet> unloadAirCargoPallet(Stowage stowage) {
-        return null;
+        ArrayList<AirCargoPallet> output = new ArrayList<>();
+        if (!this.isLocked) {
+            this.isSecured = false;
+            RearStowage temp = (RearStowage) stowage;
+            output = temp.unloadAll();
+        }
+        return output;
     }
 
     public String getManufacturer() {

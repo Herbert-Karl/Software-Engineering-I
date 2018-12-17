@@ -4,10 +4,10 @@ public class AirCargoPallet {
     private String uuid;
     private String type;
     private String id;
-    private Item[][] itemList;
+    private Item[] itemList;
     private int maximumNumberOfItems;
 
-    public AirCargoPallet(String uuid, String type, String id, Item[][] itemList) {
+    public AirCargoPallet(String uuid, String type, String id, Item[] itemList) {
         this.uuid = uuid;
         this.type = type;
         this.id = id;
@@ -39,11 +39,11 @@ public class AirCargoPallet {
         this.id = id;
     }
 
-    public Item[][] getItemList() {
+    public Item[] getItemList() {
         return itemList;
     }
 
-    public void setItemList(Item[][] itemList) {
+    public void setItemList(Item[] itemList) {
         this.itemList = itemList;
     }
 
