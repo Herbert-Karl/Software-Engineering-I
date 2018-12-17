@@ -22,7 +22,6 @@ public class PassengerBaggageDatabase{
         String cvsSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
             while ((line = br.readLine()) != null) { // iterate through file lines
                 String[] dataFields = line.split(cvsSplitBy);
                 String ticketClass = dataFields[1];
@@ -38,21 +37,30 @@ public class PassengerBaggageDatabase{
                 String handBaggageID = dataFields[11];
                 String normalBaggageID = dataFields[12];
                 String bulkyBaggageID = dataFields[13];
-                Gender gender = Gender.Female;
-
-                // Get Gender
-                if (genderString == "m") {
+                Gender gender = Gender.Female;               
+                if (genderString == "m") { // Get Gender
                     gender = Gender.Male;
                 }
+                int counter = 1;
+                String content = "";
+                String passengerDataPath = dataFilePath + "/passenger_" + counter + ".txt";
+                String linePassengerData = "";
 
                 Passport passport = new Passport(passportString, passportPicture, null);
                 ArrayList<Baggage> baggageList = new ArrayList<>();
-                //ToDo Set passenger content
-                Passenger passenger = new Passenger(name, null, birthDate, gender, passport, baggageList, ticketClass, PassengerStatus.Initialized);
+            	// Read passenger data to get passenger content
+                try (BufferedReader brPassengerData = new BufferedReader(new FileReader(passengerDataPath))) {
+                    while ((linePassengerData = brPassengerData.readLine()) != null) {
+                		content = linePassengerData;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                counter++;
+                Passenger passenger = new Passenger(name, content, birthDate, gender, passport, baggageList, ticketClass, PassengerStatus.Initialized);
                 passport.setPassenger(passenger);
                 passengerList.add(passenger);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,7 +69,7 @@ public class PassengerBaggageDatabase{
 
     public int loadAssignCabinBaggageData(String dataFilePath){
         // Assign certain amount of hand baggages (amount from csv) to baggageList of all passengers
-        // and create instances of baggage with content, weight and identification tag
+        // and create instances of baggage with content and weight
         int i = 0;
         int filenumber = 0;
         String[] amountOfBaggages;
