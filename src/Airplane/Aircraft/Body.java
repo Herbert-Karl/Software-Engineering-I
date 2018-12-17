@@ -1,4 +1,5 @@
 package Airplane.Aircraft;
+import java.util.ArrayList;
 
 import Airplane.FlightControls.Implementations.Gear;
 import Airplane.FlightControls.Interfaces.IElevator;
@@ -20,7 +21,7 @@ import Airplane.seat.TouristClassSeat;
 import Airplane.stowage_cargo.CargoSystem;
 import Airplane.stowage_cargo.StowageNumberFive;
 
-import java.util.ArrayList;
+
 
 public class Body {
     private Airplane airplane;
@@ -32,7 +33,7 @@ public class Body {
     private ArrayList<Kitchen> kitchenArrayList;
     private ArrayList<Lavatory> lavatoryArrayList;
     private ArrayList<WasteSystem> wasteSystemArrayList;
-    private ArrayList<Watersystem> watersystemArrayList;
+    private ArrayList<WaterSystem> waterSystemArrayList;
     private ArrayList<EscapeSlide> escapeSlideArrayList;
     private ArrayList<BulkCargoDoor> bulkCargoDoorArrayList;
     private ArrayList<CrewDoor> crewDoorArrayList;
@@ -142,8 +143,8 @@ public class Body {
         return wasteSystemArrayList;
     }
 
-    public ArrayList<Watersystem> getWatersystemArrayList() {
-        return watersystemArrayList;
+    public ArrayList<WaterSystem> getWaterSystemArrayList() {
+        return waterSystemArrayList;
     }
 
     public ArrayList<EscapeSlide> getEscapeSlideArrayList() {
