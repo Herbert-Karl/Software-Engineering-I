@@ -57,16 +57,16 @@ public class APUOilTank implements IAPUOilTank {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void increaseLevel(int value) {
-
+        this.currentLevel = this.currentLevel + value;
     }
 
     @Override
     public void decreaseLevel(int value) {
-
+        this.currentLevel = this.currentLevel - value;
     }
 }

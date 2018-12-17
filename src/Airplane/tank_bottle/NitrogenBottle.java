@@ -57,21 +57,23 @@ public class NitrogenBottle implements INitrogenBottle {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void takeOut(int amount) {
-
+        this.currentAmount -= amount;
     }
 
     @Override
     public void refill() {
-
+        this.currentAmount = this.capacity;
     }
 
     @Override
     public void refill(int amount) {
-
+        if (this.currentAmount + amount <= this.capacity) {
+            this.currentAmount += amount;
+        }
     }
 }

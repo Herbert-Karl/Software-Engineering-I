@@ -57,26 +57,28 @@ public class WasteWaterTank implements IWasteWaterTank {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void lock() {
-
+        this.isLocked = true;
     }
 
     @Override
     public void unlock() {
-
+        this.isLocked = false;
     }
 
     @Override
     public void add(int amount) {
-
+        if (this.capacity >= amount) {
+            this.capacity -= amount;
+        }
     }
 
     @Override
     public void pumpOut() {
-
+        this.capacity = 1000;
     }
 }

@@ -57,16 +57,16 @@ public class Battery implements IBattery {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void charge() {
-
+        this.capacity = 100;
     }
 
     @Override
     public void discharge() {
-
+        this.capacity = 0;
     }
 }

@@ -47,16 +47,16 @@ public class FireExtinguisher implements IFireExtinguisher {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void refill() {
-
+        this.currentPercentage = 100;
     }
 
     @Override
     public void apply() {
-
+        this.currentPercentage = 0;
     }
 }

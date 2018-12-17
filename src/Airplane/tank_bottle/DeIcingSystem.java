@@ -67,26 +67,26 @@ public class DeIcingSystem implements IDeIcingSystem {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void activate() {
-
+        this.isActivated = true;
     }
 
     @Override
     public void deIce(int amount) {
-
+        this.currentAmount = this.currentAmount - amount;
     }
 
     @Override
     public void refill() {
-
+        this.currentAmount = this.capacity;
     }
 
     @Override
     public void deactivate() {
-
+        this.isActivated = false;
     }
 }

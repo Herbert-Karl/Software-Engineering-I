@@ -57,16 +57,20 @@ public class EngineOilTank implements IEngineOilTank {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void increaseLevel(int value) {
-
+        if (this.currentLevel <= this.maximumLevel + value) {
+            this.currentLevel = this.currentLevel + value;
+        }
     }
 
     @Override
     public void decreaseLevel(int value) {
-
+        if (this.currentLevel >= this.maximumLevel - value) {
+            this.currentLevel = this.currentLevel - value;
+        }
     }
 }
