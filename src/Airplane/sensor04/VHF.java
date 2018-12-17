@@ -24,7 +24,7 @@ public class VHF implements IVHF {
 
     @Override
     public void on() {
-
+        this.isOn = true;
     }
 
     @Override

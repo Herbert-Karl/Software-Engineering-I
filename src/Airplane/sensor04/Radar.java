@@ -15,12 +15,12 @@ public class Radar implements IRadar {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void on() {
-
+        this.isOn = true;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Radar implements IRadar {
 
     @Override
     public void off() {
-
+        this.isOn = false;
     }
 
     public String getManufacturer() {

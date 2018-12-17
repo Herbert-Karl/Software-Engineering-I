@@ -17,32 +17,32 @@ public class Camera implements ICamera {
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void setType(String type) {
-
+        this.setType(CameraType.valueOf(type));
     }
 
     @Override
     public void on() {
-
+        this.isOn = true;
     }
 
     @Override
     public String record() {
-        return null;
+        return "Recording...";
     }
 
     @Override
     public void zoomIn(double factor) {
-
+        this.factor += factor;
     }
 
     @Override
     public void off() {
-
+        this.isOn = false;
     }
 
     public String getManufacturer() {

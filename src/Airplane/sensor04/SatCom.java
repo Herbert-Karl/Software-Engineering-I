@@ -5,22 +5,24 @@ public class SatCom implements ISatCom {
     private String type;
     private String id;
     private boolean isConnected;
+    private boolean isOn;
 
-    public SatCom(String manufacturer, String type, String id, boolean isConnected) {
+    public SatCom(String manufacturer, String type, String id, boolean isConnected, boolean isOn) {
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
         this.isConnected = isConnected;
+        this.isOn = isOn;
     }
 
     @Override
     public String version() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void on() {
-
+        this.isOn = true;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class SatCom implements ISatCom {
 
     @Override
     public void off() {
-
+        this.isOn = false;
     }
 
     public String getManufacturer() {

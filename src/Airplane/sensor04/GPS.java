@@ -17,12 +17,12 @@ public class GPS implements IGPS {
 
     @Override
     public String verion() {
-        return null;
+        return "<" + id + "> - <" + type + ">";
     }
 
     @Override
     public void on() {
-
+        this.isOn = true;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class GPS implements IGPS {
 
     @Override
     public void off() {
-
+        this.isOn = false;
     }
 
     public String getManufacturer() {
