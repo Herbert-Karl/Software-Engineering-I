@@ -1,20 +1,39 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
+import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
+import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
+import Airport.Base.*;
+import Airport.Customs.Customs;
+import Airport.Scanner.BaggageScanner;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BaggageSortingUnitRoboterTest
 {
+    private BaggageSortingUnitRoboter baggageSortingUnitRoboter;
+    private BaggageSortingUnit baggageSortingUnit;
 
-    @Test
-    void addBaggage()
-    {
+    @BeforeEach
+    void setup() {
+        baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner(), new DestinationBox(null, new ArrayList<Baggage>(),
+                100), new Customs());
+        baggageSortingUnitRoboter = new BaggageSortingUnitRoboter(baggageSortingUnit, "uuid", "id", "type");
+
+        for (int i = 0; i < 10; i++) {
+            baggageSortingUnitRoboter.addBaggage(new NormalBaggage("content", 100,
+                    new BaggageIdentificationTag(null, "flight", 100, null, "barcode" + i)));
+        }
     }
 
     @Test
     void moveBaggageToDepot()
     {
+        baggageSortingUnitRoboter.moveBaggageToDepot(baggageSortingUnitRoboter.getSelectedBaggageList());
+        assertEquals(baggageSortingUnitRoboter.getSelectedBaggageList(), baggageSortingUnit.getBaggageDepot().getBaggageList());
     }
 
     @Test
@@ -25,5 +44,10 @@ class BaggageSortingUnitRoboterTest
     @Test
     void loadContainer()
     {
+        BaggageVehicle baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
+        baggageSortingUnit.setBaggageVehicle(baggageVehicle);
+        baggageSortingUnitRoboter.loadContainer();
+
+        assertEquals(10, baggageVehicle.getContainer().getBaggageList().size());
     }
 }

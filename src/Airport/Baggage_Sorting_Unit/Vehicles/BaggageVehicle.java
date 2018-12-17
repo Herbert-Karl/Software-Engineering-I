@@ -21,6 +21,7 @@ public class BaggageVehicle implements IBaggageVehicle {
 
   private boolean isFlashingLightOn;
 
+
   private Container container;
 
   private IContainerLifter containerLifter;
@@ -72,6 +73,8 @@ public class BaggageVehicle implements IBaggageVehicle {
   public Gate getGate() {
     return gate;
   }
+
+  public Container getContainer() { return container; }
 
   @Override
   public IContainerLifter getContainerLifter() {
