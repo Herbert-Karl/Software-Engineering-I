@@ -1,5 +1,6 @@
 package Airplane.stowage_cargo;
 
+// grundlegende Klasse für die beiden Hauptladeräume des Flugzeugs
 public class Stowage {
 
     private StowageType type;
@@ -7,7 +8,6 @@ public class Stowage {
     private boolean isComplete;
 
     // Konstruktor
-    //
     Stowage(StowageType type) {
         this.type = type;
         this.isComplete = false;

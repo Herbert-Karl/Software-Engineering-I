@@ -8,4 +8,12 @@ public class AirportFuelTank{
         this.id = id;
         this.amount = amount;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }
