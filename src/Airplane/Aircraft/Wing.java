@@ -36,6 +36,7 @@ public class Wing {
     private ArrayList<TurbulentAirFlowSensor> turbulentAirFlowSensorArrayList;
     private ArrayList<Camera> cameraArrayList;
     private ArrayList<IDroopNose> DroopNoseArrayList;
+    private ArrayList<FireDetector> fireDetectorArrayList;
 
     public Wing(Airplane airplane) {
         this.airplane = airplane;
@@ -50,6 +51,9 @@ public class Wing {
         return engineArrayList;
     }
 
+    public ArrayList<FireDetector> getFireDetectorArrayList() {
+        return fireDetectorArrayList;
+    }
     public ArrayList<HydraulicPump> getHydraulicPumpArrayList() {
         return hydraulicPumpArrayList;
     }

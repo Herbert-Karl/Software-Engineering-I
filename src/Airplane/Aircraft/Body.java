@@ -98,9 +98,6 @@ public class Body {
         for (int i = 0;i < 24;i++)
             batteryList.add(new Battery("M","B01","BT" + i,100));
 
-        // gear
-        for (int i = 0;i < airplane.getConfiguration().getNumberOfGear();i++)
-            gearList.add(new Gear());
     }
 
     public ArrayList<IBattery> getBatteryList() {
