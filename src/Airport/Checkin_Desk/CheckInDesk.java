@@ -9,7 +9,7 @@ import java.util.Random;
 
 import static Airport.Base.Destination.HKG;
 
-public class CheckInDesk {
+public class CheckInDesk implements ICheckInDesk{
     private String uuid;
     private int id;
     private Airport airport;
@@ -39,4 +39,57 @@ public class CheckInDesk {
         luggageTubList = new ArrayList<>();
     }
 
+    public void open(){
+        employee = airport.getResourcePool().takeResource("Employee");
+        isOpen = true;
+    }
+
+    public void close(){
+        airport.getResourcePool().returnResource(employee);
+        employee = null;
+        isOpen = false;
+    }
+     public boolean validatePassport(Passenger passenger){
+        //TODO
+         return false;
+     }
+
+     public BoardingPass checkIn(Passenger passenger){
+        //TODO
+         return null;
+     }
+
+     public void print(BoardingPass boardingPass){
+        //TODO
+     }
+
+     public double weight(Baggage baggage){
+        //TODO
+         return 0;
+     }
+
+     public BaggageIdentificationTag checkIn(Baggage baggage){
+        //TODO
+         return null;
+     }
+
+     public void print(BaggageIdentificationTag baggageIdentificationTag){
+        //TODO
+     }
+
+     public void place(BaggageIdentificationTag baggageIdentificationTag, Baggage baggage){
+        //TODO
+     }
+
+     public void place(Baggage baggage, LuggageTub luggageTub){
+        //TODO
+     }
+
+     public void sendLuggageTubToBaggageSortingUnit(LuggageTub luggageTub){
+        //TODO
+     }
+
+     public void notifyGroundOperations(CheckInDeskReceipt checkInDeskReceipt){
+        airport.getGroundOperationsCenter().receive(checkInDeskReceipt);
+     }
 }
