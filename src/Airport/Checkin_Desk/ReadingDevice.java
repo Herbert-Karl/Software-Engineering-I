@@ -1,8 +1,10 @@
 package Airport.Checkin_Desk;
 
+import Airport.Base.Passport;
+
 import java.util.UUID;
 
-public class ReadingDevice {
+public class ReadingDevice implements IReadingDevice{
     private String uuid;
     private String type;
     private String id;
@@ -12,6 +14,16 @@ public class ReadingDevice {
         this.uuid = uuid.toString();
         this.type = type;
         this.id = id;
+    }
+
+    public String version(){
+        //TODO
+        return "";
+    }
+
+    public boolean scan(Passport passport){
+        //TODO
+        return false;
     }
 
     public String getUuid() {
