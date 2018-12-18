@@ -64,8 +64,7 @@ public class CheckInDesk implements ICheckInDesk{
      }
 
      public double weight(Baggage baggage){
-        //TODO
-         return 0;
+         return baggage.getWeight();
      }
 
      public BaggageIdentificationTag checkIn(Baggage baggage){
@@ -86,7 +85,7 @@ public class CheckInDesk implements ICheckInDesk{
      }
 
      public void sendLuggageTubToBaggageSortingUnit(LuggageTub luggageTub){
-        airport.
+        //TODO
      }
 
      public void notifyGroundOperations(CheckInDeskReceipt checkInDeskReceipt){

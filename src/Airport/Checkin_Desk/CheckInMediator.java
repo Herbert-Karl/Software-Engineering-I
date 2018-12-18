@@ -11,10 +11,15 @@ public class CheckInMediator {
     public CheckInMediator(BulkyBaggageDesk bulkyBaggageDesk){
         this.bulkyBaggageDesk = bulkyBaggageDesk;
 
+
+    }
+
+    public void build(){
+        //TODO
     }
 
 
     public void executeRequest(Flight flight){
-
+        //TODO
     }
 }
