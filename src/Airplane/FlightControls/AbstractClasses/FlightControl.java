@@ -8,8 +8,8 @@ public abstract class FlightControl extends Versionable implements IFlightContro
     private final String manufacturer;
 
 
-    protected FlightControl(String manufacturer, String type, String id) {
-        super(type, id);
+    protected FlightControl(String manufacturer, String type) {
+        super(type);
         this.manufacturer = manufacturer;
         this.degree = 0;
     }
