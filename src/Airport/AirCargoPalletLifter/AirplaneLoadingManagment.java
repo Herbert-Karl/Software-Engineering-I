@@ -1,6 +1,6 @@
 package Airport.AirCargoPalletLifter;
 
-public class AirplaneLoadingManagment {
+public class AirplaneLoadingManagment implements IAirplaneLoadingManagement{
     private LoadingStrategy strategy;
 
     public AirplaneLoadingManagment(LoadingStrategy strategy) {
@@ -14,5 +14,6 @@ public class AirplaneLoadingManagment {
     public void setStrategy(LoadingStrategy strategy) {
         this.strategy = strategy;
     }
+    @Override
     public void optimizeBalancing(){}
 }

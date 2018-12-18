@@ -4,7 +4,7 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicel {
+public class AirCargoPalletVehicel implements IAirCargoPalletVehicel{
     private String uuid;
     private String id;
     private String type;
@@ -84,21 +84,32 @@ public class AirCargoPalletVehicel {
     public void setConnectedAirCargoPalletLifter(IAirCargoPalletLifter connectedAirCargoPalletLifter) {
         this.connectedAirCargoPalletLifter = connectedAirCargoPalletLifter;
     }
-
+    @Override
     public void setGate(Gate gate) {
         this.gate = gate;
     }
-
+    @Override
     public void executeRequest(GateID gateID){}
+    @Override
     public void store(AirCargoPallet airCargoPallet){}
+    @Override
     public void setFlashingLightOn(){setFlashingLightOn(true);}
+    @Override
     public void move(int speedInMPH){setSpeedInMPH(speedInMPH);}
+    @Override
     public void stop(){setSpeedInMPH(0);}
-    public void setGate(GateID gateID){setGate(gateID);}
-    public void connect(IAirCargoPalletLifter airCargoPalletLifter){setConnectedAirCargoPalletLifter(airCargoPalletLifter);}
+    @Override
+    public void setGate(GateID gateID){ ;}
+    @Override
+    public void connect(IAirCargoPalletLifter airCargoPalletLifter){setConnectedAirCargoPalletLifter(airCargoPalletLifter); }
+    @Override
     public void transferPalletToLifter(){}
+    @Override
     public void disconnectFromLifter(){setConnectedAirCargoPalletLifter(null);}
+    @Override
     public void returnToAirCargoPalletPackingUnit(){}
+    @Override
     public void setFlashingLightOff(){setFlashingLightOn(false);}
+    @Override
     public void returnToAirportResourcePool(){}
 }

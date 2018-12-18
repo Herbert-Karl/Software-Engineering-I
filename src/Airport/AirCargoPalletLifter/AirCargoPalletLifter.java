@@ -3,10 +3,11 @@ package Airport.AirCargoPalletLifter;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
-
+import Airplane.Aircraft.Airplane;
 import java.util.ArrayList;
+import Airport.Airport.Airport;
 
-public class AirCargoPalletLifter {
+public class AirCargoPalletLifter implements IAirCargoPalletLifter{
     private String uuid;
     private String id;
     private String type;
@@ -120,17 +121,34 @@ public class AirCargoPalletLifter {
         this.connectedAirplane = connectedAirplane;
         this.isDown = true;
     }
+    @Override
     public void executeRequest(GateID gateID){}
+    @Override
     public void move(int speedInMPH){ setSpeedInMPH(speedInMPH);}
+    @Override
     public void stop(){setSpeedInMPH(0);}
-    public void setGate(GateID gateID){setGate(gateID);}
+    @Override
+    public void setGate(GateID gateID){setGate(searchGateById(gateID));}
+    @Override
     public void connectToAirplane(){setConnectToAirplane(airplane);}
+    @Override
     public void up(){setDown(false);}
+    @Override
     public void transferAirCargoPalletToCargoSystem(){}
+    @Override
     public void disconnectFromAirplane(){setConnectToAirplane(null);}
+    @Override
     public void setFlashingLightOn(){ setFlashingLightOn(true);}
+    @Override
     public void setFlashingLightOff(){ setFlashingLightOn(false);}
+    @Override
     public void returnToAirportResourcePool(){}
+    @Override
     public void down(){setDown(true);}
+    @Override
     public void notifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt){}
+    @Override
+    public Gate searchGateById(GateID gateID) {
+    return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+}
 }

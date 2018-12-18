@@ -16,4 +16,5 @@ public interface IAirCargoPalletLifter {
     void returnToAirportResourcePool();
     void down();
     void notifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt);
+
 }

@@ -4,7 +4,7 @@ import Airport.Base.AirCargoPallet;
 
 import java.util.ArrayList;
 
-public class AirCargoPalletPackingUnit {
+public class AirCargoPalletPackingUnit implements IAirCargoPalletPackingUnit{
     private ArrayList<AirCargoPallet> emptyAirCargoPalletList;
     private ArrayList scanPatternList;
     private IItemScanner itemScanner;
