@@ -5,7 +5,7 @@ import Airport.Base.*;
 
 import java.util.Random;
 
-public class BulkyBaggageDesk {
+public class BulkyBaggageDesk implements IBulkyBaggageDesk{
     private String uuid;
     private int id;
     private Airport airport;
@@ -39,5 +39,45 @@ public class BulkyBaggageDesk {
 
     public double weight(Baggage baggage){
         return baggage.getWeight();
+    }
+
+    public boolean scan(Passport passport){
+        //TODO
+        return false;
+    }
+
+    public boolean scan(BoardingPass boardingPass){
+        //TODO
+        return false;
+    }
+
+    public BaggageIdentificationTag checkIn(BoardingPass boardingPass, Baggage baggage){
+        //TODO
+        return null;
+    }
+
+    public BaggageIdentificationTag printBaggageIdentificationTag(){
+        //TODO
+        return null;
+    }
+
+    public void place(Baggage baggage, LuggageTub luggageTub){
+        //TODO
+    }
+
+    public void place(BaggageIdentificationTag baggageIdentificationTag, Baggage baggage){
+        //TODO
+    }
+
+    public void sendLuggageTubToBaggageSortingUnit(LuggageTub luggageTub){
+        //TODO
+    }
+
+    public void refillLuggageTubListFromCheckInDesk(){
+        //TODO
+    }
+
+    public void notifyGroundOperations(){
+        //TODO
     }
 }

@@ -11,7 +11,7 @@ public interface IBulkyBaggageDesk {
     BaggageIdentificationTag printBaggageIdentificationTag();
     void place(Baggage baggage, LuggageTub luggageTub);
     void place(BaggageIdentificationTag baggageIdentificationTag, Baggage baggage);
-    void sendLuggageTubToBaggaeSortingUnit(LuggageTub luggageTub);
+    void sendLuggageTubToBaggageSortingUnit(LuggageTub luggageTub);
     void refillLuggageTubListFromCheckInDesk();
     void notifyGroundOperations(BulkyBaggageDeskReceipt bulkyBaggageDeskReceipt);
     void close();
