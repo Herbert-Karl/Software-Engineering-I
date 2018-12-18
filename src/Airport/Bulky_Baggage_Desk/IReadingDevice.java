@@ -5,6 +5,6 @@ import Airport.Base.Passport;
 
 public interface IReadingDevice {
     String version();
-    boolean Scan(Passport passport);
-    boolean Scan(BoardingPass boardingPass);
+    boolean scan(Passport passport);
+    boolean scan(BoardingPass boardingPass);
 }
