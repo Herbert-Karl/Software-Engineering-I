@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LoadingStrategy {
 
-    private Airplane.stowage_cargo.Stowage stowage;
+    private Stowage stowage;
     private ArrayList<String> containerIDList;
 
     public ArrayList<String> getContainerIDList() {
