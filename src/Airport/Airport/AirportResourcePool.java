@@ -269,49 +269,55 @@ public class AirportResourcePool{
         return null;
     }
 
-    public <E>void returnResource(E resource){
-        if(resource instanceof Employee){
-            Employee employee = (Employee) resource;
-            employeeList.add(employee);
-        } else if(resource instanceof AirCargoPalletLifter){
-            AirCargoPalletLifter airCargoPalletLifter = (AirCargoPalletLifter) resource;
-            airCargoPalletLifterList.add(airCargoPalletLifter);
-        } else if (resource instanceof AirCargoPalletVehicle){
-            AirCargoPalletVehicle airCargoPalletVehicle = (AirCargoPalletVehicle) resource;
-            airCargoPalletVehicleList.add(airCargoPalletVehicle);
-        } else if(resource instanceof ContainerLifter){
-            ContainerLifter containerLifter = (ContainerLifter) resource;
-            containerLifterList.add(containerLifter);
-        } else if(resource instanceof BaggageVehicle){
-            BaggageVehicle baggageVehicle = (BaggageVehicle) resource;
-            baggageVehicleList.add(baggageVehicle);
-        } else if(resource instanceof ServiceVehicleBase){
-            ServiceVehicleBase serviceVehicleBase = (ServiceVehicleBase) resource;
-            serviceVehicleBaseList.add(serviceVehicleBase);
-        } else if(resource instanceof ServiceVehicleFreshWater){
-            ServiceVehicleFreshWater serviceVehicleFreshWater = (ServiceVehicleFreshWater) resource;
-            serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
-        } else if(resource instanceof ServiceVehicleNitrogenOxygen){
-            ServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen = (ServiceVehicleNitrogenOxygen) resource;
-            serviceVehicleNitrogenOxigenList.add(serviceVehicleNitrogenOxygen);
-        } else if(resource instanceof ServiceVehicleWasteWater){
-            ServiceVehicleWasteWater serviceVehicleWasteWater = (ServiceVehicleWasteWater) resource;
-            serviceVehicleWasteWaterList.add(serviceVehicleWasteWater);
-        } else if(resource instanceof SkyTankingVehicle){
-            SkyTankingVehicle skyTankingVehicle = (SkyTankingVehicle) resource;
-            skyTankingVehicleList.add(skyTankingVehicle);
-        } else if(resource instanceof IDCard){
-            IDCard idCard = (IDCard) resource;
-            idCardList.add(idCard);
-        } else if(resource instanceof PushBackVehicle){
-            PushBackVehicle pushBackVehicle = (PushBackVehicle) resource;
-            pushbackVehicleList.add(pushBackVehicle);
+    public void retrunResource(Employee employee){
+        employeeList.add(employee);
+    }
+    
+    public void returnResource(AirCargoPalletLifter airCargoPalletLifter){
+        airCargoPalletLifterList.add(airCargoPalletLifter);
+    }
 
-        }
+    public void returnResource(AirCargoPalletVehicle airCargoPalletVehicle){
+        airCargoPalletVehicleList.add(airCargoPalletVehicle);
+    }
+
+    public void returnResource(ContainerLifter containerLifter){
+        containerLifterList.add(containerLifter);
+    }
+
+    public void returnResource(BaggageVehicle baggageVehicle){
+        baggageVehicleList.add(baggageVehicle);
+    }
+
+    public void returnRecource(ServiceVehicleBase serviceVehicleBase){
+        serviceVehicleBaseList.add(serviceVehicleBase);
+    }
+
+    public void returnRecource(ServiceVehicleFreshWater serviceVehicleFreshWater){
+        serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
+    }
+
+    public void returnResource(ServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen){
+        serviceVehicleNitrogenOxigenList.add(serviceVehicleNitrogenOxygen);
+    }
+
+    public void returnResource(ServiceVehicleWasteWater serviceVehicleWasteWater){
+        serviceVehicleWasteWaterList.add(serviceVehicleWasteWater);
+    }
+
+    public void returnResource(SkyTankingVehicle skyTankingVehicle){
+        skyTankingVehicleList.add(skyTankingVehicle);
+    }
+
+    public void returnResource(IDCard idCard){
+        idCardList.add(idCard);
+    }
+
+    public void returnRecource(PushBackVehicle pushBackVehicle){
+        pushbackVehicleList.add(pushBackVehicle);
     }
 
     public void returnResource(Employee employee){
-        Employee employee = (Employee) resource;
         employeeList.add(employee);
     }
 
