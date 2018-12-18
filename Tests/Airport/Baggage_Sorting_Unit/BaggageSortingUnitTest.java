@@ -1,5 +1,8 @@
 package Airport.Baggage_Sorting_Unit;
 
+import Airport.Airport.GateID;
+import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
+import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Base.*;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
@@ -47,13 +50,82 @@ class BaggageSortingUnitTest {
     }
 
     @Test
-    void scan() throws IOException
+    void scanBulkyBaggage() throws IOException
     {
-        File file = new File("");
-        Scanner sc = new Scanner(file);
+        ArrayList<Baggage> baggageTestList = new ArrayList<Baggage>();
 
-        while (sc.hasNextLine())
-            System.out.println(sc.nextLine());
+        for (int i = 1; i <= 45; i++) {
+            File file = new File("Tests\\TestData\\bulky_baggage\\bulky_baggage_" + i);
+            Scanner sc = new Scanner(file);
+
+            String data = "";
+
+            while (sc.hasNextLine())
+                data = data + sc.nextLine();
+
+            Baggage baggage = new BulkyBaggage(data, 100, null, null);
+            baggageTestList.add(baggage);
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            if (baggage == baggageTestList.get(39))
+                assertTrue(baggageSortingUnit.scan(baggage, "drugs"));
+            else
+                assertFalse(baggageSortingUnit.scan(baggage, "drugs"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            assertFalse(baggageSortingUnit.scan(baggage, "glock7"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            if (baggage == baggageTestList.get(19))
+                assertTrue(baggageSortingUnit.scan(baggage, "exp!os!ve"));
+            else
+                assertFalse(baggageSortingUnit.scan(baggage, "exp!os!ve"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            assertFalse(baggageSortingUnit.scan(baggage, "knife "));
+        }
+    }
+
+    @Test
+    void scanNormalBaggage() throws IOException
+    {
+        ArrayList<Baggage> baggageTestList = new ArrayList<Baggage>();
+
+        for (int i = 1; i <= 725; i++) {
+            File file = new File("Tests\\TestData\\bulky_baggage\\normal_baggage_" + i);
+            Scanner sc = new Scanner(file);
+
+            String data = "";
+
+            while (sc.hasNextLine())
+                data = data + sc.nextLine();
+
+            Baggage baggage = new BulkyBaggage(data, 100, null, null);
+            baggageTestList.add(baggage);
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            if (baggage == baggageTestList.get(590))
+                assertTrue(baggageSortingUnit.scan(baggage, "drugs"));
+            else
+                assertFalse(baggageSortingUnit.scan(baggage, "drugs"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            assertFalse(baggageSortingUnit.scan(baggage, "glock7"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            assertFalse(baggageSortingUnit.scan(baggage, "exp!os!ve"));
+        }
+
+        for (Baggage baggage : baggageTestList) {
+            assertFalse(baggageSortingUnit.scan(baggage, "knife "));
+        }
     }
 
     @Test
@@ -73,6 +145,15 @@ class BaggageSortingUnitTest {
 
     @Test
     void sendContainerLifterToGate() {
+        BaggageVehicle baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
+        ContainerLifter containerLifter = new ContainerLifter("uuid", "id", "type");
+        baggageVehicle.setContainerLifter(containerLifter);
+        baggageVehicle.setGate(GateID.A01);
+
+        baggageSortingUnit.sendContainerLifterToGate();
+        assertFalse(containerLifter.isFlashingLightOn());
+        assertEquals(0, containerLifter.getSpeedInMPH());
+        assertEquals(GateID.A01, containerLifter.getGate().getGateID());
     }
 
     @Test

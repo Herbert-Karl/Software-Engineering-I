@@ -76,6 +76,11 @@ public class BaggageVehicle implements IBaggageVehicle {
 
   public Container getContainer() { return container; }
 
+  public void setContainerLifter(IContainerLifter containerLifter)
+  {
+    this.containerLifter = containerLifter;
+  }
+
   @Override
   public IContainerLifter getContainerLifter() {
     return containerLifter;
