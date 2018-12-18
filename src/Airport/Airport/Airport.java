@@ -265,9 +265,9 @@ public class Airport{
 
     public Gate getGatefromID(GateID gateid){
         int i = 0;
-        for(GateID gateID: gateList){
-            if(gateID == gateid){
-                return gateList.get(i);
+        for(Gate gate: gateList){
+            if(gate.getGateID() == gateid){
+                return gate;
             }
             i++;
         }
