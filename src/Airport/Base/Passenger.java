@@ -82,11 +82,8 @@ public class Passenger{
         this.status = status;
     }
 
-    public void setContent(String content){
-        this.content = content;
-    }
-
     public void setBaggageList(ArrayList<Baggage> baggageList) {
-        this.baggageList = baggageList;
+        //this.baggageList = baggageList;
+    	this.baggageList.addAll(baggageList);
     }
 }

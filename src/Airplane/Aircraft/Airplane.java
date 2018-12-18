@@ -40,7 +40,7 @@ protected Configuration configuration;
     {
         new FlightControlController(this).startup();
         for(APU apu : body.getApuArrayList())
-            apu.start()
+            apu.start();
         for(Engine engine : leftWing.getEngineArrayList())
             engine.start();
         for(Engine engine : rightWing.getEngineArrayList())
