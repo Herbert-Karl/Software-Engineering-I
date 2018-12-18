@@ -14,6 +14,10 @@ public class Passenger{
     private BoardingPass boardingPass;
     private PassengerStatus status;
 
+    public void setStatus(PassengerStatus status) {
+        this.status = status;
+    }
+
     public Passenger(String uuid, String name, String content, String birthDate, Gender gender, Passport passport, ArrayList<Baggage> baggageList,
                      String ticketClassString, PassengerStatus status){
         this.uuid = uuid;
@@ -34,5 +38,9 @@ public class Passenger{
 
     public BoardingPass getBoardingPass() {
         return boardingPass;
+    }
+
+    public ArrayList<Baggage> getBaggageList() {
+        return baggageList;
     }
 }

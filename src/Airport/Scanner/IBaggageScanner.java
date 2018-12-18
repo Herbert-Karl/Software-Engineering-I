@@ -11,7 +11,6 @@ public interface IBaggageScanner {
     void unregister(Employee employee);
     boolean login(IDCard idCard, String password);
     boolean scan(Baggage baggage, String pattern);
-    boolean scan(Baggage baggage, CottonPad conttonPad);
     void logout();
 
 }

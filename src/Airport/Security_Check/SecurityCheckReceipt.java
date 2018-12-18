@@ -17,7 +17,7 @@ public class SecurityCheckReceipt {
     public SecurityCheckReceipt(SecurityCheckID id) {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
-        employeeList = new ArrayList<Employee>();
+        employeeList = new ArrayList<>();
         numberOfPassengerScanned = 0;
         numberOfBaggageScanned = 0;
         numberOfDangerousBaggage = 0;

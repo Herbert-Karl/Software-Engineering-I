@@ -12,7 +12,6 @@ abstract class AScanner {
     String uuid;
     String id;
     String type;
-    StringSearchAlgorithm stringSearchAlgorithm;
     StringSearcher stringSearcher;
     List<Employee> registeredEmployeeList;
     IReadingDevice readingDevice;
@@ -22,7 +21,6 @@ abstract class AScanner {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
         this.type = type;
-        this.stringSearchAlgorithm = stringSearchAlgorithm;
         this.readingDevice = readingDevice;
         stringSearcher = new StringSearcher(stringSearchAlgorithm);
     }

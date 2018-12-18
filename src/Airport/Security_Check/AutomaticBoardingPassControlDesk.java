@@ -3,6 +3,7 @@ package Airport.Security_Check;
 import Airport.Base.BoardingPass;
 import Airport.Base.Employee;
 import Airport.Scanner.IReadingDevice;
+import Airport.Scanner.ReadingDevice;
 
 import java.util.UUID;
 
@@ -12,9 +13,9 @@ public class AutomaticBoardingPassControlDesk implements IAutomaticBoardingPassC
     private Employee employee;
     private IReadingDevice iReadingDevice;
 
-    public AutomaticBoardingPassControlDesk(IReadingDevice iReadingDevice) {
+    public AutomaticBoardingPassControlDesk() {
         this.uuid = UUID.randomUUID().toString();
-        this.iReadingDevice = iReadingDevice;
+        this.iReadingDevice = new ReadingDevice("none", "AutomaticBoardingPassControl Reader");
     }
 
     @Override

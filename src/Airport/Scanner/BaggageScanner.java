@@ -17,8 +17,8 @@ public class BaggageScanner extends AScanner implements IBaggageScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
-    public BaggageScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(id, type, stringSearchAlgorithm, readingDevice);
+    public BaggageScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
+        super(id, type, stringSearchAlgorithm, new ReadingDevice(id + " " + type, type + " Reader"));
     }
 
 
@@ -26,17 +26,6 @@ public class BaggageScanner extends AScanner implements IBaggageScanner {
     public boolean scan(Baggage baggage, String pattern) {
         if (employee != null) {
             if (stringSearcher.search(baggage.getContent(), pattern)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    @Override
-    public boolean scan(Baggage baggage, CottonPad cottonPad) {
-        if (employee != null) {
-            if (stringSearcher.search(baggage.getContent(), cottonPad.getSurface())) {
                 return false;
             }
         }

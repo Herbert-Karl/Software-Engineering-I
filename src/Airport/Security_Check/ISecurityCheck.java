@@ -1,9 +1,6 @@
 package Airport.Security_Check;
 
-import Airport.Base.Baggage;
-import Airport.Base.CottonPad;
-import Airport.Base.Employee;
-import Airport.Base.Passenger;
+import Airport.Base.*;
 
 public interface ISecurityCheck {
     boolean loginBaggageScanner(Employee employee, String password);
@@ -13,8 +10,9 @@ public interface ISecurityCheck {
     boolean loginExplosivesDetector(Employee employee, String password);
     void logoutExplosivesDetector();
     boolean scan(Passenger passenger);
-    boolean scan(Passenger passenger, CottonPad cottonPad);
+    boolean scan(CottonPad cottonPad);
     boolean scan(Baggage baggage);
-    boolean scan(Baggage baggage, CottonPad cottonPad);
-    void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt);
+    void notifyGroundOperation();
+    public void registerEmployee(Employee employee);
+    public void unregisterEmployee(Employee employee);
 }

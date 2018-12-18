@@ -10,13 +10,17 @@ import java.util.Scanner;
 public class ExplosivesDetector extends AScanner implements IExplosivesDetector {
 
 
-    public ExplosivesDetector(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
-        super(id, type, stringSearchAlgorithm, readingDevice);
+    public ExplosivesDetector(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
+        super(id, type, stringSearchAlgorithm, new ReadingDevice(id + " " + type, type + " Reader"));
     }
 
     @Override
     public boolean scan(CottonPad cottonPad) {
-        return false;
-        //HOW TO SCAN A COTTONPAD
+        if (employee != null) {
+            if (stringSearcher.search(cottonPad.getSurface(), "explosive")) {
+                return false;
+            }
+        }
+        return true;
     }
 }

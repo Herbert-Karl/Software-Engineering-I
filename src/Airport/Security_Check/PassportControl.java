@@ -3,6 +3,7 @@ package Airport.Security_Check;
 import Airport.Base.Passport;
 import Airport.Federal_Police.FederalPoliceOfficer;
 import Airport.Scanner.IReadingDevice;
+import Airport.Scanner.ReadingDevice;
 
 import java.util.List;
 import java.util.UUID;
@@ -15,10 +16,10 @@ public class PassportControl implements IPassportControl {
     private IReadingDevice readingDevice;
     private List<Passport> passportList;
 
-    public PassportControl(String id, IReadingDevice readingDevice) {
+    public PassportControl(String id) {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
-        this.readingDevice = readingDevice;
+        this.readingDevice = new ReadingDevice(id, "PassportControl Reader");
     }
 
     @Override

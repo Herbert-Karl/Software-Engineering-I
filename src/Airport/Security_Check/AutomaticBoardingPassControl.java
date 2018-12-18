@@ -4,6 +4,7 @@ import Airport.Base.BoardingPass;
 import Airport.Base.Passport;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Scanner.IReadingDevice;
+import Airport.Scanner.ReadingDevice;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,10 +17,11 @@ public class AutomaticBoardingPassControl implements IAutomaticBoardingPassContr
     FederalPolice federalPolice;
     private List<IDoor> doorList;
 
-    public AutomaticBoardingPassControl(AutomaticBoardingPassControlID id, IReadingDevice readingDevice, FederalPolice federalPolice) {
+    public AutomaticBoardingPassControl(AutomaticBoardingPassControlID id, FederalPolice federalPolice) {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
-        this.readingDevice = readingDevice;
+        this.readingDevice = new ReadingDevice(id.toString(),"automaticBoardingPassControlReader Reader");
+        this.federalPolice = federalPolice;
     }
 
     @Override

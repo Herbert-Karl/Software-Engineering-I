@@ -4,9 +4,7 @@ import Airport.Airport.Airport;
 import Airport.Base.*;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Federal_Police.FederalPoliceOfficer;
-import Airport.Scanner.IBaggageScanner;
-import Airport.Scanner.IBodyScanner;
-import Airport.Scanner.IExplosivesDetector;
+import Airport.Scanner.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,24 +16,56 @@ public class SecurityCheck implements ISecurityCheck {
     private SecurityCheckID securityCheckID;
     private Airport airport;
     private List<Employee> employeeList;
-    private FederalPoliceOfficer policeOfficer;
     private List<String> scanPatternList;
     private IBaggageScanner baggageScanner;
     private IBodyScanner bodyScanner;
     private IExplosivesDetector explosivesDetector;
-    private FederalPolice federalPolice;
+    private SecurityCheckReceipt securityCheckReceipt;
 
-    public SecurityCheck(SecurityCheckID securityCheckID, Airport airport, IBaggageScanner baggageScanner, IBodyScanner bodyScanner, IExplosivesDetector explosivesDetector) {
+
+    public SecurityCheck(SecurityCheckID securityCheckID, Airport airport) {
         this.uuid = UUID.randomUUID().toString();
         this.securityCheckID = securityCheckID;
         this.airport = airport;
-        this.baggageScanner = baggageScanner;
-        this.bodyScanner = bodyScanner;
-        this.explosivesDetector = explosivesDetector;
-        scanPatternList = new ArrayList<String>();
+
+        this.baggageScanner = new BaggageScanner(securityCheckID.toString(), "baggage", StringSearchAlgorithm.JAVASTRINGCONTAINS);
+        this.bodyScanner = new BodyScanner(securityCheckID.toString(), "body", StringSearchAlgorithm.JAVASTRINGCONTAINS);
+        this.explosivesDetector = new ExplosivesDetector(securityCheckID.toString(), "explosive", StringSearchAlgorithm.JAVASTRINGCONTAINS);
+        securityCheckReceipt = new SecurityCheckReceipt(securityCheckID);
+        employeeList = new ArrayList<>();
+
+
+
+        for(int i = 0; i < 3; i++) {
+            Employee employee = airport.getResourcePool().takeResource("Employee");
+            securityCheckReceipt.addEmployee(employee);
+            registerEmployee(employee);
+            employeeList.add(i, employee);
+        }
+
+        loginBaggageScanner(employeeList.get(0), employeeList.get(0).getIdCard().getPassword());
+        loginBodyScanner(employeeList.get(1), employeeList.get(1).getIdCard().getPassword());
+        loginExplosivesDetector(employeeList.get(2), employeeList.get(2).getIdCard().getPassword());
+
+        scanPatternList = new ArrayList<>();
         scanPatternList.add("drug");
         scanPatternList.add("explosive");
         scanPatternList.add("knife");
+    }
+
+    @Override
+    public void registerEmployee(Employee employee) {
+        baggageScanner.register(employee);
+        bodyScanner.register(employee);
+        explosivesDetector.register(employee);
+        employeeList.add(employee);
+    }
+
+    @Override
+    public void unregisterEmployee(Employee employee) {
+        baggageScanner.unregister(employee);
+        bodyScanner.unregister(employee);
+        explosivesDetector.unregister(employee);
     }
 
     @Override
@@ -70,38 +100,38 @@ public class SecurityCheck implements ISecurityCheck {
 
     @Override
     public boolean scan(Passenger passenger) {
-        boolean ret = false;
-        for(String pattern:scanPatternList) {
-            if(bodyScanner.scan(passenger, pattern)) {
-                ret = true;
+        boolean ret = true;
+        for (String pattern : scanPatternList) {
+            if (!bodyScanner.scan(passenger, pattern)) {
+                ret = false;
             }
         }
+        securityCheckReceipt.setNumberOfPassengerScanned(securityCheckReceipt.getNumberOfPassengerScanned() + 1);
         return ret;
     }
 
     @Override
-    public boolean scan(Passenger passenger, CottonPad cottonPad) {
-        return bodyScanner.scan(passenger, cottonPad);
+    public boolean scan(CottonPad cottonPad) {
+        return explosivesDetector.scan(cottonPad);
     }
 
     @Override
     public boolean scan(Baggage baggage) {
-        boolean ret = false;
-        for(String pattern:scanPatternList) {
-            if(baggageScanner.scan(baggage, pattern)) {
-                ret = true;
+        boolean ret = true;
+        for (String pattern : scanPatternList) {
+            if (!baggageScanner.scan(baggage, pattern)) {
+                ret = false;
             }
+        }
+        securityCheckReceipt.setNumberOfBaggageScanned(securityCheckReceipt.getNumberOfBaggageScanned() + 1);
+        if (!ret) {
+            securityCheckReceipt.setNumberOfDangeroursBaggage(securityCheckReceipt.getNumberOfDangerousBaggage() + 1);
         }
         return ret;
     }
 
     @Override
-    public boolean scan(Baggage baggage, CottonPad cottonPad) {
-        return baggageScanner.scan(baggage, cottonPad);
-    }
-
-    @Override
-    public void notifyGroundOperation(SecurityCheckReceipt securityCheckReceipt) {
-        //TODO
+    public void notifyGroundOperation() {
+        //Todo
     }
 }
