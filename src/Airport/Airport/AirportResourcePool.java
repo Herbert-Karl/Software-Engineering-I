@@ -313,7 +313,7 @@ public class AirportResourcePool{
         idCardList.add(idCard);
     }
 
-    public void returnRecource(PushBackVehicle pushBackVehicle){
+    public void returnResource(PushBackVehicle pushBackVehicle){
         pushbackVehicleList.add(pushBackVehicle);
     }
 
