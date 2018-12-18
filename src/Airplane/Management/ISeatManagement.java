@@ -9,7 +9,7 @@ public interface ISeatManagement {
     int assign(ArrayList<Passenger> passengers);
     int countAvailableSeat();
     int countAvailableSeat(String ticketClassString);
-    ArrayList<Seat> searchSeatByPassengerName(String name);
+ //   ArrayList<Seat> searchSeatByPassengerName(String name);
     Passenger searchPassengerBySeatID(String seatID);
     void printPassengerList(SeatManagementSortCriteria sortCriteria);
 }
