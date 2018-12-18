@@ -1,6 +1,7 @@
 package Airplane.seat;
 
 import Airplane.airplanePart.IAirplanePart;
+import Airport.Base.Passenger;
 
 public abstract class Seat implements ISeat{
 
