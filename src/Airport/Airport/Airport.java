@@ -13,6 +13,7 @@ import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Base.Passenger;
 import Airport.Checkin_Desk.CheckInMediator;
 import Airport.Customs.Customs;
+import Airport.Federal_Police.FederalPolice;
 import Airport.Pushback_Vehicle.PushBackVehicle;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
@@ -86,8 +87,9 @@ public class Airport{
         bulkyBaggageDesk = new BulkyBaggageDesk();
         //TODO: Übergabeparameter?
 
-        securityMediator = new SecurityMediator();
+        FederalPolice police = new FederalPolice();
         //TODO: Übergabeparameter?
+        securityMediator = new SecurityMediator(airport, police);
 
         tower = new Tower(airport, null, null);
         //TODO: replace null values
