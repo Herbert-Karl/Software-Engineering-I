@@ -57,12 +57,13 @@ public class BulkyBaggageDesk implements IBulkyBaggageDesk{
     }
 
     public BaggageIdentificationTag printBaggageIdentificationTag(){
+        BaggageIdentificationTag baggageIdentificationTag = new BaggageIdentificationTag();
         //TODO
-        return null;
+        return baggageIdentificationTag;
     }
 
     public void place(Baggage baggage, LuggageTub luggageTub){
-        //TODO
+        luggageTub.setBaggage(baggage);
     }
 
     public void place(BaggageIdentificationTag baggageIdentificationTag, Baggage baggage){
