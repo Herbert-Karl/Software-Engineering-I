@@ -1,23 +1,36 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public class BulkyBaggage extends Baggage{
     private BulkyBaggageType type;
-    private BaggageIdentifikationTag baggageIdentifikationTag;
+    private BaggageIdentificationTag baggageIdentificationTag;
 
-    public BulkyBaggage(String uuid, String content, double weight, BulkyBaggageType type, BaggageIdentifikationTag baggageIdentifikationTag){
-        this.uuid = uuid;
-        this.content = content;
-        this.weight = weight;
-        this.type = type;
-        this.baggageIdentifikationTag = baggageIdentifikationTag;
-        this.securityStatus = null;
+    public BulkyBaggage(String content){
+    	final UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
+    	this.content = content;
+        // IdentificationTag und weight wird erst nach dem Check In vergeben.
     }
+
+    ///
+    /// Getter:
+    ///
 
     public BulkyBaggageType getType() {
         return type;
     }
 
-    public BaggageIdentifikationTag getBaggageIdentifikationTag() {
-        return baggageIdentifikationTag;
+    public BaggageIdentificationTag getBaggageIdentificationTag() {
+        return baggageIdentificationTag;
+    }
+
+    // Setter
+    public void setBaggageIdentificationTag(BaggageIdentificationTag baggageIdentificationTag) {
+        this.baggageIdentificationTag = baggageIdentificationTag;
+    }
+
+    public void setType(BulkyBaggageType type) {
+        this.type = type;
     }
 }

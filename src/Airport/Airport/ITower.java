@@ -1,6 +1,7 @@
 package Airport.Airport;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
+import Airport.Base.AlarmType;
 
 public interface ITower {
 

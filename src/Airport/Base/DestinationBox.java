@@ -2,9 +2,10 @@ package Airport.Base;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 public class DestinationBox {
-    private string uuid;
+    private String uuid;
     private Flight flight;
     private ArrayList<Baggage> baggageList;
     private int maximumNumberOfBaggages = 50;
@@ -17,10 +18,6 @@ public class DestinationBox {
         this.maximumNumberOfBaggages = maximumNumberOfBaggages;
     }
 
-    public ArrayList<Baggage> getBaggageList() {
-        return this.baggageList;
-    }
-
     public void empty() { //empties the DestinationBox
         baggageList.clear();
     }
@@ -31,5 +28,40 @@ public class DestinationBox {
 
     public boolean isFull(){
         return baggageList.size() >= maximumNumberOfBaggages;
+    }
+
+    public boolean addBagagge(Baggage baggage){
+        if(baggageList.size() < 50){
+            baggageList.add(baggage);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    ///
+    /// Getter:
+    ///
+
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public ArrayList<Baggage> getBaggageList() {
+        return this.baggageList;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setBaggageList(ArrayList<Baggage> baggageList) {
+        this.baggageList = baggageList;
     }
 }
