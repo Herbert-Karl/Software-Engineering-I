@@ -21,6 +21,9 @@ public class PassengerBaggageDatabase{
         String line = "";
         String cvsSplitBy = ",";
 
+        File passengerData = new File(dataFilePath);
+        if(!passengerData.canRead() || !passengerData.isFile()){System.out.println("Der Pfad konnte nicht geöffnet werden.");}
+        
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) { // iterate through file lines
                 String[] dataFields = line.split(cvsSplitBy);
@@ -69,157 +72,122 @@ public class PassengerBaggageDatabase{
 
     public int loadAssignCabinBaggageData(String dataFilePath){
         // Assign certain amount of hand baggages (amount from csv) to baggageList of all passengers
-        // and create instances of baggage with content and weight
+        // and create instances of baggage with content
+    	// ToDo: assign correct baggages by baggage ID (from central csv)
         int i = 0;
-        int filenumber = 0;
+        int filenumber = 1;
         String[] amountOfBaggages;
-        String line;
+        String numberOfBaggages;
         ArrayList<Baggage> baggageList = new ArrayList<>();
-        File assignCabinBaggageData = new File(dataFilePath);
-
-        if(!assignCabinBaggageData.canRead() || !assignCabinBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
-        BufferedReader input = null;
-        try {
-            input = new BufferedReader(new FileReader(dataFilePath + "/passenger_number_of_hand_baggage.csv"));
-            line = input.readLine();
-            amountOfBaggages = line.split(",");
-            for (Passenger name: passengerList) { // iterate through passengers
-                for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
-                    String content = null;
-                    try{ // get baggage content from file
-                        input = new BufferedReader(new FileReader(dataFilePath + "/cabin_baggage_" + filenumber + ".txt"));
-                        while((content = input.readLine()) != null){
-                            content = content + input.readLine(); // append lines to content
-                        }
-                    } catch(IOException ioExeption){
-                        ioExeption.printStackTrace();
-                    } finally {
-                        if(input != null) try {
-                            input.close();
-                        } catch(IOException ioE){
-                            ioE.printStackTrace();
-                        }
-                    }
-                    filenumber++;
-                    Baggage baggage = new CabinBaggage(content, 20.0);
-                    baggageList.add(baggage);
-                }
-                i++;
-                name.setBaggageList(baggageList);
+        String csvFile = dataFilePath + "/passenger_number_of_hand_baggage.csv";
+        
+        File cabinBaggageData = new File(dataFilePath);
+        if(!cabinBaggageData.canRead() || !cabinBaggageData.isFile()){System.out.println("Der Pfad konnte nicht geöffnet werden.");}
+        
+        try (BufferedReader brNumberOfBaggages = new BufferedReader(new FileReader(csvFile))) {
+            while ((numberOfBaggages = brNumberOfBaggages.readLine()) != null) {
+            	amountOfBaggages = numberOfBaggages.split(",");
+            	for (Passenger name: passengerList) { // iterate through passengers
+            		for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
+            			String baggageContent = null;
+            			String contentFile = dataFilePath + "/cabin_baggage_" + filenumber + ".txt";
+            			try (BufferedReader brBaggageContent = new BufferedReader(new FileReader(contentFile))) {
+            				while ((baggageContent = brBaggageContent.readLine()) != null) { // Read baggage content
+            					baggageContent = brBaggageContent.readLine();
+            					Baggage baggage = new CabinBaggage(baggageContent);
+            					baggageList.add(baggage);
+            	            }
+            	        } catch (IOException e) {
+            	            e.printStackTrace();
+            	        }
+                		filenumber++; // next contentfile
+            		}
+            		i++; // baggagenumber of next passenger
+            		name.setBaggageList(baggageList);
+            	}
             }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE) {
-                ioE.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return filenumber;
     }
 
-
     public int loadAssignNormalBaggageData(String dataFilePath) {
-        // Assign certain amount of Normal baggages (amount from csv) to baggageList of all passengers
-        // and create instances of baggage with content, weight and identification tag
+    	// Assign certain amount of normal baggages (amount from csv) to baggageList of all passengers
+        // and create instances of baggage with content
         int i = 0;
-        int filenumber = 0;
+        int filenumber = 1;
         String[] amountOfBaggages;
-        String line;
+        String numberOfBaggages;
         ArrayList<Baggage> baggageList = new ArrayList<>();
-        File assignNormalBaggageData = new File(dataFilePath);
-
-        if(!assignNormalBaggageData.canRead() || !assignNormalBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
-        BufferedReader input = null;
-        try {
-            input = new BufferedReader(new FileReader(dataFilePath + "/passenger_number_of_normal_baggage.csv"));
-            line = input.readLine();
-            amountOfBaggages = line.split(",");
-            for (Passenger name: passengerList) { // iterate through passengers
-                for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
-                    String content = null;
-                    try{ // get baggage content from file
-                        input = new BufferedReader(new FileReader(dataFilePath + "/normal_baggage_" + filenumber + ".txt"));
-                        while((content = input.readLine()) != null){
-                            content = content + input.readLine(); // append lines to content
-                        }
-                    } catch(IOException ioExeption){
-                        ioExeption.printStackTrace();
-                    } finally {
-                        if(input != null) try {
-                            input.close();
-                        } catch(IOException ioE){
-                            ioE.printStackTrace();
-                        }
-                    }
-                    filenumber++;
-                    Baggage baggage = new NormalBaggage(content, 20.0);
-                    baggageList.add(baggage);
-                }
-                i++;
-                name.setBaggageList(baggageList);
+        String csvFile = dataFilePath + "/passenger_number_of_normal_baggage.csv";
+        
+        File normalBaggageData = new File(dataFilePath);
+        if(!normalBaggageData.canRead() || !normalBaggageData.isFile()){System.out.println("Der Pfad konnte nicht geöffnet werden.");}
+        
+        try (BufferedReader brNumberOfBaggages = new BufferedReader(new FileReader(csvFile))) {
+            while ((numberOfBaggages = brNumberOfBaggages.readLine()) != null) {
+            	amountOfBaggages = numberOfBaggages.split(",");
+            	for (Passenger name: passengerList) { // iterate through passengers
+            		for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
+            			String baggageContent = null;
+            			String contentFile = dataFilePath + "/normal_baggage_" + filenumber + ".txt";
+            			try (BufferedReader brBaggageContent = new BufferedReader(new FileReader(contentFile))) {
+            				while ((baggageContent = brBaggageContent.readLine()) != null) { // Read baggage content
+            					Baggage baggage = new NormalBaggage(baggageContent);
+            					baggageList.add(baggage);
+            	            }
+            	        } catch (IOException e) {
+            	            e.printStackTrace();
+            	        }
+                		filenumber++; // next contentfile
+            		}
+            		i++; // baggagenumber of next passenger
+            		name.setBaggageList(baggageList);
+            	}
             }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE) {
-                ioE.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return filenumber;
     }
 
     public int loadAssignBulkyBaggageData(String dataFilePath){
-        // Assign certain amount of Normal baggages (amount from csv) to baggageList of all passengers
-        // and create instances of baggage with content, weight and identification tag
+    	// Assign certain amount of bulky baggages (amount from csv) to baggageList of all passengers
+        // and create instances of baggage with content
         int i = 0;
-        int filenumber = 0;
+        int filenumber = 1;
         String[] amountOfBaggages;
-        String line;
+        String numberOfBaggages;
         ArrayList<Baggage> baggageList = new ArrayList<>();
-        File assignBulkyBaggageData = new File(dataFilePath);
-
-        if(!assignBulkyBaggageData.canRead() || !assignBulkyBaggageData.isFile()){System.out.println("Datei kann nicht gelesen werden");}
-        BufferedReader input = null;
-        try {
-            input = new BufferedReader(new FileReader(dataFilePath + "/passenger_number_of_bulky_baggage.csv"));
-            line = input.readLine();
-            amountOfBaggages = line.split(",");
-            for (Passenger name: passengerList) { // iterate through passengers
-                for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
-                    String content = null;
-                    try{ // get baggage content from file
-                        input = new BufferedReader(new FileReader(dataFilePath + "/bulky_baggage_" + filenumber + ".txt"));
-                        while((content = input.readLine()) != null){
-                            content = content + input.readLine(); // append lines to content
-                        }
-                    } catch(IOException ioExeption){
-                        ioExeption.printStackTrace();
-                    } finally {
-                        if(input != null) try {
-                            input.close();
-                        } catch(IOException ioE){
-                            ioE.printStackTrace();
-                        }
-                    }
-                    filenumber++;
-                    Baggage baggage = new BulkyBaggage(content, 20.0);
-                    baggageList.add(baggage);
-                }
-                i++;
-                name.setBaggageList(baggageList);
+        String csvFile = dataFilePath + "/passenger_number_of_bulky_baggage.csv";
+        
+        File bulkyBaggageData = new File(dataFilePath);
+        if(!bulkyBaggageData.canRead() || !bulkyBaggageData.isFile()){System.out.println("Der Pfad konnte nicht geöffnet werden.");}
+        
+        try (BufferedReader brNumberOfBaggages = new BufferedReader(new FileReader(csvFile))) {
+            while ((numberOfBaggages = brNumberOfBaggages.readLine()) != null) {
+            	amountOfBaggages = numberOfBaggages.split(",");
+            	for (Passenger name: passengerList) { // iterate through passengers
+            		for (int j = 1; j <= Integer.valueOf(amountOfBaggages[i]); j++) { // Add baggages to baggageList
+            			String baggageContent = null;
+            			String contentFile = dataFilePath + "/bulky_baggage_" + filenumber + ".txt";
+            			try (BufferedReader brBaggageContent = new BufferedReader(new FileReader(contentFile))) {
+            				while ((baggageContent = brBaggageContent.readLine()) != null) { // Read baggage content
+            					Baggage baggage = new BulkyBaggage(baggageContent);
+            					baggageList.add(baggage);
+            	            }
+            	        } catch (IOException e) {
+            	            e.printStackTrace();
+            	        }
+                		filenumber++; // next contentfile
+            		}
+            		i++; // baggagenumber of next passenger
+            		name.setBaggageList(baggageList);
+            	}
             }
-        } catch(IOException ioExeption){
-            ioExeption.printStackTrace();
-        } finally {
-            if(input != null) try {
-                input.close();
-            } catch(IOException ioE) {
-                ioE.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return filenumber;
     }
