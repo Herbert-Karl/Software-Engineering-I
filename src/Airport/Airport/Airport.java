@@ -81,8 +81,7 @@ public class Airport{
 
         groundOperationsCenter = new GroundOperationsCenter(airport, 100);
 
-        bulkyBaggageDesk = new BulkyBaggageDesk();
-        //TODO: Übergabeparameter?
+        bulkyBaggageDesk = new BulkyBaggageDesk(airport);
 
         checkInMediator = new CheckInMediator(bulkyBaggageDesk);
 
