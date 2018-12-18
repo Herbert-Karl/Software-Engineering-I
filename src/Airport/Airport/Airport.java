@@ -78,6 +78,7 @@ public class Airport{
         apronControl = new ApronControl();
         apronControl.setAirport(airport);
         apron = new Apron(airport, apronControl);
+        apronControl.setApron(apron);
 
         groundOperationsCenter = new GroundOperationsCenter(airport, 100);
 
