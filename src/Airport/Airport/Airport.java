@@ -258,4 +258,19 @@ public class Airport{
         return this.baggageSortingUnit;
     }
 
+    ///
+    /// Gate von GateID
+    ///
+
+    public Gate getGatefromID(GateID gateID){
+        int i = 0;
+        for(GateID id: gateList){
+            if(gateID == id){
+                return gateList.get(i);
+            }
+            i++;
+        }
+        //TODO geht das so?
+    }
+
 }
