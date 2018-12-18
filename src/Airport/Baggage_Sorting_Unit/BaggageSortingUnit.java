@@ -116,6 +116,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     return filledContainerList;
   }
 
+  public DestinationBox getDestinationBox()
+  {
+    return destinationBox;
+  }
+
   @Override
   public IBaggageVehicle getVehicle() {
     return baggageVehicle;
