@@ -7,6 +7,7 @@ import Airport.fire_department.FireDepartment;
 import Airport.fire_department.FireFighter;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Tower implements ITower{
     private Airport airport;
@@ -23,30 +24,26 @@ public class Tower implements ITower{
     }
 
     public void recieveRequestTakeOff(Airplane airplane){
-        //TODO
         approveRequestTakeOff(airplane);
     }
 
     public void approveRequestTakeOff(Airplane airplane){
-        //TODO
         System.out.println("Approve request takeoff for " + airplane.getID());
     }
 
     public void recieveRequestLanding(Airplane airplane){
-        //TODO
         approveRequestLanding(airplane);
     }
 
     public void approveRequestLanding(Airplane airplane){
-        //TODO
         System.out.println("Approve request landing for " + airplane.getID());
 
     }
 
     public void recieveFireAlarm(Airplane airplane){
-
-
-
+        determineAlarmType(airplane);
+        //TODO: Look up where to get RunwayID
+        alarm(airplane.getRunwayID(), airplane);
     }
 
     public AlarmType determineAlarmType(Airplane airplane){
@@ -56,8 +53,8 @@ public class Tower implements ITower{
         boolean isA350 = false;
         //TODO
         Wing leftWing = airplane.getLeftWing();
-        ArrayList<Engine> enginges = leftWing.getEngines();
-        enginges.forEach(engine -> {
+        ArrayList<Engine> engines = leftWing.getEngines();
+        engines.forEach(engine -> {
             if (engine.isFire())
                 countLeftWing++;
         });
@@ -104,9 +101,15 @@ public class Tower implements ITower{
     }
 
     public void alarm(RunwayID runwayID, Airplane airplane){
+        //TODO check where to get fireDepartment from
        ArrayList<FireDepartment> fireDepartments = airport.fireDepartments;
        AlarmType alarmType = determineAlarmType(airplane);
-       fireDepartments.forEach(fireDepartment -> fireDepartment.alarm(runwayID,alarmType));
+       Optional<Runway> runwayOnFire= runwayList.stream().filter(runway -> runway.getRunwayID().equals(runwayID)).findFirst();
+       if (runwayOnFire.isPresent())
+       {
+           Runway runwayForFireDepartment = runwayOnFire.get();
+           fireDepartments.forEach(fireDepartment -> fireDepartment.alarm(runwayForFireDepartment,alarmType));
+       }
     }
 
     public WindDirection getWindDirection() {

@@ -18,4 +18,6 @@ public interface ITower {
     AlarmType determineAlarmType(Airplane airplane);
 
     void alarm(RunwayID runwayID, Airplane airplane);
+
+    WindDirection getWindDirection();
 }

@@ -17,7 +17,6 @@ public class RunwayManagement implements IRunwayManagement {
     }
 
     public RunwayCheckPointID provideRunwayCheckPointID(Airplane airplane) {
-        RunwayCheckPointID runwayToStart = null;
         WindDirection windDirection = tower.getWindDirection();
 
         //anhand von Windrichtung und Runway
@@ -27,13 +26,13 @@ public class RunwayManagement implements IRunwayManagement {
 
         switch (windDirection) {
             case WestToEast:
-                selectedRanwayCheckPoint = randomRunWay.getCheckPoints().get(0);
-                break;
-            case EastToWest:
+                return randomRunWay.getCheckPoints().get(0);
 
-                break;
+            case EastToWest:
+                return randomRunWay.getCheckPoints().get(1);
+
         }
-        return runwayToStart;
+        return null;
     }
 
 
