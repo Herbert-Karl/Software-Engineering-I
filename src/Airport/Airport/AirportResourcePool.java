@@ -272,7 +272,7 @@ public class AirportResourcePool{
     public void retrunResource(Employee employee){
         employeeList.add(employee);
     }
-    
+
     public void returnResource(AirCargoPalletLifter airCargoPalletLifter){
         airCargoPalletLifterList.add(airCargoPalletLifter);
     }

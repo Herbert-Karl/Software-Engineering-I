@@ -254,4 +254,8 @@ public class Airport{
         return this.gateList;
     }
 
+    public BaggageSortingUnit getBaggageSortingUnit(){
+        return this.baggageSortingUnit;
+    }
+
 }

@@ -82,11 +82,11 @@ public class CheckInDesk implements ICheckInDesk{
      }
 
      public void place(Baggage baggage, LuggageTub luggageTub){
-        //TODO
+        luggageTub.setBaggage(baggage);
      }
 
      public void sendLuggageTubToBaggageSortingUnit(LuggageTub luggageTub){
-        //TODO
+        airport.
      }
 
      public void notifyGroundOperations(CheckInDeskReceipt checkInDeskReceipt){
