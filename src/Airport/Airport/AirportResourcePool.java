@@ -308,7 +308,11 @@ public class AirportResourcePool{
             pushbackVehicleList.add(pushBackVehicle);
 
         }
+    }
 
+    public void returnResource(Employee employee){
+        Employee employee = (Employee) resource;
+        employeeList.add(employee);
     }
 
     public void build(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
