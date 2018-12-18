@@ -264,14 +264,11 @@ public class Airport{
     ///
 
     public Gate getGatefromID(GateID gateid){
-        int i = 0;
         for(Gate gate: gateList){
             if(gate.getGateID() == gateid){
                 return gate;
             }
-            i++;
         }
-        //TODO geht das so?
     }
 
 }
