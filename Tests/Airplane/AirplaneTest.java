@@ -4,6 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import Airplane.Aircraft.Airplane;
+import Airplane.Aircraft.Configuration;
+import Airplane.Lights.*;
+import Airplane.Management.CheckPoint;
+import Airplane.Management.CostOptimizer;
+import Airplane.Management.RouteManagement;
+import Airplane.cabin.AirConditioning;
+import Airplane.stowage_cargo.CargoSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +54,7 @@ class AirplaneTest {
 	private CargoSystem testCargoSystem;
 	private ArrayList<CheckPoint> testCheckPointList;
 	private CostOptimizer testCostOptimizer;
-	private RouteManagement testRouteManagement; 
+	private RouteManagement testRouteManagement;
 	
 	//private DroopNose testDroopNose;
 	//private Elevator testElevator;

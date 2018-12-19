@@ -67,6 +67,8 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
         this.pushBackVehicleReceiptList = new ArrayList<>(listSize);
     }
 
+    public GroundOperationsCenter(){}
+
     ///
     ///  Getter und Setter
     ///

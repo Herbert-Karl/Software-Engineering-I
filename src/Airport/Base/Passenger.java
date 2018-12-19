@@ -30,6 +30,8 @@ public class Passenger{
         this.status = status;
     }
 
+    public Passenger(){}
+
     ///
     /// Getter:
     ///
