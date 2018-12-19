@@ -34,12 +34,12 @@ public class AirportResourcePool{
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
     private ArrayList<PushBackVehicle> pushbackVehicleList;
-    //private Airport airport;
+    private Airport airport;
 
     AirportResourcePool(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
                                int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
-                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle){
-        //this.airport = airport;
+                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle, Airport airport){
+        this.airport = airport;
         build(anzahlEmployees, anzahlAirCargoPalletLifter, anzahlAirCargoPalletVehicle, anzahlContainerLifter, anzahlBaggageVehicle,
                 anzahlServiceVehicleBase, anzahlServiceVehicleFreshWater, anzahlServiceVehicleNitogenOxygen, anzahlServiceVehicleWasteWater,
                 anzahlSkyTankingVehicle, anzahlPushBackVehicle);
@@ -191,7 +191,7 @@ public class AirportResourcePool{
             //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0);
+            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, airport);
             skyTankingVehicleList.add(skyTankingVehicle);
             zaehler++;
         }
