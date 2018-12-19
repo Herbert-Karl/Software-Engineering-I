@@ -1,9 +1,10 @@
-package Airport.Testing;
+package Airport.Airport;
 
 import Airplane.Airplane;
 import Airport.Airport.*;
 import Airport.Base.*;
 import Airport.Security_Check.SecurityMediator;
+import Airport.Testing.TestAirplane;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.*;
 import javax.print.attribute.standard.Destination;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TestApplication {
+class AirportTest {
 
     private TestAirplane testAirplane;
     private Airport testAirport;
