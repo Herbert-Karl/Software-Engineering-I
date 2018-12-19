@@ -102,9 +102,9 @@ public class Airport{
 
         baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
     }
-
+    // ToDo create configuration object get dataFilePath
     public int loadPassengerBaggageData(String dataFilePath){
-        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
+        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(dataFilePath);
         passengerList = passengerBaggageDatabase.getPassengerList();
         return passengerList.size();
     }
