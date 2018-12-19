@@ -116,6 +116,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     return filledContainerList;
   }
 
+  public IBaggageSortingUnitRoboter getRoboter()
+  {
+    return roboter;
+  }
+
   public DestinationBox getDestinationBox()
   {
     return destinationBox;

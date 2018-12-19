@@ -25,11 +25,17 @@ class AirCargoPalletVehicleTest
                 new AirCargoPallet("uuid", "type", "id"), airCargoPalletLifter, new Gate(GateID.A01, null));
     }
 
+    /**
+     * TODO
+     */
     @Test
     void executeRequest()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void store()
     {
@@ -38,6 +44,9 @@ class AirCargoPalletVehicleTest
         assertEquals(airCargoPallet, airCargoPalletVehicle.getAirCargoPallet());
     }
 
+    /**
+     * Done
+     */
     @Test
     void setFlashingLightOn()
     {
@@ -45,6 +54,9 @@ class AirCargoPalletVehicleTest
         assertTrue(airCargoPalletVehicle.isFlashingLightOn());
     }
 
+    /**
+     * Done
+     */
     @Test
     void move()
     {
@@ -52,6 +64,9 @@ class AirCargoPalletVehicleTest
         assertEquals(10, airCargoPalletVehicle.getSpeedInMPH());
     }
 
+    /**
+     * Done
+     */
     @Test
     void stop()
     {
@@ -60,12 +75,18 @@ class AirCargoPalletVehicleTest
         assertEquals(0, airCargoPalletVehicle.getSpeedInMPH());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void setGate()
     {
         airCargoPalletVehicle.setGate(GateID.A01);
     }
 
+    /**
+     * Done
+     */
     @Test
     void connect()
     {
@@ -74,11 +95,17 @@ class AirCargoPalletVehicleTest
         assertEquals(airCargoPalletLifter, airCargoPalletVehicle.getConnectedAirCargoPalletLifter());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void transferPalletToLifter()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void disconnectFromLifter()
     {
@@ -86,11 +113,17 @@ class AirCargoPalletVehicleTest
         assertNull(airCargoPalletVehicle.getConnectedAirCargoPalletLifter());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void returnToAirCargoPalletPackingUnit()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void setFlashingLightOff()
     {
@@ -98,6 +131,9 @@ class AirCargoPalletVehicleTest
         assertFalse(airCargoPalletVehicle.isFlashingLightOn());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void returnToAirportResourcePool()
     {

@@ -21,12 +21,18 @@ class AirCargoPalletLifterTest
                 new Airplane(new Configuration(4)));
     }
 
+    /**
+     * TODO
+     */
     @Test
     void executeRequest()
     {
         airCargoPalletLifter.executeRequest(GateID.A01);
     }
 
+    /**
+     * Done
+     */
     @Test
     void move()
     {
@@ -34,6 +40,9 @@ class AirCargoPalletLifterTest
         assertEquals(10, airCargoPalletLifter.getSpeedInMPH());
     }
 
+    /**
+     * Done
+     */
     @Test
     void stop()
     {
@@ -42,12 +51,18 @@ class AirCargoPalletLifterTest
         assertEquals(0, airCargoPalletLifter.getSpeedInMPH());
     }
 
+    /**
+     * TODO singleton Airport
+     */
     @Test
     void setGate()
     {
         airCargoPalletLifter.setGate(GateID.A01);
     }
 
+    /**
+     * Done
+     */
     @Test
     void connectToAirplane()
     {
@@ -58,6 +73,9 @@ class AirCargoPalletLifterTest
         assertEquals(airplane, airCargoPalletLifter.getConnectToAirplane());
     }
 
+    /**
+     * Done
+     */
     @Test
     void up()
     {
@@ -65,11 +83,17 @@ class AirCargoPalletLifterTest
         assertFalse(airCargoPalletLifter.isDown());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void transferAirCargoPalletToCargoSystem()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void disconnectFromAirplane()
     {
@@ -77,6 +101,9 @@ class AirCargoPalletLifterTest
         assertNull(airCargoPalletLifter.getConnectToAirplane());
     }
 
+    /**
+     * Done
+     */
     @Test
     void setFlashingLightOn()
     {
@@ -84,6 +111,9 @@ class AirCargoPalletLifterTest
         assertTrue(airCargoPalletLifter.isFlashingLightOn());
     }
 
+    /**
+     * Done
+     */
     @Test
     void setFlashingLightOff()
     {
@@ -91,11 +121,17 @@ class AirCargoPalletLifterTest
         assertFalse(airCargoPalletLifter.isFlashingLightOn());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void returnToAirportResourcePool()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void down()
     {
@@ -103,6 +139,9 @@ class AirCargoPalletLifterTest
         assertTrue(airCargoPalletLifter.isDown());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void notifyGroundOperations()
     {
