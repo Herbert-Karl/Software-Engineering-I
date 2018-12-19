@@ -28,7 +28,7 @@ public class SecurityCheck implements ISecurityCheck {
         this.securityCheckID = securityCheckID;
         this.airport = airport;
 
-        this.baggageScanner = new BaggageScanner(securityCheckID.toString(), "baggage", StringSearchAlgorithm.JAVASTRINGCONTAINS);
+        this.baggageScanner = new BaggageScanner( "baggage", StringSearchAlgorithm.JAVASTRINGCONTAINS);
         this.bodyScanner = new BodyScanner(securityCheckID.toString(), "body", StringSearchAlgorithm.JAVASTRINGCONTAINS);
         this.explosivesDetector = new ExplosivesDetector(securityCheckID.toString(), "explosive", StringSearchAlgorithm.JAVASTRINGCONTAINS);
         securityCheckReceipt = new SecurityCheckReceipt(securityCheckID);

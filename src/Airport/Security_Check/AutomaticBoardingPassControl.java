@@ -20,7 +20,7 @@ public class AutomaticBoardingPassControl implements IAutomaticBoardingPassContr
     public AutomaticBoardingPassControl(AutomaticBoardingPassControlID id, FederalPolice federalPolice) {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
-        this.readingDevice = new ReadingDevice(id.toString(),"automaticBoardingPassControlReader Reader");
+        this.readingDevice = new ReadingDevice("automaticBoardingPassControlReader Reader");
         this.federalPolice = federalPolice;
     }
 

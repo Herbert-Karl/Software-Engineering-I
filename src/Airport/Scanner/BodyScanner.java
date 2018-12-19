@@ -11,7 +11,7 @@ public class BodyScanner extends AScanner implements IBodyScanner {
 
 
     public BodyScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
-        super(id, type, stringSearchAlgorithm, new ReadingDevice(id + " " + type, type + " Reader"));
+        super(type, stringSearchAlgorithm, new ReadingDevice(type + " Reader"));
     }
 
     @Override

@@ -19,7 +19,7 @@ public class PassportControl implements IPassportControl {
     public PassportControl(String id) {
         this.uuid = UUID.randomUUID().toString();
         this.id = id;
-        this.readingDevice = new ReadingDevice(id, "PassportControl Reader");
+        this.readingDevice = new ReadingDevice( "PassportControl Reader");
     }
 
     @Override

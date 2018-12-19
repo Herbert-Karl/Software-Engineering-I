@@ -6,6 +6,7 @@ import Airport.Base.Employee;
 import Airport.Base.IDCard;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 abstract class AScanner {
@@ -17,9 +18,9 @@ abstract class AScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
-    public AScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
+    public AScanner(String type, StringSearchAlgorithm stringSearchAlgorithm, IReadingDevice readingDevice) {
         this.uuid = UUID.randomUUID().toString();
-        this.id = id;
+        this.id = Integer.toString(new Random().nextInt());
         this.type = type;
         this.readingDevice = readingDevice;
         stringSearcher = new StringSearcher(stringSearchAlgorithm);

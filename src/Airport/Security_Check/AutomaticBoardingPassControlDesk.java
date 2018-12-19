@@ -15,7 +15,7 @@ public class AutomaticBoardingPassControlDesk implements IAutomaticBoardingPassC
 
     public AutomaticBoardingPassControlDesk() {
         this.uuid = UUID.randomUUID().toString();
-        this.iReadingDevice = new ReadingDevice("none", "AutomaticBoardingPassControl Reader");
+        this.iReadingDevice = new ReadingDevice( "AutomaticBoardingPassControl Reader");
     }
 
     @Override

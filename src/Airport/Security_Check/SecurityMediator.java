@@ -11,6 +11,7 @@ public class SecurityMediator {
     private HashMap<AutomaticBoardingPassControlID, IAutomaticBoardingPassControl> automaticBoardingPassControlHashMap;
     private AutomaticBoardingPassControlDesk automaticBoardingPassControlDesk;
     private HashMap<SecurityCheckID, ISecurityCheck> securityCheckHashMap;
+    PassportControl passportControl;
     private FederalPolice federalPolice;
 
     Airport airport;
@@ -35,6 +36,8 @@ public class SecurityMediator {
         for (SecurityCheckID id : SecurityCheckID.values()) {
             securityCheckHashMap.put(id, new SecurityCheck(id, airport));
         }
+
+        passportControl = new PassportControl("Control");
     }
 
     public void addPassengerToQueue(Passenger passenger) {
@@ -114,6 +117,11 @@ public class SecurityMediator {
                 return;
             }
         }
+        if (!passportControl.verify(passenger.getPassport())) {
+            passenger.setStatus(PassengerStatus.Arrested);
+            passengerList.remove(passenger);
+            return;
+        }
         passenger.setStatus(PassengerStatus.SecurityCheckPassed);
         passengerList.remove(passenger);
     }
@@ -151,6 +159,11 @@ public class SecurityMediator {
                 passengerList.remove(passenger);
                 return;
             }
+        }
+        if (!passportControl.verify(passenger.getPassport())) {
+            passenger.setStatus(PassengerStatus.Arrested);
+            passengerList.remove(passenger);
+            return;
         }
         passenger.setStatus(PassengerStatus.SecurityCheckPassed);
         passengerList.remove(passenger);

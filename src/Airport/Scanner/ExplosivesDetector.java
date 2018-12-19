@@ -11,7 +11,7 @@ public class ExplosivesDetector extends AScanner implements IExplosivesDetector 
 
 
     public ExplosivesDetector(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
-        super(id, type, stringSearchAlgorithm, new ReadingDevice(id + " " + type, type + " Reader"));
+        super(type, stringSearchAlgorithm, new ReadingDevice(type + " Reader"));
     }
 
     @Override
