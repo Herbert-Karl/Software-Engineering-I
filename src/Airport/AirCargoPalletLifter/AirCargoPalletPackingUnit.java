@@ -1,6 +1,7 @@
 package Airport.AirCargoPalletLifter;
 
 import Airport.Base.AirCargoPallet;
+import Airport.Customs.ICustoms;
 
 import java.util.ArrayList;
 

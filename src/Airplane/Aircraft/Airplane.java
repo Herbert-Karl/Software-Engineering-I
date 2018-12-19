@@ -3,6 +3,8 @@ package Airplane.Aircraft;
 
 import Airplane.Aircraft.Body;
 import Airplane.Aircraft.Wing;
+import Airplane.FlightControls.FlightControlController;
+import Airplane.FlightControls.IFlightControlController;
 import Airplane.FlightControls.Implementations.Gear;
 
 public class Airplane {
@@ -25,8 +27,9 @@ protected Configuration configuration;
 
     public void startup()
     {
+        new FlightControlController(this).startup();
         for(APU apu : body.getApuArrayList())
-            apu.start()
+            apu.start();
         for(Engine engine : leftWing.getEngineArrayList())
             engine.start();
         for(Engine engine : rightWing.getEngineArrayList())
@@ -37,22 +40,26 @@ protected Configuration configuration;
             kitchen.look();
         for()
     }
+    public void climbing(){
+        new FlightControlController(this).climbing();
+    }
     public void taxi()
     {
-
+        new FlightControlController(this).taxi();
     }
     public void takeOff()
     {
+        new FlightControlController(this).takeOff();
         for (Gear gear : body.getGearList())
             gear.up();
     }
     public void rightTurn()
     {
-
+        new FlightControlController(this).rightTurn();
     }
     public void leftTurn()
     {
-
+        new FlightControlController(this).leftTurn();
     }
 
     public Body getBody() {

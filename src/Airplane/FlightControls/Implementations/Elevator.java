@@ -5,7 +5,7 @@ import Airplane.FlightControls.Interfaces.IElevator;
 
 class Elevator extends VerticalRotable implements IElevator {
 
-    public Elevator(String manufacturer, String type, String id) {
-        super(manufacturer, type, id, 45, -45);
+    public Elevator(String manufacturer, String type) {
+        super(manufacturer, type, 45, -45);
     }
 }

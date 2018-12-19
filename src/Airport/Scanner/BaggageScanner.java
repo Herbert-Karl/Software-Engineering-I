@@ -17,8 +17,13 @@ public class BaggageScanner extends AScanner implements IBaggageScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
-    public BaggageScanner(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
-        super(id, type, stringSearchAlgorithm, new ReadingDevice(id + " " + type, type + " Reader"));
+    public Employee getEmployee()
+    {
+        return employee;
+    }
+
+    public String version() {
+        return null;
     }
 
 
@@ -32,4 +37,3 @@ public class BaggageScanner extends AScanner implements IBaggageScanner {
         return true;
     }
 }
-

@@ -6,50 +6,80 @@ import Airport.Base.NormalBaggage;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("CollectionDeclaredAsConcreteClass")
 public class BaggageDepot {
 
-    private String uuid;
+  private final String uuid;
 
-    private ArrayList<Baggage> baggageList;
+  private final ArrayList<Baggage> baggageList;
 
-    void store(Baggage baggage) {
-        baggageList.add(baggage);
+  public BaggageDepot(final String uuid) {
+    this.uuid = uuid;
+    baggageList = new ArrayList<>();
+  }
+
+  public String getUuid() {
+    return uuid;
+  }
+
+  public ArrayList<Baggage> getBaggageList()
+  {
+    return baggageList;
+  }
+
+  @Override
+  public String toString() {
+    String content = "UUID: " + uuid + "\nStored Baggage: ";
+    for (final Baggage b : baggageList) {
+      content += "\n    " + b;
     }
+    return content;
+  }
 
-    void storeAll(Iterable<Baggage> baggage) {
-        for (Baggage b : baggage) {
-            store(b);
-        }
+  /**
+   * adds baggage to baggageList
+   */
+  private void store(final Baggage baggage) {
+    baggageList.add(baggage);
+  }
+
+  /**
+   * adds a collection of baggage to BaggageList
+   */
+  void storeAll(final Iterable<Baggage> baggage) {
+    for (final Baggage b : baggage) {
+      store(b);
     }
+  }
 
-    /**
-     *
-     *
-     * @param ticketClassString What does this do?
-     */
-    ArrayList<Baggage> selectNormalBaggage(String ticketClassString) {
+  /**
+   * returns all instances of NormalBaggage from the baggageList
+   * * Does not remove the instances
+   *
+   * @param ticketClassString What does this do? TODO
+   */
+  ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
 
-        ArrayList<Baggage> normal = new ArrayList<>();
-        for (Baggage b : baggageList) {
-            if (b instanceof NormalBaggage) {
-                normal.add(b);
-            }
-        }
-        return normal;
+    final ArrayList<Baggage> normal = new ArrayList<>();
+    for (final Baggage b : baggageList) {
+      if (b instanceof NormalBaggage) {
+        normal.add(b);
+      }
     }
+    return normal;
+  }
 
-    /**
-     *
-     */
-    ArrayList<Baggage> selectBulkyBaggage() {
+  /**
+   * returns all instances of BulkyBaggage from the baggageList
+   * * Does not remove the instances
+   */
+  ArrayList<Baggage> selectBulkyBaggage() {
 
-        ArrayList<Baggage> bulky = new ArrayList<>();
-        for (Baggage b : baggageList) {
-            if (b instanceof BulkyBaggage) {
-                bulky.add(b);
-            }
-        }
-        return bulky;
+    final ArrayList<Baggage> bulky = new ArrayList<>();
+    for (final Baggage b : baggageList) {
+      if (b instanceof BulkyBaggage) {
+        bulky.add(b);
+      }
     }
+    return bulky;
+  }
 }

@@ -1,6 +1,7 @@
 package Airport.Base;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Passenger{
     private String uuid;
@@ -14,13 +15,10 @@ public class Passenger{
     private BoardingPass boardingPass;
     private PassengerStatus status;
 
-    public void setStatus(PassengerStatus status) {
-        this.status = status;
-    }
-
-    public Passenger(String uuid, String name, String content, String birthDate, Gender gender, Passport passport, ArrayList<Baggage> baggageList,
+    public Passenger(String name, String content, String birthDate, Gender gender, Passport passport, ArrayList<Baggage> baggageList,
                      String ticketClassString, PassengerStatus status){
-        this.uuid = uuid;
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.name = name;
         this.content = content;
         this.birthDate = birthDate;
@@ -32,15 +30,60 @@ public class Passenger{
         this.status = status;
     }
 
+    ///
+    /// Getter:
+    ///
+
+
+    public String getTicketClassString() {
+        return ticketClassString;
+    }
+
+    public BoardingPass getBoardingPass(){
+        return this.boardingPass;
+    }
+
+    public PassengerStatus getStatus() {
+        return status;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
     public String getContent() {
         return content;
     }
 
-    public BoardingPass getBoardingPass() {
-        return boardingPass;
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     public ArrayList<Baggage> getBaggageList() {
         return baggageList;
+    }
+
+    ///
+    /// Setter
+    ///
+    public void setStatus(PassengerStatus status) {
+        this.status = status;
+    }
+
+    public void setBaggageList(ArrayList<Baggage> baggageList) {
+        //this.baggageList = baggageList;
+    	this.baggageList.addAll(baggageList);
     }
 }
