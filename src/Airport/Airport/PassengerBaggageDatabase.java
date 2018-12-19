@@ -1,6 +1,7 @@
 package Airport.Airport;
 
 import Airport.Base.*;
+import Airport.Configuration.Configuration;
 
 import java.io.File;
 import java.io.FileReader;
@@ -99,8 +100,6 @@ public class PassengerBaggageDatabase{
             while ((lineAssignment = brPassengerData.readLine()) != null) { // iterate through passengers
             	String[] dataFields = lineAssignment.split(cvsSplitBy);
             	String[] handBaggageID = dataFields[11].split(" ");
-            	String[] normalBaggageID = dataFields[12].split(" ");
-            	String[] bulkyBaggageID = dataFields[13].split(" ");
             	ArrayList<Baggage> baggageList = new ArrayList<>();
             	
             	for (int i = 1; i <= Integer.parseInt(numberOfBaggages[passengerCounter]); i++) { // assign content foreach baggage
@@ -118,7 +117,8 @@ public class PassengerBaggageDatabase{
         	        }
             		}
             	}
-            	passengerList.get(passengerCounter).setBaggageList(baggageList);           	
+            	passengerList.get(passengerCounter).setBaggageList(baggageList); 
+            	passengerCounter++;
         	} 
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,9 +154,7 @@ public class PassengerBaggageDatabase{
         try (BufferedReader brPassengerData = new BufferedReader(new FileReader(assignmentCsvFile))) {
             while ((lineAssignment = brPassengerData.readLine()) != null) { // iterate through passengers
             	String[] dataFields = lineAssignment.split(cvsSplitBy);
-            	String[] handBaggageID = dataFields[11].split(" ");
             	String[] normalBaggageID = dataFields[12].split(" ");
-            	String[] bulkyBaggageID = dataFields[13].split(" ");
             	ArrayList<Baggage> baggageList = new ArrayList<>();
             	
             	for (int i = 1; i <= Integer.parseInt(numberOfBaggages[passengerCounter]); i++) { // assign content foreach baggage
@@ -174,7 +172,8 @@ public class PassengerBaggageDatabase{
         	        }
             		}
             	}
-            	passengerList.get(passengerCounter).setBaggageList(baggageList);           	
+            	passengerList.get(passengerCounter).setBaggageList(baggageList);  
+            	passengerCounter++;
         	} 
         } catch (IOException e) {
             e.printStackTrace();
@@ -210,8 +209,6 @@ public class PassengerBaggageDatabase{
         try (BufferedReader brPassengerData = new BufferedReader(new FileReader(assignmentCsvFile))) {
             while ((lineAssignment = brPassengerData.readLine()) != null) { // iterate through passengers
             	String[] dataFields = lineAssignment.split(cvsSplitBy);
-            	String[] handBaggageID = dataFields[11].split(" ");
-            	String[] normalBaggageID = dataFields[12].split(" ");
             	String[] bulkyBaggageID = dataFields[13].split(" ");
             	ArrayList<Baggage> baggageList = new ArrayList<>();
             	
@@ -230,7 +227,8 @@ public class PassengerBaggageDatabase{
         	        }
             		}
             	}
-            	passengerList.get(passengerCounter).setBaggageList(baggageList);           	
+            	passengerList.get(passengerCounter).setBaggageList(baggageList);  
+            	passengerCounter++;
         	} 
         } catch (IOException e) {
             e.printStackTrace();
@@ -238,11 +236,11 @@ public class PassengerBaggageDatabase{
         return numberOfBaggages.length;  
     }
 
-    public PassengerBaggageDatabase(){
-        loadPassengerData("");
-        loadAssignBulkyBaggageData("");
-        loadAssignCabinBaggageData("");
-        loadAssignNormalBaggageData("");
+    public PassengerBaggageDatabase(String filepath){
+        loadPassengerData(filepath);
+        loadAssignBulkyBaggageData(filepath);
+        loadAssignCabinBaggageData(filepath);
+        loadAssignNormalBaggageData(filepath);
     }
 
     ///
