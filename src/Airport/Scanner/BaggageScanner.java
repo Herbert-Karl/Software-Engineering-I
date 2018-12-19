@@ -1,12 +1,13 @@
 package Airport.Scanner;
 
 import Airport.Base.Baggage;
+import Airport.Base.CottonPad;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
 
 import java.util.List;
 
-public class BaggageScanner implements  IBaggageScanner {
+public class BaggageScanner extends AScanner implements IBaggageScanner {
 
     String uuid;
     String id;
@@ -16,29 +17,26 @@ public class BaggageScanner implements  IBaggageScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
-    public Employee getEmployee()
-    {
+    public BaggageScanner(String type, StringSearchAlgorithm stringSearchAlgorithm) {
+        super(type, stringSearchAlgorithm, new ReadingDevice(type + " Reader"));
+    }
+
+    public Employee getEmployee() {
         return employee;
     }
 
     public String version() {
         return null;
     }
-    public void register(Employee employee) {
-    }
-    public void unregister(Employee employee) {
 
-    }
-    public boolean login(IDCard idCard, String password) {
-        return false;
-    }
+
+    @Override
     public boolean scan(Baggage baggage, String pattern) {
-        return false;
-    }
-    public boolean scan(Baggage baggage, CottonPad conttonPad) {
-        return false;
-    }
-    public void logout() {
-
+        if (employee != null) {
+            if (stringSearcher.search(baggage.getContent(), pattern)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
