@@ -16,6 +16,11 @@ public class BaggageScanner implements  IBaggageScanner {
     IReadingDevice readingDevice;
     Employee employee;
 
+    public Employee getEmployee()
+    {
+        return employee;
+    }
+
     public String version() {
         return null;
     }

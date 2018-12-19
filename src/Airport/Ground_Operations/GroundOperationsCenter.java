@@ -50,8 +50,8 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     public GroundOperationsCenter(Airport airport, int listSize){
         this.airport = airport;
-        this.serviceVehicleWasteWaterReceiptList = new ArrayList<ServiceVehicleWasteWaterReceipt>(listSize);
-        this.checkInReceiptList = new ArrayList<CheckInDeskReceipt>(listSize);
+        this.serviceVehicleWasteWaterReceiptList = new ArrayList<>(listSize);
+        this.checkInReceiptList = new ArrayList<>(listSize);
         this.bulkyBaggageDeskReceiptList = new ArrayList<>(listSize);
         this.securityCheckReceiptList = new ArrayList<>(listSize);
         this.federalPoliceReceiptList = new ArrayList<>(listSize);
@@ -79,6 +79,62 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
         return serviceVehicleWasteWaterReceiptList;
     }
 
+    public ArrayList<CustomsReceipt> getCustomsReceiptList() {
+        return customsReceiptList;
+    }
+
+    public ArrayList<ContainerLifterReceipt> getContainerLifterReceiptList() {
+        return containerLifterReceiptList;
+    }
+
+    public ArrayList<FederalPoliceReceipt> getFederalPoliceReceiptList() {
+        return federalPoliceReceiptList;
+    }
+
+    public ArrayList<FuelReceipt> getFuelReceiptList() {
+        return fuelReceiptList;
+    }
+
+    public ArrayList<SecurityCheckReceipt> getSecurityCheckReceiptList() {
+        return securityCheckReceiptList;
+    }
+
+    public ArrayList<BaggageSortingUnitReceipt> getBaggageSortingUnitReceiptList() {
+        return baggageSortingUnitReceiptList;
+    }
+
+    public ArrayList<BulkyBaggageDeskReceipt> getBulkyBaggageDeskReceiptList() {
+        return bulkyBaggageDeskReceiptList;
+    }
+
+    public ArrayList<CheckInDeskReceipt> getCheckInReceiptList() {
+        return checkInReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleBaseReceipt> getServiceVehicleBaseReceiptList() {
+        return serviceVehicleBaseReceiptList;
+    }
+
+    public ArrayList<AirCargoPalletLifterReceipt> getAirCargoPalletLifterReceiptList() {
+        return airCargoPalletLifterReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleFreshWaterReceipt> getServiceVehicleFreshWaterReceiptList() {
+        return serviceVehicleFreshWaterReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleNitrogenOxygenReceipt> getServiceVehicleNitrogenOxygenReceiptList() {
+        return serviceVehicleNitrogenOxygenReceiptList;
+    }
+
+    public ArrayList<BoardingControlReceipt> getBoardingControlReceiptList(){
+        return boardingControlReceiptList;
+    }
+
+    public ArrayList<PushBackVehicleReceipt> getPushBackVehicleReceiptList(){
+        return pushBackVehicleReceiptList;
+    }
+
     ///
     /// IGroundOperationCenter
     ///
@@ -102,9 +158,10 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     @Override
     public boolean assign(ISkyTankingVehicle skyTankingVehicle, Gate gate) {
-        skyTankingVehicle.setGate(gate.getGateID());
-        //TODO
-        return false;
+        if(skyTankingVehicle.getGate() == null) {
+            skyTankingVehicle.setGate(gate.getGateID());
+            return true;
+        } else {return false;}
     }
 
     @Override

@@ -3,8 +3,8 @@ package Airplane.FlightControls.AbstractClasses;
 import Airplane.FlightControls.Interfaces.IVerticalRotable;
 
 public abstract class VerticalRotable extends SteplessRotable implements IVerticalRotable {
-    protected VerticalRotable(String manufacturer, String type, String id, int maxDegree, int minDegree) {
-        super(manufacturer, type, id, maxDegree, minDegree);
+    protected VerticalRotable(String manufacturer, String type, int maxDegree, int minDegree) {
+        super(manufacturer, type, maxDegree, minDegree);
     }
 
     public int down(int degree) {
