@@ -34,12 +34,12 @@ public class AirportResourcePool{
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
     private ArrayList<PushBackVehicle> pushbackVehicleList;
-    private Airport airport;
+    //private Airport airport;
 
     AirportResourcePool(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
                                int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
-                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle, Airport airport){
-        this.airport = airport;
+                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle){
+        //this.airport = airport;
         build(anzahlEmployees, anzahlAirCargoPalletLifter, anzahlAirCargoPalletVehicle, anzahlContainerLifter, anzahlBaggageVehicle,
                 anzahlServiceVehicleBase, anzahlServiceVehicleFreshWater, anzahlServiceVehicleNitogenOxygen, anzahlServiceVehicleWasteWater,
                 anzahlSkyTankingVehicle, anzahlPushBackVehicle);
@@ -83,7 +83,7 @@ public class AirportResourcePool{
             String uuidLifter = palletLifterUUID.toString();
             String id = "" + zaehler;
             //NEED TO SET PARAMETERS
-           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "", 0, false, null, 0, null,null, null);
+           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "",0, false, null, 0, null,null, null);
             airCargoPalletLifterList.add(lifter);
             zaehler++;
         }
@@ -191,7 +191,7 @@ public class AirportResourcePool{
             //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, this.airport);
+            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0);
             skyTankingVehicleList.add(skyTankingVehicle);
             zaehler++;
         }
