@@ -35,5 +35,7 @@ public class FederalPoliceOfficer {
     }
 
 
-
+    public IDCard getIdCard() {
+        return idCard;
+    }
 }

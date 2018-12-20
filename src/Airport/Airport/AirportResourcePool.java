@@ -45,6 +45,8 @@ public class AirportResourcePool{
                 anzahlSkyTankingVehicle, anzahlPushBackVehicle);
     }
 
+    public AirportResourcePool(){}
+
     //
     // Generate Methoden
     //
