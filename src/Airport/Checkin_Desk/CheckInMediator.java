@@ -14,6 +14,8 @@ public class CheckInMediator {
 
     }
 
+    public CheckInMediator(){}
+
     public void build(){
         //TODO
     }
