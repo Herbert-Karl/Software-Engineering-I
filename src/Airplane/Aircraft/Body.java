@@ -95,7 +95,7 @@ public class Body {
     public void build() {
 
 
-        //Schreibt die Daten die Ihr als Parameter benötigt selbst in jeweiligen Klammern!!!
+        //Schreibt die Daten für die Übergabe Parameter bitte selbst in die Klammern!!!
 
 
         //APU
