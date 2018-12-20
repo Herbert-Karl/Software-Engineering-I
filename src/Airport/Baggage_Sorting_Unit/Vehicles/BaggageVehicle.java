@@ -87,17 +87,7 @@ public class BaggageVehicle implements IBaggageVehicle {
   }
 
   /**
-   * adding baggages to internal container
-   */
-  @Override
-  public void store(final Collection<Baggage> b) {
-    //TODO add collection to container
-    //container.addAll(b);
-  }
-
-  /**
    * setting internal container
-   * TODO check functionality
    */
   @Override
   public void store(final Container container) {
@@ -141,16 +131,13 @@ public class BaggageVehicle implements IBaggageVehicle {
     setFlashingLightOff();
   }
 
-  /**
-   * TODO: Routine implementieren
-   */
   @Override
   public void executeRequest(final GateID gateID) {
     setFlashingLightOn();
     move(20);
     stop();
     setGate(gateID);
-    connect(unit.getContainerLifter()); //TODO get right containerLifter from Gate
+    connect(unit.getContainerLifter());
     transferContainerToLifter();
     disconnect();
     returnToBaggageSortingUnit();
