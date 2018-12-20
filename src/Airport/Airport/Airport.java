@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import static Airport.Airport.GateID.A01;
 import static Airport.Airport.GateID.GATE_ID;
+import static Airport.Configuration.Configuration.DATAFILEPATH;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -62,8 +63,7 @@ public class Airport{
      */
 
     public void init(Airport airport) {
-    	final Configuration configuration;
-    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(configuration.pathToString());
+    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(DATAFILEPATH.pathToString());
         passengerList = passengerBaggageDatabase.getPassengerList();
 
         resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
