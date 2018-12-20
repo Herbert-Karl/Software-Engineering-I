@@ -1,5 +1,6 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
@@ -145,7 +146,13 @@ public class BaggageVehicle implements IBaggageVehicle {
    */
   @Override
   public void executeRequest(final GateID gateID) {
-
+    setFlashingLightOn();
+    move(20);
+    setGate(gateID);
+    //connect(); //TODO get right containerLifter from Gate
+    transferContainerToLifter();
+    disconnect();
+    returnToBaggageSortingUnit();
   }
 
   @Override
@@ -174,12 +181,7 @@ public class BaggageVehicle implements IBaggageVehicle {
    */
   @Override
   public void setGate(final GateID id) {
-    /*for (final Gate g : Airport.getAirport().getGateList()) {
-      if (g.getGateID() == id) {
-        gate = g;
-        break;
-      }
-    }TODO get airport*/
+    gate = Airport.getInstance().getGatefromID(id);
   }
 
   @Override
