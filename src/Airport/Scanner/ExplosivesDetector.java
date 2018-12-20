@@ -1,42 +1,26 @@
 package Airport.Scanner;
 
+import Airport.Base.CottonPad;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
 
 import java.util.List;
+import java.util.Scanner;
 
-public class ExplosivesDetector implements IExplosivesDetector {
+public class ExplosivesDetector extends AScanner implements IExplosivesDetector {
 
-    private String uuid;
-    private String id;
-    private String type;
-    private StringSearchAlgorithm stringSearchAlgorithm;
-    private List<Employee> registeredEmployeeList;
-    private IReadingDevice readingDevice;
-    private Employee employee;
 
-    @Override
-    public void register(Employee employee) {
-
-    }
-
-    @Override
-    public void unregister(Employee employee) {
-
-    }
-
-    @Override
-    public boolean login(IDCard idCard) {
-        return false;
+    public ExplosivesDetector(String id, String type, StringSearchAlgorithm stringSearchAlgorithm) {
+        super(type, stringSearchAlgorithm, new ReadingDevice(type + " Reader"));
     }
 
     @Override
     public boolean scan(CottonPad cottonPad) {
-        return false;
-    }
-
-    @Override
-    public boolean logout() {
-        return false;
+        if (employee != null) {
+            if (stringSearcher.search(cottonPad.getSurface(), "explosive")) {
+                return false;
+            }
+        }
+        return true;
     }
 }

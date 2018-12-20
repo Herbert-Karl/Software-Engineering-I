@@ -16,6 +16,8 @@ public class Gate{
         this.airplane = null;
     }
 
+    public Gate(){}
+
     public GateID getGateID() {
         return gateID;
     }

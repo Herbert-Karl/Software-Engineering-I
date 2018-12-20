@@ -67,6 +67,8 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
         this.pushBackVehicleReceiptList = new ArrayList<>(listSize);
     }
 
+    public GroundOperationsCenter(){}
+
     ///
     ///  Getter und Setter
     ///
@@ -142,8 +144,7 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     @Override
     public boolean assign(IBaggageVehicle baggageVehicle, Gate gate) {
         baggageVehicle.setGate(gate.getGateID());
-        return false;
-        //TODO
+        return true;
     }
 
     @Override
@@ -167,36 +168,31 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     @Override
     public boolean assign(IServiceVehicleBase serviceVehicleBase, Gate gate) {
         serviceVehicleBase.setGateID(gate.getGateID());
-        //TODO
-        return false;
+        return true;
     }
 
     @Override
     public boolean assign(IAirCargoPalletLifter airCargoPalletLifter, Gate gate) {
         airCargoPalletLifter.setGate(gate.getGateID());
-        //TODO
-        return false;
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleFreshWater serviceVehicleFreshWater, Gate gate) {
         serviceVehicleFreshWater.setGateID(gate.getGateID());
-        //TODO
-        return false;
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleWasteWater serviceVehicleWasteWater, Gate gate) {
         serviceVehicleWasteWater.setGateID(gate.getGateID());
-        //TODO
-        return false;
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen, Gate gate) {
         serviceVehicleNitrogenOxygen.setGateID(gate.getGateID());
-        //TODO
-        return false;
+        return true;
     }
 
     @Override

@@ -26,6 +26,8 @@ public class BulkyBaggageDesk implements IBulkyBaggageDesk{
         this.airport = airport;
     }
 
+    public BulkyBaggageDesk(){}
+
     public void open(){
         employee = airport.getResourcePool().takeResource("Employee");
         isOpen = true;
