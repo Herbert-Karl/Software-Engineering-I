@@ -5,83 +5,82 @@ import Airport.Base.BulkyBaggage;
 import Airport.Base.NormalBaggage;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class BaggageDepot {
 
-  private final String uuid;
+    private final String uuid;
 
-  private final ArrayList<Baggage> baggageList;
+    private final ArrayList<Baggage> baggageList;
 
-  public BaggageDepot(final String uuid) {
-    this.uuid = uuid;
-    baggageList = new ArrayList<>();
-  }
-
-  public String getUuid() {
-    return uuid;
-  }
-
-  public ArrayList<Baggage> getBaggageList()
-  {
-    return baggageList;
-  }
-
-  @Override
-  public String toString() {
-    String content = "UUID: " + uuid + "\nStored Baggage: ";
-    for (final Baggage b : baggageList) {
-      content += "\n    " + b;
+    public BaggageDepot() {
+        this.uuid = UUID.randomUUID().toString();
+        baggageList = new ArrayList<>();
     }
-    return content;
-  }
 
-  /**
-   * adds baggage to baggageList
-   */
-  private void store(final Baggage baggage) {
-    baggageList.add(baggage);
-  }
-
-  /**
-   * adds a collection of baggage to BaggageList
-   */
-  void storeAll(final Iterable<Baggage> baggage) {
-    for (final Baggage b : baggage) {
-      store(b);
+    public String getUuid() {
+        return uuid;
     }
-  }
 
-  /**
-   * returns all instances of NormalBaggage from the baggageList
-   * * Does not remove the instances
-   *
-   */
-  ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
+    public ArrayList<Baggage> getBaggageList() {
+        return baggageList;
+    }
 
-    final ArrayList<Baggage> normal = new ArrayList<>();
-    for (final Baggage b : baggageList) {
-      if (b instanceof NormalBaggage) { //TODO Check to string
-        if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass().toString()
-            == ticketClassString) {
-          normal.add(b);
+    @Override
+    public String toString() {
+        String content = "UUID: " + uuid + "\nStored Baggage: ";
+        for (final Baggage b : baggageList) {
+            content += "\n    " + b;
         }
-      }
+        return content;
     }
-    return normal;
-  }
 
-  /**
-   * returns all instances of BulkyBaggage from the baggageList
-   * * Does not remove the instances
-   */
-  ArrayList<Baggage> selectBulkyBaggage() {
-
-    final ArrayList<Baggage> bulky = new ArrayList<>();
-    for (final Baggage b : baggageList) {
-      if (b instanceof BulkyBaggage) {
-        bulky.add(b);
-      }
+    /**
+     * adds baggage to baggageList
+     */
+    private void store(final Baggage baggage) {
+        baggageList.add(baggage);
     }
-    return bulky;
-  }
+
+    /**
+     * adds a collection of baggage to BaggageList
+     */
+    void storeAll(final Iterable<Baggage> baggage) {
+        for (final Baggage b : baggage) {
+            store(b);
+        }
+    }
+
+    /**
+     * returns all instances of NormalBaggage from the baggageList
+     * * Does not remove the instances
+     */
+    ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
+
+        final ArrayList<Baggage> normal = new ArrayList<>();
+        for (final Baggage b : baggageList) {
+            if (b instanceof NormalBaggage) { //TODO Check to string
+                if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass().toString()
+                        == ticketClassString) {
+                    normal.add(b);
+                }
+            }
+        }
+        return normal;
+    }
+
+    /**
+     * returns all instances of BulkyBaggage from the baggageList
+     * * Does not remove the instances
+     */
+    ArrayList<Baggage> selectBulkyBaggage() {
+
+        final ArrayList<Baggage> bulky = new ArrayList<>();
+        for (final Baggage b : baggageList) {
+            if (b instanceof BulkyBaggage) {
+                bulky.add(b);
+            }
+        }
+        return bulky;
+    }
 }

@@ -8,83 +8,86 @@ import Airport.Base.Baggage;
 import Airport.Base.Container;
 
 import java.util.Collection;
+import java.util.UUID;
 
 public class BaggageVehicle implements IBaggageVehicle {
 
-  private final String uuid;
+    private final String uuid;
 
-  private final String id;
+    private final String id;
 
-  private final String type;
+    private final String type;
 
-  private int speedInMPH;
+    private int speedInMPH;
 
-  private boolean isFlashingLightOn;
+    private boolean isFlashingLightOn;
 
 
-  private Container container;
+    private Container container;
 
-  private IContainerLifter containerLifter;
+    private IContainerLifter containerLifter;
 
-  private Gate gate;
+    private Gate gate;
 
-  private BaggageSortingUnit unit;
+    private BaggageSortingUnit unit;
+    private static int idCounter;
 
-  public BaggageVehicle(final String uuid, final String id, final String type,
-      BaggageSortingUnit unit) {
-    this.uuid = uuid;
-    this.id = id;
-    this.type = type;
-    speedInMPH = 0;
-    isFlashingLightOn = false;
-    this.unit = unit;
-  }
+    public BaggageVehicle(final String type,
+                          BaggageSortingUnit unit) {
+        this.uuid = UUID.randomUUID().toString();
+        this.id = "" + idCounter++;
+        this.type = type;
+        speedInMPH = 0;
+        isFlashingLightOn = false;
+        this.unit = unit;
+    }
 
-  @Override
-  public String toString() {
-    String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
-        + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";
-    message += ((isFlashingLightOn) ? "on" : "off");
-    message += "\nCurrent Gate: " + gate + "\nAssigned container lifter" + containerLifter;
+    @Override
+    public String toString() {
+        String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
+                + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";
+        message += ((isFlashingLightOn) ? "on" : "off");
+        message += "\nCurrent Gate: " + gate + "\nAssigned container lifter" + containerLifter;
 
-    return message;
-  }
+        return message;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public String getUuid() {
+        return uuid;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public String getId() {
+        return id;
+    }
 
-  public String getType() {
-    return type;
-  }
+    public String getType() {
+        return type;
+    }
 
-  public int getSpeedInMPH() {
-    return speedInMPH;
-  }
+    public int getSpeedInMPH() {
+        return speedInMPH;
+    }
 
-  public boolean isFlashingLightOn() {
-    return isFlashingLightOn;
-  }
+    public boolean isFlashingLightOn() {
+        return isFlashingLightOn;
+    }
 
-  public Gate getGate() {
-    return gate;
-  }
+    public Gate getGate() {
+        return gate;
+    }
 
-  public Container getContainer() { return container; }
+    public Container getContainer() {
+        return container;
+    }
 
-  public void setContainerLifter(IContainerLifter containerLifter)
-  {
-    this.containerLifter = containerLifter;
-  }
+    public void setContainerLifter(IContainerLifter containerLifter) {
+        this.containerLifter = containerLifter;
+    }
 
-  @Override
-  public IContainerLifter getContainerLifter() {
-    return containerLifter;
-  }
+    @Override
+    public IContainerLifter getContainerLifter() {
+        return containerLifter;
+    }
 
   /**
    * setting internal container
@@ -94,30 +97,30 @@ public class BaggageVehicle implements IBaggageVehicle {
     this.container = container;
   }
 
-  /**
-   * sets internal containerLifter
-   */
-  @Override
-  public void connect(final IContainerLifter containerLifter) {
-    this.containerLifter = containerLifter;
-  }
+    /**
+     * sets internal containerLifter
+     */
+    @Override
+    public void connect(final IContainerLifter containerLifter) {
+        this.containerLifter = containerLifter;
+    }
 
-  /**
-   * sets container on lifter an removes it locally
-   */
-  @Override
-  public void transferContainerToLifter() {
-    containerLifter.setContainer(container);
-    container = null;
-  }
+    /**
+     * sets container on lifter an removes it locally
+     */
+    @Override
+    public void transferContainerToLifter() {
+        containerLifter.setContainer(container);
+        container = null;
+    }
 
-  /**
-   * removes local dependency for containerLifter
-   */
-  @Override
-  public void disconnect() {
-    containerLifter = null;
-  }
+    /**
+     * removes local dependency for containerLifter
+     */
+    @Override
+    public void disconnect() {
+        containerLifter = null;
+    }
 
   /**
    * moves and sets baggageVehicle to this instance for baggageSortingUnit
@@ -126,8 +129,8 @@ public class BaggageVehicle implements IBaggageVehicle {
   public void returnToBaggageSortingUnit() {
     setFlashingLightOn();
     move(20);
-    unit.setBaggageVehicle(this);
     stop();
+    unit.setBaggageVehicle(this);
     setFlashingLightOff();
   }
 
@@ -143,26 +146,26 @@ public class BaggageVehicle implements IBaggageVehicle {
     returnToBaggageSortingUnit();
   }
 
-  @Override
-  public void setFlashingLightOn() {
-    isFlashingLightOn = true;
-  }
+    @Override
+    public void setFlashingLightOn() {
+        isFlashingLightOn = true;
+    }
 
-  /**
-   * sets speed
-   */
-  @Override
-  public void move(final int speedInMPH) {
-    this.speedInMPH = speedInMPH;
-  }
+    /**
+     * sets speed
+     */
+    @Override
+    public void move(final int speedInMPH) {
+        this.speedInMPH = speedInMPH;
+    }
 
-  /**
-   * sets speed to 0
-   */
-  @Override
-  public void stop() {
-    speedInMPH = 0;
-  }
+    /**
+     * sets speed to 0
+     */
+    @Override
+    public void stop() {
+        speedInMPH = 0;
+    }
 
   /**
    * finds gate for the given id and stores it
@@ -172,8 +175,8 @@ public class BaggageVehicle implements IBaggageVehicle {
     gate = Airport.getInstance().getGatefromID(id);
   }
 
-  @Override
-  public void setFlashingLightOff() {
-    isFlashingLightOn = false;
-  }
+    @Override
+    public void setFlashingLightOff() {
+        isFlashingLightOn = false;
+    }
 }
