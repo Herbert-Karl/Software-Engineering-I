@@ -12,16 +12,15 @@ import java.util.Stack;
 
 public class AirplaneLoadingManagement implements IAirplaneLoadingManagement {
 
-    public LoadingStrategy getStrategy() {
-        return strategy;
-    }
-
     private LoadingStrategy strategy;
-
     private ArrayList<Container> filledContainerList;
 
     public AirplaneLoadingManagement(ArrayList<Container> containerList) {
         filledContainerList = containerList;
+    }
+
+    public LoadingStrategy getStrategy() {
+        return strategy;
     }
 
     /**

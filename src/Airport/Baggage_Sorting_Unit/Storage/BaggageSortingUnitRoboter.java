@@ -13,19 +13,11 @@ import java.util.UUID;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
-    private final String uuid;
-
-    private final String id;
-
-    private final String type;
-
-    private final BaggageSortingUnit baggageSortingUnit;
     private static int idCounter;
-
-    public ArrayList<Baggage> getSelectedBaggageList() {
-        return selectedBaggageList;
-    }
-
+    private final String uuid;
+    private final String id;
+    private final String type;
+    private final BaggageSortingUnit baggageSortingUnit;
     private ArrayList<Baggage> selectedBaggageList;
 
     public BaggageSortingUnitRoboter(final BaggageSortingUnit baggageSortingUnit,
@@ -35,6 +27,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         this.type = type;
         this.baggageSortingUnit = baggageSortingUnit;
         selectedBaggageList = new ArrayList<>();
+    }
+
+    public ArrayList<Baggage> getSelectedBaggageList() {
+        return selectedBaggageList;
     }
 
     public String toString() {

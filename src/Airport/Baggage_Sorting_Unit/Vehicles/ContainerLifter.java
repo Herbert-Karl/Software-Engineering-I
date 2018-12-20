@@ -14,39 +14,19 @@ import java.util.UUID;
 
 public class ContainerLifter implements IContainerLifter {
 
-    private final String uuid;
-
-    private final String id;
-
-    private final String type;
-
-    private int speedInMPH;
-
-    private boolean isFlashingLightOn;
-
-    private boolean isDown;
-
-    private Container container;
-
-    public ArrayList<String> getContainerIDList() {
-        return containerIDList;
-    }
-
-    private final ArrayList<String> containerIDList;
-
-    private Gate gate;
-
-    private Airplane connectedAirplane;
-
-    public int getNumberOfContainerLoaded() {
-        return numberOfContainerLoaded;
-    }
-
-    private int numberOfContainerLoaded;
-
     private static int idCounter;
-
     private static Stack<FrontStowagePositionID> openPositions;
+    private final String uuid;
+    private final String id;
+    private final String type;
+    private final ArrayList<String> containerIDList;
+    private int speedInMPH;
+    private boolean isFlashingLightOn;
+    private boolean isDown;
+    private Container container;
+    private Gate gate;
+    private Airplane connectedAirplane;
+    private int numberOfContainerLoaded;
 
     public ContainerLifter(final String type) {
         this.uuid = UUID.randomUUID().toString();
@@ -57,6 +37,14 @@ public class ContainerLifter implements IContainerLifter {
         numberOfContainerLoaded = 0;
         containerIDList = new ArrayList<>();
         initOpenPositions();
+    }
+
+    public ArrayList<String> getContainerIDList() {
+        return containerIDList;
+    }
+
+    public int getNumberOfContainerLoaded() {
+        return numberOfContainerLoaded;
     }
 
     /**
@@ -105,6 +93,14 @@ public class ContainerLifter implements IContainerLifter {
     @Override
     public void setGate(final Gate gate) {
         this.gate = gate;
+    }
+
+    /**
+     * Sets the Gate to the instance with the corresponding id
+     */
+    @Override
+    public void setGate(final GateID g) {
+        gate = Airport.getInstance().getGatefromID(g);
     }
 
     public String getUuid() {
@@ -178,7 +174,6 @@ public class ContainerLifter implements IContainerLifter {
         container = null;
     }
 
-
     /**
      * Sets attribute isDown
      */
@@ -245,14 +240,6 @@ public class ContainerLifter implements IContainerLifter {
     @Override
     public void stop() {
         speedInMPH = 0;
-    }
-
-    /**
-     * Sets the Gate to the instance with the corresponding id
-     */
-    @Override
-    public void setGate(final GateID g) {
-        gate = Airport.getInstance().getGatefromID(g);
     }
 
     @Override

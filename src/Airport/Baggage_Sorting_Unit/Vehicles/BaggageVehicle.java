@@ -10,24 +10,16 @@ import java.util.UUID;
 
 public class BaggageVehicle implements IBaggageVehicle {
 
-    private final String uuid;
-
-    private final String id;
-
-    private final String type;
-
-    private int speedInMPH;
-
-    private boolean isFlashingLightOn;
-
-    private Container container;
-
-    private IContainerLifter containerLifter;
-
-    private Gate gate;
-
-    private BaggageSortingUnit unit;
     private static int idCounter;
+    private final String uuid;
+    private final String id;
+    private final String type;
+    private int speedInMPH;
+    private boolean isFlashingLightOn;
+    private Container container;
+    private IContainerLifter containerLifter;
+    private Gate gate;
+    private BaggageSortingUnit unit;
 
     public BaggageVehicle(final String type,
                           BaggageSortingUnit unit) {
@@ -73,17 +65,25 @@ public class BaggageVehicle implements IBaggageVehicle {
         return gate;
     }
 
-    public Container getContainer() {
-        return container;
+    /**
+     * finds gate for the given id and stores it
+     */
+    @Override
+    public void setGate(final GateID id) {
+        gate = Airport.getInstance().getGatefromID(id);
     }
 
-    public void setContainerLifter(IContainerLifter containerLifter) {
-        this.containerLifter = containerLifter;
+    public Container getContainer() {
+        return container;
     }
 
     @Override
     public IContainerLifter getContainerLifter() {
         return containerLifter;
+    }
+
+    public void setContainerLifter(IContainerLifter containerLifter) {
+        this.containerLifter = containerLifter;
     }
 
     /**
@@ -163,14 +163,6 @@ public class BaggageVehicle implements IBaggageVehicle {
     @Override
     public void stop() {
         speedInMPH = 0;
-    }
-
-    /**
-     * finds gate for the given id and stores it
-     */
-    @Override
-    public void setGate(final GateID id) {
-        gate = Airport.getInstance().getGatefromID(id);
     }
 
     @Override

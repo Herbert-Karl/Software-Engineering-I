@@ -22,33 +22,19 @@ import java.util.Arrays;
 
 public class BaggageSortingUnit implements IBaggageSortingUnit {
 
-    private final ArrayList<Employee> employeeList;
-
-    private ArrayList<String> scanPatternList;
-
-
-    private final IBaggageScanner baggageScanner;
-
-    private IBaggageSortingUnitRoboter roboter;
-
-    private final BaggageDepot baggageDepot;
-
-    private final DestinationBox destinationBox;
-
-    private final ArrayList<LuggageTub> emptyLuggageTubList;
-
-    private final ArrayList<Container> emptyContainerList;
-
-    private final ArrayList<Container> filledContainerList;
-
-    private final ContainerLifter containerLifter;
-
-    private IBaggageVehicle baggageVehicle;
-
-    private final ICustoms customs;
-
     protected final Airport airport;
-
+    private final ArrayList<Employee> employeeList;
+    private final IBaggageScanner baggageScanner;
+    private final BaggageDepot baggageDepot;
+    private final DestinationBox destinationBox;
+    private final ArrayList<LuggageTub> emptyLuggageTubList;
+    private final ArrayList<Container> emptyContainerList;
+    private final ArrayList<Container> filledContainerList;
+    private final ContainerLifter containerLifter;
+    private final ICustoms customs;
+    private ArrayList<String> scanPatternList;
+    private IBaggageSortingUnitRoboter roboter;
+    private IBaggageVehicle baggageVehicle;
     private Gate gate;
 
     /**
@@ -86,6 +72,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     public void setGate(final Gate gate) {
         this.gate = gate;
+    }
+
+    /**
+     * finds correct gate for the ID and sets internal attribute
+     */
+    private void setGate(final GateID id) {
+        gate = Airport.getInstance().getGatefromID(id);
     }
 
     public ArrayList<Employee> getEmployeeList() {
@@ -242,10 +235,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     }
 
     /**
-     * adds baggage to roboter list and passes roboter to customs, clears roboter
+     * tells customs to give to federal police
      */
     @Override
-    public void handOverToCustoms(final Baggage baggage) {//TODO take Methode von customs officer woher?
+    public void handOverToCustoms(final Baggage baggage) {//TODO check
+        ArrayList<Baggage> list = new ArrayList<>();
+        list.add(baggage);
+        customs.handOverBaggageToFederalPolice(list);
     }
 
     /**
@@ -370,12 +366,5 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     public void addFullContainer(Container container) {
         filledContainerList.add(container);
-    }
-
-    /**
-     * finds correct gate for the ID and sets internal attribute
-     */
-    private void setGate(final GateID id) {
-        gate = Airport.getInstance().getGatefromID(id);
     }
 }
