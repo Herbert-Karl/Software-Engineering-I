@@ -2,12 +2,9 @@ package Airplane.door;
 
 public class GearDoor extends Door {
 
-    private GearDoorType type;
-
-    // constructor
-    public GearDoor(String ID, GearDoorType typeOfDoor)
+    // constructor - converts GearDoorType to String for version()!
+    public GearDoor(GearDoorType typeOfDoor)
     {
-        super(ID);
-        type = typeOfDoor;
+        super(typeOfDoor.toString());
     }
 }

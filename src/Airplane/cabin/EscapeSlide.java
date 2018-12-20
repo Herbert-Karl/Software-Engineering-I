@@ -1,14 +1,14 @@
 package Airplane.cabin;
 
-import Airplane.airplanePart.AirplanePart;
+import Airplane.airplanePart.*;
 
 public class EscapeSlide implements IEscapeSlide {
-    private AirplanePart escapeSlide;
+    private IAirplanePart escapeSlide;
     private boolean isActivated;
 
     // constructor for this class
-    public EscapeSlide(String id, String type) {
-        escapeSlide.setAll(id, type, "Escape Slide");
+    public EscapeSlide() {
+        escapeSlide = new AirplanePart("Escape Slide");
         isActivated = false;
     }
 

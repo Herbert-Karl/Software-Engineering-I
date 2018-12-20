@@ -1,6 +1,6 @@
 package Airplane.seat;
 
-import Airplane.airplanePart.IAirplanePart;
+import Airplane.airplanePart.*;
 import Airport.Base.Passenger;
 
 public abstract class Seat implements ISeat{
@@ -12,10 +12,9 @@ public abstract class Seat implements ISeat{
     protected ISign seatBeltSign;
 
     // initialize attributes
-    protected Seat(String ID, String type)
+    protected Seat(String type)
     {
-        seat = new AirplanePart();
-        seat.setAll(ID, type);
+        seat = new AirplanePart(type);
         level = 0;
         nonSmokingSign = new NonSmokingSign();
         seatBeltSign = new SeatBeltSign();

@@ -4,8 +4,8 @@ public class BusinessClassSeat extends Seat {
 
     private IReadingLight readingLight;
     
-    public BusinessClassSeat(String ID) {
-        super(ID, "BusinessClassSeat");
+    public BusinessClassSeat() {
+        super("BusinessClassSeat");
         readingLight = new ReadingLight();
     }
 

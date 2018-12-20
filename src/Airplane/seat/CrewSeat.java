@@ -1,13 +1,13 @@
 package Airplane.seat;
 
-import Airplane.airplanePart.IAirplanePart;
+import Airplane.airplanePart.*;
 
 public class CrewSeat implements ICrewSeat {
     private IAirplanePart crewSeat;
     private IReadingLight readingLight;
     
-    public CrewSeat(String ID) {
-        crewSeat.setAll(ID, "CrewSeat");
+    public CrewSeat() {
+        crewSeat = new AirplanePart("CrewSeat");
         readingLight = new ReadingLight();
     }
 

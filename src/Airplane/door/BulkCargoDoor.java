@@ -3,8 +3,8 @@ package Airplane.door;
 public class BulkCargoDoor extends Door {
 
     // constructor
-    public BulkCargoDoor(String ID)
+    public BulkCargoDoor()
     {
-        super(ID,"BulkCargoDoor");
+        super("BulkCargoDoor");
     }
 }

@@ -5,9 +5,9 @@ public class EmergencyExitDoor extends Door {
     private boolean isEscapeSlideActivated;
 
     // constructor
-    public EmergencyExitDoor(String ID)
+    public EmergencyExitDoor()
     {
-        super(ID,"EmergencyExitDoor");
+        super("EmergencyExitDoor");
         isEscapeSlideActivated = false;
     }
 

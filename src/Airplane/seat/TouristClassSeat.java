@@ -3,8 +3,8 @@ package Airplane.seat;
 public class TouristClassSeat extends Seat {
 
     // constructor for this class
-    public TouristClassSeat(String ID)
+    public TouristClassSeat()
     {
-        super(ID, "TouristClassSeat");
+        super("TouristClassSeat");
     }
 }

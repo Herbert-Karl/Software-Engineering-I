@@ -1,25 +1,18 @@
 package Airplane.airplanePart;
 
-public class AirplanePart implements IAirplanePart {
-    protected String id;
-    protected String type;
+import java.util.UUID;
 
+public class AirplanePart implements IAirplanePart {
+    private String id;
+    private String type;
+
+    public AirplanePart(String type) {
+        id = UUID.randomUUID().toString();
+        this.type = type;
+    }
     @Override
     public String version()
     {
         return "<" + id + "> - <" + type + ">";
-    }
-
-    @Override
-    public void setAll(String ID, String type)
-    {
-        id = ID;
-        this.type = type;
-    }
-
-    @Override
-    public void setID(String ID)
-    {
-        id = ID;
     }
 }

@@ -1,16 +1,16 @@
 package Airplane.cabin;
 
-import Airplane.airplanePart.AirplanePart;
+import Airplane.airplanePart.*;
 
 public abstract class System implements ISystem {
 
-    protected AirplanePart system;
+    protected IAirplanePart system;
     protected boolean isOn;
     protected boolean isCleaned;
 
     // initialize attributes
-    protected void setSystem(String id, String type, String manufacturer){
-        system.setAll(id, type, manufacturer);
+    protected System(String type){
+        system = new AirplanePart(type);
         isOn = false;
         isCleaned = true;
     }

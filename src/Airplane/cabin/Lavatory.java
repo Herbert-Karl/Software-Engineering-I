@@ -1,9 +1,12 @@
 package Airplane.cabin;
 
-public class Lavatory extends KitchenLavatory implements ILavatory {
+public class Lavatory extends KitchenLavatory {
     private boolean isCleaned;
 
-    @Override
+    public Lavatory() {
+        super("Lavatory");
+    }
+
     // set isCleaned to true
     public void clean() {
         if (!isCleaned) isCleaned = true ;

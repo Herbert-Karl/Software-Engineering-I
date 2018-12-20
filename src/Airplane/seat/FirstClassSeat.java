@@ -4,8 +4,8 @@ public class FirstClassSeat extends Seat {
 
     private IReadingLight readingLight;
     
-    public FirstClassSeat(String ID) {
-        super(ID, "FirstClassSeat");
+    public FirstClassSeat() {
+        super("FirstClassSeat");
         readingLight = new ReadingLight();
     }
 

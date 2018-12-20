@@ -1,7 +1,6 @@
 package Airplane.seat;
 
-import Airplane.airplanePart.IAirplanePart;
-
+import Airplane.airplanePart.*;
 import java.util.UUID;
 
 public abstract class Sign implements ISign {
@@ -10,10 +9,10 @@ public abstract class Sign implements ISign {
     protected IAirplanePart sign;
     protected boolean isOn;
 
-    protected Sign(String ID, String type)
+    protected Sign(String type)
     {
         uuid = UUID.randomUUID().toString();
-        sign.setAll(ID, type);
+        sign = new AirplanePart(type);
         isOn = false;
     }
 

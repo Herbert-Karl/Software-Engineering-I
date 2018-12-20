@@ -1,15 +1,15 @@
 package Airplane.cabin;
 
-import Airplane.airplanePart.AirplanePart;
+import Airplane.airplanePart.*;
 
 public class AirConditioning implements IAirConditioning {
-    private AirplanePart airCOnditioning;
+    private IAirplanePart airConditioning;
     private int temperature;
     private boolean isOn;
 
     // constructor for this class
-    public  AirConditioning(String id, String type, String manufacturer) {
-        airCOnditioning.setAll(id, type, manufacturer);
+    public  AirConditioning(String type) {
+        airConditioning = new AirplanePart(type);
         temperature = 17;
         isOn = false;
     }
@@ -17,13 +17,13 @@ public class AirConditioning implements IAirConditioning {
     @Override
     // the version contains id and type
     public String version() {
-        return airCOnditioning.version();
+        return airConditioning.version();
     }
 
     @Override
     // set isOn to true
     public void on() {
-        if(!isOn) isOn = true;
+        isOn = true;
     }
 
     @Override
@@ -53,6 +53,6 @@ public class AirConditioning implements IAirConditioning {
     @Override
     // set isOn to false
     public void off() {
-        if(isOn) isOn = false;
+        isOn = false;
     }
 }

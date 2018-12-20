@@ -1,5 +1,6 @@
 package Airplane.door;
 
+import Airplane.airplanePart.AirplanePart;
 import Airplane.airplanePart.IAirplanePart;
 
 public abstract class Door implements IDoor{
@@ -9,17 +10,9 @@ public abstract class Door implements IDoor{
     protected boolean isClosed;
 
     // initialize attributes
-    protected Door(String ID, String type)
+    protected Door(String type)
     {
-        door.setAll(ID, type);
-        isLocked = false;
-        isClosed = true;
-    }
-
-    // initialize attributes
-    protected Door(String ID)
-    {
-        door.setID(ID);
+        door = new AirplanePart(type);
         isLocked = false;
         isClosed = true;
     }

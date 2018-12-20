@@ -4,8 +4,8 @@ public class WasteSystem extends System implements IWasteSystem {
     private String[] waste;
 
     // constructor
-    public WasteSystem(String id, String type) {
-        setSystem(id, type, "Waste System");
+    public WasteSystem() {
+        super("WasteSystem");
         waste = new String[100];
     }
 

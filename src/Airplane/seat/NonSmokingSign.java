@@ -3,8 +3,8 @@ package Airplane.seat;
 public class NonSmokingSign extends Sign {
 
     // constructor
-    public NonSmokingSign(String ID)
+    public NonSmokingSign()
     {
-        super(ID, "NonSmokingSign");
+        super("NonSmokingSign");
     }
 }

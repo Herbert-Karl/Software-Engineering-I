@@ -4,8 +4,8 @@ public class WaterSystem extends System implements IWaterSystem {
     private boolean isFilled;
 
     // constructor
-    public WaterSystem(String id, String type) {
-        setSystem(id, type, "Water System");
+    public WaterSystem() {
+        super("WaterSystem");
         isFilled = false;
     }
 

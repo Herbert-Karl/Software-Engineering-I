@@ -1,21 +1,14 @@
 package Airplane.cabin;
 
-import Airplane.airplanePart.AirplanePart;
+import Airplane.airplanePart.*;
 
 public abstract class KitchenLavatory implements IKitchenLavatory {
 
-    protected AirplanePart kitchenLavatory;
+    protected IAirplanePart kitchenLavatory;
     protected boolean isLocked;
 
-    // set Lavatory Attributes
-    protected void setLavatory(String id, String type, String manufacturer){
-        kitchenLavatory.setAll(id, type, manufacturer);
-        isLocked = false;
-    }
-
-    // set Kitchen Attributes
-    public void setKitchen(String id, String manufacturer) {
-        kitchenLavatory.setIDandBrand(id, manufacturer);
+    protected KitchenLavatory(String type) {
+        kitchenLavatory = new AirplanePart(type);
         isLocked = false;
     }
 

@@ -1,16 +1,15 @@
 package Airplane.seat;
 
-import Airplane.airplanePart.IAirplanePart;
+import Airplane.airplanePart.*;
 
 public class ReadingLight implements IReadingLight {
 
     private IAirplanePart light;
     private boolean isOn;
     // constructor
-    public ReadingLight(String ID)
+    public ReadingLight()
     {
-        light = new AirplanePart();
-        light.setAll(ID, "ReadingLight");
+        light = new AirplanePart("ReadingLight");
         isOn = false;
     }
     
