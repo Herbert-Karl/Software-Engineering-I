@@ -291,11 +291,11 @@ public class AirportResourcePool{
         baggageVehicleList.add(baggageVehicle);
     }
 
-    public void returnRecource(ServiceVehicleBase serviceVehicleBase){
+    public void returnResource(ServiceVehicleBase serviceVehicleBase){
         serviceVehicleBaseList.add(serviceVehicleBase);
     }
 
-    public void returnRecource(ServiceVehicleFreshWater serviceVehicleFreshWater){
+    public void returnResource(ServiceVehicleFreshWater serviceVehicleFreshWater){
         serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
     }
 
