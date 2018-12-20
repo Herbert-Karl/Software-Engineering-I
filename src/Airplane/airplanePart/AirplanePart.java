@@ -1,7 +1,6 @@
 package Airplane.airplanePart;
 
 public class AirplanePart implements IAirplanePart {
-    protected String manufacturer;
     protected String id;
     protected String type;
 
@@ -12,17 +11,15 @@ public class AirplanePart implements IAirplanePart {
     }
 
     @Override
-    public void setAll(String ID, String type, String brand)
+    public void setAll(String ID, String type)
     {
         id = ID;
         this.type = type;
-        manufacturer = brand;
     }
 
     @Override
-    public void setIDandBrand(String ID, String brand)
+    public void setID(String ID)
     {
         id = ID;
-        manufacturer = brand;
     }
 }
