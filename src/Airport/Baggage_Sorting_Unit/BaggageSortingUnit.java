@@ -53,15 +53,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     /**
      * Init
-     * TODO: set correct initial values
      */
     public BaggageSortingUnit(final ArrayList<Employee> employeeList,
                               final BaggageScanner baggageScanner, final DestinationBox destinationBox,
-                              final ICustoms customs) {
-
+                              final ICustoms customs, BaggageSortingUnitRoboter roboter) {
         this.employeeList = employeeList;
         this.baggageScanner = baggageScanner;
-        roboter = new BaggageSortingUnitRoboter(this, "42");//TODO init correctly
+        this.roboter = roboter;
         baggageDepot = new BaggageDepot();
         this.destinationBox = destinationBox;
         emptyLuggageTubList = new ArrayList<>();
@@ -149,11 +147,9 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
             final Baggage toCheck = l.getBaggage();
             toCheck.setSecurityStatus(BaggageSecurityStatus.clean);
             for (String pattern : scanPatternList) {
-                boolean clean = scan(toCheck, pattern); //TODO check how scan is implemented
-                if (!clean) {
+                if (!scan(toCheck, pattern)) {
                     toCheck.setSecurityStatus(BaggageSecurityStatus.dangerous);
                 }
-
             }
             if (toCheck.getSecurityStatus() == BaggageSecurityStatus.clean) {
                 throwOff(l, destinationBox);
@@ -172,6 +168,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
             emptyDestinationBox();
         }
 
+        //sorting baggage and loading containers into airplane
         roboter.selectBaggageFromDepot();
 
         sendBaggageVehicleToGate();
@@ -182,6 +179,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         loadBaggageVehicle(optimizeAirplaneLoading());
 
+        //close module
         baggageVehicle.disconnect();
 
         baggageVehicle.returnToBaggageSortingUnit();
@@ -200,7 +198,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public void loginBaggageScanner(final Employee employee, final String password) {
-        baggageScanner.login(new IDCard(), password);//TODO employee.getIdCard()
+        baggageScanner.login(employee.getIdCard(), password);
     }
 
     /**
@@ -272,10 +270,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     /**
      * Tells robot to select Baggage and load the container
+     * passes container into airplane
+     * container gets removed from filled list
      */
     @Override
     public void loadBaggageVehicle(final LoadingStrategy strategy) {
-
         for (String id : strategy.getContainerIDList()) {
             baggageVehicle.store(getContainerByID(id));
             baggageVehicle.transferContainerToLifter();
@@ -283,6 +282,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         }
     }
 
+    /**
+     * removes corresponding container and returns it
+     *
+     * @param id id for the container
+     * @return null if not found
+     */
     private Container getContainerByID(String id) {
         for (Container c : filledContainerList) {
             if (c.getId().equals(id)) {
@@ -302,7 +307,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     }
 
     /**
-     * gets GroundoperationsCenter and notifys it with the receipt
+     * gets GroundoperationsCenter and notifies it with the receipt
      */
     @Override
     public void notifyGroundOperations(final BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
@@ -314,10 +319,16 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public void returnEmptyLuggageTubToCheckInDesk() {
-        //airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList); TODO Get Mediator from airport
+        //airport.getCheckInMediator().returnLuggageTubs(emptyLuggageTubList); TODO use mediator to return tubs
         emptyLuggageTubList.clear();
     }
 
+    /**
+     * finds the first empty container with the given category
+     *
+     * @param containerCategory category to get container for
+     * @return null if none found
+     */
     public Container getEmptyContainer(ContainerCategory containerCategory) {
         for (Container c : emptyContainerList) {
             if (c.getCategory() == containerCategory) {
@@ -328,6 +339,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         return null;
     }
 
+    /**
+     * adds container to filled list
+     *
+     * @param container full container to add
+     */
     public void addFullContainer(Container container) {
         filledContainerList.add(container);
     }
