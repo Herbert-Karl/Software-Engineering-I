@@ -29,10 +29,6 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         selectedBaggageList = new ArrayList<>();
     }
 
-    public ArrayList<Baggage> getSelectedBaggageList() {
-        return selectedBaggageList;
-    }
-
     public String toString() {
         String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
                 + "\nAssigned Baggage Sorting Unit: " + baggageSortingUnit
@@ -42,6 +38,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
             message += "\n    " + b;
         }
         return message;
+    }
+
+    public ArrayList<Baggage> getSelectedBaggageList() {
+        return selectedBaggageList;
     }
 
     public String getUuid() {

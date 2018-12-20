@@ -19,14 +19,6 @@ public class BaggageDepot {
         baggageList = new ArrayList<>();
     }
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public ArrayList<Baggage> getBaggageList() {
-        return baggageList;
-    }
-
     @Override
     public String toString() {
         String content = "UUID: " + uuid + "\nStored Baggage: ";
@@ -34,6 +26,14 @@ public class BaggageDepot {
             content += "\n    " + b;
         }
         return content;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public ArrayList<Baggage> getBaggageList() {
+        return baggageList;
     }
 
     /**

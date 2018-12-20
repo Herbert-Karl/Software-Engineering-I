@@ -39,14 +39,6 @@ public class ContainerLifter implements IContainerLifter {
         initOpenPositions();
     }
 
-    public ArrayList<String> getContainerIDList() {
-        return containerIDList;
-    }
-
-    public int getNumberOfContainerLoaded() {
-        return numberOfContainerLoaded;
-    }
-
     /**
      * initializing stack with all positions in order
      */
@@ -83,6 +75,14 @@ public class ContainerLifter implements IContainerLifter {
         }
 
         return message;
+    }
+
+    public ArrayList<String> getContainerIDList() {
+        return containerIDList;
+    }
+
+    public int getNumberOfContainerLoaded() {
+        return numberOfContainerLoaded;
     }
 
     @Override
