@@ -113,7 +113,9 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         Container currentContainer;
         List<Baggage> reducedList;
         while (!selectedBaggageList.isEmpty()) {
-            if (selectedBaggageList.size() > 50) {
+            if (category == ContainerCategory.Normal && selectedBaggageList.size() > 75) {
+                reducedList = selectedBaggageList.subList(0, 74);
+            } else if (category == ContainerCategory.Bulky && selectedBaggageList.size() > 50) {
                 reducedList = selectedBaggageList.subList(0, 49);
             } else {
                 reducedList = selectedBaggageList;
