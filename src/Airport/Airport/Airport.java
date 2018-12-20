@@ -336,6 +336,7 @@ public class Airport{
                 return gate;
             }
         }
+        return null;
     }
 
 }
