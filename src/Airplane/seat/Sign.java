@@ -10,10 +10,10 @@ public abstract class Sign implements ISign {
     protected IAirplanePart sign;
     protected boolean isOn;
 
-    protected void setSign(String ID, String type, String brand)
+    protected Sign(String ID, String type)
     {
         uuid = UUID.randomUUID().toString();
-        sign.setAll(ID, type, brand);
+        sign.setAll(ID, type);
         isOn = false;
     }
 
