@@ -20,7 +20,6 @@ public class BaggageVehicle implements IBaggageVehicle {
 
     private boolean isFlashingLightOn;
 
-
     private Container container;
 
     private IContainerLifter containerLifter;
@@ -87,13 +86,13 @@ public class BaggageVehicle implements IBaggageVehicle {
         return containerLifter;
     }
 
-  /**
-   * setting internal container
-   */
-  @Override
-  public void store(final Container container) {
-    this.container = container;
-  }
+    /**
+     * setting internal container
+     */
+    @Override
+    public void store(final Container container) {
+        this.container = container;
+    }
 
     /**
      * sets internal containerLifter
@@ -120,25 +119,25 @@ public class BaggageVehicle implements IBaggageVehicle {
         containerLifter = null;
     }
 
-  /**
-   * moves and sets baggageVehicle to this instance for baggageSortingUnit
-   */
-  @Override
-  public void returnToBaggageSortingUnit() {
-    setFlashingLightOn();
-    move(20);
-    stop();
-    unit.setBaggageVehicle(this);
-    setFlashingLightOff();
-  }
+    /**
+     * moves and sets baggageVehicle to this instance for baggageSortingUnit
+     */
+    @Override
+    public void returnToBaggageSortingUnit() {
+        setFlashingLightOn();
+        move(20);
+        stop();
+        unit.setBaggageVehicle(this);
+        setFlashingLightOff();
+    }
 
-  @Override
-  public void executeRequest(final GateID gateID) {
-    setFlashingLightOn();
-    move(20);
-    stop();
-    setGate(gateID);
-  }
+    @Override
+    public void executeRequest(final GateID gateID) {
+        setFlashingLightOn();
+        move(20);
+        stop();
+        setGate(gateID);
+    }
 
     @Override
     public void setFlashingLightOn() {
@@ -161,13 +160,13 @@ public class BaggageVehicle implements IBaggageVehicle {
         speedInMPH = 0;
     }
 
-  /**
-   * finds gate for the given id and stores it
-   */
-  @Override
-  public void setGate(final GateID id) {
-    gate = Airport.getInstance().getGatefromID(id);
-  }
+    /**
+     * finds gate for the given id and stores it
+     */
+    @Override
+    public void setGate(final GateID id) {
+        gate = Airport.getInstance().getGatefromID(id);
+    }
 
     @Override
     public void setFlashingLightOff() {

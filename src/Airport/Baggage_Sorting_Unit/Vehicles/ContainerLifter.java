@@ -28,11 +28,19 @@ public class ContainerLifter implements IContainerLifter {
 
     private Container container;
 
+    public ArrayList<String> getContainerIDList() {
+        return containerIDList;
+    }
+
     private final ArrayList<String> containerIDList;
 
     private Gate gate;
 
     private Airplane connectedAirplane;
+
+    public int getNumberOfContainerLoaded() {
+        return numberOfContainerLoaded;
+    }
 
     private int numberOfContainerLoaded;
 

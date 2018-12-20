@@ -6,11 +6,12 @@ import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
+import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
+import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
-import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.*;
 import Airport.Customs.ICustoms;
 import Airport.Scanner.BaggageScanner;
@@ -40,7 +41,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private final ArrayList<Container> filledContainerList;
 
-    private final IContainerLifter containerLifter;
+    private final ContainerLifter containerLifter;
 
     private IBaggageVehicle baggageVehicle;
 
@@ -181,9 +182,17 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         loadBaggageVehicle(optimizeAirplaneLoading());
 
+        baggageVehicle.disconnect();
+
         baggageVehicle.returnToBaggageSortingUnit();
 
+        containerLifter.disconnectFromAirplane();
+
+        containerLifter.notifyGroundOperations(new ContainerLifterReceipt(containerLifter.getId(), containerLifter.getGate().getGateID(), containerLifter.getNumberOfContainerLoaded(), containerLifter.getContainerIDList()));
+
         containerLifter.returnToAirportResourcePool();
+
+        //notifyGroundOperations(new BaggageSortingUnitReceipt()); TODO generate receipt
     }
 
     /**
@@ -242,7 +251,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public void sendContainerLifterToGate() {
-       containerLifter.executeRequest(gate.getGateID());
+        containerLifter.executeRequest(gate.getGateID());
     }
 
     /**
