@@ -3,8 +3,9 @@ package Airplane.seat;
 public class SeatBeltSign extends Sign {
 
     // constructor
-    public SeatBeltSign(String ID, String type)
+    public SeatBeltSign(String ID)
     {
-        setSign(ID, type, "SeatBeltSign");
+        super(ID, "SeatBeltSign");
+        isOn = false;
     }
 }
