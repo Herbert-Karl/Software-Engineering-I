@@ -50,13 +50,13 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private Gate gate;
 
-  /**
-   * Init
-   * TODO: set correct initial values
-   */
-  public BaggageSortingUnit(final ArrayList<Employee> employeeList,
-      final BaggageScanner baggageScanner, final DestinationBox destinationBox,
-      final ICustoms customs) {
+    /**
+     * Init
+     * TODO: set correct initial values
+     */
+    public BaggageSortingUnit(final ArrayList<Employee> employeeList,
+                              final BaggageScanner baggageScanner, final DestinationBox destinationBox,
+                              final ICustoms customs) {
 
         this.employeeList = employeeList;
         this.baggageScanner = baggageScanner;
@@ -308,14 +308,18 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         emptyLuggageTubList.clear();
     }
 
-    public Container selectEmptyContainer(ContainerCategory category) {
+    public Container getEmptyContainer(ContainerCategory containerCategory) {
         for (Container c : emptyContainerList) {
-      /*
-      if (c.getContainerCategory() == category) {
-        return c;
-      }TODO get containerCategory*/
+            if (c.getCategory() == containerCategory) {
+                emptyContainerList.remove(c);
+                return c;
+            }
         }
         return null;
+    }
+
+    public void addFullContainer(Container container) {
+        filledContainerList.add(container);
     }
 
     /**

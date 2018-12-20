@@ -2,10 +2,14 @@ package Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Base.Baggage;
+import Airport.Base.Container;
+import Airport.Base.ContainerCategory;
 import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.List;
+import java.util.Stack;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
@@ -75,27 +79,54 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      * container with bulky type
      */
     @Override
-    public void selectBaggageFromDepot() { //TODO hier schon in einen leeren container laden? Vielleciht eher loadContainer
+    public void selectBaggageFromDepot() {
         //getting depot
-        final BaggageDepot depot = baggageSortingUnit.getDepot();
 
         //getting normal baggages
-        selectedBaggageList = depot.selectNormalBaggage(
-                TicketClass.First.toString());//Sinnlos... Enum direkt verwenden macht mehr sinn
-        //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);//TODO setBaggageList
-        selectedBaggageList = depot.selectNormalBaggage(TicketClass.Business.toString());
-        //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
-        selectedBaggageList = depot.selectNormalBaggage(TicketClass.Economy.toString());
-        //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
+        storeBaggageForClass(TicketClass.First);
+        storeBaggageForClass(TicketClass.Business);
+        storeBaggageForClass(TicketClass.Economy);
 
         //getting bulky baggage
-        selectedBaggageList = depot.selectBulkyBaggage();
-        //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Bulky).setBaggageList(selectedBaggageList);TODO setBaggageList
+        selectedBaggageList = baggageSortingUnit.getDepot().selectBulkyBaggage();
+        fillContainer(ContainerCategory.Bulky);
+    }
+
+    /**
+     * gets Set of containers from depot and calls fill routine
+     *
+     * @param ticketClass
+     */
+    private void storeBaggageForClass(TicketClass ticketClass) {
+        final BaggageDepot depot = baggageSortingUnit.getDepot();
+        selectedBaggageList = depot.selectNormalBaggage(ticketClass);
+        fillContainer(ContainerCategory.Normal);
+    }
+
+    /**
+     * Gets empty container, fills it and adds it to full containers
+     *
+     * @param category
+     */
+    private void fillContainer(ContainerCategory category) {
+        Container currentContainer;
+        List<Baggage> reducedList;
+        while (!selectedBaggageList.isEmpty()) {
+            if (selectedBaggageList.size() > 50) {
+                reducedList = selectedBaggageList.subList(0, 49);
+            } else {
+                reducedList = selectedBaggageList;
+            }
+            selectedBaggageList.removeAll(reducedList);
+
+            currentContainer = baggageSortingUnit.getEmptyContainer(category);
+            currentContainer.setBaggageList(convertToStack(reducedList));
+            baggageSortingUnit.addFullContainer(currentContainer);
+        }
     }
 
     /**
      * moves baggage to the container on the baggageVehicle
-     * TODO: vielleicht eher container beladen aus selectBaggageFromDepot here, und dann auf Vehicle in loadBaggageVehicle
      */
     @Override
     public void loadContainer() {
@@ -111,5 +142,13 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         final ArrayList<Baggage> temp = selectedBaggageList;
         selectedBaggageList.clear();
         return temp;
+    }
+
+    private Stack<Baggage> convertToStack(List<Baggage> list) {
+        Stack<Baggage> stack = new Stack<>();
+        while (list.size() > 0) {
+            stack.push(list.remove(0));
+        }
+        return stack;
     }
 }

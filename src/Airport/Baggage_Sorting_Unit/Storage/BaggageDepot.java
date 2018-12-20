@@ -3,6 +3,7 @@ package Airport.Baggage_Sorting_Unit.Storage;
 import Airport.Base.Baggage;
 import Airport.Base.BulkyBaggage;
 import Airport.Base.NormalBaggage;
+import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -55,13 +56,12 @@ public class BaggageDepot {
      * returns all instances of NormalBaggage from the baggageList
      * * Does not remove the instances
      */
-    ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
+    ArrayList<Baggage> selectNormalBaggage(TicketClass ticketClass) {
 
         final ArrayList<Baggage> normal = new ArrayList<>();
         for (final Baggage b : baggageList) {
-            if (b instanceof NormalBaggage) { //TODO Check to string
-                if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass().toString()
-                        == ticketClassString) {
+            if (b instanceof NormalBaggage) {
+                if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass() == ticketClass) {
                     normal.add(b);
                 }
             }
