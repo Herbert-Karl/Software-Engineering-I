@@ -1,15 +1,16 @@
 package Airplane.Management;
 
 import java.util.ArrayList;
-import java.util.function.Function;
-import java.util.stream.Stream;
-
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Body;
+import Airport.Airport.Airport;
 import Airport.Airport.GateID;
 import Airport.Base.Passenger;
-import Airport.Airport.Gate;
+import Airport.Base.TicketClass;
 
 
 public class SeatManagement implements ISeatManagement{
@@ -33,16 +34,28 @@ public class SeatManagement implements ISeatManagement{
 
     @Override
     public int assign(ArrayList<Passenger> passengers) {
+        String assign;
+       // passengers.forEach(p -> p.getBoardingPass().getSeat());
+        ArrayList<GateID> gateids = new ArrayList<GateID>();
+        passengers.stream().forEach(p -> {
+            GateID id = p.getBoardingPass().getGate();
+            if(!gateids.contains(id))
+                gateids.add(id);
+        });
+
+
         return 0;
     }
 
     @Override
     public int countAvailableSeat() {
+        int seats = (Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().stream().count());
         return 0;
     }
 
     @Override
     public int countAvailableSeat(String ticketClassString) {
+
         return 0;
     }
 
