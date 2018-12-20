@@ -4,7 +4,12 @@ import Airplane.airplanePart.IAirplanePart;
 
 public class CrewSeat implements ICrewSeat {
     private IAirplanePart crewSeat;
-    private ReadingLight readingLight;
+    private IReadingLight readingLight;
+    
+    public CrewSeat(String ID) {
+        crewSeat.setAll(ID, "CrewSeat");
+        readingLight = new ReadingLight();
+    }
 
     @Override
     //the version contains id and type
