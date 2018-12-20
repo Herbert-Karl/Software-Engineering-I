@@ -46,6 +46,10 @@ public class Wing {
 
     public void build() {
 
+
+        //Schreibt die Daten für die Übergabe Parameter bitte selbst in die Klammern!!!
+
+
         //Engine
         for(int i=0; i<2;i++)
             engineArrayList.add(new Engine(""));

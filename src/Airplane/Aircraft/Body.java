@@ -93,6 +93,11 @@ public class Body {
     }
 
     public void build() {
+
+
+        //Schreibt die Daten für die Übergabe Parameter bitte selbst in die Klammern!!!
+
+
         //APU
         for(int i=0; i<1;i++)
             apuArrayList.add(new APU(""));
