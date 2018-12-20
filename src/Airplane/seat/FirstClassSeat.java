@@ -2,7 +2,12 @@ package Airplane.seat;
 
 public class FirstClassSeat extends Seat {
 
-    private ReadingLight readingLight;
+    private IReadingLight readingLight;
+    
+    public FirstClassSeat(String ID) {
+        super(ID, "FirstClassSeat");
+        readingLight = new ReadingLight();
+    }
 
     public void readingLightOff() {
         readingLight.off();
