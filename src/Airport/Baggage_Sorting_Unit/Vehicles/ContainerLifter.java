@@ -108,7 +108,7 @@ public class ContainerLifter implements IContainerLifter {
     @Override
     public void setContainer(final Container c) {
         container = c;
-        containerIDList.add("42");//TODO Get actual container id (c.getID())
+        containerIDList.add(c.getId());
         numberOfContainerLoaded++;
     }
 
@@ -133,7 +133,7 @@ public class ContainerLifter implements IContainerLifter {
 
     }
 
-
+  //TODO remove strategy, get position from wherever
     public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
         if (!isDown) {
             down();
@@ -178,10 +178,7 @@ public class ContainerLifter implements IContainerLifter {
     public void returnToAirportResourcePool() {
         Airport.getInstance().getResourcePool().returnResource(this);
     }
-
-    /**
-     * TODO check
-     */
+    
     @Override
     public void executeRequest(final GateID gateID) {
         setFlashingLightOn();
@@ -192,7 +189,7 @@ public class ContainerLifter implements IContainerLifter {
         connectToAirplane();
         transferContainerToCargoSystem();
         disconnectFromAirplane();
-        notifyGroundOperations(new ContainerLifterReceipt(uuid, id, gateID, numberOfContainerLoaded, containerIDList));
+        notifyGroundOperations(new ContainerLifterReceipt(this.id, gateID, numberOfContainerLoaded, containerIDList ));
         returnToAirportResourcePool();
     }
 
