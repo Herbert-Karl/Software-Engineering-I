@@ -66,8 +66,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      */
     @Override
     public void moveBaggageToDepot(final ArrayList<Baggage> baggageList) {
-        selectedBaggageList.addAll(baggageList);
-        baggageSortingUnit.getDepot().storeAll(moveBaggage());
+        baggageSortingUnit.getDepot().storeAll(baggageList);
     }
 
     /**
@@ -123,19 +122,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
             baggageSortingUnit.addFullContainer(currentContainer);
         }
     }
-
-
-    /**
-     * clears selected baggage list
-     *
-     * @return content of selected baggage list
-     */
-    private ArrayList<Baggage> moveBaggage() {
-        final ArrayList<Baggage> temp = selectedBaggageList;
-        selectedBaggageList.clear();
-        return temp;
-    }
-
+    
     private Stack<Baggage> convertToStack(List<Baggage> list) {
         Stack<Baggage> stack = new Stack<>();
         while (list.size() > 0) {

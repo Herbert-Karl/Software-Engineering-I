@@ -30,7 +30,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     private final ArrayList<LuggageTub> emptyLuggageTubList;
     private final ArrayList<Container> emptyContainerList;
     private final ArrayList<Container> filledContainerList;
-    private final ContainerLifter containerLifter;
+    private ContainerLifter containerLifter;
     private final ICustoms customs;
     private ArrayList<String> scanPatternList;
     private IBaggageSortingUnitRoboter roboter;
@@ -139,8 +139,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     //Start actual functions
 
     /**
-     * TODO: check Kickoff routine
-     * <p>
      * kicks of the routine for sorting all Baggage from the given Gate
      */
     @Override
@@ -151,6 +149,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
                 "420");//TODO get correct user and pw employeeList.get(0).getPassword()
 
         sortLuggage();
+
+        logoutBaggageScanner();
 
         //sorting baggage and loading containers into airplane
         manageContainers();
@@ -197,7 +197,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
                 emptyDestinationBox();
             }
         }
-        logoutBaggageScanner();
 
         if (!destinationBox.isempty()) {
             emptyDestinationBox();
@@ -232,6 +231,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         containerLifter.notifyGroundOperations(new ContainerLifterReceipt(containerLifter.getId(), containerLifter.getGate().getGateID(), containerLifter.getNumberOfContainerLoaded(), containerLifter.getContainerIDList()));
 
         containerLifter.returnToAirportResourcePool();
+        containerLifter = null;//setting lifter to null since it doesn't belong to the unit anymore but rather to the pool
 
         notifyGroundOperations(new BaggageSortingUnitReceipt(numberOfContainerBulkyBaggage, numberOfContainerNormalBaggage, numberOfBaggageEconomyClass, numberOfBaggageBusinessClass, numberOfBaggageFirstClass, destinationBox, numberOfDangerousBaggage, numberOfBaggageScanned));
     }
@@ -265,10 +265,10 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      * tells customs to give to federal police
      */
     @Override
-    public void handOverToCustoms(final Baggage baggage) {//TODO check
+    public void handOverToCustoms(final Baggage baggage) {
         ArrayList<Baggage> list = new ArrayList<>();
         list.add(baggage);
-        customs.handOverBaggageToFederalPolice(list);
+        customs.handOverBaggageToFederalPolice(list);//TODO check
     }
 
     /**
