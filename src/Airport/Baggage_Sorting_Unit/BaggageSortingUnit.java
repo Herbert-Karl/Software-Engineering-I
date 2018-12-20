@@ -24,12 +24,15 @@ import Airport.Scanner.BaggageScanner;
 import Airport.Scanner.IBaggageScanner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static java.util.UUID.randomUUID;
 
 public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private final ArrayList<Employee> employeeList;
 
-  private ArrayList<String> scanPatternList;//TODO get patterns from somewhere, or default for unauthorized objects?
+  private ArrayList<String> scanPatternList;
 
 
   private final IBaggageScanner baggageScanner;
@@ -56,7 +59,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   /**
    * Init
-   * TODO: check
+   * TODO: set correct initial values
    */
   public BaggageSortingUnit(final ArrayList<Employee> employeeList,
       final BaggageScanner baggageScanner, final DestinationBox destinationBox,
@@ -65,14 +68,14 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     this.employeeList = employeeList;
     this.baggageScanner = baggageScanner;
     roboter = new BaggageSortingUnitRoboter(this, "42", "42", "42");//TODO init correctly
-    baggageDepot = new BaggageDepot("42");//TODO set correct UUID
+    baggageDepot = new BaggageDepot(randomUUID().toString());
     this.destinationBox = destinationBox;
     emptyLuggageTubList = new ArrayList<>();
     emptyContainerList = new ArrayList<>();
     filledContainerList = new ArrayList<>();
     this.customs = customs;
-    airport = new Airport(null, null, null, null, null, null, null, null, null,
-        null);// Airport.getAirport(); TODO get correct airport
+    airport = Airport.getInstance();
+    scanPatternList = new ArrayList<>(Arrays.asList("drugs","glock7","exp!os!ve","knife"));
   }
 
   @Override
@@ -164,8 +167,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
       }
       else{
         handOverToCustoms(l.getBaggage());
-        //TODO set Baggage of l to null
         emptyLuggageTubList.add(l);
+        l.setBaggage(null);
       }
       if (destinationBox.isFull()) {
         emptyDestinationBox();
@@ -177,7 +180,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
       emptyDestinationBox();
     }
 
-    loadBaggageVehicle(new LoadingStrategy());//TODO: get correct LoadingStrategy
+    loadBaggageVehicle(new AirplaneLoadingManagement().getStrategy());//TODO: get correct LoadingStrategy, AirplaneLoadingManagement as Singleton?
 
     sendBaggageVehicleToGate();
 
@@ -221,10 +224,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    * adds baggage to roboter list and passes roboter to customs, clears roboter
    */
   @Override
-  public void handOverToCustoms(final Baggage baggage) {
-    roboter.addBaggage(baggage);
-    customs.executeRequest(roboter);
-    roboter = null;//TODO: wo bekomme ich den roboter wieder her?
+  public void handOverToCustoms(final Baggage baggage) {//TODO take Methode von customs officer woher?
   }
 
   /**
@@ -233,7 +233,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void throwOff(final LuggageTub luggageTub, final DestinationBox destinationBox) {
-    //TODO put baggage from luggageTub into destinationBox, empty luggagetub
+    destinationBox.addBagagge(luggageTub.getBaggage());
+    luggageTub.setBaggage(null);
     emptyLuggageTubList.add(luggageTub);
   }
 
@@ -268,7 +269,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     final AirplaneLoadingManagement manage
         = new AirplaneLoadingManagement();//TODO AirplaneLoadingManagement magically appears
     manage.optimizeBalancing();
-    loadBaggageVehicle(manage.getStrategy());
+    loadBaggageVehicle(manage.getStrategy());//TODO loadBaggageVehicle hier aufrufen?
   }
 
   @Override
@@ -304,8 +305,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    */
   @Override
   public void notifyGroundOperations(final BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
-    //airport.getOps() TODO get correct Groundoperation
-    //new GroundOperationsCenter().notify(baggageSortingUnitReceipt); TODO call correct notify
+    Airport.getInstance().getGroundOperationsCenter().receive(baggageSortingUnitReceipt);
   }
 
   /**
@@ -331,11 +331,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    * finds correct gate for the ID and sets internal attribute
    */
   private void setGate(final GateID id) {
-    for (final Gate g : airport.getGateList()) {
-      if (g.getGateID() == id) {
-        gate = g;
-        break;
-      }
-    }
+    gate = Airport.getInstance().getGatefromID(id);
   }
 }

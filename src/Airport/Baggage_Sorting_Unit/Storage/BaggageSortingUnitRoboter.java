@@ -73,14 +73,14 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
    * container with bulky type
    */
   @Override
-  public void selectBaggageFromDepot() {
+  public void selectBaggageFromDepot() { //TODO hier schon in einen leeren container laden? Vielleciht eher loadContainer
     //getting depot
     final BaggageDepot depot = baggageSortingUnit.getDepot();
 
     //getting normal baggages
     selectedBaggageList = depot.selectNormalBaggage(
         TicketClass.First.toString());//Sinnlos... Enum direkt verwenden macht mehr sinn
-    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
+    //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);//TODO setBaggageList
     selectedBaggageList = depot.selectNormalBaggage(TicketClass.Business.toString());
     //baggageSortingUnit.selectEmptyContainer(ContainerCategory.Normal).setBaggageList(selectedBaggageList);TODO setBaggageList
     selectedBaggageList = depot.selectNormalBaggage(TicketClass.Economy.toString());
@@ -93,7 +93,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
   /**
    * moves baggage to the container on the baggageVehicle
-   * TODO: check
+   * TODO: vielleicht eher container beladen aus selectBaggageFromDepot here, und dann auf Vehicle in loadBaggageVehicle
    */
   @Override
   public void loadContainer() {

@@ -55,17 +55,16 @@ public class BaggageDepot {
    * returns all instances of NormalBaggage from the baggageList
    * * Does not remove the instances
    *
-   * @param ticketClassString What does this do? TODO
    */
   ArrayList<Baggage> selectNormalBaggage(final String ticketClassString) {
 
     final ArrayList<Baggage> normal = new ArrayList<>();
     for (final Baggage b : baggageList) {
-      if (b instanceof NormalBaggage) {
-        /*if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass()
+      if (b instanceof NormalBaggage) { //TODO Check to string
+        if (((NormalBaggage) b).getBaggageIdentificationTag().getBoardingPass().getTicketClass().toString()
             == ticketClassString) {
           normal.add(b);
-        }TODO get missing methods*/
+        }
       }
     }
     return normal;

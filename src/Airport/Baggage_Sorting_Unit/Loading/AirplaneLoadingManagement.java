@@ -22,4 +22,5 @@ public class AirplaneLoadingManagement implements IAirplaneLoadingManagement {
   @Override
   public void optimizeBalancing() {
   }
+
 }

@@ -1,6 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
@@ -131,9 +132,7 @@ public class ContainerLifter implements IContainerLifter {
 
   }
 
-  /**
-   * TODO: use strategy (probably for cargosystem and frontStowagePositionID
-   */
+
   public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
     if (!isDown) {
       down();
@@ -168,8 +167,7 @@ public class ContainerLifter implements IContainerLifter {
    */
   @Override
   public void notifyGroundOperations(final ContainerLifterReceipt containerLifterReceipt) {
-    // Airport.getAirport().getGroundOperatiosn() TODO get correct operation
-    // new GroundOperationsCenter().notify(containerLifterReceipt);//magically spawns Operation Center TODO call correct notify function
+    Airport.getInstance().getGroundOperationsCenter().receive(containerLifterReceipt);
   }
 
   /**
@@ -177,7 +175,7 @@ public class ContainerLifter implements IContainerLifter {
    */
   @Override
   public void returnToAirportResourcePool() {
-    //Airport.getAirport().getResourcePool().returnResource(this); TODO get correct airport
+    Airport.getInstance().getResourcePool().returnResource(this);
   }
 
   /**
@@ -222,14 +220,8 @@ public class ContainerLifter implements IContainerLifter {
    * Sets the Gate to the instance with the corresponding id
    */
   @Override
-  public void setGate(final GateID gate) {
-/*
-    for (final Gate g : Airport.getAirport().getGateList()) {
-      if (g.getGateID() == gate) {
-        this.gate = g;
-        break;
-      }
-    }TODO get airport*/
+  public void setGate(final GateID g) {
+    gate = Airport.getInstance().getGatefromID(g);
   }
 
   @Override
