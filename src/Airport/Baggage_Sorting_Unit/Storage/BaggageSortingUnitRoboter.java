@@ -7,9 +7,9 @@ import Airport.Base.ContainerCategory;
 import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.List;
 import java.util.Stack;
+import java.util.UUID;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
@@ -82,14 +82,14 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     public void selectBaggageFromDepot() {
         //getting depot
 
-        //getting normal baggages
+        //getting normal baggage
         storeBaggageForClass(TicketClass.First);
         storeBaggageForClass(TicketClass.Business);
         storeBaggageForClass(TicketClass.Economy);
 
         //getting bulky baggage
         selectedBaggageList = baggageSortingUnit.getDepot().selectBulkyBaggage();
-        fillContainer(ContainerCategory.Bulky);
+        loadContainer(ContainerCategory.Bulky);
     }
 
     /**
@@ -100,7 +100,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     private void storeBaggageForClass(TicketClass ticketClass) {
         final BaggageDepot depot = baggageSortingUnit.getDepot();
         selectedBaggageList = depot.selectNormalBaggage(ticketClass);
-        fillContainer(ContainerCategory.Normal);
+        loadContainer(ContainerCategory.Normal);
     }
 
     /**
@@ -108,7 +108,8 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
      *
      * @param category
      */
-    private void fillContainer(ContainerCategory category) {
+    @Override
+    public void loadContainer(ContainerCategory category) {
         Container currentContainer;
         List<Baggage> reducedList;
         while (!selectedBaggageList.isEmpty()) {
@@ -125,13 +126,6 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
         }
     }
 
-    /**
-     * moves baggage to the container on the baggageVehicle
-     */
-    @Override
-    public void loadContainer() {
-        baggageSortingUnit.getVehicle().store(moveBaggage());
-    }
 
     /**
      * clears selected baggage list
