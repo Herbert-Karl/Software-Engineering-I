@@ -1,6 +1,7 @@
 package Airport.Scanner;
 
 import Airport.Base.Baggage;
+import Airport.Base.CottonPad;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
 
@@ -10,7 +11,6 @@ public interface IBaggageScanner {
     void unregister(Employee employee);
     boolean login(IDCard idCard, String password);
     boolean scan(Baggage baggage, String pattern);
-    boolean scan(Baggage baggage, CottonPad conttonPad);
     void logout();
 
 }
