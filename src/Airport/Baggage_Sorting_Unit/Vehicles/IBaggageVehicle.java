@@ -9,8 +9,6 @@ public interface IBaggageVehicle extends IVehicle {
 
   void store(Container container);
 
-  void store(Collection<Baggage> b);
-
   void connect(IContainerLifter containerLifter);
 
   void transferContainerToLifter();
