@@ -11,8 +11,6 @@ import Core.Versionable;
 // der vordere Laderaum ist für Container gedacht, der hintere Laderaum für AIrCargoPallets
 public class CargoSystem extends Versionable implements ICargoSystem {
 
-    private String manufacturer;
-
     private Stowage frontStowage;
 
     private Stowage rearStowage;
@@ -26,9 +24,8 @@ public class CargoSystem extends Versionable implements ICargoSystem {
     private double totalWeightContainer;
 
     // Konstruktor
-    CargoSystem(String manufacturer, String type, String id) {
-        super(type, id);
-        this.manufacturer = manufacturer;
+    CargoSystem(String manufacturer, String type) {
+        super(type, manufacturer);
         this.frontStowage = new FrontStowage();
         this.rearStowage = new RearStowage();
         this.isLocked = false;
@@ -126,7 +123,5 @@ public class CargoSystem extends Versionable implements ICargoSystem {
         this.totalWeightAirCargoPallet -= pallet.getWeight();
         return pallet;
     }
-
-    public String getManufacturer() { return this.manufacturer; }
 
 }
