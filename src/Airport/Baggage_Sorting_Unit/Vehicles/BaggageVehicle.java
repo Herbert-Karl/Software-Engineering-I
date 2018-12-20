@@ -4,10 +4,8 @@ import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
-import Airport.Base.Baggage;
 import Airport.Base.Container;
 
-import java.util.Collection;
 import java.util.UUID;
 
 public class BaggageVehicle implements IBaggageVehicle {
@@ -140,10 +138,6 @@ public class BaggageVehicle implements IBaggageVehicle {
     move(20);
     stop();
     setGate(gateID);
-    connect(unit.getContainerLifter());
-    transferContainerToLifter();
-    disconnect();
-    returnToBaggageSortingUnit();
   }
 
     @Override

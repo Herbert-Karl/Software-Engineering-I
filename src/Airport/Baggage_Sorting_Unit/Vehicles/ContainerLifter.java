@@ -1,6 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
+import Airplane.stowage_cargo.FrontStowagePositionID;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
@@ -8,6 +9,7 @@ import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
 
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.UUID;
 
 public class ContainerLifter implements IContainerLifter {
@@ -36,6 +38,8 @@ public class ContainerLifter implements IContainerLifter {
 
     private static int idCounter;
 
+    private static Stack<FrontStowagePositionID> openPositions;
+
     public ContainerLifter(final String type) {
         this.uuid = UUID.randomUUID().toString();
         this.id = "" + idCounter++;
@@ -44,6 +48,28 @@ public class ContainerLifter implements IContainerLifter {
         isFlashingLightOn = false;
         numberOfContainerLoaded = 0;
         containerIDList = new ArrayList<>();
+        initOpenPositions();
+    }
+
+    /**
+     * initializing stack with all positions in order
+     */
+    private void initOpenPositions() {
+        openPositions = new Stack<>();
+        openPositions.push(FrontStowagePositionID.SFR07);
+        openPositions.push(FrontStowagePositionID.SFL07);
+        openPositions.push(FrontStowagePositionID.SFR06);
+        openPositions.push(FrontStowagePositionID.SFL06);
+        openPositions.push(FrontStowagePositionID.SFR05);
+        openPositions.push(FrontStowagePositionID.SFL05);
+        openPositions.push(FrontStowagePositionID.SFR04);
+        openPositions.push(FrontStowagePositionID.SFL04);
+        openPositions.push(FrontStowagePositionID.SFR03);
+        openPositions.push(FrontStowagePositionID.SFL03);
+        openPositions.push(FrontStowagePositionID.SFR02);
+        openPositions.push(FrontStowagePositionID.SFL02);
+        openPositions.push(FrontStowagePositionID.SFR01);
+        openPositions.push(FrontStowagePositionID.SFL01);
     }
 
     @Override
@@ -125,7 +151,7 @@ public class ContainerLifter implements IContainerLifter {
     }
 
     /**
-     * TODO check if this header is correct
+     * loads container to next open position on connected airplane
      */
     @Override
     public void transferContainerToCargoSystem() {
@@ -136,10 +162,11 @@ public class ContainerLifter implements IContainerLifter {
         connectedAirplane.getBody()
                 .getCargoSystemArrayList()
                 .get(0)
-                .load(container,
-                        null);//TODO: add correct workflow
+                .load(container, openPositions.pop());
         down();
+        container = null;
     }
+
 
     /**
      * Sets attribute isDown
@@ -172,7 +199,7 @@ public class ContainerLifter implements IContainerLifter {
     public void returnToAirportResourcePool() {
         Airport.getInstance().getResourcePool().returnResource(this);
     }
-    
+
     @Override
     public void executeRequest(final GateID gateID) {
         setFlashingLightOn();
@@ -181,10 +208,6 @@ public class ContainerLifter implements IContainerLifter {
         stop();
         setFlashingLightOff();
         connectToAirplane();
-        transferContainerToCargoSystem();
-        disconnectFromAirplane();
-        notifyGroundOperations(new ContainerLifterReceipt(this.id, gateID, numberOfContainerLoaded, containerIDList ));
-        returnToAirportResourcePool();
     }
 
     @Override

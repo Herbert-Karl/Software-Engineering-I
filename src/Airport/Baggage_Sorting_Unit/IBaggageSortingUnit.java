@@ -29,7 +29,7 @@ public interface IBaggageSortingUnit {
 
   void sendContainerLifterToGate();
 
-  void optimizeAirplaneLoading();
+  LoadingStrategy optimizeAirplaneLoading();
 
   void setBaggageVehicle(IBaggageVehicle vehicle);
 
