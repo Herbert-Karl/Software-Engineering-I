@@ -1,12 +1,13 @@
 package Airport.AirCargoPalletLifter;
 
+import Airplane.Aircraft.Airplane;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
 import java.util.ArrayList;
 
-public class AirCargoPalletLifter {
+public class AirCargoPalletLifter implements IAirCargoPalletLifter {
     private String uuid;
     private String id;
     private String type;

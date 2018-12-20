@@ -12,11 +12,17 @@ public class PrimaryFlightDisplayView{
     }
 
     public void register(PrimaryFlightDisplayViewEntry primaryFlightDisplayViewEntry){
-        // TODO
+        entryList.add(primaryFlightDisplayViewEntry);
     }
 
     public void update(String primaryFlightDisplayViewEntryName, String value) {
-        // TODO
+        for(int i = 0; i<entryList.size(); i++){
+            if(entryList.get(i).getName().contentEquals(primaryFlightDisplayViewEntryName)){
+                String name = entryList.get(i).getName();
+                entryList.set(i, new PrimaryFlightDisplayViewEntry(name, value));
+                break;
+            }
+        }
     }
 
     public PrimaryFlightDisplayViewID getId() {

@@ -1,9 +1,9 @@
 /*
 group 17
 */
-
+package Airport.ApronControl;
 import Airport.Airport.Airport;
-import Airport.Airport.ApronControl;
+
 
 public class Apron{
     private Airport airport;
@@ -13,6 +13,8 @@ public class Apron{
         this.airport = airport;
         this.apronControl = apronControl;
     }
+
+    public Apron(){}
 
     public Airport getAirport() {
         return airport;

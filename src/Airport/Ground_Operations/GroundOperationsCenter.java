@@ -19,7 +19,12 @@ import Airport.Bulky_Baggage_Desk.BulkyBaggageDeskReceipt;
 import Airport.Sky_Tanking_Vehicle.FuelReceipt;
 import Airport.Sky_Tanking_Vehicle.ISkyTankingVehicle;
 
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static Airport.Configuration.Configuration.LOGFILEPATH;
 
 public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundOperationsCenterLogEngine{
     private Airport airport;
@@ -32,7 +37,7 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     private ArrayList<AirCargoPalletLifterReceipt> airCargoPalletLifterReceiptList;
     private ArrayList<BaggageSortingUnitReceipt> baggageSortingUnitReceiptList;
     private ArrayList<ContainerLifterReceipt> containerLifterReceiptList;
-    private ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptLis;
+    private ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptList;
     private ArrayList<ServiceVehicleNitrogenOxygenReceipt> serviceVehicleNitrogenOxygenReceiptList;
     private ArrayList<ServiceVehicleFreshWaterReceipt> serviceVehicleFreshWaterReceiptList;
     private ArrayList<FuelReceipt> fuelReceiptList;
@@ -43,9 +48,26 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
     ///  Konstruktor
     ///
 
-    public GroundOperationsCenter(Airport airport){
+    public GroundOperationsCenter(Airport airport, int listSize){
         this.airport = airport;
+        this.serviceVehicleWasteWaterReceiptList = new ArrayList<>(listSize);
+        this.checkInReceiptList = new ArrayList<>(listSize);
+        this.bulkyBaggageDeskReceiptList = new ArrayList<>(listSize);
+        this.securityCheckReceiptList = new ArrayList<>(listSize);
+        this.federalPoliceReceiptList = new ArrayList<>(listSize);
+        this.customsReceiptList = new ArrayList<>(listSize);
+        this.airCargoPalletLifterReceiptList = new ArrayList<>(listSize);
+        this.baggageSortingUnitReceiptList = new ArrayList<>(listSize);
+        this.containerLifterReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleBaseReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleNitrogenOxygenReceiptList = new ArrayList<>(listSize);
+        this.serviceVehicleFreshWaterReceiptList = new ArrayList<>(listSize);
+        this.fuelReceiptList = new ArrayList<>(listSize);
+        this.boardingControlReceiptList = new ArrayList<>(listSize);
+        this.pushBackVehicleReceiptList = new ArrayList<>(listSize);
     }
+
+    public GroundOperationsCenter(){}
 
     ///
     ///  Getter und Setter
@@ -55,210 +77,381 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
         this.airport = airport;
     }
 
+    public ArrayList<ServiceVehicleWasteWaterReceipt> getServiceVehicleWasteWaterReceiptList() {
+        return serviceVehicleWasteWaterReceiptList;
+    }
+
+    public ArrayList<CustomsReceipt> getCustomsReceiptList() {
+        return customsReceiptList;
+    }
+
+    public ArrayList<ContainerLifterReceipt> getContainerLifterReceiptList() {
+        return containerLifterReceiptList;
+    }
+
+    public ArrayList<FederalPoliceReceipt> getFederalPoliceReceiptList() {
+        return federalPoliceReceiptList;
+    }
+
+    public ArrayList<FuelReceipt> getFuelReceiptList() {
+        return fuelReceiptList;
+    }
+
+    public ArrayList<SecurityCheckReceipt> getSecurityCheckReceiptList() {
+        return securityCheckReceiptList;
+    }
+
+    public ArrayList<BaggageSortingUnitReceipt> getBaggageSortingUnitReceiptList() {
+        return baggageSortingUnitReceiptList;
+    }
+
+    public ArrayList<BulkyBaggageDeskReceipt> getBulkyBaggageDeskReceiptList() {
+        return bulkyBaggageDeskReceiptList;
+    }
+
+    public ArrayList<CheckInDeskReceipt> getCheckInReceiptList() {
+        return checkInReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleBaseReceipt> getServiceVehicleBaseReceiptList() {
+        return serviceVehicleBaseReceiptList;
+    }
+
+    public ArrayList<AirCargoPalletLifterReceipt> getAirCargoPalletLifterReceiptList() {
+        return airCargoPalletLifterReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleFreshWaterReceipt> getServiceVehicleFreshWaterReceiptList() {
+        return serviceVehicleFreshWaterReceiptList;
+    }
+
+    public ArrayList<ServiceVehicleNitrogenOxygenReceipt> getServiceVehicleNitrogenOxygenReceiptList() {
+        return serviceVehicleNitrogenOxygenReceiptList;
+    }
+
+    public ArrayList<BoardingControlReceipt> getBoardingControlReceiptList(){
+        return boardingControlReceiptList;
+    }
+
+    public ArrayList<PushBackVehicleReceipt> getPushBackVehicleReceiptList(){
+        return pushBackVehicleReceiptList;
+    }
+
     ///
     /// IGroundOperationCenter
     ///
 
     @Override
     public boolean assign(IBaggageVehicle baggageVehicle, Gate gate) {
-        //TODO
-        return false;
+        baggageVehicle.setGate(gate.getGateID());
+        return true;
     }
 
     @Override
     public boolean assign(IContainerLifter containerLifter, Gate gate) {
-        return false;
-        //TODO
+        if(containerLifter.getGate() == null) {
+            containerLifter.setGate(gate.getGateID());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public boolean assign(ISkyTankingVehicle skyTankingVehicle, Gate gate) {
-        //TODO
-        return false;
+        if(skyTankingVehicle.getGate() == null) {
+            skyTankingVehicle.setGate(gate.getGateID());
+            return true;
+        } else {return false;}
     }
 
     @Override
     public boolean assign(IServiceVehicleBase serviceVehicleBase, Gate gate) {
-        //TODO
-        return false;
+        serviceVehicleBase.setGateID(gate.getGateID());
+        return true;
     }
 
     @Override
     public boolean assign(IAirCargoPalletLifter airCargoPalletLifter, Gate gate) {
-        //TODO
-        return false;
+        airCargoPalletLifter.setGate(gate.getGateID());
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleFreshWater serviceVehicleFreshWater, Gate gate) {
-        //TODO
-        return false;
+        serviceVehicleFreshWater.setGateID(gate.getGateID());
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleWasteWater serviceVehicleWasteWater, Gate gate) {
-        //TODO
-        return false;
+        serviceVehicleWasteWater.setGateID(gate.getGateID());
+        return true;
     }
 
     @Override
     public boolean assign(IServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen, Gate gate) {
-        //TODO
-        return false;
+        serviceVehicleNitrogenOxygen.setGateID(gate.getGateID());
+        return true;
     }
 
     @Override
     public void receive(FuelReceipt fuelReceipt) {
-        //TODO
+        fuelReceiptList.add(fuelReceipt);
     }
 
     @Override
     public void receive(CustomsReceipt customsReceipt) {
-        //TODO
+        customsReceiptList.add(customsReceipt);
     }
 
     @Override
     public void receive(CheckInDeskReceipt checkInReceipt) {
-        //TODO
+        checkInReceiptList.add(checkInReceipt);
     }
 
     @Override
     public void receive(FederalPoliceReceipt federalPoliceReceipt) {
-        //TODO
+        federalPoliceReceiptList.add(federalPoliceReceipt);
     }
 
     @Override
     public void receive(SecurityCheckReceipt securityCheckReceipt) {
-        //TODO
+        securityCheckReceiptList.add(securityCheckReceipt);
     }
 
     @Override
     public void receive(BoardingControlReceipt boardingControlReceipt) {
-        //TODO
+        boardingControlReceiptList.add(boardingControlReceipt);
     }
 
     @Override
     public void receive(ContainerLifterReceipt containerLifterReceipt) {
-        //TODO
+        containerLifterReceiptList.add(containerLifterReceipt);
     }
 
     @Override
     public void receive(PushBackVehicleReceipt pushBackVehicleReceipt) {
-        //TODO
+        pushBackVehicleReceiptList.add(pushBackVehicleReceipt);
     }
 
     @Override
     public void receive(BulkyBaggageDeskReceipt bulkyBaggageDeskReceipt) {
-        //TODO
+        bulkyBaggageDeskReceiptList.add(bulkyBaggageDeskReceipt);
     }
 
     @Override
     public void receive(BaggageSortingUnitReceipt baggageSortingUnitReceipt) {
-        //TODO
+        baggageSortingUnitReceiptList.add(baggageSortingUnitReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleBaseReceipt serviceVehicleBaseReceipt) {
-        //TODO
+        serviceVehicleBaseReceiptList.add(serviceVehicleBaseReceipt);
     }
 
     @Override
     public void receive(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt) {
-        //TODO
+        airCargoPalletLifterReceiptList.add(airCargoPalletLifterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleFreshWaterReceipt serviceVehicleFreshWaterReceipt) {
-        //TODO
+        serviceVehicleFreshWaterReceiptList.add(serviceVehicleFreshWaterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleWasteWaterReceipt serviceVehicleWasteWaterReceipt) {
-        //TODO
+        serviceVehicleWasteWaterReceiptList.add(serviceVehicleWasteWaterReceipt);
     }
 
     @Override
     public void receive(ServiceVehicleNitrogenOxygenReceipt serviceVehicleNitrogenOxygenReceipt) {
-        //TODO
+        serviceVehicleNitrogenOxygenReceiptList.add(serviceVehicleNitrogenOxygenReceipt);
     }
 
     ///
     /// IGroundOperationsLogEngine
     ///
 
-
+    private String logFilePath = LOGFILEPATH.pathToString();
     @Override
     public void logServiceVehicleWasteWater(ArrayList<ServiceVehicleWasteWaterReceipt> serviceVehicleWasteWaterReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("ServiceVehicleWasteWaterReceiptList: \\r\\n");
+            writer.write(serviceVehicleWasteWaterReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logCheckIn(ArrayList<CheckInDeskReceipt> checkInDeskReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("CheckInDeskReceiptList: \\r\\n");
+            writer.write(checkInDeskReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logBulkyBaggageDesk(ArrayList<BulkyBaggageDeskReceipt> bulkyBaggageDeskReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("BulkyBaggageDeskReceiptList: \\r\\n");
+            writer.write(bulkyBaggageDeskReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logSecurityCheck(ArrayList<SecurityCheckReceipt> securityCheckReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("SecurityCheckReceiptList: \\r\\n");
+            writer.write(securityCheckReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logFederalPolice(ArrayList<FederalPoliceReceipt> federalPoliceReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("FederalPoliceReceiptList: \\r\\n");
+            writer.write(federalPoliceReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logCustoms(ArrayList<CustomsReceipt> customsReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("CustomsReceiptList: \\r\\n");
+            writer.write(customsReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logCargoPalletLifter(ArrayList<AirCargoPalletLifterReceipt> airCargoPalletLifterReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("AirCargoPalletLifterReceiptList: \\r\\n");
+            writer.write(airCargoPalletLifterReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logBaggageSortingUnit(ArrayList<BaggageSortingUnitReceipt> baggageSortingUnitReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("BaggageSortingUnitReceiptList: \\r\\n");
+            writer.write(baggageSortingUnitReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logContainerLifter(ArrayList<ContainerLifterReceipt> containerLifterReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("ContainerLifterReceiptList: \\r\\n");
+            writer.write(containerLifterReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logServiceVehicleBase(ArrayList<ServiceVehicleBaseReceipt> serviceVehicleBaseReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("serviceVehicleBaseReceiptList: \\r\\n");
+            writer.write(serviceVehicleBaseReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logServiceVehicleNitrogenOxygen(ArrayList<ServiceVehicleNitrogenOxygenReceipt> serviceVehicleNitrogenOxygenReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("ServiceVehicleNitrogenOxygenReceiptList: \\r\\n");
+            writer.write(serviceVehicleNitrogenOxygenReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logServiceVehicleFreshWater(ArrayList<ServiceVehicleFreshWaterReceipt> serviceVehicleFreshWaterReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("ServiceVehicleFreshWaterReceiptList: \\r\\n");
+            writer.write(serviceVehicleFreshWaterReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logFuel(ArrayList<FuelReceipt> fuelReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("FuelReceiptList: \\r\\n");
+            writer.write(fuelReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logBoardingControl(ArrayList<BoardingControlReceipt> boardingControlReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("BoardingControlReceiptList: \\r\\n");
+            writer.write(boardingControlReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void logPushbackVehicle(ArrayList<PushBackVehicleReceipt> pushBackVehicleReceiptList) {
-        //TODO
+        try {
+            FileWriter writer = new FileWriter(logFilePath);
+            writer.write("PushbackVehicleReceiptList: \\r\\n");
+            writer.write(pushBackVehicleReceiptList.toString() + "\\r\\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -16,7 +16,36 @@ public class Item{
         this.weight = weight;
     }
 
+    ///
+    /// Getter:
+    ///
+
     public double getWeight(){
         return this.weight;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

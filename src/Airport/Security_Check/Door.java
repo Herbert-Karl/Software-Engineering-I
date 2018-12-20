@@ -4,20 +4,22 @@ public class Door implements IDoor {
 
     private boolean isOpen;
 
-    public boolean isOpen() {
-        return isOpen;
+    public Door() {
+        isOpen = false;
     }
 
-    public void setOpen(boolean open) {
-        isOpen = open;
+    public Door(boolean isOpen) {
+        this.isOpen = isOpen;
     }
 
     @Override
     public void close() {
-
+        isOpen = false;
     }
+
     @Override
     public void open() {
-
+        isOpen = true;
     }
 }
+
