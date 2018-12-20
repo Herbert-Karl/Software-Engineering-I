@@ -4,7 +4,7 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicel implements IAirCargoPalletVehicel{
+public class AirCargoPalletVehicel implements IAirCargoPalletVehicel {
     private String uuid;
     private String id;
     private String type;
@@ -84,32 +84,70 @@ public class AirCargoPalletVehicel implements IAirCargoPalletVehicel{
     public void setConnectedAirCargoPalletLifter(IAirCargoPalletLifter connectedAirCargoPalletLifter) {
         this.connectedAirCargoPalletLifter = connectedAirCargoPalletLifter;
     }
-    @Override
+
     public void setGate(Gate gate) {
         this.gate = gate;
     }
+
     @Override
-    public void executeRequest(GateID gateID){}
+    public void executeRequest(GateID gateID) {
+    }
+
     @Override
-    public void store(AirCargoPallet airCargoPallet){}
+    public void store(AirCargoPallet airCargoPallet) {
+        this.airCargoPallet = airCargoPallet;
+    }
+
     @Override
-    public void setFlashingLightOn(){setFlashingLightOn(true);}
+    public void setFlashingLightOn() {
+        setFlashingLightOn(true);
+    }
+
     @Override
-    public void move(int speedInMPH){setSpeedInMPH(speedInMPH);}
+    public void move(int speedInMPH) {
+        setSpeedInMPH(speedInMPH);
+    }
+
     @Override
-    public void stop(){setSpeedInMPH(0);}
+    public void stop() {
+        setSpeedInMPH(0);
+    }
+
     @Override
-    public void setGate(GateID gateID){ ;}
+    public void setGateID(GateID gateID) {
+        setGateID(searchGateById(gateID));
+    }
+
     @Override
-    public void connect(IAirCargoPalletLifter airCargoPalletLifter){setConnectedAirCargoPalletLifter(airCargoPalletLifter); }
+    public void connect(IAirCargoPalletLifter airCargoPalletLifter) {
+        setConnectedAirCargoPalletLifter(airCargoPalletLifter);
+    }
+
     @Override
-    public void transferPalletToLifter(){}
+    public void transferPalletToLifter(AirCargoPalletLifter airCargoPalletLifter) {
+        airCargoPalletLifter.setAirCargoPallet(this.airCargoPallet);
+    }
+
     @Override
-    public void disconnectFromLifter(){setConnectedAirCargoPalletLifter(null);}
+    public void disconnectFromLifter() {
+        setConnectedAirCargoPalletLifter(null);
+    }
+
     @Override
-    public void returnToAirCargoPalletPackingUnit(){}
+    public void returnToAirCargoPalletPackingUnit() {
+    }
+
     @Override
-    public void setFlashingLightOff(){setFlashingLightOn(false);}
+    public void setFlashingLightOff() {
+        setFlashingLightOn(false);
+    }
+
     @Override
-    public void returnToAirportResourcePool(){}
+    public void returnToAirportResourcePool() {
+        setGate(null);
+    }
+
+    public GateID searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
 }

@@ -130,7 +130,7 @@ public class AirCargoPalletLifter implements IAirCargoPalletLifter{
     @Override
     public void setGate(GateID gateID){setGate(searchGateById(gateID));}
     @Override
-    public void connectToAirplane(){setConnectToAirplane(airplane);}
+    public void connectToAirplane(Airplane airplane){setConnectToAirplane(airplane);}
     @Override
     public void up(){setDown(false);}
     @Override
@@ -142,12 +142,12 @@ public class AirCargoPalletLifter implements IAirCargoPalletLifter{
     @Override
     public void setFlashingLightOff(){ setFlashingLightOn(false);}
     @Override
-    public void returnToAirportResourcePool(){}
+    public void returnToAirportResourcePool(){setGate(null);}
     @Override
     public void down(){setDown(true);}
     @Override
     public void notifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt){}
-    @Override
+
     public Gate searchGateById(GateID gateID) {
     return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
 }

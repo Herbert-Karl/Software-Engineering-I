@@ -1,6 +1,8 @@
 package Airport.AirCargoPalletLifter;
 
 import Airport.Base.AirCargoPallet;
+import Airport.Base.Employee;
+import Airport.Base.Item;
 
 import java.util.ArrayList;
 
@@ -67,5 +69,60 @@ public class AirCargoPalletPackingUnit implements IAirCargoPalletPackingUnit{
 
     public void setCustoms(ICustoms customs) {
         this.customs = customs;
+    }
+
+    @Override
+    public boolean loginItemScanner(Employee employee, String password) {
+        return false;
+    }
+
+    @Override
+    public void logoutItemScanner() {
+
+    }
+
+    @Override
+    public boolean scan(Item item, String pattern) {
+        return false;
+    }
+
+    @Override
+    public void handOverToCustoms(Item item) {
+
+    }
+
+    @Override
+    public void sort(ArrayList<Item> itemList) {
+
+    }
+
+    @Override
+    public void pack() {
+
+    }
+
+    @Override
+    public void sendAirCargoPalletLifterToGate() {
+
+    }
+
+    @Override
+    public void optimizeAirplaneLoading() {
+
+    }
+
+    @Override
+    public void setAirCargoPalletVehicle() {
+
+    }
+
+    @Override
+    public void loadAirCargoPalletVehicle(LoadingStrategy strategy) {
+
+    }
+
+    @Override
+    public void sendAirCargoPalletVehicleToGate() {
+
     }
 }

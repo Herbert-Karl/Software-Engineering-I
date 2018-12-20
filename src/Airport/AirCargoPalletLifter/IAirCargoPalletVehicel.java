@@ -9,9 +9,9 @@ public interface IAirCargoPalletVehicel {
     void setFlashingLightOn();
     void move(int speedInMPH);
     void stop();
-    void setGate(GateID gateID);
+    void setGateID(GateID gateID);
     void connect(IAirCargoPalletLifter airCargoPalletLifter);
-    void transferPalletToLifter();
+    void transferPalletToLifter(AirCargoPalletLifter airCargoPalletLifter);
     void disconnectFromLifter();
     void returnToAirCargoPalletPackingUnit();
     void setFlashingLightOff();

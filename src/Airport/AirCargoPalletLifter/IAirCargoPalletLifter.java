@@ -1,5 +1,6 @@
 package Airport.AirCargoPalletLifter;
 
+import Airplane.Aircraft.Airplane;
 import Airport.Airport.GateID;
 
 public interface IAirCargoPalletLifter {
@@ -7,7 +8,7 @@ public interface IAirCargoPalletLifter {
     void move(int speedInMPH);
     void stop();
     void setGate(GateID gateID);
-    void connectToAirplane();
+    void connectToAirplane(Airplane airplane);
     void up();
     void transferAirCargoPalletToCargoSystem();
     void disconnectFromAirplane();

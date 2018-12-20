@@ -1,5 +1,20 @@
 package Airport.AirCargoPalletLifter;
 
+import Airport.Base.Employee;
+import Airport.Base.Item;
+
+import java.util.ArrayList;
+
 public interface IAirCargoPalletPackingUnit {
-    boolean
+    boolean loginItemScanner(Employee employee, String password);
+    void logoutItemScanner();
+    boolean scan(Item item, String pattern);
+    void handOverToCustoms(Item item);
+    void sort(ArrayList<Item> itemList);
+    void pack ();
+    void sendAirCargoPalletLifterToGate();
+    void optimizeAirplaneLoading();
+    void setAirCargoPalletVehicle();
+    void loadAirCargoPalletVehicle(LoadingStrategy strategy);
+    void sendAirCargoPalletVehicleToGate();
 }
