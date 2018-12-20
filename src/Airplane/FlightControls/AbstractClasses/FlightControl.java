@@ -5,12 +5,10 @@ import Core.Versionable;
 
 public abstract class FlightControl extends Versionable implements IFlightControl{
     protected int degree;
-    private final String manufacturer;
 
 
-    protected FlightControl(String manufacturer, String type, String id) {
-        super(type, id);
-        this.manufacturer = manufacturer;
+    protected FlightControl(String manufacturer, String type) {
+        super(type, manufacturer);
         this.degree = 0;
     }
 

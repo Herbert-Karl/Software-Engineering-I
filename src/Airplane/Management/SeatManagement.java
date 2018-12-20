@@ -1,16 +1,12 @@
 package Airplane.Management;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.function.Function;
-import java.util.stream.Stream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 import Airplane.Aircraft.Airplane;
-import Airplane.Aircraft.Body;
-import Airport.Airport.GateID;
-import Airport.Airport.PassengerBaggageDatabase;
 import Airport.Base.Passenger;
-import Airport.Airport.Gate;
 
 
 public class SeatManagement implements ISeatManagement{
@@ -24,7 +20,6 @@ public class SeatManagement implements ISeatManagement{
         this.manufacturer = manufacturer;
         this.type = type;
         this.id = id;
-
     }
 
     public String version() {
@@ -33,35 +28,44 @@ public class SeatManagement implements ISeatManagement{
     }
 
     public boolean assign(ArrayList<Passenger> passengers) {
-        String assign;
         ArrayList<String> allSeats = new ArrayList<String>();
-
-        Body body  = new Body();
-        allSeats.addAll(body.getFirstClassSeatArrayList());
-
-        passengers.forEach(p -> p.getBoardingPass().getSeat());
-
-        ArrayList<GateID> gateids = new ArrayList<GateID>();
-        passengers.stream().forEach((Passenger p) ->
+        (Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().forEach(s -> allSeats.add(s.id));
+        AtomicBoolean ret = new AtomicBoolean(true);
+        passengers.forEach(p ->
         {
-           GateID id = p.getBoardingPass().getGate();
-            if (!gateids.contains(id))
-                gateids.add(id);
+            if(!allSeats.contains(p.getBoardingPass().getSeat()))
+                ret.set(false);
         });
+        return ret.get();
 
 
 
 
     }
 
-    public int countAvailableSeat() {
+    public int countAvailableSeat(Airplane airplane) {
+      //  ArrayList<String> seats = new ArrayList<>();
+      //  seats.add((Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().forEach(s -> seats));
+        int seats = airplane.getBody().getFirstClassSeatArrayList().size();
+        seats += airplane.getBody().getBusinessClassSeatArrayList().size();
+        seats += airplane.getBody().getTouristClassSeatArrayList().size();
+
+        return seats;
 
     //Class Airplane legt an, wieviel First, Business und Touristclass Seats es gibt
 
     }
 
-    public int countAvailableSeat(String ticketClassString) {
+    public int countAvailableSeat(String ticketClassString, Airplane airplane) {
+        int seats = 0;
+        if(airplane.getBody().getFirstClassSeatArrayList().contains(ticketClassString))
+            seats++;
+        if(airplane.getBody().getBusinessClassSeatArrayList().contains(ticketClassString))
+            seats++;
+        if(airplane.getBody().getTouristClassSeatArrayList().contains(ticketClassString))
+            seats++;
 
+        return seats;
 
     }
 

@@ -17,10 +17,10 @@ public enum BoardingPass{
         private GateID gate;
         private String boardingTime;
         private String seat;
-        private ArrayList<BaggageIdentificationTag> baggageIdentifikationTagList;
+        private ArrayList<BaggageIdentificationTag> baggageIdentificationTagList;
 
         public BoardingPass (Carrier carrier, String flight, Passenger passenger, TicketClass ticketClass, Source source, Destination destination,
-                                String date, GateID gate, String boardingTime, String seat, ArrayList<BaggageIdentificationTag> baggageIdentifikationTagList){
+                                String date, GateID gate, String boardingTime, String seat, ArrayList<BaggageIdentificationTag> baggageIdentificationTagList){
                 UUID uuid = UUID.randomUUID();
                 this.uuid = uuid.toString();
                 this.carrier = carrier;
@@ -33,7 +33,7 @@ public enum BoardingPass{
                 this.gate = gate;
                 this.boardingTime = boardingTime;
                 this.seat = seat;
-                this.baggageIdentifikationTagList = baggageIdentifikationTagList;
+                this.baggageIdentificationTagList = baggageIdentificationTagList;
         }
 
         ///
@@ -85,8 +85,8 @@ public enum BoardingPass{
                 return gate;
         }
 
-        public ArrayList<BaggageIdentificationTag> getBaggageIdentifikationTagList() {
-                return baggageIdentifikationTagList;
+        public ArrayList<BaggageIdentificationTag> getBaggageIdentificationTagList() {
+                return baggageIdentificationTagList;
         }
 
         ///
@@ -114,7 +114,7 @@ public enum BoardingPass{
                 this.ticketClass = ticketClass;
         }
 
-        public void setBaggageIdentifikationTagList(ArrayList<BaggageIdentificationTag> baggageIdentifikationTagList) {
-                this.baggageIdentifikationTagList = baggageIdentifikationTagList;
+        public void setBaggageIdentificationTagList(ArrayList<BaggageIdentificationTag> baggageIdentificationTagList) {
+                this.baggageIdentificationTagList = baggageIdentificationTagList;
         }
 }

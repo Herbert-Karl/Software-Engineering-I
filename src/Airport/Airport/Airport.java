@@ -99,7 +99,22 @@ public class Airport{
         int zeilenAnzahl = 0;
         if(!passengerBaggageData.canRead() || !passengerBaggageData.isFile()){System.out.println("Kann Datei nicht lesen.");}
         BufferedReader input = null;
-        zeilenAnzahl = PassengerBaggageDatabase.getZeilenAnzahl(dataFilePath, zeilenAnzahl, input);
+        try{
+            input = new BufferedReader(new FileReader(dataFilePath));
+            String zeile = null;
+            while((zeile = input.readLine()) != null){
+                zeilenAnzahl++;
+                //Noch was mit den Daten machen?
+            }
+        } catch(IOException ioExeption){
+            ioExeption.printStackTrace();
+        } finally {
+            if(input != null) try {
+                input.close();
+            } catch (IOException ioException){
+                ioException.printStackTrace();
+            }
+        }
         return zeilenAnzahl;
     }
 
