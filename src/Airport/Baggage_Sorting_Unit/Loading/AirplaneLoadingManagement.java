@@ -15,9 +15,9 @@ import java.util.*;
 
 public class AirplaneLoadingManagement implements IAirplaneLoadingManagement {
 
-  public LoadingStrategy getStrategy() {
-    return strategy;
-  }
+    public LoadingStrategy getStrategy() {
+        return strategy;
+    }
 
   private LoadingStrategy strategy;
 

@@ -6,11 +6,12 @@ import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
+import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
+import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
-import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.*;
 import Airport.Customs.ICustoms;
 import Airport.Scanner.BaggageScanner;
@@ -40,9 +41,9 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private final ArrayList<Container> filledContainerList;
 
-  private final IContainerLifter containerLifter;
+    private final ContainerLifter containerLifter;
 
-  private IBaggageVehicle baggageVehicle;
+    private IBaggageVehicle baggageVehicle;
 
     private final ICustoms customs;
 
@@ -69,7 +70,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         this.customs = customs;
         airport = Airport.getInstance();
         scanPatternList = new ArrayList<>(Arrays.asList("drugs", "glock7", "exp!os!ve", "knife"));
-    containerLifter = airport.getResourcePool().takeResource("ContainerLifter");
+        containerLifter = airport.getResourcePool().takeResource("ContainerLifter");
     }
 
     @Override
@@ -171,20 +172,27 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
             emptyDestinationBox();
         }
 
-        loadBaggageVehicle(new AirplaneLoadingManagement().getStrategy());//TODO: get correct LoadingStrategy, AirplaneLoadingManagement as Singleton?
+        roboter.selectBaggageFromDepot();
 
         sendBaggageVehicleToGate();
 
         sendContainerLifterToGate();
 
-        baggageVehicle.transferContainerToLifter();
+        baggageVehicle.connect(containerLifter);
 
-        optimizeAirplaneLoading();
+        loadBaggageVehicle(optimizeAirplaneLoading());
 
-        final IContainerLifter lifter = baggageVehicle.getContainerLifter();
-        lifter.connectToAirplane();
-        lifter.transferContainerToCargoSystem();
-        lifter.returnToAirportResourcePool();
+        baggageVehicle.disconnect();
+
+        baggageVehicle.returnToBaggageSortingUnit();
+
+        containerLifter.disconnectFromAirplane();
+
+        containerLifter.notifyGroundOperations(new ContainerLifterReceipt(containerLifter.getId(), containerLifter.getGate().getGateID(), containerLifter.getNumberOfContainerLoaded(), containerLifter.getContainerIDList()));
+
+        containerLifter.returnToAirportResourcePool();
+
+        //notifyGroundOperations(new BaggageSortingUnitReceipt()); TODO generate receipt
     }
 
     /**
@@ -243,24 +251,18 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public void sendContainerLifterToGate() {
-        final IContainerLifter lifter = baggageVehicle.getContainerLifter();
-
-        lifter.setFlashingLightOn();
-        lifter.move(15);
-        lifter.setGate(gate.getGateID());
-        lifter.stop();
-        lifter.setFlashingLightOff();
+        containerLifter.executeRequest(gate.getGateID());
     }
 
     /**
      * Creates AirplaneLoadingManagement to balance a strategy
      */
     @Override
-    public void optimizeAirplaneLoading() {
+    public LoadingStrategy optimizeAirplaneLoading() {
         final AirplaneLoadingManagement manage
-                = new AirplaneLoadingManagement();//TODO AirplaneLoadingManagement magically appears
+                = new AirplaneLoadingManagement(filledContainerList);
         manage.optimizeBalancing();
-        loadBaggageVehicle(manage.getStrategy());//TODO loadBaggageVehicle hier aufrufen?
+        return manage.getStrategy();
     }
 
     @Override
@@ -270,13 +272,25 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     /**
      * Tells robot to select Baggage and load the container
-     * TODO: use strategy
      */
     @Override
     public void loadBaggageVehicle(final LoadingStrategy strategy) {
-        //TODO use LoadingStrategy
-        roboter.selectBaggageFromDepot();
-        roboter.loadContainer();
+
+        for (String id : strategy.getContainerIDList()) {
+            baggageVehicle.store(getContainerByID(id));
+            baggageVehicle.transferContainerToLifter();
+            containerLifter.transferContainerToCargoSystem();
+        }
+    }
+
+    private Container getContainerByID(String id) {
+        for (Container c : filledContainerList) {
+            if (c.getId().equals(id)) {
+                filledContainerList.remove(c);
+                return c;
+            }
+        }
+        return null;
     }
 
     /**
@@ -284,11 +298,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public void sendBaggageVehicleToGate() {
-        baggageVehicle.setFlashingLightOn();
-        baggageVehicle.move(15);
-        baggageVehicle.setGate(gate.getGateID());
-        baggageVehicle.stop();
-        baggageVehicle.setFlashingLightOff();
+        baggageVehicle.executeRequest(gate.getGateID());
     }
 
     /**
