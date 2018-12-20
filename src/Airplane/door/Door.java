@@ -9,17 +9,17 @@ public abstract class Door implements IDoor{
     protected boolean isClosed;
 
     // initialize attributes
-    protected void setDoor(String ID, String brand, String type)
+    protected Door(String ID, String type)
     {
-        door.setAll(ID, type, brand);
+        door.setAll(ID, type);
         isLocked = false;
         isClosed = true;
     }
 
     // initialize attributes
-    protected void setGearDoor(String ID, String brand)
+    protected Door(String ID)
     {
-        door.setIDandBrand(ID, brand);
+        door.setID(ID);
         isLocked = false;
         isClosed = true;
     }
