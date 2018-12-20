@@ -1,5 +1,5 @@
 package Airplane.cabin;
 
-public interface IWasteSystem extends ISystem { // geht das so ?
+public interface IWasteSystem extends ISystem {
     int deposit(String[] waste);
 }

@@ -1,6 +1,6 @@
 package Airplane.cabin;
 
-public class WaterSystem extends java.lang.System implements IWaterSystem {
+public class WaterSystem extends System implements IWaterSystem {
     private boolean isFilled;
 
     public WaterSystem(String id, String type) {
