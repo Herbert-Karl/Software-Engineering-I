@@ -18,6 +18,7 @@ public abstract class Sign implements ISign {
     }
 
     @Override
+    //the version contains id and type
     public String version()
     {
         return sign.version();

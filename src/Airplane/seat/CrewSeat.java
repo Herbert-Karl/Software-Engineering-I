@@ -7,16 +7,19 @@ public class CrewSeat implements ICrewSeat {
     private ReadingLight readingLight;
 
     @Override
+    //the version contains id and type
     public String version() {
         return crewSeat.version();
     }
 
     @Override
+    // turns the reading light off
     public void readingLightOff() {
         readingLight.off();
     }
 
     @Override
+    // turns the reading light on
     public void readingLightOn() {
         readingLight.on();
     }

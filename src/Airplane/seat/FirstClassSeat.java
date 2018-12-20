@@ -13,6 +13,7 @@ public class FirstClassSeat extends Seat {
     }
 
     @Override
+    // set the level attribute
     public void level(int lvl)
     {
         switch (lvl) {

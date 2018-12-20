@@ -9,19 +9,23 @@ public class Trolley {
     private ArrayList<Beverage> beverageList;
     private ArrayList<Meal> mealList;
 
+    // constructor for this class
     public Trolley() {
         beverageList = new ArrayList<>();
         mealList = new ArrayList<>();
     }
 
+    // adds beverages to ArrayList
     public void fillBeverages(ArrayList<Beverage> beverages) {
         beverageList.addAll(beverages);
     }
 
+    // adds meal to ArrayList
     public void fillMeals(ArrayList<Meal> meals) {
         mealList.addAll(meals);
     }
 
+    // just getter and setter
     public int getNumberOfBeverages() {
         return numberOfBeverages;
     }
@@ -46,6 +50,7 @@ public class Trolley {
         this.totalWeightBeveragesMeals = totalWeightBeveragesMeals;
     }
 
+    // clear the ArrayLists
     public void removeContent() {
         mealList.clear();
         beverageList.clear();

@@ -4,6 +4,7 @@ public class Beverage {
     private String description;
     private double weight;
 
+    // just getter and setter for the attributes
     public String getDescription() {
         return description;
     }

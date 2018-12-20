@@ -4,6 +4,7 @@ public class EmergencyExitDoor extends Door {
 
     private boolean isEscapeSlideActivated;
 
+    // constructor
     public EmergencyExitDoor(String ID, String typeOfDoor)
     {
         setDoor(ID,"EmergencyExitDoor", typeOfDoor);

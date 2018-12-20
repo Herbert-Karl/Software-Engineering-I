@@ -8,6 +8,7 @@ public abstract class Door implements IDoor{
     protected boolean isLocked;
     protected boolean isClosed;
 
+    // initialize attributes
     protected void setDoor(String ID, String brand, String type)
     {
         door.setAll(ID, type, brand);
@@ -15,6 +16,7 @@ public abstract class Door implements IDoor{
         isClosed = true;
     }
 
+    // initialize attributes
     protected void setGearDoor(String ID, String brand)
     {
         door.setIDandBrand(ID, brand);

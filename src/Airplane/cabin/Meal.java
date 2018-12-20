@@ -4,6 +4,7 @@ public class Meal {
     private String description;
     private double weight;
 
+    // just getter and setter
     public String getDescription() {
         return description;
     }
