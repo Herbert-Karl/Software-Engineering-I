@@ -136,8 +136,8 @@ public class BaggageVehicle implements IBaggageVehicle {
   public void returnToBaggageSortingUnit() {
     setFlashingLightOn();
     move(20);
-    stop();
     unit.setBaggageVehicle(this);
+    stop();
     setFlashingLightOff();
   }
 
@@ -148,8 +148,9 @@ public class BaggageVehicle implements IBaggageVehicle {
   public void executeRequest(final GateID gateID) {
     setFlashingLightOn();
     move(20);
+    stop();
     setGate(gateID);
-    //connect(); //TODO get right containerLifter from Gate
+    connect(unit.getContainerLifter()); //TODO get right containerLifter from Gate
     transferContainerToLifter();
     disconnect();
     returnToBaggageSortingUnit();

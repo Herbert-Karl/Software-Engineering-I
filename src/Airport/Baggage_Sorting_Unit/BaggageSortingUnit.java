@@ -49,6 +49,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
   private final ArrayList<Container> filledContainerList;
 
+  private final IContainerLifter containerLifter;
+
   private IBaggageVehicle baggageVehicle;
 
   private final ICustoms customs;
@@ -62,11 +64,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
    * TODO: set correct initial values
    */
   public BaggageSortingUnit(final ArrayList<Employee> employeeList,
-      final BaggageScanner baggageScanner, final DestinationBox destinationBox,
-      final ICustoms customs) {
+                            final BaggageScanner baggageScanner, final DestinationBox destinationBox, final ICustoms customs) {
 
     this.employeeList = employeeList;
     this.baggageScanner = baggageScanner;
+
     roboter = new BaggageSortingUnitRoboter(this, "42", "42", "42");//TODO init correctly
     baggageDepot = new BaggageDepot(randomUUID().toString());
     this.destinationBox = destinationBox;
@@ -75,6 +77,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     filledContainerList = new ArrayList<>();
     this.customs = customs;
     airport = Airport.getInstance();
+    containerLifter = airport.getResourcePool().takeResource("ContainerLifter");
     scanPatternList = new ArrayList<>(Arrays.asList("drugs","glock7","exp!os!ve","knife"));
   }
 
@@ -138,6 +141,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
   public BaggageDepot getDepot() {
     return baggageDepot;
   }
+
+  public IContainerLifter getContainerLifter() {return containerLifter;}
 
   /**
    * TODO: check Kickoff routine
