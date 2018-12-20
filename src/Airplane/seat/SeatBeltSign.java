@@ -6,6 +6,5 @@ public class SeatBeltSign extends Sign {
     public SeatBeltSign(String ID)
     {
         super(ID, "SeatBeltSign");
-        isOn = false;
     }
 }
