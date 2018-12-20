@@ -1,0 +1,6 @@
+public inteface IReadingLight {
+  
+  void on();
+  void off();
+  String version();
+}
