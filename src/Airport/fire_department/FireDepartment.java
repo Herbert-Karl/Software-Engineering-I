@@ -6,7 +6,8 @@ import Airport.Base.AlarmType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 public class FireDepartment implements IFireDepartment
 {
@@ -18,6 +19,7 @@ public class FireDepartment implements IFireDepartment
     {
         initalizeEntrances();
         this.position = position;
+        resourcePool = new FireDepartmentResourcePool(entranceList);
     }
 
     private void initalizeEntrances()
@@ -42,7 +44,7 @@ public class FireDepartment implements IFireDepartment
     public boolean openEntrance(Entrance entrance)
     {
         entrance.open();
-        return false;
+        return true;
     }
 
     public boolean closeEntrance(Entrance entrance)
@@ -54,8 +56,49 @@ public class FireDepartment implements IFireDepartment
     @Override
     public FireAlertStrategy buildStrategy(final AlarmType alarmType)
     {
+        ArrayList<FireFighter> fireFighters = new ArrayList<>();
+        ArrayList<FireTruck> fireTrucks = new ArrayList<>();
 
-        return null;
+        switch (alarmType)
+        {
+            case A:
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT01)).findFirst().get());
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT03)).findFirst()
+                        .get());
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT04)).findFirst()
+                        .get());
+                break;
+            case B:
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT01)).findFirst()
+                        .get());
+                fireTrucks.addAll(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT02))
+                        .collect(Collectors.toList()));
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT03)).findFirst()
+                        .get());
+                fireTrucks.add(
+                    resourcePool.getFireTrucksList().stream().filter(fireTruck -> fireTruck.getFireTrucktype().equals(FireTruckType.FT04)).findFirst()
+                        .get());
+
+                break;
+            case C:
+                fireTrucks=new ArrayList<>(resourcePool.getFireTrucksList());
+                break;
+
+        }
+        int seats= fireTrucks.stream().mapToInt(FireTruck::getNumberOfSeat).sum();
+
+
+        for(FireTruck fireTruck:fireTrucks){
+            //TODO
+        }
+
+        return new FireAlertStrategy(alarmType, fireFighters, fireTrucks);
     }
 
     @Override
@@ -65,40 +108,19 @@ public class FireDepartment implements IFireDepartment
         ArrayList<Entrance> openEntrances = new ArrayList<>();
         //openDoors
         final HashMap<Entrance, FireTruck> fireTruckEntranceHashMap = resourcePool.getFireTruckEntranceHashMap();
-        for (FireTruck fireTruck :
-            strategy.getFireTruckList())
-        {
-            for (Map.Entry<Entrance, FireTruck> entry : fireTruckEntranceHashMap.entrySet()
-            )
+        strategy.getFireTruckList().stream().<BiConsumer<? super Entrance, ? super FireTruck>>map(truck -> (key, value) -> {
+            if (truck.equals(value))
             {
-                if (fireTruck.equals(entry.getValue()))
-                {
-                    openEntrance(entry.getKey());
-                    openEntrances.add(entry.getKey());
-                }
-
+                openEntrance(key);
+                openEntrances.add(key);
             }
-
-        }
+        }).forEach(fireTruckEntranceHashMap::forEach);
 //sendOutFiretrucks
-        for (FireTruck fireTruck :
-            strategy.getFireTruckList())
-        {
-            fireTruck.executeRequest(runway.getRunwayID());
-        }
+        strategy.getFireTruckList().forEach(fireTruck -> fireTruck.executeRequest(runway.getRunwayID()));
         //close doors
-        for (Entrance entrance :
-            openEntrances)
-        {
-            closeEntrance(entrance);
-        }
+        openEntrances.forEach(this::closeEntrance);
         //restore Firefighters
 
-    }
-
-    public int assignFireFighter(FireTruck fireTruck)
-    {
-        return 0;
     }
 
 }

@@ -7,10 +7,17 @@ import Airport.Base.AlarmType;
 import java.util.ArrayList;
 
 public class FireAlertStrategy {
-    private Runway runway;
+
     private AlarmType alarmType;
     private ArrayList<FireFighter> fireFighterList;
     private ArrayList<FireTruck> fireTruckList;
+
+    public FireAlertStrategy(final AlarmType alarmType,
+        final ArrayList<FireFighter> fireFighters,
+        final ArrayList<FireTruck> fireTrucks)
+    {
+
+    }
 
     public ArrayList<FireTruck> getFireTruckList()
     {
@@ -27,8 +34,4 @@ public class FireAlertStrategy {
         return alarmType;
     }
 
-    public Runway getRunway()
-    {
-        return runway;
-    }
 }
