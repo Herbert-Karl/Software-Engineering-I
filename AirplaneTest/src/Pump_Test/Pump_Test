@@ -1,13 +1,7 @@
-package APU_Test;
+package Pump_Test;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import APU;
-
-public class ApuTest {
-
-
-}

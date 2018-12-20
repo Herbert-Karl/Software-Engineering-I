@@ -1,13 +1,8 @@
-package APU_Test;
+package Gear_Test;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import APU;
 
-public class ApuTest {
-
-
-}
