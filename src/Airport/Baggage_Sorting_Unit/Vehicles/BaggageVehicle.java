@@ -120,7 +120,7 @@ public class BaggageVehicle implements IBaggageVehicle {
     }
 
     /**
-     * moves and sets baggageVehicle to this instance for baggageSortingUnit
+     * moves and sets baggageVehicle to this the known instance for baggageSortingUnit
      */
     @Override
     public void returnToBaggageSortingUnit() {
@@ -131,6 +131,11 @@ public class BaggageVehicle implements IBaggageVehicle {
         setFlashingLightOff();
     }
 
+    /**
+     * moves to gate
+     *
+     * @param gateID id for the gate to move to
+     */
     @Override
     public void executeRequest(final GateID gateID) {
         setFlashingLightOn();
