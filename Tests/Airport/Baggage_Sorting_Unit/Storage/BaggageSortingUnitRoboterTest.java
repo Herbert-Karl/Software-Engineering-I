@@ -24,11 +24,13 @@ class BaggageSortingUnitRoboterTest
         baggageSortingUnitRoboter = new BaggageSortingUnitRoboter(baggageSortingUnit, "uuid", "id", "type");
 
         for (int i = 0; i < 10; i++) {
-            baggageSortingUnitRoboter.addBaggage(new NormalBaggage("content", 100,
-                    new BaggageIdentificationTag(null, "flight", 100, null, "barcode" + i)));
+            baggageSortingUnitRoboter.addBaggage(new NormalBaggage("content"));
         }
     }
 
+    /**
+     * Done
+     */
     @Test
     void moveBaggageToDepot()
     {
@@ -36,11 +38,17 @@ class BaggageSortingUnitRoboterTest
         assertEquals(baggageSortingUnitRoboter.getSelectedBaggageList(), baggageSortingUnit.getBaggageDepot().getBaggageList());
     }
 
+    /**
+     * TODO
+     */
     @Test
     void selectBaggageFromDepot()
     {
     }
 
+    /**
+     * Done
+     */
     @Test
     void loadContainer()
     {
