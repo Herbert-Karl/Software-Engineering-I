@@ -153,6 +153,9 @@ public class ContainerLifter implements IContainerLifter {
         connectedAirplane = gate.getAirplane();
     }
 
+    /**
+     * updates isDown variable
+     */
     @Override
     public void up() {
         isDown = false;
@@ -193,7 +196,7 @@ public class ContainerLifter implements IContainerLifter {
     }
 
     /**
-     * requests ground operations from airport and calls notify with the receipt
+     * requests ground operations from airport and calls receive with the receipt
      */
     @Override
     public void notifyGroundOperations(final ContainerLifterReceipt containerLifterReceipt) {
@@ -208,6 +211,11 @@ public class ContainerLifter implements IContainerLifter {
         Airport.getInstance().getResourcePool().returnResource(this);
     }
 
+    /**
+     * moves to gate and connects to airplane
+     *
+     * @param gateID id for the gate to move to
+     */
     @Override
     public void executeRequest(final GateID gateID) {
         setFlashingLightOn();
