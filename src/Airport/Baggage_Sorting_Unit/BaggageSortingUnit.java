@@ -131,16 +131,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     }
 
     /**
-     * TODO: check Kickoff routine
-     * <p>
-     * kicks of the routine for sorting all Baggage from the given Gate
+     * gets luggageTubs from CheckIn and sorts them to destination and Customs
      */
-    @Override
-    public void executeRequest(final GateID gateID) {
-        setGate(gateID);
+    private void sortLuggage() {
         final ArrayList<LuggageTub> fullTubs = new ArrayList<>();//TODO get list of full tubs from checkin (CheckInDesk.getLuggageTubList())
-        loginBaggageScanner(employeeList.get(0),
-                "420");//TODO get correct user and pw employeeList.get(0).getPassword()
+
         LuggageTub l;
         while (!fullTubs.isEmpty()) {
             l = fullTubs.remove(0);
@@ -167,19 +162,33 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         if (!destinationBox.isempty()) {
             emptyDestinationBox();
         }
+    }
+
+    /**
+     * TODO: check Kickoff routine
+     * <p>
+     * kicks of the routine for sorting all Baggage from the given Gate
+     */
+    @Override
+    public void executeRequest(final GateID gateID) {
+        setGate(gateID);
+
+        loginBaggageScanner(employeeList.get(0),
+                "420");//TODO get correct user and pw employeeList.get(0).getPassword()
+
+        sortLuggage();
 
         //sorting baggage and loading containers into airplane
-        roboter.selectBaggageFromDepot();
-
-        sendBaggageVehicleToGate();
-
-        sendContainerLifterToGate();
-
-        baggageVehicle.connect(containerLifter);
-
-        loadBaggageVehicle(optimizeAirplaneLoading());
+        manageContainers();
 
         //close module
+        cleanUp();
+    }
+
+    /**
+     * fetches resources from gate and prints receipts
+     */
+    private void cleanUp() {
         baggageVehicle.disconnect();
 
         baggageVehicle.returnToBaggageSortingUnit();
@@ -191,6 +200,21 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         containerLifter.returnToAirportResourcePool();
 
         //notifyGroundOperations(new BaggageSortingUnitReceipt()); TODO generate receipt
+    }
+
+    /**
+     * loads baggage from depot into containers and transfers containers into airplane cargo
+     */
+    private void manageContainers() {
+        roboter.selectBaggageFromDepot();
+
+        sendBaggageVehicleToGate();
+
+        sendContainerLifterToGate();
+
+        baggageVehicle.connect(containerLifter);
+
+        loadBaggageVehicle(optimizeAirplaneLoading());
     }
 
     /**
