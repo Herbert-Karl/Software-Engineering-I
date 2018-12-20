@@ -4,7 +4,6 @@ import Airplane.Aircraft.Airplane;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
-import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
 import Airport.Base.Container;
 
@@ -130,11 +129,6 @@ public class ContainerLifter implements IContainerLifter {
      */
     @Override
     public void transferContainerToCargoSystem() {
-
-    }
-
-  //TODO remove strategy, get position from wherever
-    public void transferContainerToCargoSystem(final LoadingStrategy strategy) {
         if (!isDown) {
             down();
         }
@@ -143,7 +137,7 @@ public class ContainerLifter implements IContainerLifter {
                 .getCargoSystemArrayList()
                 .get(0)
                 .load(container,
-                        null);//TODO: get the correct cargosystem from the list | get correct frontStowagePositionID
+                        null);//TODO: add correct workflow
         down();
     }
 
