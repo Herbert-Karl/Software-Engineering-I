@@ -32,7 +32,7 @@ public class SeatManagement implements ISeatManagement{
 
     }
 
-    public boolean assign(ArrayList<Passenger> passengers) {
+ /*   public boolean assign(ArrayList<Passenger> passengers) {
         String assign;
         ArrayList<String> allSeats = new ArrayList<String>();
 
@@ -53,7 +53,7 @@ public class SeatManagement implements ISeatManagement{
 
 
     }
-
+*/
     public int countAvailableSeat(Airplane airplane) {
         int seats = airplane.getBody().getFirstClassSeatArrayList().size();
         seats += airplane.getBody().getBusinessClassSeatArrayList().size();
@@ -76,7 +76,7 @@ public class SeatManagement implements ISeatManagement{
         return seats;
     }
 
-    public Passenger searchSeatByPassengerName(String name) {
+  /*  public Passenger searchSeatByPassengerName(String name) {
         //Passenger hat einen namen und besitzt
         ArrayList<Passenger> passenger = new ArrayList<Passenger>();
 
@@ -92,37 +92,17 @@ public class SeatManagement implements ISeatManagement{
         //TODO
 
     }
-
+*/
     public String getManufacturer() {
         return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public ArrayList<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(ArrayList<Seat> seats) {
-        this.seats = seats;
     }
 
 }
