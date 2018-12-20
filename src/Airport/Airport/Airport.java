@@ -16,6 +16,7 @@ import Airport.Configuration.Configuration;
 import Airport.Customs.Customs;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Pushback_Vehicle.PushBackVehicle;
+import Airport.Scanner.BaggageScanner;
 import Airport.Security_Check.SecurityMediator;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
@@ -58,16 +59,15 @@ public class Airport{
     	return Airport.instance;
     }
     
-    /* toDo 
-     * 
-     */
-
-    public void init(Airport airport) {
-    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(DATAFILEPATH.pathToString());
-        passengerList = passengerBaggageDatabase.getPassengerList();
-
+    public void build() {
+    	Airport airport = Airport.getInstance();
+    	init(airport);
+    }
+    
+    public void init(Airport airport) { // Create instances of classes
+    	loadPassengerBaggageData(DATAFILEPATH.pathToString());
         resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
-
+    	
         gateList = new ArrayList<Gate>(10);
         for(int number = 1; number <= 10; number++){
             Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
@@ -86,91 +86,26 @@ public class Airport{
         checkInMediator = new CheckInMediator(bulkyBaggageDesk);
 
         FederalPolice police = new FederalPolice();
-        //TODO: Übergabeparameter?
         securityMediator = new SecurityMediator(airport, police);
 
-        tower = new Tower(airport, null, null);
-        //TODO: replace null values
+        WindDirectionSensor windDirectionSensor = new WindDirectionSensor();
+        WindDirection windDirection = windDirectionSensor.measure();
+        tower = new Tower(airport, null, windDirection);
+        Runway r1 = new Runway(RunwayID.R08L, Position.North, null, windDirectionSensor, false, false, null);
+        Runway r2 = new Runway(null, null, null, windDirectionSensor, false, false, null);
+        // TODO: Fill null values
         IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
         //TODO: replace null values
         tower.setRunwayManagement(runwayManagement);
-
+        
         fuelTank = new AirportFuelTank();
 
         customs = new Customs();
-
+        BaggageScanner baggageScanner = new BaggageScanner(null, null);
         baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
-    }
+    } 
     
-    
-    /*
-     * public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
-                   Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
-                   SecurityMediator securityMediator, ApronControl apronControl, Tower tower){
-        this.passengerList = passengerList;
-        this.resourcePool = resourcePool;
-        this.gateList = gateList;
-        this.apron = apron;
-        this.groundOperationsCenter = groundOperationsCenter;
-        this.checkInMediator = checkInMediator;
-        this.bulkyBaggageDesk =bulkyBaggageDesk;
-        this.securityMediator = securityMediator;
-        this.apronControl = apronControl;
-        this.tower = tower;
-    }
-
-    public Airport(){
-
-    }
-    
-
-    public void init(Airport airport){
-        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
-        this.passengerList = passengerBaggageDatabase.getPassengerList();
-
-        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50, 50,50,50,airport);
-
-        gateList = new ArrayList<Gate>(10);
-        for(int number = 1; number <= 10; number++){
-            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
-            gateList.add(gate);
-        }
-
-        apronControl = new ApronControl();
-        apronControl.setAirport(airport);
-        apron = new Apron(airport, apronControl);
-        apronControl.setApron(apron);
-
-        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
-
-        bulkyBaggageDesk = new BulkyBaggageDesk(airport);
-
-        checkInMediator = new CheckInMediator(bulkyBaggageDesk);
-
-        FederalPolice police = new FederalPolice();
-        //TODO: Übergabeparameter?
-        securityMediator = new SecurityMediator(airport, police);
-
-        tower = new Tower(airport, null, null);
-        //TODO: replace null values
-        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
-        //TODO: replace null values
-        tower.setRunwayManagement(runwayManagement);
-
-        fuelTank = new AirportFuelTank();
-
-        customs = new Customs();
-
-        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
-    }
-    */
-    
-    
-    
-    // ToDo create configuration object get dataFilePath
-    // ToDo insert configuration enum as parameter
-    public int loadPassengerBaggageData(String dataFilePath){
-    //public int loadPassengerBaggageData(Configuration){
+    public int loadPassengerBaggageData(String dataFilePath){ //DATAFILEPATH.pathToString()
         PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(dataFilePath);
         passengerList = passengerBaggageDatabase.getPassengerList();
         return passengerList.size();
