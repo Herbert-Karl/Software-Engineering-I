@@ -6,8 +6,8 @@ abstract class SteplessRotable extends FlightControl implements ISteplessRotable
     final int maxDegree;
     final int minDegree;
 
-    SteplessRotable(String manufacturer, String type, String id, int maxDegree, int minDegree) {
-        super(manufacturer, type, id);
+    SteplessRotable(String manufacturer, String type, int maxDegree, int minDegree) {
+        super(manufacturer, type);
         this.maxDegree = maxDegree;
         this.minDegree = minDegree;
     }

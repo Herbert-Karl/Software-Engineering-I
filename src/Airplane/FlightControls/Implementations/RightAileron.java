@@ -5,7 +5,7 @@ import Airplane.FlightControls.Interfaces.IRightAileron;
 
 class RightAileron extends VerticalRotable implements IRightAileron {
 
-    public RightAileron(String manufacturer, String type, String id) {
-        super(manufacturer, type, id, 45, 0);
+    public RightAileron(String manufacturer, String type) {
+        super(manufacturer, type, 45, 0);
     }
 }

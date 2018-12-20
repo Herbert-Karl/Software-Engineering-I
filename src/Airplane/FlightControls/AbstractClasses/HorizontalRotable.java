@@ -3,8 +3,8 @@ package Airplane.FlightControls.AbstractClasses;
 import Airplane.FlightControls.Interfaces.IHorizontalRotable;
 
 public abstract class HorizontalRotable extends SteplessRotable implements IHorizontalRotable {
-    protected HorizontalRotable(String manufacturer, String type, String id, int maxDegree, int minDegree) {
-        super(manufacturer, type, id, maxDegree, minDegree);
+    protected HorizontalRotable(String manufacturer, String type, int maxDegree, int minDegree) {
+        super(manufacturer, type, maxDegree, minDegree);
     }
 
     public int left(int degree) {

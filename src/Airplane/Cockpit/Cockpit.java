@@ -1,5 +1,7 @@
 package Airplane.Cockpit;
 
+import Airplane.Aircraft.Airplane;
+
 public class Cockpit implements ICockpit {
     private PrimaryFlightDisplay primaryFlightDisplay;
     private Phase selectedPhase;
@@ -8,12 +10,30 @@ public class Cockpit implements ICockpit {
         selectedPhase = selectedPhase.next();
     }
 
-    public void executeSelectedPhase() {
-        //TODO
+    public void executeSelectedPhase(Airplane airplane) {
+        switch(selectedPhase){
+            case Startup:
+                airplane.startup();
+                break;
+            case Taxi:
+                airplane.taxi();
+                break;
+            case TakeOff:
+                airplane.takeOff();
+                break;
+            case Climbing:
+                airplane.climbing();
+                break;
+            case LeftTurn:
+                airplane.leftTurn();
+            case RightTurn:
+                airplane.rightTurn();
+                break;
+        }
     }
 
     public void selectNextPrimaryFlightDisplay() {
-        //TODO
+        primaryFlightDisplay.nextView();
     }
 
     public PrimaryFlightDisplay getPrimaryFlightDisplay() {
