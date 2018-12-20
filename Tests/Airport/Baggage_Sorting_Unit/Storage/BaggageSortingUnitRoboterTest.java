@@ -5,6 +5,7 @@ import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
 import Airport.Base.*;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
+import Airport.Scanner.StringSearchAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ class BaggageSortingUnitRoboterTest
 
     @BeforeEach
     void setup() {
-        baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner(), new DestinationBox(null, new ArrayList<Baggage>(),
+        baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner("type", StringSearchAlgorithm.BITAP), new DestinationBox(null, new ArrayList<Baggage>(),
                 100), new Customs());
         baggageSortingUnitRoboter = new BaggageSortingUnitRoboter(baggageSortingUnit, "uuid", "id", "type");
 

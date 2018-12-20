@@ -33,7 +33,7 @@ class ContainerLifterTest {
      */
     @Test
     void connectToAirplane() {
-        Airplane airplane = new Airplane(new Configuration(4));
+        Airplane airplane = new Airplane(new Configuration(4, 50, 50, 50, 10));
         Gate gate = new Gate(GateID.A01, null);
         gate.setAirplane(airplane);
         containerLifter.connectToAirplane();
@@ -77,7 +77,7 @@ class ContainerLifterTest {
      */
     @Test
     void disconnectFromAirplane() {
-        Airplane airplane = new Airplane(new Configuration(4));
+        Airplane airplane = new Airplane(new Configuration(4, 50, 50, 50, 10));
         Gate gate = new Gate(GateID.A01, null);
         gate.setAirplane(airplane);
         containerLifter.connectToAirplane();

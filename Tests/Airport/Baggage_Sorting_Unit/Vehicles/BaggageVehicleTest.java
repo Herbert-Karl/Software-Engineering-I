@@ -4,6 +4,7 @@ import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Base.*;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
+import Airport.Scanner.StringSearchAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class BaggageVehicleTest
             baggageList.add(new NormalBaggage("content"));
         }
 
-        baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner(), new DestinationBox(null, baggageList,
+        baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner("type", StringSearchAlgorithm.BITAP), new DestinationBox(null, baggageList,
                 100), new Customs());
         baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
     }

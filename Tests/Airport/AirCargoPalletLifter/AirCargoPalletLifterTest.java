@@ -18,7 +18,7 @@ class AirCargoPalletLifterTest
     void setup() {
         airCargoPalletLifter = new AirCargoPalletLifter("uuid", "id", "type", 0, false,
                 new AirCargoPallet("uuid", "type", "id"), 10, null, new Gate(GateID.A01, null),
-                new Airplane(new Configuration(4)));
+                new Airplane(new Configuration(4, 50, 50, 50, 10)));
     }
 
     /**
@@ -66,7 +66,7 @@ class AirCargoPalletLifterTest
     @Test
     void connectToAirplane()
     {
-        Airplane airplane = new Airplane(new Configuration(4));
+        Airplane airplane = new Airplane(new Configuration(4, 50, 50, 50, 10));
         airCargoPalletLifter.getGate().setAirplane(airplane);
         airCargoPalletLifter.connectToAirplane();
 

@@ -19,7 +19,7 @@ class AirCargoPalletVehicleTest
     void setup() {
         airCargoPalletLifter = new AirCargoPalletLifter("uuid", "id", "type", 0, false,
                 new AirCargoPallet("uuid", "type", "id"), 10, null, new Gate(GateID.A01, null),
-                new Airplane(new Configuration(4)));
+                new Airplane(new Configuration(4, 50, 50, 50, 10)));
 
         airCargoPalletVehicle = new AirCargoPalletVehicle("uuid", "id", "type", 0, false,
                 new AirCargoPallet("uuid", "type", "id"), airCargoPalletLifter, new Gate(GateID.A01, null));
