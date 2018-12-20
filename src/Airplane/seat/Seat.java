@@ -12,10 +12,10 @@ public abstract class Seat implements ISeat{
     protected ISign seatBeltSign;
 
     // initialize attributes
-    protected void setSeat(String ID, String type, String brand)
+    protected Seat(String ID, String type)
     {
         seat = new AirplanePart();
-        seat.setAll(ID, type, brand);
+        seat.setAll(ID, type);
         level = 0;
         nonSmokingSign = new NonSmokingSign();
         seatBeltSign = new SeatBeltSign();
