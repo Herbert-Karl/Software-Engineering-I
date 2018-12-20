@@ -3,8 +3,8 @@ package Airplane.door;
 public class CrewDoor extends Door {
 
     // constructor
-    public CrewDoor(String ID, String typeOfDoor)
+    public CrewDoor(String ID)
     {
-        setDoor(ID, typeOfDoor, "CrewDoor");
+        super(ID, "CrewDoor");
     }
 }
