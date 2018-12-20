@@ -36,6 +36,14 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     private IBaggageSortingUnitRoboter roboter;
     private IBaggageVehicle baggageVehicle;
     private Gate gate;
+    //values tracked for the receipt
+    private int numberOfBaggageScanned;
+    private int numberOfDangerousBaggage;
+    private int numberOfBaggageFirstClass;
+    private int numberOfBaggageBusinessClass;
+    private int numberOfBaggageEconomyClass;
+    private int numberOfContainerNormalBaggage;
+    private int numberOfContainerBulkyBaggage;
 
     /**
      * Init
@@ -161,10 +169,21 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         while (!fullTubs.isEmpty()) {
             l = fullTubs.remove(0);
             final Baggage toCheck = l.getBaggage();
+
+            if (toCheck instanceof NormalBaggage) {
+                if (((NormalBaggage) toCheck).getBaggageIdentificationTag().getBoardingPass().getTicketClass() == TicketClass.First) {
+                    numberOfBaggageFirstClass++;
+                } else if (((NormalBaggage) toCheck).getBaggageIdentificationTag().getBoardingPass().getTicketClass() == TicketClass.Business) {
+                    numberOfBaggageBusinessClass++;
+                } else if (((NormalBaggage) toCheck).getBaggageIdentificationTag().getBoardingPass().getTicketClass() == TicketClass.Economy) {
+                    numberOfBaggageEconomyClass++;
+                }
+            }
             toCheck.setSecurityStatus(BaggageSecurityStatus.clean);
             for (String pattern : scanPatternList) {
                 if (!scan(toCheck, pattern)) {
                     toCheck.setSecurityStatus(BaggageSecurityStatus.dangerous);
+                    numberOfDangerousBaggage++;
                 }
             }
             if (toCheck.getSecurityStatus() == BaggageSecurityStatus.clean) {
@@ -214,7 +233,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         containerLifter.returnToAirportResourcePool();
 
-        //notifyGroundOperations(new BaggageSortingUnitReceipt()); TODO generate receipt
+        notifyGroundOperations(new BaggageSortingUnitReceipt(numberOfContainerBulkyBaggage, numberOfContainerNormalBaggage, numberOfBaggageEconomyClass, numberOfBaggageBusinessClass, numberOfBaggageFirstClass, destinationBox, numberOfDangerousBaggage, numberOfBaggageScanned));
     }
 
     /**
@@ -238,6 +257,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      */
     @Override
     public boolean scan(final Baggage baggage, final String pattern) {
+        numberOfBaggageScanned++;
         return baggageScanner.scan(baggage, pattern);
     }
 
@@ -353,6 +373,12 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
      * @return null if none found
      */
     public Container getEmptyContainer(ContainerCategory containerCategory) {
+        if (containerCategory == ContainerCategory.Bulky) {
+            numberOfContainerBulkyBaggage++;
+        } else if (containerCategory == ContainerCategory.Normal) {
+            numberOfContainerNormalBaggage++;
+        }
+
         for (Container c : emptyContainerList) {
             if (c.getCategory() == containerCategory) {
                 emptyContainerList.remove(c);
