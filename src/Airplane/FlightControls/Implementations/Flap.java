@@ -7,8 +7,8 @@ import Airplane.FlightControls.Interfaces.IFlap;
 public class Flap extends FlightControl implements IFlap {
     private final FlapType flapType;
 
-    public Flap(String manufacturer, String type, String id, FlapType flapType) throws IllegalArgumentException {
-        super(manufacturer, type, id);
+    public Flap(String manufacturer, String type, FlapType flapType) throws IllegalArgumentException {
+        super(manufacturer, type);
         this.flapType = flapType;
         if (flapType != FlapType.A350APP
                 && flapType != FlapType.A350TOInboard

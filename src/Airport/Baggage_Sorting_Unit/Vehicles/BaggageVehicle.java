@@ -1,181 +1,172 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
-import Airport.Base.Baggage;
 import Airport.Base.Container;
 
-import java.util.Collection;
+import java.util.UUID;
 
 public class BaggageVehicle implements IBaggageVehicle {
 
-  private final String uuid;
+    private static int idCounter;
+    private final String uuid;
+    private final String id;
+    private final String type;
+    private int speedInMPH;
+    private boolean isFlashingLightOn;
+    private Container container;
+    private IContainerLifter containerLifter;
+    private Gate gate;
+    private BaggageSortingUnit unit;
 
-  private final String id;
+    public BaggageVehicle(final String type,
+                          BaggageSortingUnit unit) {
+        this.uuid = UUID.randomUUID().toString();
+        this.id = "" + idCounter++;
+        this.type = type;
+        speedInMPH = 0;
+        isFlashingLightOn = false;
+        this.unit = unit;
+    }
 
-  private final String type;
+    @Override
+    public String toString() {
+        String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
+                + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";
+        message += ((isFlashingLightOn) ? "on" : "off");
+        message += "\nCurrent Gate: " + gate + "\nAssigned container lifter" + containerLifter;
 
-  private int speedInMPH;
+        return message;
+    }
 
-  private boolean isFlashingLightOn;
+    public String getUuid() {
+        return uuid;
+    }
 
-  private Container container;
+    public String getId() {
+        return id;
+    }
 
-  private IContainerLifter containerLifter;
+    public String getType() {
+        return type;
+    }
 
-  private Gate gate;
+    public int getSpeedInMPH() {
+        return speedInMPH;
+    }
 
-  private BaggageSortingUnit unit;
+    public boolean isFlashingLightOn() {
+        return isFlashingLightOn;
+    }
 
-  public BaggageVehicle(final String uuid, final String id, final String type,
-      BaggageSortingUnit unit) {
-    this.uuid = uuid;
-    this.id = id;
-    this.type = type;
-    speedInMPH = 0;
-    isFlashingLightOn = false;
-    this.unit = unit;
-  }
+    public Gate getGate() {
+        return gate;
+    }
 
-  @Override
-  public String toString() {
-    String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
-        + "\nCurrent speed in MpH: " + speedInMPH + "\nCurrent status of lights: ";
-    message += ((isFlashingLightOn) ? "on" : "off");
-    message += "\nCurrent Gate: " + gate + "\nAssigned container lifter" + containerLifter;
+    /**
+     * finds gate for the given id and stores it
+     */
+    @Override
+    public void setGate(final GateID id) {
+        gate = Airport.getInstance().getGatefromID(id);
+    }
 
-    return message;
-  }
+    public Container getContainer() {
+        return container;
+    }
 
-  public String getUuid() {
-    return uuid;
-  }
+    @Override
+    public IContainerLifter getContainerLifter() {
+        return containerLifter;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public void setContainerLifter(IContainerLifter containerLifter) {
+        this.containerLifter = containerLifter;
+    }
 
-  public String getType() {
-    return type;
-  }
+    /**
+     * setting internal container
+     */
+    @Override
+    public void store(final Container container) {
+        this.container = container;
+    }
 
-  public int getSpeedInMPH() {
-    return speedInMPH;
-  }
+    /**
+     * sets internal containerLifter
+     */
+    @Override
+    public void connect(final IContainerLifter containerLifter) {
+        this.containerLifter = containerLifter;
+    }
 
-  public boolean isFlashingLightOn() {
-    return isFlashingLightOn;
-  }
+    /**
+     * sets container on lifter an removes it locally
+     */
+    @Override
+    public void transferContainerToLifter() {
+        containerLifter.setContainer(container);
+        container = null;
+    }
 
-  public Gate getGate() {
-    return gate;
-  }
+    /**
+     * removes local dependency for containerLifter
+     */
+    @Override
+    public void disconnect() {
+        containerLifter = null;
+    }
 
-  @Override
-  public IContainerLifter getContainerLifter() {
-    return containerLifter;
-  }
+    /**
+     * moves and sets baggageVehicle to this the known instance for baggageSortingUnit
+     */
+    @Override
+    public void returnToBaggageSortingUnit() {
+        setFlashingLightOn();
+        move(20);
+        stop();
+        unit.setBaggageVehicle(this);
+        setFlashingLightOff();
+    }
 
-  /**
-   * adding baggages to internal container
-   */
-  @Override
-  public void store(final Collection<Baggage> b) {
-    //TODO add collection to container
-    //container.addAll(b);
-  }
+    /**
+     * moves to gate
+     *
+     * @param gateID id for the gate to move to
+     */
+    @Override
+    public void executeRequest(final GateID gateID) {
+        setFlashingLightOn();
+        move(20);
+        stop();
+        setGate(gateID);
+    }
 
-  /**
-   * setting internal container
-   * TODO check functionality
-   */
-  @Override
-  public void store(final Container container) {
-    this.container = container;
-  }
+    @Override
+    public void setFlashingLightOn() {
+        isFlashingLightOn = true;
+    }
 
-  /**
-   * sets internal containerLifter
-   */
-  @Override
-  public void connect(final IContainerLifter containerLifter) {
-    this.containerLifter = containerLifter;
-  }
+    /**
+     * sets speed
+     */
+    @Override
+    public void move(final int speedInMPH) {
+        this.speedInMPH = speedInMPH;
+    }
 
-  /**
-   * sets container on lifter an removes it locally
-   */
-  @Override
-  public void transferContainerToLifter() {
-    containerLifter.setContainer(container);
-    container = null;
-  }
+    /**
+     * sets speed to 0
+     */
+    @Override
+    public void stop() {
+        speedInMPH = 0;
+    }
 
-  /**
-   * removes local dependency for containerLifter
-   */
-  @Override
-  public void disconnect() {
-    containerLifter = null;
-  }
-
-  /**
-   * moves and sets baggageVehicle to this instance for baggageSortingUnit
-   */
-  @Override
-  public void returnToBaggageSortingUnit() {
-    setFlashingLightOn();
-    move(20);
-    stop();
-    unit.setBaggageVehicle(this);
-    setFlashingLightOff();
-  }
-
-  /**
-   * TODO: Routine implementieren
-   */
-  @Override
-  public void executeRequest(final GateID gateID) {
-
-  }
-
-  @Override
-  public void setFlashingLightOn() {
-    isFlashingLightOn = true;
-  }
-
-  /**
-   * sets speed
-   */
-  @Override
-  public void move(final int speedInMPH) {
-    this.speedInMPH = speedInMPH;
-  }
-
-  /**
-   * sets speed to 0
-   */
-  @Override
-  public void stop() {
-    speedInMPH = 0;
-  }
-
-  /**
-   * finds gate for the given id and stores it
-   */
-  @Override
-  public void setGate(final GateID id) {
-    /*for (final Gate g : Airport.getAirport().getGateList()) {
-      if (g.getGateID() == id) {
-        gate = g;
-        break;
-      }
-    }TODO get airport*/
-  }
-
-  @Override
-  public void setFlashingLightOff() {
-    isFlashingLightOn = false;
-  }
+    @Override
+    public void setFlashingLightOff() {
+        isFlashingLightOn = false;
+    }
 }
