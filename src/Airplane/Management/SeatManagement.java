@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import Airplane.Aircraft.A350Configuration;
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Body;
 import Airport.Airport.Airport;
@@ -49,7 +50,7 @@ public class SeatManagement implements ISeatManagement{
 
     @Override
     public int countAvailableSeat() {
-        int seats = (Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().stream().count());
+        long seats = (Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().stream();
         return 0;
     }
 
