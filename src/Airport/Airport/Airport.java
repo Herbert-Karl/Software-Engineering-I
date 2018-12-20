@@ -12,6 +12,7 @@ import Airport.ApronControl.Apron;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Base.Passenger;
 import Airport.Checkin_Desk.CheckInMediator;
+import Airport.Configuration.Configuration;
 import Airport.Customs.Customs;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Pushback_Vehicle.PushBackVehicle;
@@ -28,6 +29,7 @@ import java.io.IOException;
 
 import static Airport.Airport.GateID.A01;
 import static Airport.Airport.GateID.GATE_ID;
+import static Airport.Configuration.Configuration.DATAFILEPATH;
 
 public class Airport{
     private ArrayList<Passenger> passengerList;
@@ -44,7 +46,65 @@ public class Airport{
     private Customs customs;
     private BaggageSortingUnit baggageSortingUnit;
 
-    public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
+    // Airport Singleton
+    private static Airport instance;
+    private Airport() { // Prevent creation of airport by other classes
+    	
+    }
+    public static synchronized Airport getInstance() {
+    	if (Airport.instance == null) {
+    		Airport.instance = new Airport();
+    	}
+    	return Airport.instance;
+    }
+    
+    /* toDo 
+     * 
+     */
+
+    public void init(Airport airport) {
+    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(DATAFILEPATH.pathToString());
+        passengerList = passengerBaggageDatabase.getPassengerList();
+
+        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
+
+        gateList = new ArrayList<Gate>(10);
+        for(int number = 1; number <= 10; number++){
+            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
+            gateList.add(gate);
+        }
+
+        apronControl = new ApronControl();
+        apronControl.setAirport(airport);
+        apron = new Apron(airport, apronControl);
+        apronControl.setApron(apron);
+
+        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
+
+        bulkyBaggageDesk = new BulkyBaggageDesk(airport);
+
+        checkInMediator = new CheckInMediator(bulkyBaggageDesk);
+
+        FederalPolice police = new FederalPolice();
+        //TODO: Übergabeparameter?
+        securityMediator = new SecurityMediator(airport, police);
+
+        tower = new Tower(airport, null, null);
+        //TODO: replace null values
+        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        //TODO: replace null values
+        tower.setRunwayManagement(runwayManagement);
+
+        fuelTank = new AirportFuelTank();
+
+        customs = new Customs();
+
+        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
+    }
+    
+    
+    /*
+     * public Airport(ArrayList<Passenger> passengerList, AirportResourcePool resourcePool, ArrayList<Gate> gateList,
                    Apron apron, GroundOperationsCenter groundOperationsCenter, CheckInMediator checkInMediator, BulkyBaggageDesk bulkyBaggageDesk,
                    SecurityMediator securityMediator, ApronControl apronControl, Tower tower){
         this.passengerList = passengerList;
@@ -62,6 +122,7 @@ public class Airport{
     public Airport(){
 
     }
+    
 
     public void init(Airport airport){
         PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
@@ -102,9 +163,15 @@ public class Airport{
 
         baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
     }
-
+    */
+    
+    
+    
+    // ToDo create configuration object get dataFilePath
+    // ToDo insert configuration enum as parameter
     public int loadPassengerBaggageData(String dataFilePath){
-        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase();
+    //public int loadPassengerBaggageData(Configuration){
+        PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(dataFilePath);
         passengerList = passengerBaggageDatabase.getPassengerList();
         return passengerList.size();
     }
@@ -269,6 +336,7 @@ public class Airport{
                 return gate;
             }
         }
+        return null;
     }
 
 }
