@@ -6,6 +6,7 @@ import Airport.Base.NormalBaggage;
 import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class BaggageDepot {
 
@@ -13,8 +14,8 @@ public class BaggageDepot {
 
     private final ArrayList<Baggage> baggageList;
 
-    public BaggageDepot(final String uuid) {
-        this.uuid = uuid;
+    public BaggageDepot() {
+        this.uuid = UUID.randomUUID().toString();
         baggageList = new ArrayList<>();
     }
 

@@ -7,6 +7,7 @@ import Airport.Base.ContainerCategory;
 import Airport.Base.TicketClass;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.List;
 import java.util.Stack;
 
@@ -19,6 +20,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     private final String type;
 
     private final BaggageSortingUnit baggageSortingUnit;
+    private static int idCounter;
 
     public ArrayList<Baggage> getSelectedBaggageList() {
         return selectedBaggageList;
@@ -26,10 +28,10 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
     private ArrayList<Baggage> selectedBaggageList;
 
-    public BaggageSortingUnitRoboter(final BaggageSortingUnit baggageSortingUnit, final String uuid,
-                                     final String id, final String type) {
-        this.uuid = uuid;
-        this.id = id;
+    public BaggageSortingUnitRoboter(final BaggageSortingUnit baggageSortingUnit,
+                                     final String type) {
+        this.uuid = UUID.randomUUID().toString();
+        this.id = "" + idCounter++;
         this.type = type;
         this.baggageSortingUnit = baggageSortingUnit;
         selectedBaggageList = new ArrayList<>();

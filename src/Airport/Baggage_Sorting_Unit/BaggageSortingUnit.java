@@ -19,8 +19,6 @@ import Airport.Scanner.IBaggageScanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.util.UUID.randomUUID;
-
 public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private final ArrayList<Employee> employeeList;
@@ -42,7 +40,9 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private final ArrayList<Container> filledContainerList;
 
-    private IBaggageVehicle baggageVehicle;
+  private final IContainerLifter containerLifter;
+
+  private IBaggageVehicle baggageVehicle;
 
     private final ICustoms customs;
 
@@ -60,8 +60,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         this.employeeList = employeeList;
         this.baggageScanner = baggageScanner;
-        roboter = new BaggageSortingUnitRoboter(this, "42", "42", "42");//TODO init correctly
-        baggageDepot = new BaggageDepot(randomUUID().toString());
+        roboter = new BaggageSortingUnitRoboter(this, "42");//TODO init correctly
+        baggageDepot = new BaggageDepot();
         this.destinationBox = destinationBox;
         emptyLuggageTubList = new ArrayList<>();
         emptyContainerList = new ArrayList<>();
@@ -69,6 +69,7 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         this.customs = customs;
         airport = Airport.getInstance();
         scanPatternList = new ArrayList<>(Arrays.asList("drugs", "glock7", "exp!os!ve", "knife"));
+    containerLifter = airport.getResourcePool().takeResource("ContainerLifter");
     }
 
     @Override
