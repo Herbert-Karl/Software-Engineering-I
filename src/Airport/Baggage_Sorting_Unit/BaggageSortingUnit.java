@@ -19,8 +19,6 @@ import Airport.Scanner.IBaggageScanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.util.UUID.randomUUID;
-
 public class BaggageSortingUnit implements IBaggageSortingUnit {
 
     private final ArrayList<Employee> employeeList;
@@ -60,8 +58,8 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
 
         this.employeeList = employeeList;
         this.baggageScanner = baggageScanner;
-        roboter = new BaggageSortingUnitRoboter(this, "42", "42", "42");//TODO init correctly
-        baggageDepot = new BaggageDepot(randomUUID().toString());
+        roboter = new BaggageSortingUnitRoboter(this, "42");//TODO init correctly
+        baggageDepot = new BaggageDepot();
         this.destinationBox = destinationBox;
         emptyLuggageTubList = new ArrayList<>();
         emptyContainerList = new ArrayList<>();
