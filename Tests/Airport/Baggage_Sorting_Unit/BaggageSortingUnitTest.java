@@ -9,6 +9,7 @@ import Airport.Customs.Customs;
 import Airport.Customs.CustomsOfficer;
 import Airport.Customs.CustomsResourcePool;
 import Airport.Scanner.BaggageScanner;
+import Airport.Scanner.StringSearchAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.File;
@@ -27,7 +28,7 @@ class BaggageSortingUnitTest {
     @BeforeEach
     void setup() {
         baggageList = new ArrayList<Baggage>();
-        baggageScanner = new BaggageScanner();
+        baggageScanner = new BaggageScanner("type", StringSearchAlgorithm.BITAP);
 
         for (int i = 0; i < 10; i++) {
             baggageList.add(new NormalBaggage("content"));

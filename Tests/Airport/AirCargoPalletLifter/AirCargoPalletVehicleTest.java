@@ -2,11 +2,16 @@ package Airport.AirCargoPalletLifter;
 
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Configuration;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
+import Airport.Scanner.ItemScanner;
+import Airport.Scanner.StringSearchAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,15 +19,27 @@ class AirCargoPalletVehicleTest
 {
     private AirCargoPalletVehicle airCargoPalletVehicle;
     private AirCargoPalletLifter airCargoPalletLifter;
+    private AirCargoPallet airCargoPallet;
+    private AirCargoPalletPackingUnit airCargoPalletPackingUnit;
 
     @BeforeEach
     void setup() {
+        Airport airport = Airport.getInstance();
+        airport = null;
+        airport = Airport.getInstance();
+        airport.init(airport);
+
+        airCargoPallet = new AirCargoPallet("uuid", "type", "id");
+
         airCargoPalletLifter = new AirCargoPalletLifter("uuid", "id", "type", 0, false,
-                new AirCargoPallet("uuid", "type", "id"), 10, null, new Gate(GateID.A01, null),
-                new Airplane(new Configuration(4)));
+                null, 10, null, new Gate(GateID.A01, null),
+                new Airplane(new Configuration(4, 50, 50, 50, 10)));
+
+        airCargoPalletPackingUnit = new AirCargoPalletPackingUnit(new ArrayList<AirCargoPallet>(), null,
+                new ItemScanner("id", "type", StringSearchAlgorithm.BITAP), new ArrayList<AirCargoPallet>(), null, null);
 
         airCargoPalletVehicle = new AirCargoPalletVehicle("uuid", "id", "type", 0, false,
-                new AirCargoPallet("uuid", "type", "id"), airCargoPalletLifter, new Gate(GateID.A01, null));
+                airCargoPallet, airCargoPalletLifter, new Gate(GateID.A01, null));
     }
 
     /**
@@ -76,12 +93,13 @@ class AirCargoPalletVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void setGate()
     {
-        airCargoPalletVehicle.setGate(GateID.A01);
+        airCargoPalletLifter.setGate(GateID.A01);
+        assertEquals(Airport.getInstance().getGatefromID(GateID.A01), airCargoPalletLifter.getGate());
     }
 
     /**
@@ -96,11 +114,14 @@ class AirCargoPalletVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void transferPalletToLifter()
     {
+        airCargoPalletVehicle.transferPalletToLifter();
+        assertNull(airCargoPalletVehicle.getAirCargoPallet());
+        assertEquals(airCargoPallet, airCargoPalletLifter.getAirCargoPallet());
     }
 
     /**
@@ -114,11 +135,13 @@ class AirCargoPalletVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void returnToAirCargoPalletPackingUnit()
     {
+        airCargoPalletVehicle.returnToAirCargoPalletPackingUnit();
+        assertEquals(airCargoPalletVehicle, airCargoPalletPackingUnit.getAirCargoPalletVehicel());
     }
 
     /**
@@ -132,10 +155,12 @@ class AirCargoPalletVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void returnToAirportResourcePool()
     {
+        airCargoPalletVehicle.returnToAirportResourcePool();
+        assertTrue(Airport.getInstance().getResourcePool().getAirCargoPalletVehicleList().contains(airCargoPalletVehicle));
     }
 }
