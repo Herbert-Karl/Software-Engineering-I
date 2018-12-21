@@ -204,7 +204,7 @@ public class Airport{
     }
 
     public boolean executeCustoms(){
-        customs.executeRequest(baggageSortingUnit.getBaggageSortingUnitRoboter());
+        customs.executeRequest(baggageSortingUnit.getRoboter());
         return true;
     }
 
