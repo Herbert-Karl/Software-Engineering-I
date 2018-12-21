@@ -1,17 +1,16 @@
 package Airplane.Management;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-import Airplane.Aircraft.A350Configuration;
+
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Body;
-import Airport.Airport.Airport;
 import Airport.Airport.GateID;
+import Airport.Airport.PassengerBaggageDatabase;
 import Airport.Base.Passenger;
-import Airport.Base.TicketClass;
+import Airport.Airport.Gate;
 
 
 public class SeatManagement implements ISeatManagement{
@@ -33,119 +32,77 @@ public class SeatManagement implements ISeatManagement{
 
     }
 
-    @Override
-    public int assign(ArrayList<Passenger> passengers) {
+ /*   public boolean assign(ArrayList<Passenger> passengers) {
         String assign;
-       // passengers.forEach(p -> p.getBoardingPass().getSeat());
+        ArrayList<String> allSeats = new ArrayList<String>();
+
+        Body body  = new Body();
+        allSeats.addAll(body.getFirstClassSeatArrayList());
+
+        passengers.forEach(p -> p.getBoardingPass().getSeat());
+
         ArrayList<GateID> gateids = new ArrayList<GateID>();
-        passengers.stream().forEach(p -> {
-            GateID id = p.getBoardingPass().getGate();
-            if(!gateids.contains(id))
+        passengers.stream().forEach((Passenger p) ->
+        {
+           GateID id = p.getBoardingPass().getGate();
+            if (!gateids.contains(id))
                 gateids.add(id);
         });
 
 
-        return 0;
+
+
+    }
+*/
+    public int countAvailableSeat(Airplane airplane) {
+        int seats = airplane.getBody().getFirstClassSeatArrayList().size();
+        seats += airplane.getBody().getBusinessClassSeatArrayList().size();
+        seats += airplane.getBody().getTouristClassSeatArrayList().size();
+
+        return seats;
+    //Class Airplane legt an, wieviel First, Business und Touristclass Seats es gibt
+
     }
 
-    @Override
-    public int countAvailableSeat() {
-        long seats = (Airplane a1) -> a1.getBody().getFirstClassSeatArrayList().stream();
-        return 0;
+    public int countAvailableSeat(String ticketClassString, Airplane airplane) {
+        int seats = 0;
+        if(airplane.getBody().getFirstClassSeatArrayList().contains(ticketClassString))
+            seats++;
+        if(airplane.getBody().getBusinessClassSeatArrayList().contains(ticketClassString))
+            seats++;
+        if(airplane.getBody().getTouristClassSeatArrayList().contains(ticketClassString))
+            seats++;
+
+        return seats;
     }
 
-    @Override
-    public int countAvailableSeat(String ticketClassString) {
+  /*  public Passenger searchSeatByPassengerName(String name) {
+        //Passenger hat einen namen und besitzt
+        ArrayList<Passenger> passenger = new ArrayList<Passenger>();
 
-        return 0;
+
     }
 
-    @Override
     public Passenger searchPassengerBySeatID(String seatID) {
-        return null;
-    }
-
-    /*
-        public boolean assign(ArrayList<Passenger> passengers) {
-            String assign;
-            ArrayList<String> allSeats = new ArrayList<String>();
-
-            Body body  = new Body();
-            allSeats.addAll(body.getFirstClassSeatArrayList());
-
-            passengers.forEach(p -> p.getBoardingPass().getSeat());
-
-            ArrayList<GateID> gateids = new ArrayList<GateID>();
-            passengers.stream().forEach((Passenger p) ->
-            {
-               GateID id = p.getBoardingPass().getGate();
-                if (!gateids.contains(id))
-                    gateids.add(id);
-            });
-
-
-
-
-        }
-
-        public int countAvailableSeat() {
-
-        //Class Airplane legt an, wieviel First, Business und Touristclass Seats es gibt
-
-        }
-
-        public int countAvailableSeat(String ticketClassString) {
-
-
-        }
-
-        public Passenger searchSeatByPassengerName(String name) {
-            //Passenger hat einen namen und besitzt
-            ArrayList<Passenger> passenger = new ArrayList<Passenger>();
-
-
-        }
-
-        public Passenger searchPassengerBySeatID(String seatID) {
-            //TODO
-
-        }
-    */
-    public void printPassengerList(SeatManagementSortCriteria sortCriteria) {
         //TODO
 
     }
 
+    public void printPassengerList(SeatManagementSortCriteria sortCriteria) {
+        //TODO
+
+    }
+*/
     public String getManufacturer() {
         return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-/*
-    public ArrayList<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(ArrayList<Seat> seats) {
-        this.seats = seats;
-    }
-*/
 }
