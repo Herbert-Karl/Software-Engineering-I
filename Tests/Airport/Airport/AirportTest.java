@@ -171,4 +171,144 @@ class AirportTest {
 
 
     }
+
+    //The order of these tests matter
+
+    @Test
+    public void testConnectAirplane(){
+
+        assertTrue(testAirport.connectAirplane(testAirplane1, g1));
+
+        //Gate already occupied
+        assertFalse(testAirport.connectAirplane(testAirplane2, g1));
+
+    }
+
+    @Test
+    public void testDisconnectAirplane(){
+
+        //Disconnecting wrong airplane
+        assertFalse(testAirport.disconnectAirplane(testAirplane2, g1));
+
+        //Disconnecting from empty gate
+        assertFalse(testAirport.disconnectAirplane(testAirplane1, g2));
+
+        //Disconnecting correctly
+        assertTrue(testAirport.disconnectAirplane(testAirplane1, g1));
+    }
+
+    @Test
+    public void testExecuteServiceWasteWater(){
+
+        assertTrue(testAirport.executeServiceWasteWater(g1));
+
+    }
+
+    @Test
+    public void testExecuteCheckIn(){
+
+        assertTrue(testAirport.executeCheckIn(testFlight));
+
+    }
+
+    @Test
+    public void testExecuteSecurity(){
+
+        assertTrue(testAirport.executeSecurity());
+
+    }
+
+    @Test
+    public void testExecuteCustoms(){
+
+        assertTrue(testAirport.executeCustoms());
+
+    }
+
+    @Test
+    public void testExecuteAirCargo(){
+
+        assertTrue(testAirport.executeAirCargo(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteBaggageSortingUnit(){
+
+        assertTrue(testAirport.executeBaggageSortingUnit(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteServiceBase(){
+
+        assertTrue(testAirport.executeServiceBase(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteServiceFreshWater(){
+
+        assertTrue(testAirport.executeServiceFreshWater(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteServiceNitrogenOxygen(){
+
+        assertTrue(testAirport.executeServiceNitrogenOxygen(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteSkyTanking(){
+
+        assertTrue(testAirport.executeSkyTanking(g1.getGateID()));
+
+    }
+
+    @Test
+    public void testExecuteBoardingControl(){
+
+        assertTrue(testAirport.executeBoardingControl(g1));
+
+    }
+
+    @Test
+    public void testExecutePushback(){
+
+        assertTrue(testAirport.executePushback(g1));
+
+    }
+
+    @Test
+    public void testExecuteGroundOperationsLogging(){
+
+        assertTrue(testAirport.executeGroundOperationsLogging());
+
+    }
+
+
+    //The following Test belong to methods yet to be implemented
+    //If there's gonna be a more complex algorithm, these test have to changed
+    @Test
+    public void testExecuteBulkyBaggage(){
+
+        assertTrue(testAirport.executeBulkyBaggage());
+
+    }
+
+    @Test
+    public void testExecutePassportControl(){
+
+        assertTrue(testAirport.executePassportControl);
+
+    }
+
+    @Test
+    public void testExecuteAirCargo(){
+
+        asserTrue(testAirport.executeAirCargo());
+
+    }
 }

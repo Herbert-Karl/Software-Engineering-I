@@ -6,11 +6,16 @@ import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Configuration;
+import Airplane.FlightControls.Implementations.*;
 import Airplane.Lights.*;
 import Airplane.Management.CheckPoint;
 import Airplane.Management.CostOptimizer;
 import Airplane.Management.RouteManagement;
-import Airplane.cabin.AirConditioning;
+import Airplane.cabin.*;
+import Airplane.door.BulkCargoDoor;
+import Airplane.door.CrewDoor;
+import Airplane.door.EmergencyExitDoor;
+import Airplane.door.GearDoor;
 import Airplane.stowage_cargo.CargoSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,19 +24,19 @@ class AirplaneTest {
 	private Configuration testConfiguration;
 	private Airplane testAirplane;
 	
-	//private Gear testGear;
+	private Gear testGear;
 	private TaxiLight testTaxiLight;
 	//private APU testAPU;
 	//private Engine testEngine;
 	private AirConditioning testAirConditioning;
-	//private Kitchen testKitchen;
-	//private Lavatory testLavatory;
+	private Kitchen testKitchen;
+	private Lavatory testLavatory;
 	
 	// ---Doors---
-	//private BulkCargoDoor testBulkCargoDoor;
-	//private CrewDoor testCrewDoor;
-	//private EmergencyExitDoor testEmergencyExitDoor;
-	//private GearDoor testGearDoor
+	private BulkCargoDoor testBulkCargoDoor;
+	private CrewDoor testCrewDoor;
+	private EmergencyExitDoor testEmergencyExitDoor;
+	private GearDoor testGearDoor
 	
 	// ---Lights---
 	private AntiCollisionLight testAntiCollisionLight;
@@ -62,8 +67,8 @@ class AirplaneTest {
 	//private Flat testFlat;
 	
 	// ---Systems---
-	//private WasteSystem testWasteSystem;
-	//private WaterSystem testWaterSystem;
+	private WasteSystem testWasteSystem;
+	private WaterSystem testWaterSystem;
 	
 	//private FireDetector testFireDetector;
 	
@@ -136,10 +141,11 @@ class AirplaneTest {
 	
 	@Test
 	public void testStartUp() {
+
 		testAirplane.startup();
 		
-		//Klasse APU ben�tigt (Methode start() ben�tigt)
-		//Klasse Engine ben�tigt (Methode start() ben�tigt)
+		//Klasse APU benoetigt (Methode start() ben�tigt)
+		//Klasse Engine benoetigt (Methode start() ben�tigt)
 		
 		assertTrue(testAirConditioning.getIsOn());
 		
@@ -147,7 +153,7 @@ class AirplaneTest {
 		assertTrue(testKitchen.getLocked());
 		
 		//Klasse Lavatory ben�tigt (Methode lock() ben�tigt) UND Klasse KitchenLavatory ben�tigt
-		assertTrue(testLavatory.getLocked();
+		assertTrue(testLavatory.getLocked());
 		
 		
 		// ---Doors---
