@@ -91,18 +91,70 @@ public class Airport{
         WindDirectionSensor windDirectionSensor = new WindDirectionSensor();
         WindDirection windDirection = windDirectionSensor.measure();
         tower = new Tower(airport, null, windDirection);
-        Runway r1 = new Runway(RunwayID.R08L, Position.North, null, windDirectionSensor, false, false, null);
-        Runway r2 = new Runway(null, null, null, windDirectionSensor, false, false, null);
-        // TODO: Fill null values
-        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
-        //TODO: replace null values
+        ArrayList<RunwayCheckPointID> runwayCheckpointIDR1 = new ArrayList<RunwayCheckPointID>();
+    	runwayCheckpointIDR1.add(RunwayCheckPointID.S1);
+    	runwayCheckpointIDR1.add(RunwayCheckPointID.S2);
+    	ArrayList<RunwayCheckPointID> runwayCheckpointIDR2 = new ArrayList<RunwayCheckPointID>();
+    	runwayCheckpointIDR2.add(RunwayCheckPointID.S3);
+    	runwayCheckpointIDR2.add(RunwayCheckPointID.S4);
+    	ArrayList<Runway> runwayList = new ArrayList<Runway>();
+        if (windDirection == WindDirection.WestToEast) {
+        	Runway r1 = new Runway(RunwayID.R08L, Position.North, runwayCheckpointIDR1, windDirectionSensor, false, false, null);
+        	runwayList.add(r1);
+        	Runway r2 = new Runway(RunwayID.R08R, Position.South, runwayCheckpointIDR2, windDirectionSensor, false, false, null);
+        	runwayList.add(r2);
+        } else {
+        	// Different Runway IDs
+        	Runway r1 = new Runway(RunwayID.R26R, Position.North, runwayCheckpointIDR1, windDirectionSensor, false, false, null);
+        	runwayList.add(r1);
+        	Runway r2 = new Runway(RunwayID.R26L, Position.South, runwayCheckpointIDR2, windDirectionSensor, false, false, null);
+        	runwayList.add(r2);
+        }
+        IRunwayManagement runwayManagement = new RunwayManagement(null, runwayList, tower);
         tower.setRunwayManagement(runwayManagement);
+        
+        // TaxiWays
+        ArrayList<TaxiCheckPoint> taxiCheckPointYellow = new ArrayList<TaxiCheckPoint>();
+        taxiCheckPointYellow.add(TaxiCheckPoint.O1);
+        taxiCheckPointYellow.add(TaxiCheckPoint.O2);
+        taxiCheckPointYellow.add(TaxiCheckPoint.O3);
+        taxiCheckPointYellow.add(TaxiCheckPoint.O4);
+        taxiCheckPointYellow.add(TaxiCheckPoint.O5);
+        taxiCheckPointYellow.add(TaxiCheckPoint.O6);
+        TaxiWay taxiWayYellow = new TaxiWay(TaxiCenterLine.yellow, null, RunwayID.R26L, taxiCheckPointYellow, null);
+        
+        ArrayList<TaxiCheckPoint> taxiCheckPointGreen = new ArrayList<TaxiCheckPoint>();
+        taxiCheckPointGreen.add(TaxiCheckPoint.N1);
+        taxiCheckPointGreen.add(TaxiCheckPoint.N2);
+        taxiCheckPointGreen.add(TaxiCheckPoint.N3);
+        taxiCheckPointGreen.add(TaxiCheckPoint.N4);
+        taxiCheckPointGreen.add(TaxiCheckPoint.N5);
+        taxiCheckPointGreen.add(TaxiCheckPoint.N6);
+        TaxiWay taxiWayGreen = new TaxiWay(TaxiCenterLine.green, null, RunwayID.R26R, taxiCheckPointGreen, null);
+        
+        ArrayList<TaxiCheckPoint> taxiCheckPointBlue = new ArrayList<TaxiCheckPoint>();
+        taxiCheckPointBlue.add(TaxiCheckPoint.M1);
+        taxiCheckPointBlue.add(TaxiCheckPoint.M2);
+        taxiCheckPointBlue.add(TaxiCheckPoint.M3);
+        taxiCheckPointBlue.add(TaxiCheckPoint.M4);
+        taxiCheckPointBlue.add(TaxiCheckPoint.M5);
+        taxiCheckPointBlue.add(TaxiCheckPoint.M6);
+        TaxiWay taxiWayBlue = new TaxiWay(TaxiCenterLine.blue, null, RunwayID.R08L, taxiCheckPointBlue, null);
+        
+        ArrayList<TaxiCheckPoint> taxiCheckPointRed = new ArrayList<TaxiCheckPoint>();
+        taxiCheckPointRed.add(TaxiCheckPoint.L1);
+        taxiCheckPointRed.add(TaxiCheckPoint.L2);
+        taxiCheckPointRed.add(TaxiCheckPoint.L3);
+        taxiCheckPointRed.add(TaxiCheckPoint.L4);
+        taxiCheckPointRed.add(TaxiCheckPoint.L5);
+        taxiCheckPointRed.add(TaxiCheckPoint.L6);
+        TaxiWay taxiWayRed = new TaxiWay(TaxiCenterLine.red, null, RunwayID.R08R, taxiCheckPointRed, null);
         
         fuelTank = new AirportFuelTank();
 
         customs = new Customs();
         BaggageScanner baggageScanner = new BaggageScanner(null, null);
-        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
+        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), baggageScanner, null, customs);
     } 
     
     public int loadPassengerBaggageData(String dataFilePath){ //DATAFILEPATH.pathToString()
@@ -149,9 +201,7 @@ public class Airport{
     }
 
     public boolean executeCustoms(){
-        //Dafür braucht man einen BaggageSortingUnitRoboter! Woher?
         customs.executeRequest(baggageSortingUnit.getBaggageSortingUnitRoboter());
-        //TODO
         return true;
     }
 
@@ -202,9 +252,7 @@ public class Airport{
 
     public boolean executePushback(Gate gate){
         PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
-        TaxiWay taxiway = apronControl.search(TaxiCenterLine.yellow, gate.getGateID(), RunwayID.R08L);
-        //TODO: random parameters?
-        //Where to get parameters?
+        TaxiWay taxiway = apronControl.search(TaxiCenterLine.yellow, gate.getGateID(), RunwayID.R26L);
         pushBackVehicle.execute(gate.getAirplane(), taxiway);
         resourcePool.returnResource(pushBackVehicle);
         return true;
