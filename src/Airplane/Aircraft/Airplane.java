@@ -36,6 +36,8 @@ protected Configuration configuration;
         rightWing = new Wing(this);
     }
 
+    public Airplane(){}
+
     public void startup()
     {
         new FlightControlController(this).startup();

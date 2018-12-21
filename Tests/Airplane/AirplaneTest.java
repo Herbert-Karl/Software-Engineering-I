@@ -5,17 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
+import Airplane.Aircraft.Body;
 import Airplane.Aircraft.Configuration;
+import Airplane.Aircraft.Wing;
 import Airplane.FlightControls.Implementations.*;
 import Airplane.Lights.*;
 import Airplane.Management.CheckPoint;
 import Airplane.Management.CostOptimizer;
 import Airplane.Management.RouteManagement;
 import Airplane.cabin.*;
-import Airplane.door.BulkCargoDoor;
-import Airplane.door.CrewDoor;
-import Airplane.door.EmergencyExitDoor;
-import Airplane.door.GearDoor;
+import Airplane.door.*;
 import Airplane.stowage_cargo.CargoSystem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,8 @@ class AirplaneTest {
 	
 	private Gear testGear;
 	private TaxiLight testTaxiLight;
-	//private APU testAPU;
-	//private Engine testEngine;
+	private APU testAPU;
+	private Engine testEngine;
 	private AirConditioning testAirConditioning;
 	private Kitchen testKitchen;
 	private Lavatory testLavatory;
@@ -46,14 +45,14 @@ class AirplaneTest {
 	private RightNavigationLight testRightNavigationLight;
 	private TailNavigationLight testTailNavigationLight;
 	
-	//private IceDetectorProbe testIceDetectorProbe;
-	//private RadarAltimeter testRadarAltimeter;
-	//private TCAS testTCAS;
-	//private Camera camera;
-	//private GPS testGPS;
-	//private Radar testRadar;
-	//private SatCom testSatCom;
-	//private VHF testVHF;
+	private IceDetectorProbe testIceDetectorProbe;
+	private RadarAltimeter testRadarAltimeter;
+	private TCAS testTCAS;
+	private Camera testCamera;
+	private GPS testGPS;
+	private Radar testRadar;
+	private SatCom testSatCom;
+	private VHF testVHF;
 	
 	// ---Management---
 	private CargoSystem testCargoSystem;
@@ -61,40 +60,39 @@ class AirplaneTest {
 	private CostOptimizer testCostOptimizer;
 	private RouteManagement testRouteManagement;
 	
-	//private DroopNose testDroopNose;
-	//private Elevator testElevator;
-	//private Slat testSlat;
-	//private Flat testFlat;
+	private DroopNose testDroopNose;
+	private Elevator testElevator;
+	private Slat testSlat;
+	private Flat testFlat;
 	
 	// ---Systems---
 	private WasteSystem testWasteSystem;
 	private WaterSystem testWaterSystem;
 	
-	//private FireDetector testFireDetector;
+	private FireDetector testFireDetector;
 	
 	// ---Ailerons and Rudder---
-	//private LeftAileron testLeftAileron;
-	//private RightAileron testRightAileron;
-	//private Rudder testRudder;
+	private LeftAileron testLeftAileron;
+	private RightAileron testRightAileron;
+	private Rudder testRudder;
 	
 	@BeforeEach
 	public void setup() {
 		testConfiguration = new Configuration(4, 18, 72, 480, 14);
 		testAirplane = new Airplane(testConfiguration);	
-		
-		//testGear = new Gear();
+		testGear = new Gear();
 		testTaxiLight = new TaxiLight("TaxiLightHersteller01", "type01", "TL01", false);
-		//testAPU = new APU();
-		//testEngine = new Engine();
+		testAPU = new APU();
+		testEngine = new Engine();
 		testAirConditioning = new AirConditioning("AC01", "type01", "AirConditioningHersteller");
-		//testKitchen = new Kitchen("K01", KitchenType.FIRST);
-		//testLavatory = new Lavatory();
+		testKitchen = new Kitchen("K01", KitchenType.FIRST);
+		testLavatory = new Lavatory();
 		
 		// ---Doors---
-		//testBulkCargoDoor = new BulkCargoDoor();
-		//testCrewDoor = new CrewDoor();
-		//testEmergencyExitDoor = new EmergencyExitDoor();
-		//testGearDoor = new GearDoor();
+		testBulkCargoDoor = new BulkCargoDoor("bcd01", "bcd");
+		testCrewDoor = new CrewDoor("cd01","cd");
+		testEmergencyExitDoor = new EmergencyExitDoor("eed01", "eed");
+		testGearDoor = new GearDoor("gd01", GearDoorType.gear);
 		
 		// ---Lights---
 		testAntiCollisionLight = new AntiCollisionLight("AntiCollisionLightHersteller", "type01", "ACL01", false);
@@ -104,14 +102,14 @@ class AirplaneTest {
 		testRightNavigationLight = new RightNavigationLight("NavigationLightHersteller", LightType.green, "RNL01", Position.port, false);
 		testTailNavigationLight = new TailNavigationLight("NavigationLightHersteller", "type01", "TNL01", false);
 		
-		//testIceDetectorProbe = new IceDetectorProbe();
-		//testRadarAltimeter = new RadarAltimerter();
-		//testTCAS = new TCAS();
-		//testCamera = new Camera();
-		//testGPS = new GPS();
-		//testRadar = new Radar();
-		//testSatCom = new SatCom();
-		//testVHF = new VHF();
+		testIceDetectorProbe = new IceDetectorProbe();
+		testRadarAltimeter = new RadarAltimerter();
+		testTCAS = new TCAS();
+		testCamera = new Camera();
+		testGPS = new GPS();
+		testRadar = new Radar();
+		testSatCom = new SatCom();
+		testVHF = new VHF();
 		
 		// ---Management---
 		testCargoSystem = new CargoSystem("CargoSystemHersteller", "type01", "CS01");
@@ -120,136 +118,126 @@ class AirplaneTest {
 		testCostOptimizer = new CostOptimizer("CostOptimizerHersteller", "type01", "CO01", false, testCheckPointList, 2);
 		testRouteManagement = new RouteManagement("RouteManagementHersteller", "type01", "RM01", false, testCheckPointList, 1.5);
 		
-		//testDroopNose = new DroopNose("DroopNoseHersteller", "type01");
-		//testElevator = new Elevator("ElevatorHersteller", "type01");
-		//testSlat = new Slat("SlatHersteller", "type01");
-		//testFlat = new Flat();
+		testDroopNose = new DroopNose("DroopNoseHersteller", "type01");
+		testElevator = new Elevator("ElevatorHersteller", "type01");
+		testSlat = new Slat("SlatHersteller", "type01");
+		testFlat = new Flat();
 		
 		// ---Systems---
-		//testWasteSystem = new WasteSystem();
-		//testWaterSystem = new WaterSystem();
+		testWasteSystem = new WasteSystem();
+		testWaterSystem = new WaterSystem();
 		
-		//testFireDetector = new FireDetector();
+		testFireDetector = new FireDetector();
 		
 		// ---Ailerons and Rudder---
-		//testLeftAileron = new LeftAileron();
-		//testRightAileron = new RightAileron();
-		//testRudder = new Rudder();
-		
-		
+		testLeftAileron = new LeftAileron();
+		testRightAileron = new RightAileron();
+		testRudder = new Rudder();
 	}
 	
 	@Test
 	public void testStartUp() {
 
 		testAirplane.startup();
-		
-		//Klasse APU benoetigt (Methode start() ben�tigt)
-		//Klasse Engine benoetigt (Methode start() ben�tigt)
-		
+
+		assertTrue(testAPU.isOn());
+		assertTrue(testEngine.isOn());
 		assertTrue(testAirConditioning.getIsOn());
-		
-		//Klasse Kitchen vorhanden (Methode lock() ben�tigt)
 		assertTrue(testKitchen.getLocked());
-		
-		//Klasse Lavatory ben�tigt (Methode lock() ben�tigt) UND Klasse KitchenLavatory ben�tigt
 		assertTrue(testLavatory.getLocked());
 		
-		
 		// ---Doors---
-		//Klasse BulkCargoDoor ben�tigt (Methode lock() ben�tigt)
 		assertTrue(testBulkCargoDoor.getLocked());
-		
-		//Klasse CrewDoor ben�tigt (Methode lock() ben�tigt)
 		assertTrue(testBulkCargoDoor.getLocked());
-		
-		//Klasse EmergencyExitDoor ben�tigt (Methode lock() ben�tigt)
 		assertTrue(testEmergencyExitDoor.getLocked());
-		
-		//Klasse GearDoor ben�tigt (Methode lock() ben�tigt)
 		assertTrue(testGearDoor.getLocked());
 		
 		// ---Lights---
 		assertTrue(testAntiCollisionLight.getIsOn());
-		assertTrue(testCargoCompartmentLight.getIsOn() == false && testCargoCompartmentLight.getBrightnessLevel() == 0);
+		assertTrue(!testCargoCompartmentLight.getIsOn() && testCargoCompartmentLight.getBrightnessLevel() == 0);
 		assertTrue(testLogoLight.getIsOn());
 		assertTrue(testLeftNavigationLight.getIsOn());
 		assertTrue(testRightNavigationLight.getIsOn());
 		assertTrue(testTailNavigationLight.getIsOn());
-		
-		//Klasse IceDetectorProbe ben�tigt (Methode activate() ben�tigt)
-		
-		//Klasse RadarAltimeter ben�tigt (Methode on() ben�tigt)
+
+		assertTrue(testIceDetectorProbe.isOn());
 		assertTrue(testRadarAltimeter.getIsOn();
-		
-		//Klasse TCAS ben�tigt (Methode on() ben�tigt)
 		assertTrue(testTCAS.getIsOn());
-		
-		//Klasse Camera ben�tigt (Methode on() ben�tigt)
-		
-		//Klasse GPS ben�tigt (Methode on() ben�tigt)
+		assertTrue(testCamera.isOn()));
 		assertTrue(testGPS.getIsOn());
-		
-		//Klasse Radar ben�tigt (Methode on() ben�tigt)
 		assertTrue(testRadar.getIsOn());
-		
-		//Klasse SatCom ben�tigt (Methode on() ben�tigt)
 		assertTrue(testSatCom.getIsOn());
-		
-		//Klasse VHF ben�tigt (Methode on() ben�tigt)
 		assertTrue(testVHF.getIsOn());
 		
 		
 		// ---Management---
-		//Klasse CargoSystem vorhanden (Methode getIsLocked() ben�tigt)
 		assertTrue(testCargoSystem.getIsLocked());
-		
-		//Methode isOn() zu getIsOn() �ndern...
 		assertTrue(testCostOptimizer.isOn());
-		
-		//Methode isOn() zu getIsOn() �ndern...
 		assertTrue(testRouteManagement.isOn());
 	}
-	
+
+	@Test
+	public void testAirplaneAttributes(){
+
+		Body body = new Body(testAirplane);
+		Wing leftWing = new Wing(testAirplane);
+		Wing rightWing = new Wing(testAirplane);
+
+		assertEquals(testAirplane.getBody(), body);
+		assertEquals(testAirplane.getLeftWing(), leftWing);
+		assertEquals(testAirplane.getRightWing(), rightWing);
+	}
+
 	@Test
 	public void testClimbing() {
 		testAirplane.climbing();
-		
-		//Klasse DroopNose ben�tigt (Methode fullDown() ben�tigt)
-		//Klasse Elevator ben�tigt (Methode fullDown() ben�tigt)
-		//Klasse Slat ben�tigt (Methode fullDown() ben�tigt)
-		//Klasse Flat ben�tigt (Methode levelOne() ben�tigt) -> Wahrscheinlich Klasse Flap gemeint
-		
+
+		// when travelling altitude and velocity reached:
+		assertTrue(testDroopNose.getIsNeutral());
+		assertTrue(testElevator.getIsNeutral());
+		assertTrue(testSlat.getIsNeutral());
+		assertTrue(testFlat.getIsNeutral());
+		assertEquals(testEngine.getThrust(), 3100);
+		assertTrue(testGear.isUp());
+
 		assertFalse(testKitchen.getIsLocked()); 
 		assertFalse(testLavatory.getIsLocked());
-		
-		//Klasse WasteSystem ben�tigt (Methode on() ben�tigt)
 		assertTrue(testWasteSystem.getIsOn());
-		
-		//Klasse WaterSystem ben�tigt (Methode on() ben�tigt)
 		assertTrue(testWaterSystem.getIsOn());
 	}
 	
 	@Test
 	public void testTaxi() {
 		testAirplane.taxi();
-		
-		//Klasse Gear ben�tigt (Methode: releaseBrake())
+
+		assertFalse(testGear.getBrakeSet());
 		assertTrue(testTaxiLight.getIsOn());
-		//Klasse APU ben�tigt (Methode: increaseRPM(250))
+		assertEquals(testAPU.getRPM(), 250);
 	}
 	
 	@Test
-	public void testTakeOff() {
+	public void testTakeOffEngineNormal() {
+
+		// if engine is not on fire
+		testEngine.setFire(false);
 		testAirplane.takeOff();
-		
-		//Klasse Engine ben�tigt (Methoden increase(), decrease(), getIsAlarm() und shutdown() ben�tigt)
-		//Klasse FireDetector ben�tigt (Methode scan() ben�tigt)
+		assertEquals(testEngine.getThrust(), 2050);
+	}
+
+	@Test
+	public void testTakeOffEngineOnFire(){
+
+		// if engine is on fire
+		testEngine.setFire(true);
+		testAirplane.takeOff();
+		assertFalse(testEngine.isOn());
 	}
 	
 	@Test
 	public void testRightTurn() {
 		testAirplane.rightTurn();
+
+		// How do we test this without comparing the orientation of testAirplane?
 		
 		//Klasse RightAileron ben�tigt (Methoden up() und neutral() ben�tigt)
 		//Klasse LeftAileron ben�tigt (Methoden down() und neutral() ben�tigt)

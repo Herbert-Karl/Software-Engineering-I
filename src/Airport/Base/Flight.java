@@ -16,6 +16,8 @@ public class Flight{
         this.gateID = gateID;
     }
 
+    public Flight(){}
+
     ///
     /// Getter:
     ///

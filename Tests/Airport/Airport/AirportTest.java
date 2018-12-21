@@ -1,8 +1,10 @@
 package Airport.Airport;
 
 import Airplane.Aircraft.Airplane;
+import Airplane.Tanks.FuelTank;
 import Airport.ApronControl.Apron;
 import Airport.ApronControl.ApronControl;
+import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Base.*;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
 import Airport.Bulky_Baggage_Desk.IBulkyBaggageDesk;
@@ -10,19 +12,21 @@ import Airport.Checkin_Desk.CheckInMediator;
 import Airport.Federal_Police.FederalPolice;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Ground_Operations.IGroundOperationsCenter;
+import Airport.Scanner.BaggageScanner;
 import Airport.Security_Check.SecurityMediator;
-import Airport.Testing.TestAirplane;
 import org.junit.jupiter.api.*;
 import javax.print.attribute.standard.Destination;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class AirportTest {
 
-    private TestAirplane testAirplane;
+    // airplanes and airport for testing
+    private Airplane testAirplaneA;
+    private Airplane testAirplaneB;
     private Airport testAirport;
 
     //
@@ -34,20 +38,6 @@ class AirportTest {
     private Passenger p2;
     private Passenger p3;
     private ArrayList<Passenger> testPassengerList;
-
-    /*Baggage b1 = new Baggage("b1uuid", "Koks, Bomben, Leichenteile", 47.11, BaggageSecurityStatus.clean);
-    Baggage b2 = new Baggage("b2uuid", "Weed, Waffen, chemische Kampfstoffe", 12.34, BaggageSecurityStatus.unclean);
-    Baggage b3 = new Baggage("b3uuid", "Meth, Badesalz, Sexsklavin", 66.6, BaggageSecurityStatus.dangerous);
-    ArrayList<Baggage> testBaggageList = new ArrayList<Baggage>(Arrays.asList(b1, b2, b3));
-    ArrayList<BaggageIdentificationType> testBaggageIdentificationTypeList;
-    BoardingPass testBoardingPass = new BoardingPass("tBPuuid", Carrier.Emirates, "F666", p1,
-            TicketClass.First, Source.MUC, Destination.FRA, "30.02.2019", GateID.A03, "25:61",
-            "da vorne links", testBaggageIdentificationTypeList);
-    Passport passP1 = new Passport("234", "123", "Foto eines Eisbaeren", p1);
-    Passenger p1 = new Passenger("1234", "Lars, der kleine Eisbaer", "Eingeweide",
-            "27.11.1456", Gender.Male, passP1, testBaggageList, "First", testBoardingPass,
-            PassengerStatus.Arrested);
-    ArrayList<Passenger> testPassengerList = new ArrayList<>(Arrays.asList(p1));*/
 
     // declare resource pool
     private AirportResourcePool testAirportResourcePool;
@@ -79,18 +69,12 @@ class AirportTest {
     // declare tower
     private Tower testTower;
 
-    // for Tower
-    /*ArrayList<Airplane> testAirplaneList = new ArrayList<Airplane>(Arrays.asList(testAirplane));
-    ArrayList<RunwayCheckPointID> testRunwayCheckPointID = new ArrayList<RunwayCheckPointID>(RunwayCheckPointID.S1);
-    WindDirectionSensor testWindDirectionSensor = new WindDirectionSensor();
-    Runway testRunway = new Runway(RunwayID.R26L, Position.North, testRunwayCheckPointID, testWindDirectionSensor,
-            true, false, testAirplane);
-    ArrayList<Runway> testRunwayList = new ArrayList<Runway>(Arrays.asList(testRunway));
-    IRunwayManagement testRunwayManagement = new RunwayManagement(testAirplaneList, testRunwayList);
-    Tower testTower = new Tower(testAirport, testRunwayManagement, WindDirection.WestToEast);*/
-
     @BeforeEach
     public void setup(){
+
+        // re-init airplanes
+        testAirplaneA = new Airplane();
+        testAirplaneB = new Airplane();
 
         // re-init passenger list
         p1 = new Passenger();
@@ -201,53 +185,105 @@ class AirportTest {
         SecurityMediator referenceSecurityMediator = new SecurityMediator(testAirport, police);
         assertEquals(testAirport.getSecurityMediator(), referenceSecurityMediator);
 
-        //
+        // tower
+        WindDirectionSensor windDirectionSensor = new WindDirectionSensor();
+        WindDirection windDirection = windDirectionSensor.measure();
+        Tower referenceTower = new Tower(testAirport, null, windDirection);
+        assertEquals(testAirport.getTower(), referenceTower);
+
+        // runway list
+        ArrayList<RunwayCheckPointID> runwayCheckpointIDR1 = new ArrayList<RunwayCheckPointID>();
+        runwayCheckpointIDR1.add(RunwayCheckPointID.S1);
+        runwayCheckpointIDR1.add(RunwayCheckPointID.S2);
+        ArrayList<RunwayCheckPointID> runwayCheckpointIDR2 = new ArrayList<RunwayCheckPointID>();
+        runwayCheckpointIDR2.add(RunwayCheckPointID.S3);
+        runwayCheckpointIDR2.add(RunwayCheckPointID.S4);
+
+        ArrayList<Runway> testRunwayListWtE = new ArrayList<Runway>();
+        ArrayList<Runway> testRunwayListEtW = new ArrayList<Runway>();
+        testRunwayListWtE.add(new Runway(RunwayID.R08L, Position.North, runwayCheckpointIDR1, windDirectionSensor, false, false, null));
+        testRunwayListWtE.add(new Runway(RunwayID.R08R, Position.North, runwayCheckpointIDR2, windDirectionSensor, false, false, null));
+        testRunwayListEtW.add(new Runway(RunwayID.R26R, Position.North, runwayCheckpointIDR1, windDirectionSensor, false, false, null));
+        testRunwayListEtW.add(new Runway(RunwayID.R26L, Position.North, runwayCheckpointIDR2, windDirectionSensor, false, false, null));
+        ArrayList<Runway> testRunwayListActual = (windDirection == WindDirection.WestToEast) ? testRunwayListWtE : testRunwayListEtW;
+        assertEquals(testAirport.getRunwayList(), testRunwayListActual);
+
+        // runway management and tower
+        IRunwayManagement runwayManagement = new RunwayManagement(null, testRunwayListActual, referenceTower);
+        referenceTower.setRunwayManagement(runwayManagement);
+        assertEquals(testAirport.getTower(), referenceTower);
+
+        // taxi ways
+
+        // fuel tank
+        AirportFuelTank referenceFuelTank = new AirportFuelTank();
+        assertEquals(testAirport.getFuelTank(), referenceFuelTank);
+
+        // baggage sorting unit
+        BaggageScanner baggageScanner = new BaggageScanner(null, null);
+        BaggageSortingUnit referenceBaggageSortingUnit = new BaggageSortingUnit(testAirportResourcePool.takeResource("Employee"), baggageScanner, null, customs);
+        assertEquals(testAirport.getBaggageSortingUnit(), referenceBaggageSortingUnit);
     }
 
-    //The order of these tests matter
+    @Test
+    public void testLoadPassengerBaggageData(){
+
+        // TO DO
+    }
 
     @Test
     public void testConnectAirplane(){
 
-        assertTrue(testAirport.connectAirplane(testAirplane1, g1));
+        assertTrue(testAirport.connectAirplane(testAirplaneA, g1));
+        assertEquals(g1.getAirplane(), testAirplaneA);
 
-        //Gate already occupied
-        assertFalse(testAirport.connectAirplane(testAirplane2, g1));
-
+        assertFalse(testAirport.connectAirplane(testAirplaneB, g1));
     }
 
     @Test
     public void testDisconnectAirplane(){
 
-        //Disconnecting wrong airplane
-        assertFalse(testAirport.disconnectAirplane(testAirplane2, g1));
+        testAirport.connectAirplane(testAirplaneA, g1);
+        testAirport.connectAirplane(testAirplaneB, g2);
 
-        //Disconnecting from empty gate
-        assertFalse(testAirport.disconnectAirplane(testAirplane1, g2));
+        // disconnect from wrong gate or wrong airplane
+        assertFalse(testAirport.disconnectAirplane(testAirplaneA, g2));
 
-        //Disconnecting correctly
-        assertTrue(testAirport.disconnectAirplane(testAirplane1, g1));
+        // disconnect correctly
+        assertTrue(testAirport.disconnectAirplane(testAirplaneA, g1));
+
+        // disconnect disconnected airplane from empty gate
+        assertFalse(testAirport.disconnectAirplane(testAirplaneA, g1));
+
+        // disconnect wrong connected airplane from empty gate
+        assertFalse(testAirport.disconnectAirplane(testAirplaneB, g1));
+
+        // disconnect disconnected airplane from wrong connected gate
+        assertFalse(testAirport.disconnectAirplane(testAirplaneA, g2));
+
+        assertNull(g1.getAirplane());
+        assertEquals(g2.getAirplane(), testAirplaneB);
     }
 
     @Test
     public void testExecuteServiceWasteWater(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeServiceWasteWater(g1));
-
     }
 
     @Test
     public void testExecuteCheckIn(){
 
+        Flight testFlight = new Flight();
         assertTrue(testAirport.executeCheckIn(testFlight));
-
+        assertEquals(testCheckInMediator.getFlight(), testFlight); // or something similar, waiting for implementation TO DO
     }
 
     @Test
     public void testExecuteSecurity(){
 
         assertTrue(testAirport.executeSecurity());
-
     }
 
     @Test
@@ -260,6 +296,7 @@ class AirportTest {
     @Test
     public void testExecuteAirCargo(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeAirCargo(g1.getGateID()));
 
     }
@@ -267,6 +304,7 @@ class AirportTest {
     @Test
     public void testExecuteBaggageSortingUnit(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeBaggageSortingUnit(g1.getGateID()));
 
     }
@@ -274,6 +312,7 @@ class AirportTest {
     @Test
     public void testExecuteServiceBase(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeServiceBase(g1.getGateID()));
 
     }
@@ -281,6 +320,7 @@ class AirportTest {
     @Test
     public void testExecuteServiceFreshWater(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeServiceFreshWater(g1.getGateID()));
 
     }
@@ -288,6 +328,7 @@ class AirportTest {
     @Test
     public void testExecuteServiceNitrogenOxygen(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeServiceNitrogenOxygen(g1.getGateID()));
 
     }
@@ -295,6 +336,7 @@ class AirportTest {
     @Test
     public void testExecuteSkyTanking(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeSkyTanking(g1.getGateID()));
 
     }
@@ -302,6 +344,7 @@ class AirportTest {
     @Test
     public void testExecuteBoardingControl(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executeBoardingControl(g1));
 
     }
@@ -309,6 +352,7 @@ class AirportTest {
     @Test
     public void testExecutePushback(){
 
+        g1.setGateID(GateID.A01);
         assertTrue(testAirport.executePushback(g1));
 
     }
@@ -320,9 +364,6 @@ class AirportTest {
 
     }
 
-
-    //The following Test belong to methods yet to be implemented
-    //If there's gonna be a more complex algorithm, these test have to changed
     @Test
     public void testExecuteBulkyBaggage(){
 
@@ -334,13 +375,6 @@ class AirportTest {
     public void testExecutePassportControl(){
 
         assertTrue(testAirport.executePassportControl);
-
-    }
-
-    @Test
-    public void testExecuteAirCargo(){
-
-        asserTrue(testAirport.executeAirCargo());
 
     }
 }
