@@ -14,6 +14,8 @@ public class Apron{
         this.apronControl = apronControl;
     }
 
+    public Apron(){}
+
     public Airport getAirport() {
         return airport;
     }

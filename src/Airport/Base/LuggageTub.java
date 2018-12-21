@@ -16,7 +16,36 @@ public class LuggageTub {
         this.baggage = baggage;
     }
 
+    ///
+    /// Getter:
+    ///
+
     public Baggage getBaggage() {
         return baggage;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getBarCode() {
+        return barCode;
+    }
+
+    public String getBarCodeDestinationBox() {
+        return barCodeDestinationBox;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setBaggage(Baggage baggage) {
+        this.baggage = baggage;
+    }
+
+    public void setBarCodeDestinationBox(String barCodeDestinationBox) {
+        this.barCodeDestinationBox = barCodeDestinationBox;
     }
 }
