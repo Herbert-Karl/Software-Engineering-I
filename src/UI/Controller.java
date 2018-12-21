@@ -15,13 +15,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 
-import Airplane.Aircraft;
-import Airplane.Aircraft.A350Configuration;
-import Airplane.Aircraft.A380Configuration;
-
-import Airport.Airport.GateID;
-import Airport.Airport;
-
 public class Controller implements Initializable {
 
     @FXML
@@ -39,60 +32,47 @@ public class Controller implements Initializable {
         if (!Objects.equals(splittedString[0], "execute")) {
             return false;
         }
+
         if (Objects.equals(splittedString[1], "airplane")) {
             switch (splittedString[2]) {
                 case "build":
                     if (splittedString.length == 4 && (Objects.equals(splittedString[3], "A380") || Objects.equals(splittedString[3], "A350"))) {
                         String airplaneType = splittedString[3];
-                        if(airplaneType.equals("A350")) {
-                            Configuration configuration = new A350Configuration();
-                        }
-                        if(airplaneType.equals("A380")) {
-                            Configuration configuration = new A380Configuration();
-                        }
-                        Airplane airplane = new Airplane(configuration);
                         return true;
                     }
                     break;
                 case "climbing":
                     if (splittedString.length == 3) {
-                        airplane.climbing();
                         return true;
                     }
                     break;
                 case "left-turn":
                     if (splittedString.length == 3) {
-                        airplane.leftTurn();
                         return true;
                     }
                     break;
                 case "pfd-show":
                     if (splittedString.length == 3) {
                         return true;
-                        //
                     }
                     break;
                 case "startup":
                     if (splittedString.length == 3) {
-                        airplane.startup();
                         return true;
                     }
                     break;
                 case "take-off-normal":
                     if (splittedString.length == 3) {
-                        airplane.takeOff();
                         return true;
                     }
                     break;
                 case "take-off-engine-fire":
                     if (splittedString.length == 3) {
-                        airplane.takeOff();
                         return true;
                     }
                     break;
                 case "taxi":
                     if (splittedString.length == 3) {
-                        airplane.taxi();
                         return true;
                     }
                     break;
@@ -105,123 +85,110 @@ public class Controller implements Initializable {
             switch (splittedString[2]) {
                 case "aircargo":
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        //GateID aus GateID.id, z.B. GateID.A04
-                        return executeAircargo(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
                         return true;
                     }
                     break;
                 case "assign":
                     if (Objects.equals(splittedString[3], "airplane") && Objects.equals(splittedString[4], "to") && Objects.equals(splittedString[5], "gate") && isInteger(splittedString[6]) && splittedString.length == 7) {
-                        String id = splittedString[6];
-                        //Woher Airplane?
-                        //return connectAirplane(Airplane airplane, Gate gate);
+                        int id = Integer.parseInt(splittedString[6]);
                         return true;
                     } else if (Objects.equals(splittedString[3], "airplane") && Objects.equals(splittedString[4], "to") && Objects.equals(splittedString[5], "gate") && Objects.equals(splittedString[6], "random") && splittedString.length == 7) {
-                        //random GateID aus Enum GateID
                         return true;
                     }
                     break;
-                case "baggage-sorting-unit":
+                case "baggagse-sorting-unit":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return executeBaggageSortingUnit(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
                         return true;
                     }
                     break;
                 case "boarding-control":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String id = splittedString[5];
-                        return airport.executeBoardingControl(id);
+                        int id = Integer.parseInt(splittedString[5]);
                         return true;
                     }
                     break;
                 case "build":
                     if (splittedString.length == 3) {
-                        Airport airport = new Airport();
-                        airport.build();
                         return true;
                     }
                     break;
                 case "bulky":
                     //baggage
                     if (Objects.equals(splittedString[3], "baggage") && splittedString.length == 4) {
-                        //
                         return true;
                     }
                     break;
                 case "check-in":
                     if (splittedString.length == 3) {
-                        //return executeCheckIn(Flight flight); Woher flight?
                         return true;
                     }
                     break;
                 case "customs":
                     if (splittedString.length == 3) {
-                        return airport.executeCustoms();
+                        return true;
                     }
                     break;
                 case "groundops-logging":
                     if (splittedString.length == 3) {
-                        return airport.executeGroundOperationsLogging();
+                        return true;
                     }
                     break;
                 case "passport":
                     //control
                     if (Objects.equals(splittedString[3], "control") && splittedString.length == 4) {
-                        //
                         return true;
                     }
                     break;
                 case "pushback":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return airport.executePushback(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
+                        return true;
                     }
                     break;
                 case "security":
                     //check
                     if (Objects.equals(splittedString[3], "check") && splittedString.length == 4) {
-                        return airport.executeSecurity();
+                        return true;
                     }
                     break;
                 case "service":
                     //waster water for gate <id>
                     if (Objects.equals(splittedString[3], "waster") && Objects.equals(splittedString[4], "water") && Objects.equals(splittedString[5], "for") && Objects.equals(splittedString[6], "gate") && isInteger(splittedString[7]) && splittedString.length == 8) {
-                        String gateID = splittedString[7];
-                        //return executeServiceWasteWater(gateID);
+                        int id = Integer.parseInt(splittedString[7]);
                         return true;
                     }
                     break;
                 case "service-base":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return airport.executeServiceBase(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
+                        return true;
                     }
                     break;
                 case "service-fresh-water":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return airport.executeServiceFreshWater(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
+                        return true;
                     }
                     break;
                 case "service-nitrogen-oxygen":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return airport.executeServiceNitrogenOxygen(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
+                        return true;
                     }
                     break;
                 case "sky-tanking":
                     //for gate <id>
                     if (Objects.equals(splittedString[3], "for") && Objects.equals(splittedString[4], "gate") && isInteger(splittedString[5]) && splittedString.length == 6) {
-                        String gateID = splittedString[5];
-                        return airport.executeSkyTanking(gateID);
+                        int id = Integer.parseInt(splittedString[5]);
+                        return true;
                     }
                     break;
                 default:
