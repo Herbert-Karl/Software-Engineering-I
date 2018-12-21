@@ -131,6 +131,11 @@ public class ContainerLifter implements IContainerLifter {
         return connectedAirplane;
     }
 
+    public Container getContainer()
+    {
+        return container;
+    }
+
     /**
      * sets container, adds its ID to the list and ups te number of containers loaded
      */

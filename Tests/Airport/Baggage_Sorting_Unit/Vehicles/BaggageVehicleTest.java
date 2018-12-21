@@ -1,6 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Base.*;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
@@ -28,8 +29,8 @@ class BaggageVehicleTest
         }
 
         baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner("type", StringSearchAlgorithm.BITAP), new DestinationBox(null, baggageList,
-                100), new Customs());
-        baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
+                100), new Customs(), new BaggageSortingUnitRoboter(baggageSortingUnit, "type"));
+        baggageVehicle = new BaggageVehicle("type", baggageSortingUnit);
     }
 
     /**
@@ -58,7 +59,7 @@ class BaggageVehicleTest
     @Test
     void connect()
     {
-        ContainerLifter containerLifter = new ContainerLifter("uuid", "id", "type");
+        ContainerLifter containerLifter = new ContainerLifter("type");
         baggageVehicle.connect(containerLifter);
         assertEquals(containerLifter, baggageVehicle.getContainerLifter());
     }
@@ -71,7 +72,7 @@ class BaggageVehicleTest
     {
         Container container = new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
                 "qrCodeIDCatagory", new Stack<Baggage>());
-        ContainerLifter containerLifter = new ContainerLifter("uuid", "id", "type");
+        ContainerLifter containerLifter = new ContainerLifter("type");
         baggageVehicle.setContainerLifter(containerLifter);
         baggageVehicle.store(container);
         baggageVehicle.transferContainerToLifter();
