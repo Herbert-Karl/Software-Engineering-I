@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Customs implements ICustoms {
-    String uiid;
-    CustomsResourcePool resourcePool;
-    IBaggageScanner baggageScanner;
-    ArrayList<Employee> employeeList;
-    ArrayList<Passport> passportList;
-    ArrayList<BoardingPass> boardingPassList;
-    int numberOfBaggageScanned;
-    int numberOfBaggageExcessAmountMoney;
-    ArrayList<Baggage> keepSafeBaggageList;
-    ArrayList<Item> keepSafeItemList;
-    Federal_Police federalPolice;
+    private String uiid;
+    private CustomsResourcePool resourcePool;
+    private IBaggageScanner baggageScanner;
+    private ArrayList<Employee> employeeList;
+    private ArrayList<Passport> passportList;
+    private ArrayList<BoardingPass> boardingPassList;
+    private int numberOfBaggageScanned;
+    private int numberOfBaggageExcessAmountMoney;
+    private ArrayList<Baggage> keepSafeBaggageList;
+    private ArrayList<Item> keepSafeItemList;
+    private Federal_Police federalPolice;
 
     public Customs(CustomsResourcePool resourcePool, IBaggageScanner baggageScanner, ArrayList<Employee> employeeList, ArrayList<Passport> passportList, ArrayList<BoardingPass> boardingPassList, int numberOfBaggageScanned, int numberOfBaggageExcessAmountMoney, ArrayList<Baggage> keepSafeBaggageList, ArrayList<Item> keepSafeItemList) {
         this.uiid = java.util.UUID.randomUUID().toString();

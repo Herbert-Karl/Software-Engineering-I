@@ -2,11 +2,15 @@ package Airport.Customs;
 
 import Airport.Base.*;
 import Airport.Customs.Customs;
+
+import java.util.Random;
 import java.util.UUID;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomsOfficer {
+    Random rnd = new Random();
+
     public String getUuid() {
         return uuid;
     }
@@ -57,19 +61,19 @@ public class CustomsOfficer {
 
     public CustomsOfficer(String uuid, int id, String name, Gender gender, IDCard idCard, Customs customs) {
         this.uuid = java.util.UUID.randomUUID().toString();
-        this.id = id;
+        this.id = rnd.nextInt();
         this.name = name;
         this.gender = gender;
         this.idCard = idCard;
         this.customs = customs;
     }
 
-    String uuid;
-    int id;
-    String name;
-    Gender gender;
-    IDCard idCard;
-    Customs customs;
+    private String uuid;
+    private int id;
+    private String name;
+    private Gender gender;
+    private IDCard idCard;
+    private Customs customs;
 
     boolean verify (Passport passport, BoardingPass boardingPass){
         if (boardingPass.getPassenger()==passport.getPassenger()) {

@@ -75,9 +75,10 @@ public class CustomsReceipt {
         this.numberOfKeepSafeItem = numberOfKeepSafeItem;
     }
 
-    int numberOfBoardingPassVerified;
-    int numberOfBaggageScanned;
-    int numberOfBaggageExcessAmountMoney;
-    int numberOfKeepSafeBaggage;
-    int numberOfKeepSafeItem;
+    private int numberOfBoardingPassVerified;
+    private int numberOfBaggageScanned;
+    private int numberOfBaggageExcessAmountMoney;
+    private int numberOfKeepSafeBaggage;
+    private int numberOfKeepSafeItem;
 }
+//comment
