@@ -44,19 +44,32 @@ class CargoSystemTest extends TestCase {
 
     @Test
     void load1() {
+        this.initial();
 
+        AirCargoPallet airCargoPallet = new AirCargoPallet("uuid", "type", "id");
+        Item[] item = {new Item(0, "Kartoffeln", 100)};
+        airCargoPallet.setItemList(item);
+
+        double expected = airCargoPallet.getWeight() + cargoSystem.determineTotalWeightAirCargoPallet();
+        cargoSystem.load(airCargoPallet, RearStowagePositionID.SR01);
+        assertEquals(expected, cargoSystem.determineTotalWeightAirCargoPallet());
     }
 
     @Test
     void determineTotalWeightAirCargoPallet() {
+        this.initial();
+        assertEquals(0, cargoSystem.determineTotalWeightAirCargoPallet());
     }
 
     @Test
     void determineTotalWeightContainer() {
+        this.initial();
+        assertEquals(0, cargoSystem.determineTotalWeightAirCargoPallet());
     }
 
     @Test
     void lock() {
+
     }
 
     @Test
