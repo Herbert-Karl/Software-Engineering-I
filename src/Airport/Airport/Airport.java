@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
+import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.ApronControl.ApronControl;
 import Airport.ApronControl.Apron;
@@ -59,9 +60,54 @@ public class Airport{
     	return Airport.instance;
     }
     
+    /* toDo 
+     * 
+     */
+
+    public void init(Airport airport) {
+    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(DATAFILEPATH.pathToString());
+        passengerList = passengerBaggageDatabase.getPassengerList();
+
+        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
+
+        gateList = new ArrayList<Gate>(10);
+        for(int number = 1; number <= 10; number++){
+            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
+            gateList.add(gate);
+        }
+
+        apronControl = new ApronControl();
+        apronControl.setAirport(airport);
+        apron = new Apron(airport, apronControl);
+        apronControl.setApron(apron);
+
+        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
+
+        bulkyBaggageDesk = new BulkyBaggageDesk(airport);
+
+        checkInMediator = new CheckInMediator(bulkyBaggageDesk);
+
+        FederalPolice police = new FederalPolice();
+        //TODO: Übergabeparameter?
+        securityMediator = new SecurityMediator(airport, police);
+
+        tower = new Tower(airport, null, null);
+        //TODO: replace null values
+        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
+        //TODO: replace null values
+        tower.setRunwayManagement(runwayManagement);
+
+        fuelTank = new AirportFuelTank();
+
+        customs = new Customs();
+
+        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
+    }
+
     public void build() {
     	Airport airport = Airport.getInstance();
     	init(airport);
+
     }
     
     public void init(Airport airport) { // Create instances of classes
