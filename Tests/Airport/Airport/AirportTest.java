@@ -7,6 +7,7 @@ import Airport.Base.*;
 import Airport.Bulky_Baggage_Desk.BulkyBaggageDesk;
 import Airport.Bulky_Baggage_Desk.IBulkyBaggageDesk;
 import Airport.Checkin_Desk.CheckInMediator;
+import Airport.Federal_Police.FederalPolice;
 import Airport.Ground_Operations.GroundOperationsCenter;
 import Airport.Ground_Operations.IGroundOperationsCenter;
 import Airport.Security_Check.SecurityMediator;
@@ -16,6 +17,8 @@ import javax.print.attribute.standard.Destination;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AirportTest {
 
@@ -167,9 +170,38 @@ class AirportTest {
         assertEquals(testAirport.getResourcePool(), referenceResourcePool);
 
         ArrayList<Gate> referenceGateList = new ArrayList<Gate>(10);
+        referenceGateList.add(new Gate(GateID.A01, null));
+        referenceGateList.add(new Gate(GateID.A02, null));
+        referenceGateList.add(new Gate(GateID.A03, null));
+        referenceGateList.add(new Gate(GateID.A04, null));
+        referenceGateList.add(new Gate(GateID.A05, null));
+        referenceGateList.add(new Gate(GateID.B01, null));
+        referenceGateList.add(new Gate(GateID.B02, null));
+        referenceGateList.add(new Gate(GateID.B03, null));
+        referenceGateList.add(new Gate(GateID.B04, null));
+        referenceGateList.add(new Gate(GateID.B05, null));
         assertEquals(testAirport.getGateList(), referenceGateList);
 
+        // APRON?
 
+        // ground operations centre
+        GroundOperationsCenter referenceGroundOperationsCentre = new GroundOperationsCenter(testAirport, 100);
+        assertEquals(testAirport.getGroundOperationsCenter(), referenceGroundOperationsCentre);
+
+        // bulky baggage desk
+        BulkyBaggageDesk referenceBulkyBaggageDesk = new BulkyBaggageDesk(testAirport);
+        assertEquals(testAirport.getBulkyBaggageDesk(), referenceBulkyBaggageDesk);
+
+        // check-in mediator
+        CheckInMediator referenceCheckInMediator = new CheckInMediator(testBulkyBaggageDesk);
+        assertEquals(testAirport.getCheckInMediator(), referenceCheckInMediator);
+
+        // federal police
+        FederalPolice police = new FederalPolice();
+        SecurityMediator referenceSecurityMediator = new SecurityMediator(testAirport, police);
+        assertEquals(testAirport.getSecurityMediator(), referenceSecurityMediator);
+
+        //
     }
 
     //The order of these tests matter
