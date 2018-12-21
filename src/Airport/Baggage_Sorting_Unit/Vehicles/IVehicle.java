@@ -1,8 +1,10 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.GateID;
+
 public interface IVehicle {
 
-    void executeRequest(Airport.Airport.GateID gateID);
+    void executeRequest(GateID gateID);
 
     void setFlashingLightOn();
 
@@ -10,7 +12,7 @@ public interface IVehicle {
 
     void stop();
 
-    void setGate(Airport.Airport.GateID gate);
+    void setGate(GateID gate);
 
     void setFlashingLightOff();
 }

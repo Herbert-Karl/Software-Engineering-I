@@ -1,17 +1,24 @@
 package Airport.Base;
 
-public class NormalBaggage extends Baggage{
-    private BaggageIdentificationTag baggageIdentifikationTag;
+import java.util.UUID;
 
-    public NormalBaggage(String uuid, String content, String weight, BaggageIdentifikationTag baggageIdentifikationTag){
-        this.uuid = uuid;
-        this.content = content;
-        this.weight = weight;
-        this.secutityStatus = null;
-        this.baggageIdentifikationTag = baggageIdentifikationTag;
+import Airport.Base.Baggage;
+
+public class NormalBaggage extends Baggage{
+    private BaggageIdentificationTag baggageIdentificationTag;
+
+    public NormalBaggage(String content){
+    	final UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
+    	this.content = content;
+        // IdentificationTag und weight wird erst nach dem Check In vergeben.
     }
 
-    public BaggageIdentificationTag getBaggageIdentifikationTag() {
-        return baggageIdentifikationTag;
+    public BaggageIdentificationTag getBaggageIdentificationTag() {
+        return baggageIdentificationTag;
+    }
+
+    public void setBaggageIdentificationTag(BaggageIdentificationTag baggageIdentificationTag) {
+        this.baggageIdentificationTag = baggageIdentificationTag;
     }
 }

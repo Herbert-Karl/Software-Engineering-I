@@ -1,16 +1,35 @@
 package Airport.Base;
 
-public abstract class Baggage{
-    private String uuid;
-    private String content;
-    private double weight;
-    private BaggageSecurityStatus securityStatus;
+import java.util.UUID;
 
-    public BaggageSecurityStatus getSecurityStatus() {
-        return securityStatus;
-    }
+public abstract class Baggage {
 
-    public double getWeight() {
-        return weight;
-    }
+  protected String uuid;
+  protected String content;
+  protected double weight;
+  protected BaggageSecurityStatus securityStatus;
+
+  public BaggageSecurityStatus getSecurityStatus() {
+    return securityStatus;
+  }
+
+  public double getWeight() {
+    return weight;
+  }
+
+  public String getUuid() {
+	    return uuid;
+  }
+
+  public String getContent() {
+	    return content;
+  }
+
+  public void setWeight(final double weight) {
+    this.weight = weight;
+  }
+
+  public void setSecurityStatus(final BaggageSecurityStatus securityStatus) {
+	    this.securityStatus = securityStatus;
+  }
 }

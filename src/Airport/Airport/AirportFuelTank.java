@@ -21,4 +21,8 @@ public class AirportFuelTank{
         amount = amount + a;
         return amount;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

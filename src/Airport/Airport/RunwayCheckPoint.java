@@ -1,5 +1,7 @@
 package Airport.Airport;
 
+import Airplane.Aircraft.Airplane;
+
 public class RunwayCheckPoint{
     private RunwayCheckPointID runwayCheckPointID;
     private boolean isOccupied;
@@ -9,5 +11,22 @@ public class RunwayCheckPoint{
         this.runwayCheckPointID = runwayCheckpointID;
         this.isOccupied = isOccupied;
         this.airplane = airplane;
+    }
+
+
+    public RunwayCheckPointID getRunwayCheckPointID() {
+        return runwayCheckPointID;
+    }
+
+    public void setRunwayCheckPointID(RunwayCheckPointID runwayCheckPointID) {
+        this.runwayCheckPointID = runwayCheckPointID;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
     }
 }

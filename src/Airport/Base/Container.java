@@ -1,6 +1,7 @@
 package Airport.Base;
 
 import java.util.Stack;
+import java.util.UUID;
 
 public class Container{
     private String uuid;
@@ -12,9 +13,10 @@ public class Container{
     private String qrCodeIDCategory;
     private Stack<Baggage> baggageList;
 
-    public Container(String uuid, ContainerType type, String id, ContainerCategory category, ContainerProfile profile,
+    public Container(ContainerType type, String id, ContainerCategory category, ContainerProfile profile,
                      String barCodeIDCategory, String qrCodeIDCategory, Stack<Baggage> baggageList){
-        this.uuid = uuid;
+        UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
         this.type = type;
         this.id = id;
         this.category = category;
@@ -24,6 +26,10 @@ public class Container{
         this.baggageList = baggageList;
     }
 
+    ///
+    /// Getter:
+    ///
+
     public ContainerType getType(){
         return this.type;
     }
@@ -32,16 +38,52 @@ public class Container{
         double weight = 0;
         Stack<Baggage> temp = null;
         Baggage baggage = null;
-        while(baggageList.peek()) != null){
+        while((baggageList.peek()) != null){
             //stack ist leer
            baggage = baggageList.pop();
            weight = weight + baggage.getWeight();
            temp.push(baggage);
         }
-        while(temp.peek() != null)){
+        while((temp.peek() != null)){
             baggageList.push(temp.pop());
         }
         return weight;
     }
 
+    public Stack<Baggage> getBaggageList() {
+        return baggageList;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getBarCodeIDCategory() {
+        return barCodeIDCategory;
+    }
+
+    public ContainerCategory getCategory() {
+        return category;
+    }
+
+    public String getQrCodeIDCategory() {
+        return qrCodeIDCategory;
+    }
+
+    public ContainerProfile getProfile() {
+        return profile;
+    }
+
+    ///
+    /// Setter:
+    ///
+
+
+    public void setBaggageList(Stack<Baggage> baggageList) {
+        this.baggageList = baggageList;
+    }
 }

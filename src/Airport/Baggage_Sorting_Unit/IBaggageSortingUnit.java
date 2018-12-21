@@ -1,22 +1,27 @@
 package Airport.Baggage_Sorting_Unit;
 
-
+import Airport.Airport.Gate;
+import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
 import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageDepot;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
+import Airport.Base.Baggage;
+import Airport.Base.DestinationBox;
+import Airport.Base.Employee;
+import Airport.Base.LuggageTub;
 
 public interface IBaggageSortingUnit {
 
-    void executeRequest(Airport.Airport.GateID gateID);
+    void executeRequest(GateID gateID);
 
-    void loginBaggageScanner(Airport.Base.Employee employee, String password);
+    void loginBaggageScanner(Employee employee, String password);
 
     void logoutBaggageScanner();
 
-    boolean scan(Airport.Base.Baggage baggage, String pattern);
+    boolean scan(Baggage baggage, String pattern);
 
-    void handOverToCustoms(Airport.Base.Baggage baggage);
+    void handOverToCustoms(Baggage baggage);
 
     void throwOff(LuggageTub luggageTub, DestinationBox destinationBox);
 
@@ -24,7 +29,7 @@ public interface IBaggageSortingUnit {
 
     void sendContainerLifterToGate();
 
-    void optimizeAirplaneLoading();
+    LoadingStrategy optimizeAirplaneLoading();
 
     void setBaggageVehicle(IBaggageVehicle vehicle);
 
@@ -39,4 +44,8 @@ public interface IBaggageSortingUnit {
     BaggageDepot getDepot();
 
     IBaggageVehicle getVehicle();
+
+    Gate getGate();
+
+    void setGate(Gate gate);
 }

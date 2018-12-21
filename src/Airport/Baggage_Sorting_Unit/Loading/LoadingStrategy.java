@@ -5,9 +5,12 @@ import Airplane.stowage_cargo.Stowage;
 import java.util.ArrayList;
 
 public class LoadingStrategy {
-
-    private Airplane.stowage_cargo.Stowage stowage;
+    private Stowage stowage;
     private ArrayList<String> containerIDList;
+
+    public LoadingStrategy(ArrayList<String> containerIDList) {
+        this.containerIDList = containerIDList;
+    }
 
     public ArrayList<String> getContainerIDList() {
         return containerIDList;

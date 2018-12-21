@@ -1,30 +1,34 @@
 package Airport.Baggage_Sorting_Unit.Receipts;
 
+import Airport.Base.DestinationBox;
+
+import java.util.UUID;
+
 public class BaggageSortingUnitReceipt {
 
-    private String uuid;
+    private final String uuid;
 
-    private int numberOfBaggageScanned;
+    private final int numberOfBaggageScanned;
 
-    private int numberOfDangerousBaggage;
+    private final int numberOfDangerousBaggage;
 
-    private DestinationBox destinationBox;
+    private final DestinationBox destinationBox;
 
-    private int numberOfBaggageFirstClass;
+    private final int numberOfBaggageFirstClass;
 
-    private int numberOfBaggageBusinessClass;
+    private final int numberOfBaggageBusinessClass;
 
-    private int numberOfBaggageEconomyClass;
+    private final int numberOfBaggageEconomyClass;
 
-    private int numberOfContainerNormalBaggage;
+    private final int numberOfContainerNormalBaggage;
 
-    private int numberOfContainerBulkyBaggage;
+    private final int numberOfContainerBulkyBaggage;
 
-    public BaggageSortingUnitReceipt(final String uuid, int numberOfContainerBulkyBaggage,
-                                     int numberOfContainerNormalBaggage, int numberOfBaggageEconomyClass,
-                                     int numberOfBaggageBusinessClass, int numberOfBaggageFirstClass,
-                                     DestinationBox destinationBox, int numberOfDangerousBaggage, int numberOfBaggageScanned) {
-        this.uuid = uuid;
+    public BaggageSortingUnitReceipt(final int numberOfContainerBulkyBaggage,
+                                     final int numberOfContainerNormalBaggage, final int numberOfBaggageEconomyClass,
+                                     final int numberOfBaggageBusinessClass, final int numberOfBaggageFirstClass,
+                                     final DestinationBox destinationBox, final int numberOfDangerousBaggage, final int numberOfBaggageScanned) {
+        this.uuid = UUID.randomUUID().toString();
         this.numberOfBaggageScanned = numberOfBaggageScanned;
 
         this.numberOfDangerousBaggage = numberOfDangerousBaggage;
@@ -40,5 +44,18 @@ public class BaggageSortingUnitReceipt {
         this.numberOfContainerNormalBaggage = numberOfContainerNormalBaggage;
 
         this.numberOfContainerBulkyBaggage = numberOfContainerBulkyBaggage;
+    }
+
+    @Override
+    public String toString() {
+        return ("UUID: " + uuid
+                + "\nNumber of baggage scanned: " + numberOfBaggageScanned
+                + "\nNumber of dangerous baggage: " + numberOfDangerousBaggage
+                + "\nNumber of first class baggage: " + numberOfBaggageFirstClass
+                + "\nNumber of business class baggage: " + numberOfBaggageBusinessClass
+                + "\nNumber of economy class baggage: " + numberOfBaggageEconomyClass
+                + "\nNumber of containers with normal baggage: " + numberOfContainerNormalBaggage
+                + "\nNumber of containers with bulky baggage: " + numberOfContainerBulkyBaggage
+                + "\nState of the destination box: " + destinationBox);
     }
 }

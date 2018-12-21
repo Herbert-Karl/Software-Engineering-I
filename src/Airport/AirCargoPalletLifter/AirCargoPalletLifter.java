@@ -1,5 +1,6 @@
 package Airport.AirCargoPalletLifter;
 
+import Airplane.Aircraft.Airplane;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;

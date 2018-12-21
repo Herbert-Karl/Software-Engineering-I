@@ -1,10 +1,11 @@
 package Airport.Base;
 
+import java.util.UUID;
+
 public class CabinBaggage extends Baggage{
-    public CabinBaggage(String uuid, String content, double weight){
-        this.uuid = uuid;
-        this.content = content;
-        this.weight = weight;
-        this.securityStatus = null;
+    public CabinBaggage(String content){
+    	final UUID uuid = UUID.randomUUID();
+        this.uuid = uuid.toString();
+    	this.content = content;
     }
 }

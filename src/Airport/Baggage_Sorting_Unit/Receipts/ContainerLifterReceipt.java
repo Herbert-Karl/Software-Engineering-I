@@ -1,28 +1,33 @@
 package Airport.Baggage_Sorting_Unit.Receipts;
 
-import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
+import Airport.Airport.GateID;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class ContainerLifterReceipt {
 
-    private String uuid;
+    private final String uuid;
 
-    private String id;
+    private final String containerLifterID;
 
-    private String type;
+    private final GateID gateID;
 
-    private IBaggageSortingUnit baggageSortingUnit;
+    private final int numberOfContainer;
 
-    @SuppressWarnings("CollectionDeclaredAsConcreteClass")
-    private ArrayList<Airport.Base.Baggage> selectedBaggageList;
+    private final ArrayList<String> containerIDList;
 
-    public ContainerLifterReceipt(String uuid, String id, String type,
-                                  IBaggageSortingUnit baggageSortingUnit, ArrayList<Airport.Base.Baggage> selectedBaggageList) {
-        this.uuid = uuid;
-        this.id = id;
-        this.type = type;
-        this.baggageSortingUnit = baggageSortingUnit;
-        this.selectedBaggageList = selectedBaggageList;
+    public ContainerLifterReceipt(String containerLifterID, GateID gateID, int numberOfContainer, ArrayList<String> containerIDList) {
+        this.uuid = UUID.randomUUID().toString();
+        this.containerLifterID = containerLifterID;
+        this.gateID = gateID;
+        this.numberOfContainer = numberOfContainer;
+        this.containerIDList = containerIDList;
+    }
+
+    @Override
+    public String toString() {
+        return ("UUID: " + uuid + "\nContainer lifter's ID: " + containerLifterID + "\nID of Gate: " + gateID + "\nNumber of container: "
+                + numberOfContainer + "\nContainers' IDs: " + containerIDList);
     }
 }
