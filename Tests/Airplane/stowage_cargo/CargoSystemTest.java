@@ -85,6 +85,36 @@ class CargoSystemTest extends TestCase {
 
     @Test
     void lock() {
+        this.initial();
+
+        //Muss Exception werfen
+        try {
+            cargoSystem.lock();
+            assertFalse(true);
+        }
+        catch (RuntimeException e) {
+            assertFalse(false);
+        }
+
+        //Darf keine Exception werfen
+        try {
+            cargoSystem.secure();
+            cargoSystem.lock();
+            assertFalse(false);
+        }
+        catch (RuntimeException e) {
+            assertFalse(true);
+        }
+
+        //Muss Exception werfen
+        try {
+            cargoSystem.lock();
+            assertFalse(true);
+        }
+        catch (RuntimeException e) {
+            assertFalse(false);
+        }
+
 
     }
 
