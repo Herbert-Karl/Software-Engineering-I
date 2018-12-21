@@ -176,8 +176,9 @@ public class Airport{
         }
     }
 
-    public boolean disconnectAirplane(Airplane airplane, Gate gate){
-        if ((gate.getAirplane() != null) && (gate.getAirplane() == airplane)) {
+    public boolean disconnectAirplane(Airplane airplane, GateID gateID){
+        Gate gate = getGatefromID(gateID);		
+    	if ((gate.getAirplane() != null) && (gate.getAirplane() == airplane)) {
             gate.disconnectAirplane();
             return true;
         }
@@ -186,8 +187,9 @@ public class Airport{
             return false;}
     }
 
-    public boolean executeServiceWasteWater(Gate gate){
-        ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
+    public boolean executeServiceWasteWater(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
         serviceVehicle.executeRequest(gate.getGateID());
         serviceVehicle.returnToAirportResourcePool();
         return true;
@@ -248,13 +250,15 @@ public class Airport{
         return true;
     }
 
-    public boolean executeBoardingControl(Gate gate){
-        securityMediator.executeRequest();
+    public boolean executeBoardingControl(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	securityMediator.executeRequest();
         return true;
     }
 
-    public boolean executePushback(Gate gate){
-        PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
+    public boolean executePushback(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
         TaxiWay taxiway = apronControl.search(TaxiCenterLine.yellow, gate.getGateID(), RunwayID.R26L);
         // TODO: Übergabeparameter korrekt?
         pushBackVehicle.execute(gate.getAirplane(), taxiway);
