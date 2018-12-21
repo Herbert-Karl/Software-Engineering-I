@@ -72,8 +72,12 @@ public class CustomsOfficer {
     Customs customs;
 
     boolean verify (Passport passport, BoardingPass boardingPass){
-        //passenger auf passport und boardingPass überprüfen und bool returnen
-        return false;
+        if (boardingPass.getPassenger()==passport.getPassenger()) {
+            return true;
+        }
+            else {
+            return false;
+        }
     }
 
     void take (Baggage baggage){

@@ -64,7 +64,7 @@ public class CustomsReceipt {
         this.numberOfKeepSafeItem = numberOfKeepSafeItem;
     }
 
-    public CustomsReceipt(String uiid, int numberOfPassportVerified, int numberOfBoardingPassVerified, int numberOfBaggageScanned, int numberOfBaggageExcessAmountMoney, int numberOfKeepSafeBaggage, int numberOfKeepSafeItem) {
+    public CustomsReceipt(int numberOfPassportVerified, int numberOfBoardingPassVerified, int numberOfBaggageScanned, int numberOfBaggageExcessAmountMoney, int numberOfKeepSafeBaggage, int numberOfKeepSafeItem) {
 
         this.uiid = java.util.UUID.randomUUID().toString();
         this.numberOfPassportVerified = numberOfPassportVerified;

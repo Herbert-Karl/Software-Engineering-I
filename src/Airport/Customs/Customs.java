@@ -51,20 +51,21 @@ public class Customs implements ICustoms {
     }
 
     public void executeRequest (IBaggageSortingUnitRoboter baggageSortingUnitRoboter){
-
+        //?????????????????????????
     }
 
     public int handOverBaggageToFederalPolice ( ArrayList<Baggage> baggageList){
         for (Baggage baggage : baggageList){
             federalPolice.keepSafe(baggage);
         }
-
+        return baggageList.size();
     } //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
     public int handOverItemsToFederalPolice ( ArrayList<Item> itemList ){
         for (Item item :itemList ) {
             federalPolice.keepSafe(item);
         }
+        return itemList.size();
     } //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
     public void notifyGroundOperations (CustomsReceipt customsReceipt){
