@@ -15,9 +15,13 @@ class CargoSystemTest extends TestCase {
     private String type = "type12";
     private String id = "id12212";
 
+    private Container container;
+    private AirCargoPallet airCargoPallet;
+
     private void initial() {
         cargoSystem = new CargoSystem(manu, type, id);
     }
+
 
     @Test
     void version() {
@@ -27,14 +31,14 @@ class CargoSystemTest extends TestCase {
     }
 
     @Test
-    void load() {
+    void loadContainer() {
         this.initial();
 
         Stack<Baggage> baggageStack = new Stack<>();
         NormalBaggage normalBaggage = new NormalBaggage("content", 100, null);
         baggageStack.push(normalBaggage);
 
-        Container container = new Container(ContainerType.AKE, id, ContainerCategory.Normal, null,
+        container = new Container(ContainerType.AKE, id, ContainerCategory.Normal, null,
                 "barcode", "qrcode", baggageStack);
 
         double expected = container.getWeight() + cargoSystem.determineTotalWeightContainer();
@@ -43,16 +47,28 @@ class CargoSystemTest extends TestCase {
     }
 
     @Test
-    void load1() {
+    void unloadContainer() {
+        assertEquals(container, cargoSystem.unloadContainer().get(0));
+        assertEquals(0, cargoSystem.determineTotalWeightContainer());
+    }
+
+    @Test
+    void loadPallet() {
         this.initial();
 
-        AirCargoPallet airCargoPallet = new AirCargoPallet("uuid", "type", "id");
+        airCargoPallet = new AirCargoPallet("uuid", "type", "id");
         Item[] item = {new Item(0, "Kartoffeln", 100)};
         airCargoPallet.setItemList(item);
 
         double expected = airCargoPallet.getWeight() + cargoSystem.determineTotalWeightAirCargoPallet();
         cargoSystem.load(airCargoPallet, RearStowagePositionID.SR01);
         assertEquals(expected, cargoSystem.determineTotalWeightAirCargoPallet());
+    }
+
+    @Test
+    void unloadAirCargoPallet() {
+        assertEquals(airCargoPallet, cargoSystem.unloadAirCargoPallet());
+        assertEquals(0, cargoSystem.determineTotalWeightAirCargoPallet());
     }
 
     @Test
@@ -80,11 +96,5 @@ class CargoSystemTest extends TestCase {
     void secure() {
     }
 
-    @Test
-    void unloadContainer() {
-    }
 
-    @Test
-    void unloadAirCargoPallet() {
-    }
 }
