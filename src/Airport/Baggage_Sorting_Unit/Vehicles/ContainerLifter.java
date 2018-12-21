@@ -241,7 +241,7 @@ public class ContainerLifter implements IContainerLifter {
     public void stop() {
         speedInMPH = 0;
     }
-
+  
     @Override
     public void setFlashingLightOff() {
         isFlashingLightOn = false;

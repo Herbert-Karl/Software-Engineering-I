@@ -88,6 +88,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     private void setGate(final GateID id) {
         gate = Airport.getInstance().getGatefromID(id);
     }
+  
+    public void setRoboter(IBaggageSortingUnitRoboter roboter)
+    {
+      this.roboter = roboter;
+    }
 
     public ArrayList<Employee> getEmployeeList() {
         return employeeList;
@@ -225,7 +230,6 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
         baggageVehicle.disconnect();
 
         baggageVehicle.returnToBaggageSortingUnit();
-
         containerLifter.disconnectFromAirplane();
 
         containerLifter.notifyGroundOperations(new ContainerLifterReceipt(containerLifter.getId(), containerLifter.getGate().getGateID(), containerLifter.getNumberOfContainerLoaded(), containerLifter.getContainerIDList()));
