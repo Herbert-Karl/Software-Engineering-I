@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import Airplane.Aircraft.Airplane;
+import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.ApronControl.ApronControl;
 import Airport.ApronControl.Apron;
@@ -59,7 +60,6 @@ public class Airport{
         this.tower = tower;
     }
 
-    public Airport(){
 
     }
 
