@@ -154,4 +154,21 @@ class AirportTest {
         assertEquals(testAirport.getApronControl(), testApronControl);
         assertEquals(testAirport.getTower(), testTower);
     }
+
+    @Test
+    public void testAirportInit(){
+
+        testAirport.init(testAirport);
+
+        PassengerBaggageDatabase testPassengerBaggageDatabase = new PassengerBaggageDatabase();
+        assertEquals(testAirport.getPassengerList(), testPassengerBaggageDatabase);
+
+        AirportResourcePool referenceResourcePool = new AirportResourcePool(50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, testAirport);
+        assertEquals(testAirport.getResourcePool(), referenceResourcePool);
+
+        ArrayList<Gate> referenceGateList = new ArrayList<Gate>(10);
+        assertEquals(testAirport.getGateList(), referenceGateList);
+
+
+    }
 }
