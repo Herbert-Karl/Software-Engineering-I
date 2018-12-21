@@ -47,7 +47,16 @@ public class AirportResourcePool{
 
     public AirportResourcePool(){}
 
-    //
+    public ArrayList<AirCargoPalletLifter> getAirCargoPalletLifterList()
+    {
+        return airCargoPalletLifterList;
+    }
+
+    public ArrayList<AirCargoPalletVehicle> getAirCargoPalletVehicleList()
+    {
+        return airCargoPalletVehicleList;
+    }
+//
     // Generate Methoden
     //
 

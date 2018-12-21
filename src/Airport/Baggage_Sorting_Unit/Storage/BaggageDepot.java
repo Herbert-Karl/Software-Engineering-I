@@ -38,7 +38,7 @@ public class BaggageDepot {
   /**
    * adds baggage to baggageList
    */
-  private void store(final Baggage baggage) {
+  public void store(final Baggage baggage) {
     baggageList.add(baggage);
   }
 

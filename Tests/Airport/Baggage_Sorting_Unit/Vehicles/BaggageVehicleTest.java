@@ -64,11 +64,19 @@ class BaggageVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void transferContainerToLifter()
     {
+        Container container = new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                "qrCodeIDCatagory", new Stack<Baggage>());
+        ContainerLifter containerLifter = new ContainerLifter("uuid", "id", "type");
+        baggageVehicle.setContainerLifter(containerLifter);
+        baggageVehicle.store(container);
+        baggageVehicle.transferContainerToLifter();
+        assertNull(baggageVehicle.getContainer());
+        assertEquals(container, containerLifter.getContainer());
     }
 
     /**

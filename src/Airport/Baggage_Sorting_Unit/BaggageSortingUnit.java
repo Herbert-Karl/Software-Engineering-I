@@ -92,6 +92,11 @@ public class BaggageSortingUnit implements IBaggageSortingUnit {
     this.gate = gate;
   }
 
+  public void setRoboter(IBaggageSortingUnitRoboter roboter)
+  {
+    this.roboter = roboter;
+  }
+
   public ArrayList<Employee> getEmployeeList() {
     return employeeList;
   }
