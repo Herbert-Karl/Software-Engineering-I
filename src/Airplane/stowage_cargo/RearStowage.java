@@ -27,11 +27,10 @@ public class RearStowage extends Stowage {
     }
 
     //  Hilfsfunktion zum Leeren des Laderaums
-    // entfernt das erste Objekt in der ArrayList
-    // entsprechend beachtet die Funktion nicht die Positionen
+    // entfernt das letzte Objekt in der ArrayList
     protected RearStowagePosition remove_from_positionList() {
         if(this.positionList.size() == 0) { return null; }
-        return this.positionList.remove(0);
+        return this.positionList.remove(this.positionList.size()-1);
     }
 
 }

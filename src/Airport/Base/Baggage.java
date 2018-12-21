@@ -16,11 +16,11 @@ public abstract class Baggage {
   public double getWeight() {
     return weight;
   }
-  
+
   public String getUuid() {
 	    return uuid;
   }
-  
+
   public String getContent() {
 	    return content;
   }
@@ -28,7 +28,7 @@ public abstract class Baggage {
   public void setWeight(final double weight) {
     this.weight = weight;
   }
-  
+
   public void setSecurityStatus(final BaggageSecurityStatus securityStatus) {
 	    this.securityStatus = securityStatus;
   }
