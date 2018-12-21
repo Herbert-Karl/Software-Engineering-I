@@ -80,27 +80,6 @@ class AirplaneTest {
     //private RightAileron testRightAileron;
     //private Rudder testRudder;
 
-    // ---Flight_Controls---
-    private FlightControlCollection flightControlCollection;
-    private Wing wing;
-    private Body body;
-    private ArrayList<IDroopNose> idroopNoseArrayList;
-    private ArrayList<IElevator> iElevatorArrayList;
-    //    private ArrayList<IFlap> iflapArrayList;
-    private ArrayList<ISlat> islatArrayList;
-    private ArrayList<ILeftAileron> ileftAileronArrayList;
-    private ArrayList<IRightAileron> irightAileronArrayList;
-    private ArrayList<IRudder> irudderArrayList;
-    private ArrayList<ISpoiler> ispoilerArrayList;
-
-    //    private DroopNose droopNose;
-//    private Elevator elevator;
-    private Flap flapA350TOInboard, flapA350TOOutboard, flapA350APP;
-//    private Slat slat;
-//    private LeftAileron leftAileron;
-//    private RightAileron rightAileron;
-//    private Rudder rudder;
-//    private Spoiler spoiler;
 
     // ---Sensors---
     private ExhaustGasTemperatureSensor exhaustGasTemperatureSensor;
@@ -178,26 +157,6 @@ class AirplaneTest {
         //testRightAileron = new RightAileron();
         //testRudder = new Rudder();
 
-        // ---Flight_Controls---
-        wing = new Wing(testAirplane);
-        body = new Body(testAirplane);
-        idroopNoseArrayList = wing.getDroopNoseArrayList();
-        iElevatorArrayList = body.getElevatorArrayList();
-//        iflapArrayList = wing.getFlapArrayList();
-        islatArrayList = wing.getSlatArrayList();
-        ileftAileronArrayList = wing.getLeftAileronArrayList();
-        irightAileronArrayList = wing.getRightAileronArrayList();
-        irudderArrayList = body.getRudderArrayList();
-        ispoilerArrayList = wing.getSpoilerArrayList();
-//        droopNose = new DroopNose("DroopNoseHersteller", "type01");
-//        elevator = new Elevator("ElevatorHersteller", "type01");
-        flapA350APP = new Flap("FlapHersteller", "type01", FlapType.A350APP);
-        flapA350TOInboard = new Flap("FlapHersteller", "type02", FlapType.A350TOInboard);
-        flapA350TOOutboard = new Flap("FlapHersteller", "type03", FlapType.A350TOOutboard);
-//        leftAileron = new LeftAileron("AileronHersteller", "type01");
-//        rightAileron = new RightAileron("AileronHersteller", "typpe01");
-//        rudder = new Rudder("RudderHersteller", "type01");
-//        spoiler = new Spoiler("SpoilerHersteller", "type01");
 
         // ---Sensors---
         exhaustGasTemperatureSensor = new ExhaustGasTemperatureSensor();
@@ -287,39 +246,6 @@ class AirplaneTest {
         //Methode isOn() zu getIsOn() �ndern...
         assertTrue(testRouteManagement.isOn());
 
-        // ---Flight_Controls---
-        //
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(0, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(0, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(0, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(0, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(0, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(0, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
-//        assertEquals(0, slat.getDegree());
-//        assertEquals(0, leftAileron.getDegree());
-//        assertEquals(0, rightAileron.getDegree());
-//        assertEquals(0, rudder.getDegree());
-//        assertEquals(0, spoiler.getDegree());
 
         // ---Sensors---
         assertTrue(!exhaustGasTemperatureSensor.version().isEmpty());
@@ -362,9 +288,16 @@ class AirplaneTest {
         //measure(airFlow:string):int
 
         // version():String
-        assertTrue(!oxygenSensor.version().isEmpty());
+        assertTrue(!shockSensor.version().isEmpty());
         assertTrue(shockSensor.isCalibrated());
         assertFalse(shockSensor.isShockDetected());
+        // measure():int
+        // calibrate()
+        // calibrate(level:double)
+
+        assertTrue(!stallingSensor.version().isEmpty());
+
+
 
     }
 
@@ -386,45 +319,6 @@ class AirplaneTest {
         //Klasse WaterSystem ben�tigt (Methode on() ben�tigt)
         assertTrue(testWaterSystem.getIsOn());
 
-        // ---Flight_Controls---
-
-        /*assertEquals(-22, droopNose.getDegree());
-        assertEquals(10, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        assertEquals(0, slat.getDegree());
-        assertEquals(0, leftAileron.getDegree());
-        assertEquals(0, rightAileron.getDegree());
-        assertEquals(0, rudder.getDegree());
-        assertEquals(0, spoiler.getDegree());*/
-
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(-22, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(10, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(0, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(0, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(0, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(0, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
     }
 
     @Test
@@ -435,45 +329,6 @@ class AirplaneTest {
         assertTrue(testTaxiLight.getIsOn());
         //Klasse APU ben�tigt (Methode: increaseRPM(250))
 
-        // ---Flight_Controls---
-        //
-        /*assertEquals(0, droopNose.getDegree());
-        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        assertEquals(0, slat.getDegree());
-        assertEquals(0, leftAileron.getDegree());
-        assertEquals(0, rightAileron.getDegree());
-        assertEquals(0, rudder.getDegree());
-        assertEquals(0, spoiler.getDegree());*/
-
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(0, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(0, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(0, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(0, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(0, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(0, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
     }
 
     @Test
@@ -483,44 +338,6 @@ class AirplaneTest {
         //Klasse Engine ben�tigt (Methoden increase(), decrease(), getIsAlarm() und shutdown() ben�tigt)
         //Klasse FireDetector ben�tigt (Methode scan() ben�tigt)
 
-        // ---Flight_Controls---
-        /*assertEquals(-25, droopNose.getDegree());
-        assertEquals(10, elevator.getDegree());
-        assertEquals(9, flapA350APP.getDegree());
-        assertEquals(6, flapA350TOInboard.getDegree());
-        assertEquals(12, flapA350TOOutboard.getDegree());
-        assertEquals(0, rightAileron.getDegree());
-        assertEquals(0, leftAileron.getDegree());
-        assertEquals(0, rudder.getDegree());
-        assertEquals(-5, slat.getDegree());
-        assertEquals(0, spoiler.getDegree());*/
-
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(-25, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(10, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(9, flapA350APP.getDegree());
-        assertEquals(6, flapA350TOOutboard.getDegree());
-        assertEquals(12, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(-5, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(0, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(0, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(0, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
     }
 
     @Test
@@ -531,43 +348,7 @@ class AirplaneTest {
         //Klasse LeftAileron ben�tigt (Methoden down() und neutral() ben�tigt)
         //Klasse Rudder ben�tigt (Methoden fullRight() und neutral() ben�tigt)
 
-        // ---Flight_Controls---
-        /*assertEquals(0, droopNose.getDegree());
-        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(10, rightAileron.getDegree());
-        assertEquals(-10, leftAileron.getDegree());
-        assertEquals(15, rudder.getDegree());
-        assertEquals(0, slat.getDegree());
-        assertEquals(0, spoiler.getDegree());*/
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(0, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(0, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(0, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(-10, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(10, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(15, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
+
 
     }
 
@@ -579,44 +360,7 @@ class AirplaneTest {
         //Klasse LeftAileron ben�tigt (Methoden up() und neutral() ben�tigt)
         //Klasse Rudder ben�tigt (Methoden fullLeft() und neutral() ben�tigt)
 
-        // ---Flight_Controls---
-        /*assertEquals(0, droopNose.getDegree());
-        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(-10, rightAileron.getDegree());
-        assertEquals(10, leftAileron.getDegree());
-        assertEquals(-15, rudder.getDegree());
-        assertEquals(0, slat.getDegree());
-        assertEquals(0, spoiler.getDegree());*/
 
-        for (IDroopNose iDroopNose : idroopNoseArrayList) {
-            assertEquals(0, iDroopNose.getDegree());
-        }
-        for (IElevator iElevator : iElevatorArrayList) {
-            assertEquals(0, iElevator.getDegree());
-        }
-//        assertEquals(0, droopNose.getDegree());
-//        assertEquals(0, elevator.getDegree());
-        assertEquals(0, flapA350APP.getDegree());
-        assertEquals(0, flapA350TOOutboard.getDegree());
-        assertEquals(0, flapA350TOInboard.getDegree());
-        for (ISlat iSlat : islatArrayList) {
-            assertEquals(0, iSlat.getDegree());
-        }
-        for (ILeftAileron iLeftAileron : ileftAileronArrayList) {
-            assertEquals(10, ileftAileronArrayList.getDegree());
-        }
-        for (IRightAileron iRightAileron : irightAileronArrayList) {
-            assertEquals(-10, irightAileronArrayList.getDegree());
-        }
-        for (IRudder iRudder : irudderArrayList) {
-            assertEquals(-15, irudderArrayList.getDegree());
-        }
-        for (ISpoiler iSpoiler : ispoilerArrayList) {
-            assertEquals(0, ispoilerArrayList.getDegree());
-        }
     }
 
 }
