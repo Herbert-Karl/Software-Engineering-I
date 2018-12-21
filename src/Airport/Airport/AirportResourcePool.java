@@ -108,15 +108,9 @@ public class AirportResourcePool{
 
     private void generateContainerLifter(int anzahl){
         containerLifterList = new ArrayList(anzahl);
-        int zaehler = 2500;
-        //type?
         for(int i = 0; i<anzahl; i++) {
-            UUID uuid = UUID.randomUUID();
-            String id = "" + zaehler;
-           //NEED TO SET PARAMETERS
-           ContainerLifter containerLifter = new ContainerLifter(uuid.toString(), id, "");
+           ContainerLifter containerLifter = new ContainerLifter("");
             containerLifterList.add(containerLifter);
-            zaehler++;
         }
     }
 
@@ -127,7 +121,7 @@ public class AirportResourcePool{
         for(int i = 0; i<anzahl; i++){
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            BaggageVehicle baggageVehicle = new BaggageVehicle(uuid.toString(), id, "", null);
+            BaggageVehicle baggageVehicle = new BaggageVehicle("", airport.getBaggageSortingUnit());
             baggageVehicleList.add(baggageVehicle);
             zaehler++;
         }

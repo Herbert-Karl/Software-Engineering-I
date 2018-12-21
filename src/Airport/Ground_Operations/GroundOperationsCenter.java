@@ -159,10 +159,8 @@ public class GroundOperationsCenter implements IGroundOperationsCenter, IGroundO
 
     @Override
     public boolean assign(ISkyTankingVehicle skyTankingVehicle, Gate gate) {
-        if(skyTankingVehicle.getGate() == null) {
-            skyTankingVehicle.setGate(gate.getGateID());
-            return true;
-        } else {return false;}
+        skyTankingVehicle.setGate(gate.getGateID());
+        return true;
     }
 
     @Override
