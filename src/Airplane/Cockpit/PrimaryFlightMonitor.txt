@@ -1,0 +1,224 @@
+example: APU_(isStarted)
+
+APU
+	isStarted
+	rpm
+	
+Engine
+	isStarted
+	rpm
+	isFire
+
+Gear
+	isDown
+	
+HydraulicPump
+	amount
+
+Wheel
+	brake
+	
+Brake
+	percentage
+	
+AirConditioning
+	temperature
+	isOn
+	
+WasteSystem
+	isOn
+
+WaterSystem
+	isOn
+	isFilled
+	
+EscapeSlide
+	isActivated
+	
+BulkCargoDoor
+	isClosed
+	isLocked
+	
+CrewDoor
+	isLocked
+	isClosed
+	
+EmergencyExitDoor
+	isLocked
+	isClosed
+	
+GearDoor
+	isClosed
+	isLocked
+	
+FirstClasSeat
+	isSmokingOn
+	isSeatBeltSignOn
+	
+BusinessClasSeat
+	isSmokingOn
+	isSeatBeltSignOn
+	
+TouristClasSeat
+	isSmokingOn
+	isSeatBeltSignOn
+		
+APUOilTank
+	level
+	
+Battery
+	percentage
+	
+EngineOilTank
+	level
+
+FuelTank
+	amount
+	
+NitrogenBottle
+	amount
+	
+OxygenBottle
+	amount
+	
+PotableWaterTank
+	amount
+	isLocked
+	
+WasteWaterTank
+	isLocked
+	
+Fireextinguisher
+	percentage
+	
+DeIcingSystem
+	amount	
+	isActivated
+		
+AntiCollisionLight
+	isOn
+	
+CargoCompartmentLight
+	isOn
+	
+LandingLight
+	isOn
+	
+LeftNavigationLight
+	isOn	
+	
+LogoLight
+	isOn	
+	
+RightNavigationLight
+	isOn
+	
+TailNavigationLight
+	isOn	
+
+TaxiLight
+	isOn
+	
+TCASLight
+	isOn
+	
+DroopNose
+	degree
+	
+Elevator
+	degree
+	
+Flap
+	degree
+	
+Slat
+	degree
+	
+LeftAileron
+	degree
+
+RightAileron
+	degree
+	
+Rudder
+	degree
+	
+Spoiler
+	degree
+
+ExhaustGasTemperatureSensor
+	temperature
+	isAlarmMajor
+	isAlarmCritical
+	
+FuelFlowSensor
+	fuelFlow
+	
+FuelSensor
+	isAlarmReserve
+	isAlarmMajor
+	isAlarmCritical
+	
+IceDetectorProbe
+	isActivated
+	isIceDetected
+	
+FireDetector
+	isAlarm
+	
+OxygenSensor
+	isAlarm
+	
+ShockSensor
+	isCalibrated
+	isShockDetected
+
+StallingSensor
+	isAlarm
+
+TemperatureSensor
+	temperature
+	isAlarm
+	
+AirFlowSensor
+	airPressure
+	isAlarm
+
+PitotTube
+	isCleaned
+	velocity
+	
+RadarAltimeter
+	isOn
+	altitude
+	
+TCAS
+	isOn
+	isConnected
+	isAlarm
+	altitude
+
+TurbulentAirFlowSensor
+	isAlarm
+	
+Camera
+	isOn
+	factor
+	
+GPS
+	isOn
+	isConnected
+	
+Radar
+	isOn
+	
+SatCom
+	isConnected
+	
+VHF
+	isOn
+	selectedChannel
+	
+CargoSystem
+	isLocked
+	isSecured
