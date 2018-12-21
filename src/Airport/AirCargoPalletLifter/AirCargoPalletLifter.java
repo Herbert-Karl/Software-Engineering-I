@@ -1,6 +1,9 @@
 package Airport.AirCargoPalletLifter;
 
 import Airplane.Aircraft.Airplane;
+import Airplane.stowage_cargo.CargoSystem;
+import Airplane.stowage_cargo.RearStowagePositionID;
+import Airport.Airport.AirportResourcePool;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
@@ -129,13 +132,13 @@ public class AirCargoPalletLifter implements IAirCargoPalletLifter{
     @Override
     public void stop(){setSpeedInMPH(0);}
     @Override
-    public void setGate(GateID gateID){setGate(searchGateById(gateID));}
+    public void setGate(GateID gateID){this.gate.setGateID(gateID);}
     @Override
     public void connectToAirplane(Airplane airplane){setConnectToAirplane(airplane);}
     @Override
     public void up(){setDown(false);}
     @Override
-    public void transferAirCargoPalletToCargoSystem(){}
+    public void transferAirCargoPalletToCargoSystem(AirCargoPallet airCargoPallet, CargoSystem cargoSystem, RearStowagePositionID rearStowagePositionID){ cargoSystem.load(airCargoPallet,rearStowagePositionID);}
     @Override
     public void disconnectFromAirplane(){setConnectToAirplane(null);}
     @Override
@@ -143,13 +146,12 @@ public class AirCargoPalletLifter implements IAirCargoPalletLifter{
     @Override
     public void setFlashingLightOff(){ setFlashingLightOn(false);}
     @Override
-    public void returnToAirportResourcePool(){setGate(null);}
+    public void returnToAirportResourcePool(AirportResourcePool airportResourcePool){ airportResourcePool.returnResource(this);}
     @Override
     public void down(){setDown(true);}
     @Override
     public void notifyGroundOperations(AirCargoPalletLifterReceipt airCargoPalletLifterReceipt){}
 
-    public Gate searchGateById(GateID gateID) {
-    return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+
 }
-}
+

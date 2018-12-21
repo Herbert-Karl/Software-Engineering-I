@@ -58,4 +58,5 @@ public class AirCargoPalletLifterReceipt {
     public void setAirCargoPalletIDList(ArrayList airCargoPalletIDList) {
         this.airCargoPalletIDList = airCargoPalletIDList;
     }
+
 }

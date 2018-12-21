@@ -1,10 +1,12 @@
 package Airport.AirCargoPalletLifter;
 
+import Airport.Airport.Airport;
+import Airport.Airport.AirportResourcePool;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicel implements IAirCargoPalletVehicel {
+public class AirCargoPalletVehicle implements IAirCargoPalletVehicle {
     private String uuid;
     private String id;
     private String type;
@@ -15,7 +17,7 @@ public class AirCargoPalletVehicel implements IAirCargoPalletVehicel {
     private Gate gate;
     private AirCargoPalletPackingUnit airCargoPalletPackingUnit;
 
-    public AirCargoPalletVehicle(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, AirCargoPallet airCargoPallet, IAirCargoPalletLifter connectedAirCargoPalletLifter, Gate gate) {
+    public AirCargoPalletVehicle(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, AirCargoPallet airCargoPallet, IAirCargoPalletLifter connectedAirCargoPalletLifter, Gate gate, AirCargoPalletPackingUnit airCargoPalletPackingUnit) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -24,6 +26,7 @@ public class AirCargoPalletVehicel implements IAirCargoPalletVehicel {
         this.airCargoPallet = airCargoPallet;
         this.connectedAirCargoPalletLifter = connectedAirCargoPalletLifter;
         this.gate = gate;
+        this.airCargoPalletPackingUnit = airCargoPalletPackingUnit;
     }
 
     public String getUuid() {
@@ -96,20 +99,31 @@ public class AirCargoPalletVehicel implements IAirCargoPalletVehicel {
         this.airCargoPalletPackingUnit = airCargoPalletPackingUnit;
     }
 
-    public void setGate(Gate gate) {
-        this.gate = gate;
-    }
 
+@Override
     public void executeRequest(GateID gateID){}
-    public void store(AirCargoPallet airCargoPallet){}
+    @Override
+    public void store(AirCargoPallet airCargoPallet){this.airCargoPallet =airCargoPallet;}
+    @Override
     public void setFlashingLightOn(){setFlashingLightOn(true);}
+    @Override
     public void move(int speedInMPH){setSpeedInMPH(speedInMPH);}
+    @Override
     public void stop(){setSpeedInMPH(0);}
-    public void setGate(GateID gateID){setGate(gateID);}
+    @Override
+    public void setGate(GateID gateID){this.gate.setGateID(gateID);}
+    @Override
     public void connect(IAirCargoPalletLifter airCargoPalletLifter){setConnectedAirCargoPalletLifter(airCargoPalletLifter);}
-    public void transferPalletToLifter(){}
+    @Override
+    public void transferPalletToLifter(AirCargoPalletLifter airCargoPalletLifter, AirCargoPallet airCargoPallet){airCargoPalletLifter.setAirCargoPallet(airCargoPallet);
+    this.setAirCargoPallet(null);}
+    @Override
     public void disconnectFromLifter(){setConnectedAirCargoPalletLifter(null);}
-    public void returnToAirCargoPalletPackingUnit(){}
+    @Override
+    public void returnToAirCargoPalletPackingUnit(AirCargoPalletPackingUnit airCargoPalletPackingUnit){airCargoPalletPackingUnit.setAirCargoPalletVehicel(this);}
+    @Override
     public void setFlashingLightOff(){setFlashingLightOn(false);}
-    public void returnToAirportResourcePool(){}
+    @Override
+    public void returnToAirportResourcePool(AirportResourcePool airportResourcePool){airportResourcePool.returnResource(this);}
+
 }

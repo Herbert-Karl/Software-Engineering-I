@@ -1,5 +1,6 @@
 package Airport.AirCargoPalletLifter;
 
+import Airport.Airport.AirportResourcePool;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
@@ -9,12 +10,12 @@ public interface IAirCargoPalletVehicle {
     void setFlashingLightOn();
     void move(int speedInMPH);
     void stop();
-    void setGateID(GateID gateID);
+    void setGate(GateID gateID);
     void connect(IAirCargoPalletLifter airCargoPalletLifter);
-    void transferPalletToLifter(AirCargoPalletLifter airCargoPalletLifter);
+    void transferPalletToLifter(AirCargoPalletLifter airCargoPalletLifter,AirCargoPallet airCargoPallet);
     void disconnectFromLifter();
-    void returnToAirCargoPalletPackingUnit();
+    void returnToAirCargoPalletPackingUnit(AirCargoPalletPackingUnit airCargoPalletPackingUnit);
     void setFlashingLightOff();
-    void returnToAirportResourcePool();
+    void returnToAirportResourcePool(AirportResourcePool airportResourcePool);
 
 }

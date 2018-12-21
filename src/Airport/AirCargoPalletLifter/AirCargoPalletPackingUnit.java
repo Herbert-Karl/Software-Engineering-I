@@ -1,8 +1,11 @@
 package Airport.AirCargoPalletLifter;
 
+import Airport.Airport.Gate;
+import Airport.Baggage_Sorting_Unit.Loading.AirplaneLoadingManagement;
 import Airport.Base.AirCargoPallet;
 import Airport.Base.Employee;
 import Airport.Base.Item;
+import Airport.Customs.Customs;
 import Airport.Customs.ICustoms;
 import Airport.Scanner.IItemScanner;
 
@@ -76,26 +79,36 @@ public class AirCargoPalletPackingUnit implements IAirCargoPalletPackingUnit{
 
     @Override
     public boolean loginItemScanner(Employee employee, String password) {
-        return false;
+
+        if (employee.getIdCard().getPassword()== password ){return true;}
+        else {
+
+        return false;}
     }
 
     @Override
-    public void logoutItemScanner() {
+    public void logoutItemScanner() { itemScanner.logout();
 
     }
 
     @Override
     public boolean scan(Item item, String pattern) {
-        return false;
+        if (itemScanner.scan(item,pattern)){return true;}
+        else{
+        return false;}
     }
 
     @Override
     public void handOverToCustoms(Item item) {
+        ArrayList<Item> list = new ArrayList<>();
+        list.add(item);
+        customs.handOverItemsToFederalPolice(list);
+
 
     }
 
     @Override
-    public void sort(ArrayList<Item> itemList) {
+    public void sort(ArrayList<Item> itemList) { itemList.sort(null);
 
     }
 
@@ -105,27 +118,25 @@ public class AirCargoPalletPackingUnit implements IAirCargoPalletPackingUnit{
     }
 
     @Override
-    public void sendAirCargoPalletLifterToGate() {
+    public void sendAirCargoPalletLifterToGate(Gate gate,AirCargoPalletLifter airCargoPalletLifter) { airCargoPalletLifter.setGate(gate);
 
     }
 
     @Override
-    public void optimizeAirplaneLoading() {
+    public void optimizeAirplaneLoading() {}
+
+    @Override
+    public void setAirCargoPalletVehicle(AirCargoPalletVehicle airCargoPalletVehicle) { this.airCargoPalletVehicle = airCargoPalletVehicle;
 
     }
 
     @Override
-    public void setAirCargoPalletVehicle() {
+    public void loadAirCargoPalletVehicle(LoadingStrategy strategy,AirCargoPalletVehicle airCargoPalletVehicle) {
 
     }
 
     @Override
-    public void loadAirCargoPalletVehicle(LoadingStrategy strategy) {
-
-    }
-
-    @Override
-    public void sendAirCargoPalletVehicleToGate() {
+    public void sendAirCargoPalletVehicleToGate(Gate gate,AirCargoPalletVehicle airCargoPalletVehicle) { airCargoPalletVehicle.setGate(gate.getGateID());
 
     }
 }

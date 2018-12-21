@@ -1,5 +1,6 @@
 package Airport.AirCargoPalletLifter;
 
+import Airport.Airport.Gate;
 import Airport.Base.Employee;
 import Airport.Base.Item;
 
@@ -12,9 +13,9 @@ public interface IAirCargoPalletPackingUnit {
     void handOverToCustoms(Item item);
     void sort(ArrayList<Item> itemList);
     void pack ();
-    void sendAirCargoPalletLifterToGate();
+    void sendAirCargoPalletLifterToGate(Gate gate,AirCargoPalletLifter airCargoPalletLifter);
     void optimizeAirplaneLoading();
-    void setAirCargoPalletVehicle();
-    void loadAirCargoPalletVehicle(LoadingStrategy strategy);
-    void sendAirCargoPalletVehicleToGate();
+    void setAirCargoPalletVehicle(AirCargoPalletVehicle airCargoPalletVehicle);
+    void loadAirCargoPalletVehicle(LoadingStrategy strategy,AirCargoPalletVehicle airCargoPalletVehicle);
+    void sendAirCargoPalletVehicleToGate(Gate gate,AirCargoPalletVehicle airCargoPalletVehicle);
 }

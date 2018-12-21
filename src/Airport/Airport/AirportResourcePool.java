@@ -1,6 +1,7 @@
 package Airport.Airport;
 
 import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
+import Airport.AirCargoPalletLifter.AirCargoPalletVehicel;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
 import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
@@ -284,7 +285,7 @@ public class AirportResourcePool{
         employeeList.add(employee);
     }
 
-    public void returnResource(AirCargoPalletLifter airCargoPalletLifter){
+    public void returnResource(AirCargoPalletVehicel airCargoPalletLifter){
         airCargoPalletLifterList.add(airCargoPalletLifter);
     }
 
