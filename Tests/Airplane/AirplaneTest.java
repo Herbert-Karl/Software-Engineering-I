@@ -79,7 +79,7 @@ class AirplaneTest {
     //private LeftAileron testLeftAileron;
     //private RightAileron testRightAileron;
     //private Rudder testRudder;
-
+/*
 
     // ---Sensors---
     private ExhaustGasTemperatureSensor exhaustGasTemperatureSensor;
@@ -95,7 +95,7 @@ class AirplaneTest {
     private PitotTube pitotTube;
     private RadarAltimeter radarAltimeter;
     //    private TCAS tcas;
-    private TurbulentAirFlowSensor turbulentAirFlowSensor;
+    private TurbulentAirFlowSensor turbulentAirFlowSensor;*/
 
 
     @BeforeEach
@@ -157,7 +157,7 @@ class AirplaneTest {
         //testRightAileron = new RightAileron();
         //testRudder = new Rudder();
 
-
+/*
         // ---Sensors---
         exhaustGasTemperatureSensor = new ExhaustGasTemperatureSensor();
         fuelFlowSensor = new FuelFlowSensor();
@@ -172,7 +172,7 @@ class AirplaneTest {
         pitotTube = new PitotTube();
         radarAltimeter = new RadarAltimeter();
 //        tcas = new TCAS();
-        turbulentAirFlowSensor = new TurbulentAirFlowSensor();
+        turbulentAirFlowSensor = new TurbulentAirFlowSensor();*/
 
     }
 
@@ -247,7 +247,7 @@ class AirplaneTest {
         assertTrue(testRouteManagement.isOn());
 
 
-        // ---Sensors---
+/*        // ---Sensors---
         assertTrue(!exhaustGasTemperatureSensor.version().isEmpty());
         // measure()
         assertEquals(100, exhaustGasTemperatureSensor.getTemperature());
@@ -295,7 +295,7 @@ class AirplaneTest {
         // calibrate()
         // calibrate(level:double)
 
-        assertTrue(!stallingSensor.version().isEmpty());
+        assertTrue(!stallingSensor.version().isEmpty());*/
 
 
 
