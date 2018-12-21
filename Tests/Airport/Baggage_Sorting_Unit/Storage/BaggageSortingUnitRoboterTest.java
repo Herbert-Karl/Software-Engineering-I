@@ -3,7 +3,10 @@ package Airport.Baggage_Sorting_Unit.Storage;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
-import Airport.Base.*;
+import Airport.Base.Baggage;
+import Airport.Base.DestinationBox;
+import Airport.Base.Employee;
+import Airport.Base.NormalBaggage;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
 import Airport.Scanner.StringSearchAlgorithm;
@@ -13,10 +16,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BaggageSortingUnitRoboterTest
-{
+class BaggageSortingUnitRoboterTest {
     private BaggageSortingUnitRoboter baggageSortingUnitRoboter;
     private BaggageSortingUnit baggageSortingUnit;
 
@@ -36,8 +38,7 @@ class BaggageSortingUnitRoboterTest
      * Done
      */
     @Test
-    void moveBaggageToDepot()
-    {
+    void moveBaggageToDepot() {
         baggageSortingUnitRoboter.moveBaggageToDepot(baggageSortingUnitRoboter.getSelectedBaggageList());
         assertEquals(baggageSortingUnitRoboter.getSelectedBaggageList(), baggageSortingUnit.getBaggageDepot().getBaggageList());
     }
@@ -115,16 +116,14 @@ class BaggageSortingUnitRoboterTest
                 }
             }
         }
-
     }
 
     /**
      * Done
      */
     @Test
-    void loadContainer()
-    {
-        BaggageVehicle baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
+    void loadContainer() {
+        BaggageVehicle baggageVehicle = new BaggageVehicle("type", baggageSortingUnit);
         baggageSortingUnit.setBaggageVehicle(baggageVehicle);
         baggageSortingUnitRoboter.loadContainer();
 

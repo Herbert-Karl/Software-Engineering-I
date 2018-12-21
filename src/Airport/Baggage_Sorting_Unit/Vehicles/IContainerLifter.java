@@ -6,23 +6,23 @@ import Airport.Base.Container;
 
 public interface IContainerLifter extends IVehicle {
 
-  void connectToAirplane();
+    void connectToAirplane();
 
-  void up();
+    void up();
 
-  void transferContainerToCargoSystem();
+    void transferContainerToCargoSystem();
 
-  void down();
+    void down();
 
-  void disconnectFromAirplane();
+    void disconnectFromAirplane();
 
-  void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt);
+    void notifyGroundOperations(ContainerLifterReceipt containerLifterReceipt);
 
-  void returnToAirportResourcePool();
+    void returnToAirportResourcePool();
 
-  void setContainer(Container c);
+    void setContainer(Container c);
 
-  void setGate(Gate gate);
+    Gate getGate();
 
-  Gate getGate();
+    void setGate(Gate gate);
 }
