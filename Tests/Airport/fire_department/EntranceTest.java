@@ -13,7 +13,7 @@ class EntranceTest {
         List<testDoor> getdoorList();
         for (Door door : doorList) {                        //Jede Tür in dem Eingang durchgehen
             door.open();                                    //Methode ausführen
-            assertTrue(isOpen)                              //Hat die Methode die Attribute rich angepasst?
+            assertTrue(isOpen);                              //Hat die Methode die Attribute rich angepasst?
         }
     }
 
@@ -24,7 +24,7 @@ class EntranceTest {
         List<testDoor> getdoorList();
         for (Door door : doorList) {                        //Jede Tür in dem Eingang durchgehen
             door.close();                                    //Methode ausführen
-            assertFalse(isOpen)                              //Hat die Methode die Attribute rich angepasst?
+            assertFalse(isOpen);                              //Hat die Methode die Attribute rich angepasst?
         }
     }
 }
