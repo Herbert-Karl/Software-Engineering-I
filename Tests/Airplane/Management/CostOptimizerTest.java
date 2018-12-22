@@ -43,7 +43,7 @@ class CostOptimizerTest extends TestCase {
 
     @Test
     void optimize() {
-        //TODO
+
     }
 
     @Test
