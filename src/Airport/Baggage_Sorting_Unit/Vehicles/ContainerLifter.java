@@ -131,6 +131,11 @@ public class ContainerLifter implements IContainerLifter {
         return connectedAirplane;
     }
 
+    public Container getContainer()
+    {
+        return container;
+    }
+
     /**
      * sets container, adds its ID to the list and ups te number of containers loaded
      */
@@ -241,7 +246,7 @@ public class ContainerLifter implements IContainerLifter {
     public void stop() {
         speedInMPH = 0;
     }
-
+  
     @Override
     public void setFlashingLightOff() {
         isFlashingLightOn = false;

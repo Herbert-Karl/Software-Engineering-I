@@ -1,16 +1,11 @@
 package Airplane.Management;
 
 import java.util.ArrayList;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 
 import Airplane.Aircraft.Airplane;
-import Airplane.Aircraft.Body;
-import Airport.Airport.GateID;
-import Airport.Airport.PassengerBaggageDatabase;
 import Airport.Base.Passenger;
-import Airport.Airport.Gate;
+
 
 
 public class SeatManagement implements ISeatManagement{
@@ -32,28 +27,11 @@ public class SeatManagement implements ISeatManagement{
 
     }
 
- /*   public boolean assign(ArrayList<Passenger> passengers) {
-        String assign;
-        ArrayList<String> allSeats = new ArrayList<String>();
-
-        Body body  = new Body();
-        allSeats.addAll(body.getFirstClassSeatArrayList());
-
-        passengers.forEach(p -> p.getBoardingPass().getSeat());
-
-        ArrayList<GateID> gateids = new ArrayList<GateID>();
-        passengers.stream().forEach((Passenger p) ->
-        {
-           GateID id = p.getBoardingPass().getGate();
-            if (!gateids.contains(id))
-                gateids.add(id);
-        });
-
-
-
-
+    @Override
+    public int assign(ArrayList<Passenger> passengers) {
+        return 0;
     }
-*/
+
     public int countAvailableSeat(Airplane airplane) {
         int seats = airplane.getBody().getFirstClassSeatArrayList().size();
         seats += airplane.getBody().getBusinessClassSeatArrayList().size();
@@ -76,23 +54,21 @@ public class SeatManagement implements ISeatManagement{
         return seats;
     }
 
-  /*  public Passenger searchSeatByPassengerName(String name) {
-        //Passenger hat einen namen und besitzt
-        ArrayList<Passenger> passenger = new ArrayList<Passenger>();
-
-
+    @Override
+    public ArrayList<Seat> searchSeatByPassengerName(String name) {
+        return null;
     }
 
+    @Override
     public Passenger searchPassengerBySeatID(String seatID) {
-        //TODO
-
+        return null;
     }
 
+    @Override
     public void printPassengerList(SeatManagementSortCriteria sortCriteria) {
-        //TODO
 
     }
-*/
+
     public String getManufacturer() {
         return manufacturer;
     }

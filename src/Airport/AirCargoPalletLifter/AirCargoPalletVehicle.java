@@ -4,7 +4,7 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicle {
+public class AirCargoPalletVehicle implements IAirCargoPalletVehicle{
     private String uuid;
     private String id;
     private String type;
@@ -13,6 +13,7 @@ public class AirCargoPalletVehicle {
     private AirCargoPallet airCargoPallet;
     private IAirCargoPalletLifter connectedAirCargoPalletLifter;
     private Gate gate;
+    private AirCargoPalletPackingUnit airCargoPalletPackingUnit;
 
     public AirCargoPalletVehicle(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, AirCargoPallet airCargoPallet, IAirCargoPalletLifter connectedAirCargoPalletLifter, Gate gate) {
         this.uuid = uuid;
@@ -57,6 +58,11 @@ public class AirCargoPalletVehicle {
         return gate;
     }
 
+    public AirCargoPalletPackingUnit getAirCargoPalletPackingUnit()
+    {
+        return airCargoPalletPackingUnit;
+    }
+
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
@@ -83,6 +89,11 @@ public class AirCargoPalletVehicle {
 
     public void setConnectedAirCargoPalletLifter(IAirCargoPalletLifter connectedAirCargoPalletLifter) {
         this.connectedAirCargoPalletLifter = connectedAirCargoPalletLifter;
+    }
+
+    public void setAirCargoPalletPackingUnit(AirCargoPalletPackingUnit airCargoPalletPackingUnit)
+    {
+        this.airCargoPalletPackingUnit = airCargoPalletPackingUnit;
     }
 
     public void setGate(Gate gate) {

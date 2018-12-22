@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class LoadingStrategy {
     private Stowage stowage;
-    private ArrayList containerIDList;
+    private ArrayList<String> containerIDList;
 
     public LoadingStrategy(Stowage stowage, ArrayList containerIDList) {
         this.stowage = stowage;

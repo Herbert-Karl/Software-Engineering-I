@@ -29,10 +29,13 @@ class Entrance {
     void close() {
         for (Door door :
                 doorList) {
-            door.open();
+            door.close();
         }
         isOpen = false;
     }
 
+    public boolean isOpen() {
+        return isOpen;
+    }
 }
 

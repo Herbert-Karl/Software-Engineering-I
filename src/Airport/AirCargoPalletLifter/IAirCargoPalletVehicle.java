@@ -3,7 +3,7 @@ package Airport.AirCargoPalletLifter;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public interface IAirCargoPalletVehicel {
+public interface IAirCargoPalletVehicle {
     void executeRequest(GateID gateID);
     void store(AirCargoPallet airCargoPallet);
     void setFlashingLightOn();
