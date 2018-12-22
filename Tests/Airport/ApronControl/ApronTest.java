@@ -6,19 +6,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApronTest {
 
-    @Test
-    void getAirport() {
-    }
-
-    @Test
-    void setAirport() {
-    }
-
-    @Test
-    void getApronControl() {
-    }
-
-    @Test
-    void setApronControl() {
-    }
+// nur getter und setter methoden in Klasse daher testen wir nix
 }
