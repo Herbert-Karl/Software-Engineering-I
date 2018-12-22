@@ -1,7 +1,5 @@
 package Airport.Federal_Police;
 
-import Airport.Base.Baggage;
-import Airport.Base.Item;
 import Airport.Base.Passenger;
 
 import java.util.ArrayList;
@@ -9,9 +7,75 @@ import java.util.ArrayList;
 public class FederalPoliceReceipt {
     private String uuid;
     private int numberOfPassportVerified;
-    private ArrayList arrestedPassenger = new ArrayList<Passenger>();
+    private ArrayList<Passenger> arrestedPassenger;
     private int numberOfKeepSafeBaggage;
     private int numberOfKeepSafeItem;
     private int numberOfWeaponInspected;
     private int numberOfMunitionInspected;
+
+    public FederalPoliceReceipt(int numberOfPassportVerified, ArrayList<Passenger> arrestedPassenger, int numberOfKeepSafeBaggage, int numberOfKeepSafeItem, int numberOfWeaponInspected, int numberOfMunitionInspected) {
+        this.uuid = java.util.UUID.randomUUID().toString();
+        this.numberOfPassportVerified = numberOfPassportVerified;
+        this.arrestedPassenger = arrestedPassenger;
+        this.numberOfKeepSafeBaggage = numberOfKeepSafeBaggage;
+        this.numberOfKeepSafeItem = numberOfKeepSafeItem;
+        this.numberOfWeaponInspected = numberOfWeaponInspected;
+        this.numberOfMunitionInspected = numberOfMunitionInspected;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public int getNumberOfPassportVerified() {
+        return numberOfPassportVerified;
+    }
+
+    public void setNumberOfPassportVerified(int numberOfPassportVerified) {
+        this.numberOfPassportVerified = numberOfPassportVerified;
+    }
+
+    public ArrayList<Passenger> getArrestedPassenger() {
+        return arrestedPassenger;
+    }
+
+    public void setArrestedPassenger(ArrayList<Passenger> arrestedPassenger) {
+        this.arrestedPassenger = arrestedPassenger;
+    }
+
+    public int getNumberOfKeepSafeBaggage() {
+        return numberOfKeepSafeBaggage;
+    }
+
+    public void setNumberOfKeepSafeBaggage(int numberOfKeepSafeBaggage) {
+        this.numberOfKeepSafeBaggage = numberOfKeepSafeBaggage;
+    }
+
+    public int getNumberOfKeepSafeItem() {
+        return numberOfKeepSafeItem;
+    }
+
+    public void setNumberOfKeepSafeItem(int numberOfKeepSafeItem) {
+        this.numberOfKeepSafeItem = numberOfKeepSafeItem;
+    }
+
+    public int getNumberOfWeaponInspected() {
+        return numberOfWeaponInspected;
+    }
+
+    public void setNumberOfWeaponInspected(int numberOfWeaponInspected) {
+        this.numberOfWeaponInspected = numberOfWeaponInspected;
+    }
+
+    public int getNumberOfMunitionInspected() {
+        return numberOfMunitionInspected;
+    }
+
+    public void setNumberOfMunitionInspected(int numberOfMunitionInspected) {
+        this.numberOfMunitionInspected = numberOfMunitionInspected;
+    }
 }
