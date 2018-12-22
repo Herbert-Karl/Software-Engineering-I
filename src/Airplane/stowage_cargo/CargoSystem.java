@@ -33,6 +33,26 @@ public class CargoSystem extends Versionable implements ICargoSystem {
         this.totalWeightContainer = 0.0;
     }
 
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getFrontStowage() {
+        return frontStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getRearStowage() {
+        return rearStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setFrontStowage(Stowage frontStowage) {
+        this.frontStowage = frontStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setRearStowage(Stowage rearStowage) {
+        this.rearStowage = rearStowage;
+    }
+
     //  load-Funktion für den vorderen Laderaum
     // fügt den Container mit der gegebenen Position in den Laderaum ein
     // außerdem wird das Gewicht der Container notiert
