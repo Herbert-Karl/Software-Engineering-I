@@ -1,18 +1,21 @@
 package Airplane.Cockpit;
 
+import Airplane.Aircraft.Airplane;
+import Airplane.Aircraft.Configuration;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class CockpitTest extends TestCase {
+    private PrimaryFlightDisplay primaryFlightDisplay;
+    private Cockpit cockpit = new Cockpit(new PrimaryFlightDisplay(PrimaryFlightDisplayViewID.Cabin), Phase.Climbing);
 
     @Test
     void selectNextPhase() {
-    }
+        cockpit.selectNextPhase();
 
-    @Test
-    void executeSelectedPhase() {
+        assertEquals(Phase.RightTurn, cockpit.getSelectedPhase());
     }
 
     @Test
@@ -20,10 +23,16 @@ class CockpitTest extends TestCase {
     }
 
     @Test
-    void getPrimaryFlightDisplay() {
+    void setPrimaryFlightDisplay() {
+        primaryFlightDisplay = new PrimaryFlightDisplay(PrimaryFlightDisplayViewID.Cabin);
+        cockpit.setPrimaryFlightDisplay(primaryFlightDisplay);
+        assertEquals(primaryFlightDisplay, cockpit.getPrimaryFlightDisplay());
     }
 
     @Test
-    void setPrimaryFlightDisplay() {
+    void getPrimaryFlightDisplay() {
+        assertEquals(primaryFlightDisplay, cockpit.getPrimaryFlightDisplay());
     }
+
+
 }
