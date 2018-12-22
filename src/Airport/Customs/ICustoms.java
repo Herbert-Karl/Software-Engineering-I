@@ -1,6 +1,6 @@
 package Airport.Customs;
 
-import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Base.Baggage;
 import Airport.Base.Employee;
 import Airport.Base.Item;
@@ -10,19 +10,20 @@ import java.util.ArrayList;
 
 public interface ICustoms {
 
-  boolean loginBaggageScanner(Employee employee, String password);
+    boolean loginBaggageScanner(Employee employee, String password);
 
-  void logoutBaggageScanner();
+    void logoutBaggageScanner();
 
-  boolean scan(Baggage baggage, IBaggageScanner scanner, String pattern);
+    boolean scan(Baggage baggage, IBaggageScanner scanner, String pattern);
 
-  void executeRequest(IBaggageSortingUnitRoboter baggageSortingUnitRoboter);
+    void executeRequest(BaggageSortingUnitRoboter baggageSortingUnitRoboter);
 
-  int handOverBaggageToFederalPolice(
-      ArrayList<Baggage> baggageList); //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
+    int handOverBaggageToFederalPolice(
+            ArrayList<Baggage> baggageList); //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
-  int handOverItemsToFederalPolice(
-      ArrayList<Item> itemList); //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
+    int handOverItemsToFederalPolice(
+            ArrayList<Item> itemList); //eig handOverToFederalPolice aber Array List erkennt keine verschiedene Elemente
 
-  void notifyGroundOperations(CustomsReceipt customsReceipt);
+    void notifyGroundOperations(CustomsReceipt customsReceipt);
 }
+//comment

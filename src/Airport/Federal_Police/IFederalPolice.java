@@ -8,9 +8,8 @@ import Airport.Security_Check.IAutomaticBoardingPassControl;
 import java.util.ArrayList;
 
 public interface IFederalPolice {
-    void alarm (Runway runway, AlarmType alarmType);
-    void alarm (IAutomaticBoardingPassControl automaticBoardingPassControl);
-    void assignFederalPoliceOfficer(IFederalPoliceCar federalPoliceCar);
-    void receive(ArrayList<Baggage> baggageList);
+    void alarm(IAutomaticBoardingPassControl automaticBoardingPassControl);
+    void alarm(Runway runway, AlarmType alarmType);
+    void assignFederalPoliceOfficer(FederalPoliceCar federalPoliceCar, FederalPoliceOfficer federalPoliceOfficer);
     void notifyGroundOperations(FederalPoliceReceipt federalPoliceReceipt);
 }
