@@ -1,6 +1,6 @@
 package Airport.Sky_Tanking_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.IFuelTank;
 import Airport.Airport.GateID;
 

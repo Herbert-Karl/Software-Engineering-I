@@ -15,7 +15,7 @@ public class AirCargoPallet{
         this.id = id;
     }
 
-    public void setItemList(Item[][] itemList) {
+    public void setItemList(Item[] itemList) {
         this.itemList = itemList;
     }
 
@@ -27,5 +27,25 @@ public class AirCargoPallet{
           weight = weight + item.getWeight();
         }
         return weight;
+    }
+
+    ///
+    /// Getter:
+    ///
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Item[] getItemList() {
+        return itemList;
     }
 }

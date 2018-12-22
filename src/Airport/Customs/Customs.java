@@ -38,6 +38,14 @@ public class Customs implements ICustoms {
 
     Ground_Operations_Center groundOperationsCenter;
 
+    public ArrayList<Baggage> getKeepSafeBaggageList() {
+        return keepSafeBaggageList;
+    }
+
+    public ArrayList<Item> getKeepSafeItemList() {
+        return keepSafeItemList;
+    }
+
     public boolean loginBaggageScanner(Employee employee, String password){
         return baggageScanner.login(employee.IDCard, password);
     }

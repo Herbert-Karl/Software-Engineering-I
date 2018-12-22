@@ -13,5 +13,7 @@ public interface IFireDepartment
 
     boolean closeEntrance(Entrance entrance);
 
-    int assignFireFighter(FireTruck fireTruck);
+    FireAlertStrategy buildStrategy(AlarmType alarmType);
+
+    void execute(Runway runway,FireAlertStrategy strategy);
 }

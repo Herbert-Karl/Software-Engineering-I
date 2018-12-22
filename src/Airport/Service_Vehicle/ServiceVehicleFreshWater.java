@@ -1,7 +1,8 @@
 package Airport.Service_Vehicle;
 
-import Airplane.Airplane;
+import Airplane.Aircraft.Airplane;
 import Airplane.Tanks.IPortableWaterTank;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 
@@ -14,8 +15,9 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
     private int amountFreshWater;
     private Gate gate;
     private Airplane connectedAirplane;
+    private Airport airport;
 
-    public ServiceVehicleFreshWater(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane) {
+    public ServiceVehicleFreshWater(String uuid, String id, String type, int speedInMPH, boolean isFlashingLightOn, Gate gate, Airplane connectedAirplane, Airport airport) {
         this.uuid = uuid;
         this.id = id;
         this.type = type;
@@ -24,6 +26,7 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
         this.amountFreshWater = 10000;
         this.gate = gate;
         this.connectedAirplane = connectedAirplane;
+        this.airport = airport;
     }
 
     public String getUuid() {
@@ -92,47 +95,66 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void executeRequest(GateID gateID) {
-
+        setGateID(gateID);
+        setFlashingLightOn();
+        move(15);
+        stop();
+        connectToAirplane(searchAirplaneByGate(getGate()));
+        //WaterTanks
+        connectedAirplane.getBody().getPortableWaterTankArrayList().forEach(e -> refill(e));
+        disconnectFromAirplane();
+        setFlashingLightOff();
+        notifyGroundOperations(new ServiceVehicleFreshWaterReceipt(getUuid(),getId(),getGate().getGateID(),getAmountFreshWater()));
+        returnToAirportResourcePool();
     }
 
     @Override
     public void setFlashingLightOn() {
-
+        if (isFlashingLightOn() == false) {
+            setFlashingLightOn(true);
+        } else {
+            System.out.println("SkyTankingVehicle Error: FlashingLight is already on");
+        }
     }
 
     @Override
     public void move(int speedInMPH) {
-
+        setSpeedInMPH(speedInMPH);
     }
 
     @Override
     public void stop() {
-
+        setSpeedInMPH(0);
     }
 
     @Override
     public void setGateID(GateID gateID) {
-
+        setGate(searchGateById(gateID));
     }
 
     @Override
     public void connectToAirplane(Airplane airplane) {
-
+        setConnectedAirplane(airplane);
     }
 
     @Override
     public void refill(IPortableWaterTank portableWaterTank) {
-
+        portableWaterTank.refill(10000);
+        setAmountFreshWater(0);
     }
 
     @Override
     public void disconnectFromAirplane() {
-
+        setConnectedAirplane(null);
     }
 
     @Override
     public void setFlashingLightOff() {
-
+        if (isFlashingLightOn() == true) {
+            setFlashingLightOn(false);
+        } else {
+            System.err.println("SkyTankingVehicle Error: FlashingLight is already off");
+        }
     }
 
     @Override
@@ -142,6 +164,14 @@ public class ServiceVehicleFreshWater implements IServiceVehicleFreshWater {
 
     @Override
     public void returnToAirportResourcePool() {
+        setGate(null);
+    }
 
+    public Gate searchGateById(GateID gateID) {
+        return airport.getGateList().stream().filter(gate -> gate.getGateID().equals(gateID)).findFirst().orElse(null);
+    }
+
+    public Airplane searchAirplaneByGate(Gate gate) {
+        return gate.getAirplane();
     }
 }

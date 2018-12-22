@@ -1,5 +1,9 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.Container;
+import Airport.Base.ContainerType;
+
+// einzelne Position im vorderen Laderaum des Flugzeugs
 public class FrontStowagePosition {
 
     private FrontStowagePositionID id;
@@ -7,22 +11,22 @@ public class FrontStowagePosition {
     private Container container;
 
     // Konstruktor
-    //
-    FrontStowagePosition(FrontStowagePositionID id, Container container) {
+    // falls der gegebene Container nicht vom ContainerType AKE ist, wird eine RuntimeException ausgelöst
+    public FrontStowagePosition(FrontStowagePositionID id, Container container) {
         this.id = id;
-        if(container.get_type() != ContainerType.AKE) { throw new RuntimeException("falscher ContainerType"); }
+        if(container.getType() != ContainerType.AKE) { throw new RuntimeException("falscher ContainerType"); }
         this.container = container;
     }
 
-    public FrontStowagePositionID get_id() {
+    public FrontStowagePositionID getId() {
         return this.id;
     }
 
-    public Container get_container() {
+    public Container getContainer() {
         return this.container;
     }
 
-    protected void set_container(Container container) {
+    protected void setContainer(Container container) {
         this.container = container;
     }
 }

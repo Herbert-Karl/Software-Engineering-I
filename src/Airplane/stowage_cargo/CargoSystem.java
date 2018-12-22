@@ -2,13 +2,14 @@ package Airplane.stowage_cargo;
 
 import java.util.ArrayList;
 
-public class CargoSystem implements ICargoSystem {
+import Airport.Base.Container;
+import Airport.Base.AirCargoPallet;
+import Core.Versionable;
 
-    private String manufacturer;
-
-    private String type;
-
-    private String id;
+// Implementierung des Interfaces für den Laderaum
+// der Laderaum wird dabei in zwei Teile getelt: einen vorderen und einen hinteren
+// der vordere Laderaum ist für Container gedacht, der hintere Laderaum für AIrCargoPallets
+public class CargoSystem extends Versionable implements ICargoSystem {
 
     private Stowage frontStowage;
 
@@ -23,11 +24,8 @@ public class CargoSystem implements ICargoSystem {
     private double totalWeightContainer;
 
     // Konstruktor
-    //
-    CargoSystem(String manufacturer, String type, String id) {
-        this.manufacturer = manufacturer;
-        this.type = type;
-        this.id = id;
+    CargoSystem(String manufacturer, String type) {
+        super(type, manufacturer);
         this.frontStowage = new FrontStowage();
         this.rearStowage = new RearStowage();
         this.isLocked = false;
@@ -35,65 +33,115 @@ public class CargoSystem implements ICargoSystem {
         this.totalWeightContainer = 0.0;
     }
 
-    public String version() {
-        return "<" + this.id + "> - <" + this.type + ">";
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getFrontStowage() {
+        return frontStowage;
     }
 
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getRearStowage() {
+        return rearStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setFrontStowage(Stowage frontStowage) {
+        this.frontStowage = frontStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setRearStowage(Stowage rearStowage) {
+        this.rearStowage = rearStowage;
+    }
+
+    //  load-Funktion für den vorderen Laderaum
+    // fügt den Container mit der gegebenen Position in den Laderaum ein
+    // außerdem wird das Gewicht der Container notiert
+    // falls der Laderaum bereits gesicher oder abgeschlossen ist, wird eine RuntimeException ausgelöst
+    // zu beachten: RuntimeException der innerhalb auferufenen Funktionen!
     public void load(Container container, FrontStowagePositionID position) {
+        if(this.isLocked || this.isSecured) { throw new RuntimeException("CargoSystem bereits gesichert oder geschlossen!"); }
         FrontStowagePosition helpPosition = new FrontStowagePosition(position, container);
         ((FrontStowage) this.frontStowage).add_to_positionList(helpPosition);
-        this.totalWeightContainer += container.get_weight();
+        this.totalWeightContainer += container.getWeight();
     }
 
+    //  load-Funktion für den hinteren Laderaum
+    // fügt das AirCargoPallet mit der gegebenen Position in den Laderaum ein
+    // weiterhin wird das Gewicht der AirCargoPallets notiert
+    // falls der Laderaum bereits gesicher oder abgeschlossen ist, wird eine RuntimeException ausgelöst
+    // zu beachten: RuntimeException der innerhalb auferufenen Funktionen!
     public void load(AirCargoPallet airCargoPallet, RearStowagePositionID position) {
+        if(this.isLocked || this.isSecured) { throw new RuntimeException("CargoSystem bereits gesichert oder geschlossen!"); }
         RearStowagePosition helpPosition = new RearStowagePosition(position, airCargoPallet);
         ((RearStowage) this.rearStowage).add_to_positionList(helpPosition);
-        this.totalWeightAirCargoPallet += airCargoPallet.get_weight();
+        this.totalWeightAirCargoPallet += airCargoPallet.getWeight();
     }
 
+    //  weight-Funktion für den hinteren Laderaum = geladene AirCargoPallets
+    // gibt den gemerkten/ notierten Wert aus
     public double determineTotalWeightAirCargoPallet() {
         return this.totalWeightAirCargoPallet;
     }
 
+    //  weight-Funktion für den vorderen Laderaum = geladene Container
+    // gibt den gemerkten/ notierten Wert aus
     public double determineTotalWeightContainer() {
         return this.totalWeightContainer;
     }
 
-    public void unlock() {
-        if(this.isLocked) { this.isLocked = false; }
-        else { throw new RuntimeException("CargoSystem bereits aufgeschlossen."); }
-    }
-
-    public void secure() {
-        if(!this.isSecured) { this.isSecured = true; }
-        else { throw new RuntimeException("CargoSystem bereits gesichert."); }
-    }
-
+    //  lock-Funktion
+    // falls die Ladung noch nicht gesicher ist, oder der Laderaum bereits abgeschlossen ist, wird eine RuntimeException ausgelöst
     public void lock() {
         if(!this.isSecured) { throw new RuntimeException("CargoSystem noch nicht gesichert."); }
         if(!this.isLocked) { this.isLocked = true; }
         else { throw new RuntimeException("CargoSystem bereits abgeschlossen."); }
     }
 
+    //  unlock-Funktion
+    // falls der Laderaum bereits aufgeschlossen ist, wird eine RuntimeException ausgelöst
+    public void unlock() {
+        if(this.isLocked) { this.isLocked = false; }
+        else { throw new RuntimeException("CargoSystem bereits aufgeschlossen."); }
+    }
+
+    //  secure-Funktion
+    // falls die Ladung bereits gesichert ist, wird eine RuntimeException ausgelöst
+    public void secure() {
+        if(!this.isSecured) { this.isSecured = true; }
+        else { throw new RuntimeException("CargoSystem bereits gesichert."); }
+    }
+
+    //  unload-Funktion für den vorderen Laderaum = geladene Container
+    // entsichert die Ladung und gibt alle Container zurück, die sich im vorderen Laderaum befinden
+    // dabei werden die Positionen der Container nicht beachtet
+    // falls der Laderaum noch abgeschlossen ist oder der Laderaum bereits leer ist, wird eine RuntimeException ausgelöst
     public ArrayList<Container> unloadContainer() {
+        if(this.isLocked) { throw new RuntimeException("CargoSystem noch verschlossen!"); }
+        this.isSecured = false;
         ArrayList<Container> helpList = new ArrayList<Container>();
         FrontStowagePosition helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
+        if(helpObject == null) { throw new RuntimeException("vorderer Laderaum ist bereits leer"); }
         do {
-            helpList.add(helpObject.get_container());
+            helpList.add(helpObject.getContainer());
             helpObject = ((FrontStowage) this.frontStowage).remove_from_positionList();
         } while(helpObject != null);
         this.totalWeightContainer = 0.0;
         return helpList;
     }
 
+    //  unload-Funktion für den hinteren Laderaum = geladenen AirCargoPallets
+    // entsichert die Ladung und gibt ein AirCargoPallet zurück, welches sich im hinteren Laderaum befindet
+    // dabei werden die Positionen der AirCargoPallets nicht beachtet
+    // befindet sich kein AirCargoPallet mehr im hinteren Laderaum, wird "null" zurückgegeben
+    // falls der Laderaum noch abgeschlossen ist, wird eine RuntimeException ausgelöst
     public AirCargoPallet unloadAirCargoPallet() {
+        if(this.isLocked) { throw new RuntimeException("CargoSystem noch verschlossen!"); }
+        this.isSecured = false;
         RearStowagePosition helpObject = ((RearStowage) this.rearStowage).remove_from_positionList();
         if(helpObject == null) { return null; }
-        AirCargoPallet pallet = helpObject.get_airCargoPallet();
-        this.totalWeightAirCargoPallet -= pallet.get_weight();
+        AirCargoPallet pallet = helpObject.getAirCargoPallet();
+        this.totalWeightAirCargoPallet -= pallet.getWeight();
         return pallet;
     }
-
-    public String get_manufacturer() { return this.manufacturer; }
 
 }

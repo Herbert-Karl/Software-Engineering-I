@@ -1,7 +1,7 @@
 package Airplane.FlightControls;
 
+import Airplane.Aircraft.Airplane;
 import Airplane.FlightControls.Interfaces.*;
-import Airplane.IAirplane;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +17,7 @@ class FlightControlCollection {
     private final List<ISpoiler> spoilers;
 
 
-    FlightControlCollection(IAirplane airplane) {
+    FlightControlCollection(Airplane airplane) {
         droopNoses = new LinkedList<>();
         elevators = new LinkedList<>();
         flaps = new LinkedList<>();
@@ -26,7 +26,22 @@ class FlightControlCollection {
         rudders = new LinkedList<>();
         slats = new LinkedList<>();
         spoilers = new LinkedList<>();
-        //here extract all Airplane.FlightControls
+
+        //here extract all Aircraft.FlightControls
+        droopNoses.addAll(airplane.getLeftWing().getDroopNoseArrayList());
+        droopNoses.addAll(airplane.getRightWing().getDroopNoseArrayList());
+        elevators.addAll(airplane.getBody().getElevatorArrayList());
+        flaps.addAll(airplane.getLeftWing().getFlapArrayList());
+        flaps.addAll(airplane.getRightWing().getFlapArrayList());
+        leftAilerons.addAll(airplane.getRightWing().getLeftAileronArrayList()); /*<- Include all possibilities, who knows?*/
+        leftAilerons.addAll(airplane.getLeftWing().getLeftAileronArrayList());
+        rightAilerons.addAll(airplane.getRightWing().getRightAileronArrayList());
+        rightAilerons.addAll(airplane.getLeftWing().getRightAileronArrayList());
+        rudders.addAll(airplane.getBody().getRudderArrayList());
+        slats.addAll(airplane.getLeftWing().getSlatArrayList());
+        slats.addAll(airplane.getRightWing().getSlatArrayList());
+        spoilers.addAll(airplane.getLeftWing().getSpoilerArrayList());
+        spoilers.addAll(airplane.getRightWing().getSpoilerArrayList());
     }
 
     List<IFlightControl> getAllFlightControls() {

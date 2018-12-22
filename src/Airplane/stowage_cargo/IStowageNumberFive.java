@@ -1,14 +1,17 @@
 package Airplane.stowage_cargo;
 
+import Airport.Base.Container;
+
+// Interface für den kleinen, speziellen Laderaum beim Flugzeug
 public interface IStowageNumberFive {
 
-    //
-    public boolean load(Container container);
+    // füllt den Laderaum mit einem Container
+    void load(Container container);
 
-    //
-    public Container unload();
+    // gibt den im Laderaum enthaltenen Container zurück
+    Container unload();
 
-    //
-    public double weightOfStowageNumberFive();
+    // gibt das Gewicht des Laderaums = Gewicht des Containers im Laderaum zurück
+    double weightOfStowageNumberFive();
 
 }
