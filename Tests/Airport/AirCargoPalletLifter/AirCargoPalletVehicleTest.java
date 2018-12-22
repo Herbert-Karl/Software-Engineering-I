@@ -27,7 +27,7 @@ class AirCargoPalletVehicleTest
         Airport airport = Airport.getInstance();
         airport = null;
         airport = Airport.getInstance();
-        airport.init(airport);
+        airport.build();
 
         airCargoPallet = new AirCargoPallet("uuid", "type", "id");
 
@@ -43,11 +43,24 @@ class AirCargoPalletVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void executeRequest()
     {
+        AirCargoPallet airCargoPallet = new AirCargoPallet("uuid", "type", "id");
+        airCargoPalletVehicle.store(airCargoPallet);
+        AirCargoPalletLifter airCargoPalletLifter = new AirCargoPalletLifter("uuid", "id", "type", 0, false,
+                null, 0, null, null, null);
+        airCargoPalletVehicle.connect(airCargoPalletLifter);
+
+        airCargoPalletVehicle.executeRequest(GateID.A01);
+        assertEquals(Airport.getInstance().getGatefromID(GateID.A01), airCargoPalletVehicle.getGate());
+        assertEquals(0, airCargoPalletVehicle.getSpeedInMPH());
+        assertFalse(airCargoPalletVehicle.isFlashingLightOn());
+        assertEquals(airCargoPallet, airCargoPalletLifter.getAirCargoPallet());
+        assertNull(airCargoPalletVehicle.getConnectedAirCargoPalletLifter());
+        assertEquals(airCargoPalletVehicle, airCargoPalletPackingUnit.getAirCargoPalletVehicel());
     }
 
     /**

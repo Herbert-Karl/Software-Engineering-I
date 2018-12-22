@@ -1,10 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
-import Airport.Base.Baggage;
-import Airport.Base.Container;
-import Airport.Base.ContainerCategory;
-import Airport.Base.TicketClass;
+import Airport.Base.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +81,7 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
         //getting bulky baggage
         selectedBaggageList = baggageSortingUnit.getDepot().selectBulkyBaggage();
-        loadContainer(ContainerCategory.Bulky);
+        loadContainer();
     }
 
     /**
@@ -95,29 +92,35 @@ public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
     private void storeBaggageForClass(TicketClass ticketClass) {
         final BaggageDepot depot = baggageSortingUnit.getDepot();
         selectedBaggageList = depot.selectNormalBaggage(ticketClass);
-        loadContainer(ContainerCategory.Normal);
+        loadContainer();
     }
 
     /**
      * Gets empty container, fills it and adds it to full containers
-     *
-     * @param category
      */
     @Override
-    public void loadContainer(ContainerCategory category) {
+    public void loadContainer() {
         Container currentContainer;
         List<Baggage> reducedList;
         while (!selectedBaggageList.isEmpty()) {
-            if (category == ContainerCategory.Normal && selectedBaggageList.size() > 75) {
+            if (selectedBaggageList.get(0) instanceof NormalBaggage && selectedBaggageList.size() > 75) {
                 reducedList = selectedBaggageList.subList(0, 74);
-            } else if (category == ContainerCategory.Bulky && selectedBaggageList.size() > 50) {
+            } else if (selectedBaggageList.get(0) instanceof NormalBaggage && selectedBaggageList.size() > 50) {
                 reducedList = selectedBaggageList.subList(0, 49);
             } else {
                 reducedList = selectedBaggageList;
             }
             selectedBaggageList.removeAll(reducedList);
 
-            currentContainer = baggageSortingUnit.getEmptyContainer(category);
+            if (!reducedList.isEmpty()) {
+                if (reducedList.get(0) instanceof  NormalBaggage)
+                    currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+                else
+                    currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+            }
+            else
+                currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+
             currentContainer.setBaggageList(convertToStack(reducedList));
             baggageSortingUnit.addFullContainer(currentContainer);
         }

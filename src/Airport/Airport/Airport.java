@@ -355,7 +355,10 @@ public class Airport{
         return this.baggageSortingUnit;
     }
 
-    ///
+    public Customs getCustoms() {
+        return customs;
+    }
+///
     /// Gate von GateID
     ///
 

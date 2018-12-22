@@ -1,5 +1,7 @@
 package Airport.Baggage_Sorting_Unit.Vehicles;
 
+import Airport.Airport.Airport;
+import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Base.*;
@@ -22,6 +24,11 @@ class BaggageVehicleTest
 
     @BeforeEach
     void setup() {
+        Airport airport = Airport.getInstance();
+        airport = null;
+        airport = Airport.getInstance();
+        airport.build();
+
         baggageList = new ArrayList<Baggage>();
 
         for (int i = 0; i < 10; i++) {
@@ -43,14 +50,6 @@ class BaggageVehicleTest
                 "qrCodeIDCatagory", new Stack<Baggage>());
         baggageVehicle.store(container);
         assertEquals(container, baggageVehicle.getContainer());
-    }
-
-    /**
-     * TODO for public void store(final Collection<Baggage> b)
-     */
-    @Test
-    void store1()
-    {
     }
 
     /**
@@ -103,11 +102,24 @@ class BaggageVehicleTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void executeRequest()
     {
+        Container container = new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                "qrCodeIDCatagory", new Stack<Baggage>());
+        baggageVehicle.store(container);
+        ContainerLifter containerLifter = new ContainerLifter("type");
+        baggageVehicle.connect(containerLifter);
+
+        baggageVehicle.executeRequest(GateID.A01);
+        assertEquals(Airport.getInstance().getGatefromID(GateID.A01), baggageVehicle.getGate());
+        assertEquals(0, baggageVehicle.getSpeedInMPH());
+        assertFalse(baggageVehicle.isFlashingLightOn());
+        assertEquals(container, containerLifter.getContainer());
+        assertNull(baggageVehicle.getContainerLifter());
+        assertEquals(baggageVehicle, baggageSortingUnit.getVehicle());
     }
 
     /**

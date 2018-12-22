@@ -2,8 +2,7 @@ package Airport.AirCargoPalletLifter;
 
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Configuration;
-import Airplane.stowage_cargo.CargoSystem;
-import Airplane.stowage_cargo.RearStowagePositionID;
+import Airplane.stowage_cargo.*;
 import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
@@ -13,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +27,7 @@ class AirCargoPalletLifterTest
         Airport airport = Airport.getInstance();
         airport = null;
         airport = Airport.getInstance();
-        airport.init(airport);
+        airport.build();
 
         airCargoPallet = new AirCargoPallet("uuid", "type", "id");
         airplane = new Airplane(new Configuration(4, 50, 50, 50, 10));
@@ -36,12 +36,27 @@ class AirCargoPalletLifterTest
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void executeRequest()
     {
+        AirCargoPallet airCargoPallet = new AirCargoPallet("uuid", "type", "id");
+        airCargoPalletLifter.setAirCargoPallet(airCargoPallet);
+
         airCargoPalletLifter.executeRequest(GateID.A01);
+        assertEquals(Airport.getInstance().getGatefromID(GateID.A01), airCargoPalletLifter.getGate());
+        assertEquals(0, airCargoPalletLifter.getSpeedInMPH());
+        assertFalse(airCargoPalletLifter.isFlashingLightOn());
+        assertNull(airCargoPalletLifter.getAirCargoPallet());
+        assertTrue(airCargoPalletLifter.isDown());
+        assertNull(airCargoPalletLifter.getConnectToAirplane());
+        for (FrontStowagePosition frontStowagePosition : ((FrontStowage)Airport.getInstance().getGatefromID(GateID.A01).getAirplane().getBody().getCargoSystemArrayList()
+                .get(0).getFrontStowage()).getPositionList()) {
+            if (frontStowagePosition.getId() == FrontStowagePositionID.SFL07)
+                assertEquals(airCargoPallet, frontStowagePosition.getContainer());
+        }
+        assertTrue(Airport.getInstance().getResourcePool().getContainerLifterList().contains(airCargoPalletLifter));
     }
 
     /**

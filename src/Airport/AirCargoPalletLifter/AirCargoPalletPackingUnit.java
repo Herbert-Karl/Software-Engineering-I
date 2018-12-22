@@ -1,20 +1,22 @@
 package Airport.AirCargoPalletLifter;
 
 import Airport.Base.AirCargoPallet;
+import Airport.Base.Employee;
+import Airport.Base.Item;
 import Airport.Customs.ICustoms;
 import Airport.Scanner.IItemScanner;
 
 import java.util.ArrayList;
 
-public class AirCargoPalletPackingUnit {
+public class AirCargoPalletPackingUnit implements IAirCargoPalletPackingUnit{
     private ArrayList<AirCargoPallet> emptyAirCargoPalletList;
-    private ArrayList scanPatternList;
+    private ArrayList<String> scanPatternList;
     private IItemScanner itemScanner;
     private ArrayList<AirCargoPallet> filledAirCargoPalletList;
     private IAirCargoPalletVehicle airCargoPalletVehicle;
     private ICustoms customs;
 
-    public AirCargoPalletPackingUnit(ArrayList<AirCargoPallet> emptyAirCargoPalletList, ArrayList scanPatternList, IItemScanner itemScanner,
+    public AirCargoPalletPackingUnit(ArrayList<AirCargoPallet> emptyAirCargoPalletList, ArrayList<String> scanPatternList, IItemScanner itemScanner,
                                      ArrayList<AirCargoPallet> filledAirCargoPalletList, IAirCargoPalletVehicle airCargoPalletVehicle, ICustoms customs) {
         this.emptyAirCargoPalletList = emptyAirCargoPalletList;
         this.scanPatternList = scanPatternList;
@@ -70,5 +72,60 @@ public class AirCargoPalletPackingUnit {
 
     public void setCustoms(ICustoms customs) {
         this.customs = customs;
+    }
+
+    @Override
+    public boolean loginItemScanner(Employee employee, String password) {
+        return false;
+    }
+
+    @Override
+    public void logoutItemScanner() {
+
+    }
+
+    @Override
+    public boolean scan(Item item, String pattern) {
+        return false;
+    }
+
+    @Override
+    public void handOverToCustoms(Item item) {
+
+    }
+
+    @Override
+    public void sort(ArrayList<Item> itemList) {
+
+    }
+
+    @Override
+    public void pack() {
+
+    }
+
+    @Override
+    public void sendAirCargoPalletLifterToGate() {
+
+    }
+
+    @Override
+    public void sendAirCargoPalletVehicleToGate() {
+
+    }
+
+    @Override
+    public LoadingStrategy optimizeAirplaneLoading() {
+        return null;
+    }
+
+    @Override
+    public void setAirCargoPalletVehicle() {
+
+    }
+
+    @Override
+    public void loadAirCargoPalletVehicle(LoadingStrategy strategy) {
+
     }
 }

@@ -2,11 +2,21 @@ package Airport.Baggage_Sorting_Unit.Vehicles;
 
 import Airplane.Aircraft.Airplane;
 import Airplane.Aircraft.Configuration;
+import Airplane.stowage_cargo.CargoSystem;
+import Airplane.stowage_cargo.FrontStowage;
+import Airplane.stowage_cargo.FrontStowagePosition;
+import Airplane.stowage_cargo.FrontStowagePositionID;
+import Airport.Airport.Airport;
 import Airport.Airport.Gate;
 import Airport.Airport.GateID;
-import Airport.Base.Flight;
+import Airport.Baggage_Sorting_Unit.Receipts.BaggageSortingUnitReceipt;
+import Airport.Baggage_Sorting_Unit.Receipts.ContainerLifterReceipt;
+import Airport.Base.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +25,11 @@ class ContainerLifterTest {
 
     @BeforeEach
     void createContainerLifter() {
+        Airport airport = Airport.getInstance();
+        airport = null;
+        airport = Airport.getInstance();
+        airport.build();
+
         containerLifter = new ContainerLifter("type");
     }
 
@@ -50,17 +65,37 @@ class ContainerLifterTest {
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void transferContainerToCargoSystem() {
-    }
+        Airplane airplane = new Airplane(new Configuration(4, 50, 50, 50, 10));
+        Gate gate = new Gate(GateID.A01, null);
+        gate.setAirplane(airplane);
+        containerLifter.connectToAirplane();
 
-    /**
-     * TODO
-     */
-    @Test
-    void transferContainerToCargoSystem1() {
+        CargoSystem cargoSystem = airplane.getBody().getCargoSystemArrayList().get(0);
+        FrontStowage frontStowage = new FrontStowage();
+        cargoSystem.setFrontStowage(frontStowage);
+
+        frontStowage.add_to_positionList(new FrontStowagePosition(FrontStowagePositionID.SFL07,
+                new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                        "qrCodeIDCatagory", new Stack<Baggage>())));
+
+        frontStowage.add_to_positionList(new FrontStowagePosition(FrontStowagePositionID.SFR07,
+                new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                        "qrCodeIDCatagory", new Stack<Baggage>())));
+
+        Container container = new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                "qrCodeIDCatagory", new Stack<Baggage>());
+
+        containerLifter.setContainer(container);
+        containerLifter.transferContainerToCargoSystem();
+
+        for (FrontStowagePosition frontStowagePosition : frontStowage.getPositionList()) {
+            if (frontStowagePosition.getId() == FrontStowagePositionID.SFL06)
+                assertEquals(container, frontStowagePosition.getContainer());
+        }
     }
 
     /**
@@ -88,24 +123,47 @@ class ContainerLifterTest {
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void notifyGroundOperations() {
+        ContainerLifterReceipt containerLifterReceipt = new ContainerLifterReceipt("containerLifertID", null,
+                10, null);
+        containerLifter.notifyGroundOperations(containerLifterReceipt);
+        assertTrue(Airport.getInstance().getGroundOperationsCenter().getContainerLifterReceiptList().contains(containerLifterReceipt));
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void returnToAirportResourcePool() {
+        containerLifter.returnToAirportResourcePool();
+        assertTrue(Airport.getInstance().getResourcePool().getContainerLifterList().contains(containerLifter));
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void executeRequest() {
+        Container container = new Container(ContainerType.AKE, "id", ContainerCategory.Normal, null, "barCodeIDCatagory",
+                "qrCodeIDCatagory", new Stack<Baggage>());
+        containerLifter.setContainer(container);
+
+        containerLifter.executeRequest(GateID.A01);
+        assertEquals(Airport.getInstance().getGatefromID(GateID.A01), containerLifter.getGate());
+        assertEquals(0, containerLifter.getSpeedInMPH());
+        assertFalse(containerLifter.isFlashingLightOn());
+        assertNull(containerLifter.getContainer());
+        assertTrue(containerLifter.isDown());
+        assertNull(containerLifter.getConnectedAirplane());
+        for (FrontStowagePosition frontStowagePosition : ((FrontStowage)Airport.getInstance().getGatefromID(GateID.A01).getAirplane().getBody().getCargoSystemArrayList()
+                .get(0).getFrontStowage()).getPositionList()) {
+            if (frontStowagePosition.getId() == FrontStowagePositionID.SFL07)
+                assertEquals(container, frontStowagePosition.getContainer());
+        }
+        assertTrue(Airport.getInstance().getResourcePool().getContainerLifterList().contains(containerLifter));
     }
 
     /**

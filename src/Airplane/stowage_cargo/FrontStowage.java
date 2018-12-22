@@ -7,15 +7,20 @@ public class FrontStowage extends Stowage {
     private ArrayList<FrontStowagePosition> positionList;
 
     // Konstruktor
-    FrontStowage() {
+    public FrontStowage() {
         super(StowageType.front); // ruft Konstruktor von Stowage auf
         this.positionList = new ArrayList<FrontStowagePosition>();
+    }
+
+    //eingefügt von Gruppe 23 UnitTest
+    public ArrayList<FrontStowagePosition> getPositionList() {
+        return positionList;
     }
 
     //  Hilfsfunktion zum Füllen des Laderaums
     // fügt die Positionsobjekte der ArrayList hinzu und überprüft dabei, ob die Positionen belegt sind
     // falls der Laderaum bereits voll ist oder eine schon belegte Position nochmal belegt werden soll, wird eine RuntimeException ausgelöst
-    protected void add_to_positionList(FrontStowagePosition position) {
+    public void add_to_positionList(FrontStowagePosition position) {
         if(this.getIsComplete()) { throw new RuntimeException("FrontStowage ist bereits vollständig."); }
         boolean alreadyInList = false;
         for( FrontStowagePosition element: this.positionList ) {

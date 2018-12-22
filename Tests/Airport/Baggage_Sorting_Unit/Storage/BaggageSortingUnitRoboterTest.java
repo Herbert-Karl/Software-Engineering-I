@@ -41,7 +41,7 @@ class BaggageSortingUnitRoboterTest {
     }
 
     /**
-     * TODO
+     * Done
      */
     @Test
     void selectBaggageFromDepot()
