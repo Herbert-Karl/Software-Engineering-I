@@ -60,59 +60,15 @@ public class Airport{
     	return Airport.instance;
     }
     
-    /* toDo 
-     * 
-     */
-
-    public void init(Airport airport) {
-    	PassengerBaggageDatabase passengerBaggageDatabase = new PassengerBaggageDatabase(DATAFILEPATH.pathToString());
-        passengerList = passengerBaggageDatabase.getPassengerList();
-
-        resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
-
-        gateList = new ArrayList<Gate>(10);
-        for(int number = 1; number <= 10; number++){
-            Gate gate = new Gate(GATE_ID.getGateNumber(number), null);
-            gateList.add(gate);
-        }
-
-        apronControl = new ApronControl();
-        apronControl.setAirport(airport);
-        apron = new Apron(airport, apronControl);
-        apronControl.setApron(apron);
-
-        groundOperationsCenter = new GroundOperationsCenter(airport, 100);
-
-        bulkyBaggageDesk = new BulkyBaggageDesk(airport);
-
-        checkInMediator = new CheckInMediator(bulkyBaggageDesk);
-
-        FederalPolice police = new FederalPolice();
-        //TODO: Übergabeparameter?
-        securityMediator = new SecurityMediator(airport, police);
-
-        tower = new Tower(airport, null, null);
-        //TODO: replace null values
-        IRunwayManagement runwayManagement = new RunwayManagement(null, null, tower);
-        //TODO: replace null values
-        tower.setRunwayManagement(runwayManagement);
-
-        fuelTank = new AirportFuelTank();
-
-        customs = new Customs();
-
-        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), null, null, customs);
-    }
-
     public void build() {
     	Airport airport = Airport.getInstance();
     	init(airport);
-
     }
     
     public void init(Airport airport) { // Create instances of classes
     	loadPassengerBaggageData(DATAFILEPATH.pathToString());
         resourcePool = new AirportResourcePool(50,50,50,50,50,50,50,50,50,50,50, airport);
+        // TODO: Anzahlen anpassen, sobald kompilierbar
     	
         gateList = new ArrayList<Gate>(10);
         for(int number = 1; number <= 10; number++){
@@ -200,7 +156,8 @@ public class Airport{
 
         customs = new Customs();
         BaggageScanner baggageScanner = new BaggageScanner(null, null);
-        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), baggageScanner, null, customs);
+        baggageSortingUnit = new BaggageSortingUnit(resourcePool.takeResource("Employee"), baggageScanner, null, customs, null);
+        // Roboter wird bei Erstellung von baggageSortingUnit erstellt
     } 
     
     public int loadPassengerBaggageData(String dataFilePath){ //DATAFILEPATH.pathToString()
@@ -219,8 +176,9 @@ public class Airport{
         }
     }
 
-    public boolean disconnectAirplane(Airplane airplane, Gate gate){
-        if ((gate.getAirplane() != null) && (gate.getAirplane() == airplane)) {
+    public boolean disconnectAirplane(Airplane airplane, GateID gateID){
+        Gate gate = getGatefromID(gateID);		
+    	if ((gate.getAirplane() != null) && (gate.getAirplane() == airplane)) {
             gate.disconnectAirplane();
             return true;
         }
@@ -229,8 +187,9 @@ public class Airport{
             return false;}
     }
 
-    public boolean executeServiceWasteWater(Gate gate){
-        ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
+    public boolean executeServiceWasteWater(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	ServiceVehicleWasteWater serviceVehicle = resourcePool.takeResource("ServiceVehicleWasteWater");
         serviceVehicle.executeRequest(gate.getGateID());
         serviceVehicle.returnToAirportResourcePool();
         return true;
@@ -247,7 +206,7 @@ public class Airport{
     }
 
     public boolean executeCustoms(){
-        customs.executeRequest(baggageSortingUnit.getBaggageSortingUnitRoboter());
+        customs.executeRequest(baggageSortingUnit.getRoboter());
         return true;
     }
 
@@ -291,14 +250,17 @@ public class Airport{
         return true;
     }
 
-    public boolean executeBoardingControl(Gate gate){
-        securityMediator.executeRequest();
+    public boolean executeBoardingControl(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	securityMediator.executeRequest();
         return true;
     }
 
-    public boolean executePushback(Gate gate){
-        PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
+    public boolean executePushback(GateID gateID){
+    	Gate gate = getGatefromID(gateID);	
+    	PushBackVehicle pushBackVehicle = resourcePool.takeResource("PushBackVehicle");
         TaxiWay taxiway = apronControl.search(TaxiCenterLine.yellow, gate.getGateID(), RunwayID.R26L);
+        // TODO: Übergabeparameter korrekt?
         pushBackVehicle.execute(gate.getAirplane(), taxiway);
         resourcePool.returnResource(pushBackVehicle);
         return true;
