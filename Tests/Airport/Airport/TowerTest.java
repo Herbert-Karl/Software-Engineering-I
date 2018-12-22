@@ -17,7 +17,7 @@ class TowerTest {
     @Test
     void approveRequestTakeOff() {
         Airplane testairplane = new Airplane;                                               //testairplane erzeugen
-        int AirplaneId = testairplane.getID()
+        int AirplaneId = testairplane.getID();
         assertEquals("Approve request takeoff for " + AirplaneId, outContent.toString());   //Ausgabe mit tätsächlicher Ausgabe überprüfen
         testairplane = null;                                                                //testairplane wieder löschen
     }
@@ -30,7 +30,7 @@ class TowerTest {
     @Test
     void approveRequestLanding() {
         Airplane testairplane = new Airplane;                                               //testairplane erzeugen
-        int AirplaneId = testairplane.getID()
+        int AirplaneId = testairplane.getID();
         assertEquals("Approve request landing for " + AirplaneId, outContent.toString());   //Ausgabe mit tätsächlicher Ausgabe überprüfen
         testairplane = null;                                                                //testairplane wieder löschen
     }
@@ -54,14 +54,14 @@ class TowerTest {
         airplane.setLeftWing().setEngine().isFire() = 0;
         airplane.setRightWing().setEngine().isFire() = 1;
 
-        assertEquals(AlarmType.B, AlarmType determineAlarmType(testAirplane))
+        assertEquals(AlarmType.B, AlarmType determineAlarmType(testAirplane));
         testAirplane = null;
         //AlarmTyp C
         Airplane testAirplane = new Airplane();                                             //gleich wie bei A
         airplane.setLeftWing().setEngine().isFire() = 1;
         airplane.setRightWing().setEngine().isFire() = 1;
 
-        assertEquals(AlarmType.C, AlarmType determineAlarmType(testAirplane))
+        assertEquals(AlarmType.C, AlarmType determineAlarmType(testAirplane));
         testAirplane = null;
 
     }
