@@ -6,55 +6,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApronControlTest {
 
+    private  passengerTicket = new Ticket();
+    private ApronControl apronControl = new ApronControl();
+
     @Test
     void approveRequestStartEngines() {
+        Airplane airplane;
+        assertTrue(apronControl.approveRequestStartEngines(airplane));
     }
 
     @Test
     void approveRequestPushback() {
+        Airplane airplane;
+        assertTrue(apronControl.approveRequestPushback(airplane));
     }
 
     @Test
     void requestRunwayCheckPointID() {
+        //Methode hat noch nichts definiert definiert
     }
 
     @Test
     void search() {
+
+
+
     }
 
     @Test
     void approveRequestTaxi() {
+        //Methode hat noch nichts definiert definiert
     }
 
-    @Test
-    void getAirport() {
-    }
-
-    @Test
-    void setAirport() {
-    }
-
-    @Test
-    void getApron() {
-    }
-
-    @Test
-    void setApron() {
-    }
-
-    @Test
-    void getFrequency() {
-    }
-
-    @Test
-    void setFrequency() {
-    }
-
-    @Test
-    void getTaxiWayList() {
-    }
-
-    @Test
-    void setTaxiWayList() {
-    }
 }
