@@ -10,7 +10,7 @@ class DoorTest {
     void open() {
         Door testDoor = new Door();
         open();                                         //Methode ausführen
-        assertTrue(isOpen)                              //Hat die Methode die Attribute passend angepasst?
+        assertTrue(isOpen);                              //Hat die Methode die Attribute passend angepasst?
         testDoor = null;                                //testdoor wieder löschen
     }
 
@@ -18,7 +18,7 @@ class DoorTest {
     void close() {
         Door testDoor = new Door();
         close();                                         //Methode ausführen
-        assertFalse(isOpen)                              //Hat die Methode die Attribute passend angepasst?
+        assertFalse(isOpen);                              //Hat die Methode die Attribute passend angepasst?
         testDoor = null;                                 //testdoor wieder löschen
     }
 }
