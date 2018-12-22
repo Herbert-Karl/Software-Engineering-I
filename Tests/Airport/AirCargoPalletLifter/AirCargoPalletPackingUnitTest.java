@@ -84,7 +84,7 @@ class AirCargoPalletPackingUnitTest {
     {
         ArrayList<Item> items = new ArrayList<Item>();
 
-        for (int i = 1; i <= 45; i++) {
+        for (int i = 1; i <= 7; i++) {
             String newPath = path + "air_cargo\\pallets_" + i + "\\";
             for (int j = 1; j < 2000; j++) {
                 File file = new File(newPath + "air_cargo_item_" + j);
