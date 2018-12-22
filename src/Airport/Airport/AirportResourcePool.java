@@ -2,10 +2,12 @@ package Airport.Airport;
 
 import Airport.AirCargoPalletLifter.AirCargoPalletLifter;
 import Airport.AirCargoPalletLifter.AirCargoPalletVehicle;
+import Airport.Baggage_Sorting_Unit.Storage.IBaggageSortingUnitRoboter;
 import Airport.Baggage_Sorting_Unit.Vehicles.IBaggageVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.IContainerLifter;
 import Airport.Base.Employee;
 import Airport.Base.IDCard;
+import Airport.Pushback_Vehicle.PushBackVehicle;
 import Airport.Service_Vehicle.*;
 import Airport.Sky_Tanking_Vehicle.ISkyTankingVehicle;
 import Airport.Base.Gender;
@@ -31,18 +33,34 @@ public class AirportResourcePool{
     private ArrayList<IServiceVehicleNitrogenOxygen> serviceVehicleNitrogenOxigenList;
     private ArrayList<IServiceVehicleWasteWater> serviceVehicleWasteWaterList;
     private ArrayList<ISkyTankingVehicle> skyTankingVehicleList;
+    private ArrayList<PushBackVehicle> pushbackVehicleList;
     private Airport airport;
 
     AirportResourcePool(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
                                int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
-                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, Airport airport){
+                               int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle, Airport airport){
         this.airport = airport;
         build(anzahlEmployees, anzahlAirCargoPalletLifter, anzahlAirCargoPalletVehicle, anzahlContainerLifter, anzahlBaggageVehicle,
                 anzahlServiceVehicleBase, anzahlServiceVehicleFreshWater, anzahlServiceVehicleNitogenOxygen, anzahlServiceVehicleWasteWater,
-                anzahlSkyTankingVehicle);
+                anzahlSkyTankingVehicle, anzahlPushBackVehicle);
     }
 
-    //
+    public AirportResourcePool(){}
+
+    public ArrayList<AirCargoPalletLifter> getAirCargoPalletLifterList()
+    {
+        return airCargoPalletLifterList;
+    }
+
+    public ArrayList<AirCargoPalletVehicle> getAirCargoPalletVehicleList()
+    {
+        return airCargoPalletVehicleList;
+    }
+
+    public ArrayList<IContainerLifter> getContainerLifterList() {
+        return containerLifterList;
+    }
+//
     // Generate Methoden
     //
 
@@ -80,7 +98,7 @@ public class AirportResourcePool{
             String uuidLifter = palletLifterUUID.toString();
             String id = "" + zaehler;
             //NEED TO SET PARAMETERS
-           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "", 0, false, null, 0, null,null, null);
+           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "",0, false, null, 0, null,null, null);
             airCargoPalletLifterList.add(lifter);
             zaehler++;
         }
@@ -103,15 +121,9 @@ public class AirportResourcePool{
 
     private void generateContainerLifter(int anzahl){
         containerLifterList = new ArrayList(anzahl);
-        int zaehler = 2500;
-        //type?
         for(int i = 0; i<anzahl; i++) {
-            UUID uuid = UUID.randomUUID();
-            String id = "" + zaehler;
-           //NEED TO SET PARAMETERS
-           ContainerLifter containerLifter = new ContainerLifter(uuid.toString(), id, "");
+           ContainerLifter containerLifter = new ContainerLifter("");
             containerLifterList.add(containerLifter);
-            zaehler++;
         }
     }
 
@@ -122,7 +134,7 @@ public class AirportResourcePool{
         for(int i = 0; i<anzahl; i++){
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            BaggageVehicle baggageVehicle = new BaggageVehicle(uuid.toString(), id, "", null);
+            BaggageVehicle baggageVehicle = new BaggageVehicle("", airport.getBaggageSortingUnit());
             baggageVehicleList.add(baggageVehicle);
             zaehler++;
         }
@@ -188,8 +200,20 @@ public class AirportResourcePool{
             //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, this.airport);
+            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, airport);
             skyTankingVehicleList.add(skyTankingVehicle);
+            zaehler++;
+        }
+    }
+
+    private void generatePushBackVehicle (int anzahl){
+        pushbackVehicleList = new ArrayList<>(anzahl);
+        int zaehler = 6000;
+        for(int i = 0; i<anzahl; i++){
+            UUID uuid = UUID.randomUUID();
+            String id = "" + zaehler;
+            PushBackVehicle pushbackVehicle = new PushBackVehicle(uuid.toString(), id, "", false, 0, 0, false, false, false);
+            pushbackVehicleList.add(pushbackVehicle);
             zaehler++;
         }
     }
@@ -200,6 +224,10 @@ public class AirportResourcePool{
 
     public <T> T takeResource(String resourceClass){
         switch(resourceClass){
+            case "PushBackVehicle":
+                 T element11 = (T) pushbackVehicleList.get(0);
+                pushbackVehicleList.remove(0);
+                return element11;
             case "Employee":
                 T element= (T)employeeList.get(0);
                 employeeList.remove(0);
@@ -244,52 +272,67 @@ public class AirportResourcePool{
                 T element9 = (T) skyTankingVehicleList.get(0);
                 skyTankingVehicleList.remove(0);
                 return element9;
+
         }
         System.out.println("Es konnte eine Resource nicht aus dem Resourcenpool geholt werden");
         return null;
     }
 
-    public <E>void returnResource(E resource){
-        if(resource instanceof Employee){
-            Employee employee = (Employee) resource;
-            employeeList.add(employee);
-        } else if(resource instanceof AirCargoPalletLifter){
-            AirCargoPalletLifter airCargoPalletLifter = (AirCargoPalletLifter) resource;
-            airCargoPalletLifterList.add(airCargoPalletLifter);
-        } else if (resource instanceof AirCargoPalletVehicle){
-            AirCargoPalletVehicle airCargoPalletVehicle = (AirCargoPalletVehicle) resource;
-            airCargoPalletVehicleList.add(airCargoPalletVehicle);
-        } else if(resource instanceof ContainerLifter){
-            ContainerLifter containerLifter = (ContainerLifter) resource;
-            containerLifterList.add(containerLifter);
-        } else if(resource instanceof BaggageVehicle){
-            BaggageVehicle baggageVehicle = (BaggageVehicle) resource;
-            baggageVehicleList.add(baggageVehicle);
-        } else if(resource instanceof ServiceVehicleBase){
-            ServiceVehicleBase serviceVehicleBase = (ServiceVehicleBase) resource;
-            serviceVehicleBaseList.add(serviceVehicleBase);
-        } else if(resource instanceof ServiceVehicleFreshWater){
-            ServiceVehicleFreshWater serviceVehicleFreshWater = (ServiceVehicleFreshWater) resource;
-            serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
-        } else if(resource instanceof ServiceVehicleNitrogenOxygen){
-            ServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen = (ServiceVehicleNitrogenOxygen) resource;
-            serviceVehicleNitrogenOxigenList.add(serviceVehicleNitrogenOxygen);
-        } else if(resource instanceof ServiceVehicleWasteWater){
-            ServiceVehicleWasteWater serviceVehicleWasteWater = (ServiceVehicleWasteWater) resource;
-            serviceVehicleWasteWaterList.add(serviceVehicleWasteWater);
-        } else if(resource instanceof SkyTankingVehicle){
-            SkyTankingVehicle skyTankingVehicle = (SkyTankingVehicle) resource;
-            skyTankingVehicleList.add(skyTankingVehicle);
-        } else if(resource instanceof IDCard){
-            IDCard idCard = (IDCard) resource;
-            idCardList.add(idCard);
-        }
+    public void retrunResource(Employee employee){
+        employeeList.add(employee);
+    }
 
+    public void returnResource(AirCargoPalletLifter airCargoPalletLifter){
+        airCargoPalletLifterList.add(airCargoPalletLifter);
+    }
+
+    public void returnResource(AirCargoPalletVehicle airCargoPalletVehicle){
+        airCargoPalletVehicleList.add(airCargoPalletVehicle);
+    }
+
+    public void returnResource(ContainerLifter containerLifter){
+        containerLifterList.add(containerLifter);
+    }
+
+    public void returnResource(BaggageVehicle baggageVehicle){
+        baggageVehicleList.add(baggageVehicle);
+    }
+
+    public void returnResource(ServiceVehicleBase serviceVehicleBase){
+        serviceVehicleBaseList.add(serviceVehicleBase);
+    }
+
+    public void returnResource(ServiceVehicleFreshWater serviceVehicleFreshWater){
+        serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
+    }
+
+    public void returnResource(ServiceVehicleNitrogenOxygen serviceVehicleNitrogenOxygen){
+        serviceVehicleNitrogenOxigenList.add(serviceVehicleNitrogenOxygen);
+    }
+
+    public void returnResource(ServiceVehicleWasteWater serviceVehicleWasteWater){
+        serviceVehicleWasteWaterList.add(serviceVehicleWasteWater);
+    }
+
+    public void returnResource(SkyTankingVehicle skyTankingVehicle){
+        skyTankingVehicleList.add(skyTankingVehicle);
+    }
+
+    public void returnResource(IDCard idCard){
+        idCardList.add(idCard);
+    }
+
+    public void returnResource(PushBackVehicle pushBackVehicle){
+        pushbackVehicleList.add(pushBackVehicle);
+    }
+
+    public void returnResource(Employee employee){
+        employeeList.add(employee);
     }
 
     public void build(int anzahlEmployees, int anzahlAirCargoPalletLifter, int anzahlAirCargoPalletVehicle, int anzahlContainerLifter,
                       int anzahlBaggageVehicle, int anzahlServiceVehicleBase, int anzahlServiceVehicleFreshWater, int anzahlServiceVehicleNitogenOxygen,
-                      int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle){
+                      int anzahlServiceVehicleWasteWater, int anzahlSkyTankingVehicle, int anzahlPushBackVehicle){
         generateEmployeesAndIDCards(anzahlEmployees);
         generateAirCargoPalletLifter(anzahlAirCargoPalletLifter);
         generateAirCargoPalletVehicle(anzahlAirCargoPalletVehicle);
@@ -300,5 +343,6 @@ public class AirportResourcePool{
         generateServiceVehicleNitrogenOxygen(anzahlServiceVehicleNitogenOxygen);
         generateServiceVehicleWasteWater(anzahlServiceVehicleWasteWater);
         generateSkyTankingVehicle(anzahlSkyTankingVehicle);
+        generatePushBackVehicle(anzahlPushBackVehicle);
     }
 }

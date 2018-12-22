@@ -12,7 +12,7 @@ public class FrontStowagePosition {
 
     // Konstruktor
     // falls der gegebene Container nicht vom ContainerType AKE ist, wird eine RuntimeException ausgelöst
-    FrontStowagePosition(FrontStowagePositionID id, Container container) {
+    public FrontStowagePosition(FrontStowagePositionID id, Container container) {
         this.id = id;
         if(container.getType() != ContainerType.AKE) { throw new RuntimeException("falscher ContainerType"); }
         this.container = container;

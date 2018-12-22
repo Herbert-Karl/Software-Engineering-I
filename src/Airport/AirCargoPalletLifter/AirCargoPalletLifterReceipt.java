@@ -9,7 +9,7 @@ public class AirCargoPalletLifterReceipt {
     private  String id;
     private GateID gateID;
     private int numberOfAirCargoPallet;
-    private ArrayList airCargoPalletIDList;
+    private ArrayList<String> airCargoPalletIDList;
 
     public AirCargoPalletLifterReceipt(String uuid, String id, GateID gateID, int numberOfAirCargoPallet, ArrayList airCargoPalletIDList) {
         this.uuid = uuid;

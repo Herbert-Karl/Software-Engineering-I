@@ -4,17 +4,12 @@ import java.util.ArrayList;
 
 import Airport.Base.Container;
 import Airport.Base.AirCargoPallet;
+import Core.Versionable;
 
 // Implementierung des Interfaces für den Laderaum
 // der Laderaum wird dabei in zwei Teile getelt: einen vorderen und einen hinteren
 // der vordere Laderaum ist für Container gedacht, der hintere Laderaum für AIrCargoPallets
-public class CargoSystem implements ICargoSystem {
-
-    private String manufacturer;
-
-    private String type;
-
-    private String id;
+public class CargoSystem extends Versionable implements ICargoSystem {
 
     private Stowage frontStowage;
 
@@ -29,10 +24,8 @@ public class CargoSystem implements ICargoSystem {
     private double totalWeightContainer;
 
     // Konstruktor
-    CargoSystem(String manufacturer, String type, String id) {
-        this.manufacturer = manufacturer;
-        this.type = type;
-        this.id = id;
+    CargoSystem(String manufacturer, String type) {
+        super(type, manufacturer);
         this.frontStowage = new FrontStowage();
         this.rearStowage = new RearStowage();
         this.isLocked = false;
@@ -40,10 +33,24 @@ public class CargoSystem implements ICargoSystem {
         this.totalWeightContainer = 0.0;
     }
 
-    //  Funktion für Meta-Informationen
-    // liefert die ID und den Typ des CargoSystems
-    public String version() {
-        return "<" + this.id + "> - <" + this.type + ">";
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getFrontStowage() {
+        return frontStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public Stowage getRearStowage() {
+        return rearStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setFrontStowage(Stowage frontStowage) {
+        this.frontStowage = frontStowage;
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public void setRearStowage(Stowage rearStowage) {
+        this.rearStowage = rearStowage;
     }
 
     //  load-Funktion für den vorderen Laderaum
@@ -136,7 +143,5 @@ public class CargoSystem implements ICargoSystem {
         this.totalWeightAirCargoPallet -= pallet.getWeight();
         return pallet;
     }
-
-    public String getManufacturer() { return this.manufacturer; }
 
 }

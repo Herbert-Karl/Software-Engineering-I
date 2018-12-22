@@ -6,8 +6,11 @@ public class PrimaryFlightDisplay {
     private PrimaryFlightDisplayViewID currentView;
     private java.util.ArrayList<PrimaryFlightDisplayView> PrimaryFlightDisplayViewList;
 
-    public void show() {
-        //TODO
+    public String show() {
+        return "PrimaryFlightDisplay{" +
+                "currentView=" + currentView +
+                ", PrimaryFlightDisplayViewList=" + PrimaryFlightDisplayViewList +
+                '}';
     }
 
     public void nextView() {
@@ -15,7 +18,12 @@ public class PrimaryFlightDisplay {
     }
 
     public void update(String primaryFlightDisplayViewEntryName, String value) {
-        //TODO
+        for(int i = 0; i<PrimaryFlightDisplayViewList.size(); i++){
+            if(PrimaryFlightDisplayViewList.get(i).getId() == currentView){
+                PrimaryFlightDisplayViewList.get(i).update(primaryFlightDisplayViewEntryName, value);
+                break;
+            }
+        }
     }
 
     public PrimaryFlightDisplay(PrimaryFlightDisplayViewID currentView) {
