@@ -1,102 +1,136 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
-import Airport.Baggage_Sorting_Unit.IBaggageSortingUnit;
-import Airport.Base.Baggage;
+import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
+import Airport.Base.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+import java.util.UUID;
 
 public class BaggageSortingUnitRoboter implements IBaggageSortingUnitRoboter {
 
-  private final String uuid;
+    private static int idCounter;
+    private final String uuid;
+    private final String id;
+    private final String type;
+    private final BaggageSortingUnit baggageSortingUnit;
+    private ArrayList<Baggage> selectedBaggageList;
 
-  private final String id;
-
-  private final String type;
-
-  private final IBaggageSortingUnit baggageSortingUnit;
-
-  public ArrayList<Baggage> getSelectedBaggageList() {
-    return selectedBaggageList;
-  }
-
-  private ArrayList<Baggage> selectedBaggageList;
-
-  public BaggageSortingUnitRoboter(final IBaggageSortingUnit baggageSortingUnit, final String uuid,
-      final String id, final String type) {
-    this.uuid = uuid;
-    this.id = id;
-    this.type = type;
-    this.baggageSortingUnit = baggageSortingUnit;
-    selectedBaggageList = new ArrayList<>();
-  }
-
-  public String toString() {
-    String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
-        + "\nAssigned Baggage Sorting Unit: " + baggageSortingUnit
-        + "\nCurrently selected baggage: ";
-
-    for (final Baggage b : selectedBaggageList) {
-      message += "\n    " + b;
+    public BaggageSortingUnitRoboter(final BaggageSortingUnit baggageSortingUnit,
+                                     final String type) {
+        this.uuid = UUID.randomUUID().toString();
+        this.id = "" + idCounter++;
+        this.type = type;
+        this.baggageSortingUnit = baggageSortingUnit;
+        selectedBaggageList = new ArrayList<>();
     }
-    return message;
-  }
 
-  public String getUuid() {
-    return uuid;
-  }
+    public String toString() {
+        String message = "UUID: " + uuid + "\nID: " + id + "\nType: " + type
+                + "\nAssigned Baggage Sorting Unit: " + baggageSortingUnit
+                + "\nCurrently selected baggage: ";
 
-  public String getId() {
-    return id;
-  }
+        for (final Baggage b : selectedBaggageList) {
+            message += "\n    " + b;
+        }
+        return message;
+    }
 
-  public String getType() {
-    return type;
-  }
+    public ArrayList<Baggage> getSelectedBaggageList() {
+        return selectedBaggageList;
+    }
 
-  @Override
-  public void addBaggage(final Baggage b) {
-    selectedBaggageList.add(b);
-  }
+    public String getUuid() {
+        return uuid;
+    }
 
-  /**
-   * Adds parameter to internal list. Then stores it to the Depot and clears list.
-   */
-  @Override
-  public void moveBaggageToDepot(final ArrayList<Baggage> baggageList) {
-    selectedBaggageList.addAll(baggageList);
-    baggageSortingUnit.getDepot().storeAll(moveBaggage());
-  }
+    public String getId() {
+        return id;
+    }
 
-  /**
-   * Adds normal baggage from depot to container with normal type and then adds  bulky baggage to
-   * container with bulky type
-   */
-  @Override
-  public void selectBaggageFromDepot() {
-    final BaggageDepot depot = baggageSortingUnit.getDepot();
-    selectedBaggageList = depot.selectNormalBaggage(
-        "42 is always the correct class");//TODO add correct class string
-    //TODO Add to container with containerCategory normal
-    selectedBaggageList = depot.selectBulkyBaggage();
-    //TODO Add to container with containerCategory bulky
-  }
+    public String getType() {
+        return type;
+    }
 
-  /**
-   * TODO: check
-   */
-  @Override
-  public void loadContainer() {
-    baggageSortingUnit.getVehicle().store(moveBaggage());
-  }
+    @Override
+    public void addBaggage(final Baggage b) {
+        selectedBaggageList.add(b);
+    }
 
-  /**
-   * clears selected baggage list
-   *
-   * @return content of selected baggage list
-   */
-  private ArrayList<Baggage> moveBaggage() {
-    final ArrayList<Baggage> temp = selectedBaggageList;
-    selectedBaggageList.clear();
-    return temp;
-  }
+    /**
+     * Adds parameter to internal list. Then stores it to the Depot and clears list.
+     */
+    @Override
+    public void moveBaggageToDepot(final ArrayList<Baggage> baggageList) {
+        baggageSortingUnit.getDepot().storeAll(baggageList);
+    }
+
+    /**
+     * Adds normal baggage from depot to container with normal type and then adds  bulky baggage to
+     * container with bulky type
+     */
+    @Override
+    public void selectBaggageFromDepot() {
+        //getting depot
+
+        //getting normal baggage
+        storeBaggageForClass(TicketClass.First);
+        storeBaggageForClass(TicketClass.Business);
+        storeBaggageForClass(TicketClass.Economy);
+
+        //getting bulky baggage
+        selectedBaggageList = baggageSortingUnit.getDepot().selectBulkyBaggage();
+        loadContainer();
+    }
+
+    /**
+     * gets Set of containers from depot and calls fill routine
+     *
+     * @param ticketClass
+     */
+    private void storeBaggageForClass(TicketClass ticketClass) {
+        final BaggageDepot depot = baggageSortingUnit.getDepot();
+        selectedBaggageList = depot.selectNormalBaggage(ticketClass);
+        loadContainer();
+    }
+
+    /**
+     * Gets empty container, fills it and adds it to full containers
+     */
+    @Override
+    public void loadContainer() {
+        Container currentContainer;
+        List<Baggage> reducedList;
+        while (!selectedBaggageList.isEmpty()) {
+            if (selectedBaggageList.get(0) instanceof NormalBaggage && selectedBaggageList.size() > 75) {
+                reducedList = selectedBaggageList.subList(0, 74);
+            } else if (selectedBaggageList.get(0) instanceof NormalBaggage && selectedBaggageList.size() > 50) {
+                reducedList = selectedBaggageList.subList(0, 49);
+            } else {
+                reducedList = selectedBaggageList;
+            }
+            selectedBaggageList.removeAll(reducedList);
+
+            if (!reducedList.isEmpty()) {
+                if (reducedList.get(0) instanceof  NormalBaggage)
+                    currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+                else
+                    currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+            }
+            else
+                currentContainer = baggageSortingUnit.getEmptyContainer(ContainerCategory.Normal);
+
+            currentContainer.setBaggageList(convertToStack(reducedList));
+            baggageSortingUnit.addFullContainer(currentContainer);
+        }
+    }
+    
+    private Stack<Baggage> convertToStack(List<Baggage> list) {
+        Stack<Baggage> stack = new Stack<>();
+        while (list.size() > 0) {
+            stack.push(list.remove(0));
+        }
+        return stack;
+    }
 }

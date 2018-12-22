@@ -6,8 +6,11 @@ public class PrimaryFlightDisplay {
     private PrimaryFlightDisplayViewID currentView;
     private java.util.ArrayList<PrimaryFlightDisplayView> PrimaryFlightDisplayViewList;
 
-    public void show() {
-        //TODO
+    public String show() {
+        return "PrimaryFlightDisplay{" +
+                "currentView=" + currentView +
+                ", PrimaryFlightDisplayViewList=" + PrimaryFlightDisplayViewList +
+                '}';
     }
 
     public void nextView() {

@@ -7,15 +7,20 @@ public class RearStowage extends Stowage {
     private ArrayList<RearStowagePosition> positionList;
 
     // Konstruktor
-    RearStowage() {
+    public RearStowage() {
         super(StowageType.rear); // ruft Konstruktor von Stowage auf
         this.positionList = new ArrayList<RearStowagePosition>();
+    }
+
+    //hinzugefügt von Gruppe 23 UnitTest
+    public ArrayList<RearStowagePosition> getPositionList() {
+        return positionList;
     }
 
     //  Hilfsfunktion zum Füllen des Laderaums
     // fügt die Positionsobjekte der ArrayList hinzu und überprüft dabei, ob die Positionen belegt sind
     // falls der Laderaum bereits voll ist oder eine schon belegte Position nochmal belegt werden soll, wird eine RuntimeException ausgelöst
-    protected void add_to_positionList(RearStowagePosition position) {
+    public void add_to_positionList(RearStowagePosition position) {
         if(this.getIsComplete()) { throw new RuntimeException("RearStowage ist bereits vollständig."); }
         boolean alreadyInList = false;
         for(RearStowagePosition element: this.positionList) {
@@ -27,11 +32,10 @@ public class RearStowage extends Stowage {
     }
 
     //  Hilfsfunktion zum Leeren des Laderaums
-    // entfernt das erste Objekt in der ArrayList
-    // entsprechend beachtet die Funktion nicht die Positionen
+    // entfernt das letzte Objekt in der ArrayList
     protected RearStowagePosition remove_from_positionList() {
         if(this.positionList.size() == 0) { return null; }
-        return this.positionList.remove(0);
+        return this.positionList.remove(this.positionList.size()-1);
     }
 
 }
