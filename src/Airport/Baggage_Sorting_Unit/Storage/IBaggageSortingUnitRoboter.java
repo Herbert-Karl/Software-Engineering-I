@@ -1,16 +1,17 @@
 package Airport.Baggage_Sorting_Unit.Storage;
 
 import Airport.Base.Baggage;
+import Airport.Base.ContainerCategory;
 
 import java.util.ArrayList;
 
 public interface IBaggageSortingUnitRoboter {
 
-  void moveBaggageToDepot(ArrayList<Baggage> baggageList);
+    void moveBaggageToDepot(ArrayList<Baggage> baggageList);
 
-  void selectBaggageFromDepot();
+    void selectBaggageFromDepot();
 
-  void loadContainer();
+    void loadContainer();
 
-  void addBaggage(Baggage b);
+    void addBaggage(Baggage b);
 }

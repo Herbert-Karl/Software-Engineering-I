@@ -22,6 +22,8 @@ public class Tower implements ITower{
         this.frequency = "128.5";
     }
 
+    public Tower(){}
+
     public void recieveRequestTakeOff(Airplane airplane){
         //TODO
         approveRequestTakeOff(airplane);

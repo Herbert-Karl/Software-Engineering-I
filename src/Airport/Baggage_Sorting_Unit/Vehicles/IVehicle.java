@@ -4,15 +4,15 @@ import Airport.Airport.GateID;
 
 public interface IVehicle {
 
-  void executeRequest(GateID gateID);
+    void executeRequest(GateID gateID);
 
-  void setFlashingLightOn();
+    void setFlashingLightOn();
 
-  void move(int speedInMPH);
+    void move(int speedInMPH);
 
-  void stop();
+    void stop();
 
-  void setGate(GateID gate);
+    void setGate(GateID gate);
 
-  void setFlashingLightOff();
+    void setFlashingLightOff();
 }

@@ -8,9 +8,6 @@ import Airport.Base.Container;
 // Interface für den Hauptladeraum eines Flugzeugs
 public interface ICargoSystem {
 
-    // gibt Meta-Informationen zum Laderaum zurück
-    String version();
-
     // lädt einen Container in den Laderaum an die gegebene Position
     void load(Container container, FrontStowagePositionID position);
 

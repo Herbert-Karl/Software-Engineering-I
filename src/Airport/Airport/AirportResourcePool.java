@@ -45,7 +45,22 @@ public class AirportResourcePool{
                 anzahlSkyTankingVehicle, anzahlPushBackVehicle);
     }
 
-    //
+    public AirportResourcePool(){}
+
+    public ArrayList<AirCargoPalletLifter> getAirCargoPalletLifterList()
+    {
+        return airCargoPalletLifterList;
+    }
+
+    public ArrayList<AirCargoPalletVehicle> getAirCargoPalletVehicleList()
+    {
+        return airCargoPalletVehicleList;
+    }
+
+    public ArrayList<IContainerLifter> getContainerLifterList() {
+        return containerLifterList;
+    }
+//
     // Generate Methoden
     //
 
@@ -83,7 +98,7 @@ public class AirportResourcePool{
             String uuidLifter = palletLifterUUID.toString();
             String id = "" + zaehler;
             //NEED TO SET PARAMETERS
-           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "", 0, false, null, 0, null,null, null);
+           AirCargoPalletLifter lifter = new AirCargoPalletLifter(palletLifterUUID.toString(), id, "",0, false, null, 0, null,null, null);
             airCargoPalletLifterList.add(lifter);
             zaehler++;
         }
@@ -191,7 +206,7 @@ public class AirportResourcePool{
             //NEED TO SET PARAMETERS
             UUID uuid = UUID.randomUUID();
             String id = "" + zaehler;
-            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, this.airport);
+            SkyTankingVehicle skyTankingVehicle = new SkyTankingVehicle(uuid.toString(), id, "", 0, null, null, false, false, null,null,0, airport);
             skyTankingVehicleList.add(skyTankingVehicle);
             zaehler++;
         }
@@ -289,11 +304,11 @@ public class AirportResourcePool{
         baggageVehicleList.add(baggageVehicle);
     }
 
-    public void returnRecource(ServiceVehicleBase serviceVehicleBase){
+    public void returnResource(ServiceVehicleBase serviceVehicleBase){
         serviceVehicleBaseList.add(serviceVehicleBase);
     }
 
-    public void returnRecource(ServiceVehicleFreshWater serviceVehicleFreshWater){
+    public void returnResource(ServiceVehicleFreshWater serviceVehicleFreshWater){
         serviceVehicleFreshWaterList.add(serviceVehicleFreshWater);
     }
 
