@@ -3,20 +3,17 @@ package Airport.Baggage_Sorting_Unit.Storage;
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.BaggageSortingUnit;
 import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
-import Airport.Base.Baggage;
-import Airport.Base.DestinationBox;
-import Airport.Base.Employee;
-import Airport.Base.NormalBaggage;
+import Airport.Base.*;
 import Airport.Customs.Customs;
 import Airport.Scanner.BaggageScanner;
 import Airport.Scanner.StringSearchAlgorithm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BaggageSortingUnitRoboterTest {
     private BaggageSortingUnitRoboter baggageSortingUnitRoboter;
@@ -25,8 +22,8 @@ class BaggageSortingUnitRoboterTest {
     @BeforeEach
     void setup() {
         baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), new BaggageScanner("type", StringSearchAlgorithm.BITAP),
-                new DestinationBox(null, new ArrayList<Baggage>(), 100), new Customs());
-        baggageSortingUnitRoboter = new BaggageSortingUnitRoboter(baggageSortingUnit, "uuid", "id", "type");
+                new DestinationBox(null, new ArrayList<Baggage>(), 100), new Customs(), new BaggageSortingUnitRoboter(baggageSortingUnit, "type"));
+        baggageSortingUnitRoboter = new BaggageSortingUnitRoboter(baggageSortingUnit, "type");
         baggageSortingUnit.setRoboter(baggageSortingUnitRoboter);
 
         for (int i = 0; i < 10; i++) {

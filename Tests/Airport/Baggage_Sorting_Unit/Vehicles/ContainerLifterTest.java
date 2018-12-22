@@ -15,7 +15,7 @@ class ContainerLifterTest {
 
     @BeforeEach
     void createContainerLifter() {
-        containerLifter = new ContainerLifter("uuid", "id", "type");
+        containerLifter = new ContainerLifter("type");
     }
 
     /**

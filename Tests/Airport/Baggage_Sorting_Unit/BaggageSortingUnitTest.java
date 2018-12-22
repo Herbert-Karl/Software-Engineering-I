@@ -2,6 +2,7 @@ package Airport.Baggage_Sorting_Unit;
 
 import Airport.Airport.GateID;
 import Airport.Baggage_Sorting_Unit.Loading.LoadingStrategy;
+import Airport.Baggage_Sorting_Unit.Storage.BaggageSortingUnitRoboter;
 import Airport.Baggage_Sorting_Unit.Vehicles.BaggageVehicle;
 import Airport.Baggage_Sorting_Unit.Vehicles.ContainerLifter;
 import Airport.Base.*;
@@ -35,7 +36,7 @@ class BaggageSortingUnitTest {
         }
 
         baggageSortingUnit = new BaggageSortingUnit(new ArrayList<Employee>(), baggageScanner, new DestinationBox(null, baggageList,
-                100), new Customs());
+                100), new Customs(), new BaggageSortingUnitRoboter(baggageSortingUnit, "type"));
     }
 
     @Test
@@ -188,8 +189,8 @@ class BaggageSortingUnitTest {
      */
     @Test
     void sendContainerLifterToGate() {
-        BaggageVehicle baggageVehicle = new BaggageVehicle("uuid", "id", "type", baggageSortingUnit);
-        ContainerLifter containerLifter = new ContainerLifter("uuid", "id", "type");
+        BaggageVehicle baggageVehicle = new BaggageVehicle("type", baggageSortingUnit);
+        ContainerLifter containerLifter = new ContainerLifter("type");
         baggageVehicle.setContainerLifter(containerLifter);
         baggageVehicle.setGate(GateID.A01);
 
