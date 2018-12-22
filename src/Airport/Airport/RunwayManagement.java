@@ -22,7 +22,7 @@ public class RunwayManagement implements IRunwayManagement {
         //anhand von Windrichtung und Runway
         //Runway: anhand von ID prüfen, ob Flugzeug null
         Runway randomRunWay = runwayList.get(0);
-        RunwayCheckPointID selectedRanwayCheckPoint;
+        RunwayCheckPointID selectedRunwayCheckPoint;
 
         switch (windDirection) {
             case WestToEast:
@@ -30,7 +30,6 @@ public class RunwayManagement implements IRunwayManagement {
 
             case EastToWest:
                 return randomRunWay.getCheckPoints().get(1);
-
         }
         return null;
     }

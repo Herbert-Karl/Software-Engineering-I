@@ -23,8 +23,6 @@ public class Tower implements ITower{
         this.frequency = "128.5";
     }
 
-    public Tower(){}
-
     public void recieveRequestTakeOff(Airplane airplane){
         approveRequestTakeOff(airplane);
     }
@@ -39,12 +37,10 @@ public class Tower implements ITower{
 
     public void approveRequestLanding(Airplane airplane){
         System.out.println("Approve request landing for " + airplane.getID());
-
     }
 
     public void recieveFireAlarm(Airplane airplane){
         determineAlarmType(airplane);
-        //TODO: Look up where to get RunwayID
         alarm(airplane.getRunwayID(), airplane);
     }
 
@@ -59,6 +55,13 @@ public class Tower implements ITower{
         engines.forEach(engine -> {
             if (engine.isFire())
                 countLeftWing++;
+        });
+
+        Wing rightWing = airplane.getRightWing();
+        ArrayList<Engine> enginesRight = rightWing.getEngines();
+        enginesRight.forEach(engine -> {
+            if (engine.isFire())
+                countRightWing++;
         });
 
         int numberOfAllEngines = countLeftWing + countRightWing;
@@ -103,8 +106,7 @@ public class Tower implements ITower{
     }
 
     public void alarm(RunwayID runwayID, Airplane airplane){
-        //TODO check where to get fireDepartment from
-       ArrayList<FireDepartment> fireDepartments = airport.fireDepartments;
+       ArrayList<FireDepartment> fireDepartments = airport.IFireDepartment;
        AlarmType alarmType = determineAlarmType(airplane);
        Optional<Runway> runwayOnFire= runwayList.stream().filter(runway -> runway.getRunwayID().equals(runwayID)).findFirst();
        if (runwayOnFire.isPresent())
@@ -116,5 +118,13 @@ public class Tower implements ITower{
 
     public WindDirection getWindDirection() {
         return windDirection;
+    }
+
+    public IRunwayManagement getRunwayManagement() {
+        return runwayManagement;
+    }
+
+    public void setRunwayManagement(IRunwayManagement runwayManagement) {
+        runwayManagement = this.runwayManagement;
     }
 }

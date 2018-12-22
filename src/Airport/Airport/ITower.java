@@ -20,4 +20,8 @@ public interface ITower {
     void alarm(RunwayID runwayID, Airplane airplane);
 
     WindDirection getWindDirection();
+
+    IRunwayManagement getRunwayManagement();
+
+    void setRunwayManagement(IRunwayManagement runwayManagement);
 }
