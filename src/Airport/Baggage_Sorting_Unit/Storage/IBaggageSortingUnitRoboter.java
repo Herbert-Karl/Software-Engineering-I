@@ -11,7 +11,7 @@ public interface IBaggageSortingUnitRoboter {
 
     void selectBaggageFromDepot();
 
-    void loadContainer(ContainerCategory category);
+    void loadContainer();
 
     void addBaggage(Baggage b);
 }

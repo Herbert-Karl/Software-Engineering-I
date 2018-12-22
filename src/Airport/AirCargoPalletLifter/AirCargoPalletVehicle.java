@@ -4,7 +4,7 @@ import Airport.Airport.Gate;
 import Airport.Airport.GateID;
 import Airport.Base.AirCargoPallet;
 
-public class AirCargoPalletVehicle {
+public class AirCargoPalletVehicle implements IAirCargoPalletVehicle{
     private String uuid;
     private String id;
     private String type;

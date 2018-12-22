@@ -19,6 +19,14 @@ public class Customs implements ICustoms {
     ArrayList<Baggage> keepSafeBaggageList;
     ArrayList<Item> keepSafeItemList;
 
+    public ArrayList<Baggage> getKeepSafeBaggageList() {
+        return keepSafeBaggageList;
+    }
+
+    public ArrayList<Item> getKeepSafeItemList() {
+        return keepSafeItemList;
+    }
+
     public boolean loginBaggageScanner(Employee employee, String password){
         return BaggageScanner.login(employee.IDCard, password);
     }
