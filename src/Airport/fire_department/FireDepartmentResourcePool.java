@@ -55,4 +55,7 @@ class FireDepartmentResourcePool
             Gender.values()[(int) (Math.random() + 0.5)], new IDCard());
     }
 
+    public ArrayList<FireFighter> getFireFightersList() {
+        return fireFightersList;
+    }
 }

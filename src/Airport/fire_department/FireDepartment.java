@@ -5,6 +5,7 @@ import Airport.Airport.Runway;
 import Airport.Base.AlarmType;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -24,11 +25,7 @@ public class FireDepartment implements IFireDepartment
 
     private void initalizeEntrances()
     {
-        for (EntranceID entranceID :
-            EntranceID.values())
-        {
-            entranceList.add(new Entrance(entranceID));
-        }
+        Arrays.stream(EntranceID.values()).forEach(entranceID -> entranceList.add(new Entrance(entranceID)));
     }
 
     public void alarm(Runway runway,
@@ -92,10 +89,11 @@ public class FireDepartment implements IFireDepartment
 
         }
         int seats= fireTrucks.stream().mapToInt(FireTruck::getNumberOfSeat).sum();
-
-
-        for(FireTruck fireTruck:fireTrucks){
-            //TODO
+        fireFighters=new ArrayList<>(resourcePool.getFireFightersList().subList(0,seats));
+        int fireTrucksiterator=0;
+        for (FireFighter fireFighter:fireFighters){
+            FireTruck fireTruck=fireTrucks.get(fireTrucksiterator);
+            if(0>=fireTruck.assignFirefighter(fireFighter))fireTrucksiterator++;
         }
 
         return new FireAlertStrategy(alarmType, fireFighters, fireTrucks);
@@ -119,7 +117,6 @@ public class FireDepartment implements IFireDepartment
         strategy.getFireTruckList().forEach(fireTruck -> fireTruck.executeRequest(runway.getRunwayID()));
         //close doors
         openEntrances.forEach(this::closeEntrance);
-        //restore Firefighters
 
     }
 
