@@ -34,5 +34,8 @@ class Entrance {
         isOpen = false;
     }
 
+    public boolean isOpen() {
+        return isOpen;
+    }
 }
 

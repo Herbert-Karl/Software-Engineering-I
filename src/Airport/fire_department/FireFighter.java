@@ -26,4 +26,8 @@ public class FireFighter
         this.gender = gender;
         this.idCard = idCard;
     }
+
+    public void setFireTruck(FireTruck fireTruck) {
+        this.fireTruck = fireTruck;
+    }
 }
