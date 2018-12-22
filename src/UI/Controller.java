@@ -304,13 +304,10 @@ public class Controller implements Initializable {
         }
 
     }
-
-    //TODO: MUELLER FRAGEN OB DAS AUCH SO AKTIVIERT WERDEN DARF ODER NICHT
     public void enterPressed() {
         executePressed();
     }
-
-    //TODO: MUELLER FRAGEN OB DAS WIRKLICH WIEDER GESCHLOSSEN WERDEN MUSS
+   
     private boolean isNotepadRunning() throws Exception {
         Process listTasksProcess = Runtime.getRuntime().exec("tasklist");
         BufferedReader tasksListReader = new BufferedReader(new InputStreamReader(listTasksProcess.getInputStream()));
