@@ -19,7 +19,7 @@ class RouteManagementTest extends TestCase {
         String type = "effeef";
 
         String exp = "<"+id+"> - " + "<"+type+">";
-        routeManagement = new RouteManagement("manu", "type", "id", false, new ArrayList<CheckPoint>(), 7);
+        routeManagement = new RouteManagement("manu", type, id, false, new ArrayList<CheckPoint>(), 7);
 
         assertEquals(exp, routeManagement.version());
     }
