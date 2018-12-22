@@ -141,7 +141,7 @@ public class FireTruck implements IFireTruck {
         runway = null;
         airplane = null;
         fireFighterList.forEach(fireFighter -> fireFighter.setFireTruck(null));
-        fireFighterList=new ArrayList<>();
+        fireFighterList = new ArrayList<>();
     }
 
     @Override
@@ -159,12 +159,24 @@ public class FireTruck implements IFireTruck {
     @Override
     public boolean extinguish(final int amount,
                               final IEngine engine) {
+        if (amount < maximumCapacityWater) {
+
+//still no IENgine in Airplane
+            //TODO: engine.setonfire =false
+            return true;
+        }
+
         return false;
     }
 
     @Override
     public boolean extinguish(final boolean useFoam,
                               final IEngine engine) {
+        if ((useFoam == hasExtinguishingFoam)) {
+            //engine still missing
+            //TODO: engine.setonfire =false
+            return true;
+        }
         return false;
     }
 
