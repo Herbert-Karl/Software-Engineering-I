@@ -25,6 +25,7 @@ public class FederalPolice implements IFederalPolice {
         this.numberOfMunitionInspected = numberOfMunitionInspected;
     }
 
+
     private int numberOfMunitionInspected;
 
     public String getUuid() {
