@@ -3,8 +3,13 @@ package Airport.fire_department;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import Airport.fire_department.Door;
+import Airport.fire_department.Entrance;
 
 class EntranceTest {
+
+    private Door door = new Door();
+    private Entrance entrance= new Entrance();
 
     @Test
     void open() {
