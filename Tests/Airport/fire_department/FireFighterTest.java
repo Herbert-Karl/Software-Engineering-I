@@ -4,6 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FireFighterTest {
   
-  // nur getter und setter methoden in Klasse daher testen wir nix
+  // Klasse "FireFighter" besitzt nur Getter- und Settermethoden, haben wir nichts zu testen
 
 }

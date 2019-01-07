@@ -6,5 +6,5 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ApronTest {
 
-// nur getter und setter methoden in Klasse daher testen wir nix
+// nur Getter- und Settermethoden in Klasse "Apron", daher keine Tests vorhanden
 }

@@ -6,31 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FireTruckTest {
 
-    @Test
-    void forward() {
-    }
+    private FireTruck fireTruck = new FireTruck();
 
     @Test
-    void backward() {
+    void move() {
+        assertEquals(33, fireTruck.move(33));
     }
 
     @Test
     void stop() {
+        assertEquals(0,fireTruck.stop());
     }
 
-    @Test
-    void setFlashingLightON() {
-    }
-
-    @Test
-    void setFlashingLightOFF() {
-    }
-
-    @Test
-    void extinguish() {
-    }
-
-    @Test
-    void extinguish1() {
-    }
 }
