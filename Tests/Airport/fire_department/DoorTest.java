@@ -1,24 +1,25 @@
 package Airport.fire_department;
 
 import org.junit.jupiter.api.Test;
+import Airport.fire_department.Door;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoorTest {
 
+
+
+    private Door door = new Door();
+
     @Test
     void open() {
-        Door testDoor = new Door();
-        open();                                         //Methode ausführen
-        assertTrue(isOpen);                              //Hat die Methode die Attribute passend angepasst?
-        testDoor = null;                                //testdoor wieder löschen
+        door.open();                                     //Methode ausführen
+        assertTrue(door.getIsOpen());                    //Wurde isOpen gesetzt? Gettermethode nicht implementiert
     }
 
     @Test
     void close() {
-        Door testDoor = new Door();
-        close();                                         //Methode ausführen
-        assertFalse(isOpen);                              //Hat die Methode die Attribute passend angepasst?
-        testDoor = null;                                 //testdoor wieder löschen
+        door.close();                                         //Methode ausführen
+        assertFalse(door.getIsOpen());                        //Wurde isOpen gesetzt? Gettermethode nicht implementiert
     }
 }
